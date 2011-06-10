@@ -6,16 +6,13 @@ http://maven.apache.org/
 ==DEPENDENCIES
 This code requires:
 
- * Apache Tomcat ??? also, any specific version
+ * Apache Tomcat 2.0
  * Apache Maven 2.0
- * Java SDK 1.6 (Sun Microsystems version, not the OpenJDK VM)
-   ???shouldn't that be Oracle now, and doesn't it have a new name/version???
-   
- * Google Web Toolkit (GWT) 2.1.1 ???
- * GXT 2.2.1 ???
+ * Java6 JDK (new number for Java SDK 1.6)
+ * Google Web Toolkit (GWT) 2.1.1
+ * GXT 2.2.1
 
-
-To install TNRS, do the following in this order:
+==To install TNRS, do the following in this order:
 
 =======================
 1. Install dependencies
@@ -31,7 +28,7 @@ To install TNRS, do the following in this order:
 	  successful using a later version.
 	
 	****************************************************************
-	* Install JavaSDK 1.6 from:
+	* Install Java6 JDK (Java SDK 1.6) from:
 	  http://www.oracle.com/technetwork/java/javase/downloads/index.html
 	  
 	  or from your Linux distribution's software repository.
@@ -40,8 +37,9 @@ To install TNRS, do the following in this order:
 	
 	****************************************************************
 	* Note:
-	  Google Web Toolkit (GWT) 2.1.1 and GXT 2.2.1 will be downloaded
-	  and installed automatically by Maven when the software is built.
+	  Google Web Toolkit (GWT) 2.1.1 and GXT 2.2.1 are dependencies 
+	  that will be downloaded and installed automatically by Maven 
+	  when the software is built later in the install process.
 	
 ==================
 2. Create Database
@@ -62,7 +60,7 @@ To install TNRS, do the following in this order:
 	
 	1.	create_tnrs_core.php (in create_tnrs_core/)
 	2.	import.php (in import/) - this version loads custom names dump
-	from the Tropicos API
+	    from the Tropicos API
 	3.	load_staging.php (in load_staging/)
 	4.	load_core_db.php (in load_core_db/)
 	5.	taxamatch_tables.php (in taxamatch_tables/)
@@ -116,8 +114,8 @@ To install TNRS, do the following in this order:
 	$ mkdir tnrs-services
 	$ mv target/*jar tnrs-services
 	
-	Copy the start.sh script contained in the source (where, precisely???)
-	to tnrs-standalone
+	Copy start.sh, located in the top level directory, to the 
+	tnrs-standalone directory.
 	
 	We recommend moving the tnrs-standalone directory to /opt for
 	consistency with Tomcat general practice and consistency with 
@@ -150,8 +148,8 @@ To install TNRS, do the following in this order:
 	We recommend moving the tnrs-batch directory to /opt for
 	consistency with Tomcat and the TNRS web services.
 	
-	A startup script called start.sh is provided with the source code 
-	(where ???) for managing the server.
+	Use batch_start.sh from the top level directory for batch 
+	processing.
 
 
 ===============================
