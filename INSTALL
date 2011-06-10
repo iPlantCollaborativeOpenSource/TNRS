@@ -1,0 +1,179 @@
+==BUILD INFORMATION
+Build info for Apache Maven is in pom.xml.
+http://maven.apache.org/
+
+
+==DEPENDENCIES
+This code requires:
+
+ * Apache Tomcat ??? also, any specific version
+ * Apache Maven 2.0
+ * Java SDK 1.6 (Sun Microsystems version, not the OpenJDK VM)
+   ???shouldn't that be Oracle now, and doesn't it have a new name/version???
+   
+ * Google Web Toolkit (GWT) 2.1.1 ???
+ * GXT 2.2.1 ???
+
+
+To install TNRS, do the following in this order:
+
+=======================
+1. Install dependencies
+=======================
+
+	****************************************************************
+	* Install Apache Maven 2.0 from:
+	  http://maven.apache.org/
+	  
+	  The pom.xml file is made to work with 2.0 and has not been 
+	  tested on any other version. It may work with later versions,
+	  but we offer no guarantees. Please let us know if you are
+	  successful using a later version.
+	
+	****************************************************************
+	* Install JavaSDK 1.6 from:
+	  http://www.oracle.com/technetwork/java/javase/downloads/index.html
+	  
+	  or from your Linux distribution's software repository.
+	  
+	  Use the Oracle version as the OpenJDK VM has caused problems.
+	
+	****************************************************************
+	* Note:
+	  Google Web Toolkit (GWT) 2.1.1 and GXT 2.2.1 will be downloaded
+	  and installed automatically by Maven when the software is built.
+	
+==================
+2. Create Database
+==================
+
+    ****************************************************************
+	Files in the tnrs_db_scripts directory and subdirectories build 
+	the TNRS core database and table for the taxamatch application.
+	
+	Each directory contains one master script (extension php) which 
+	calls all the others.
+	
+	Global parameters are set in the single global_params.inc, in this 
+	directory. Also see local params.inc file in each subdirectory.
+	
+	For a complete build of the database, scripts should be run in the
+	following order:
+	
+	1.	create_tnrs_core.php (in create_tnrs_core/)
+	2.	import.php (in import/) - this version loads custom names dump
+	from the Tropicos API
+	3.	load_staging.php (in load_staging/)
+	4.	load_core_db.php (in load_core_db/)
+	5.	taxamatch_tables.php (in taxamatch_tables/)
+	
+	Custom MySQL function strSplit() is required. Use contents of file
+	strSplit.txt to add this function to your MySQL installation.
+	
+	In the tnrs_db_scripts/import directory we have included a small 
+	example file called tropicos_api_pinaceae_example.txt. It can be 
+	used to do a complete example build of the database, as outlined 
+	here.
+
+=======================
+3. Install biodiversity
+=======================
+
+	****************************************************************
+	To install the name parser from GNI, called biodiversity,
+	see: /biodiversity/README.rdoc 
+
+====================
+3. Install Taxamatch
+====================
+
+	****************************************************************
+	To install Taxamatch, see: /taxamatch/INSTALL
+
+============================
+4. Install TNRS web services
+============================
+
+    ****************************************************************
+	To install the TNRS web services:
+	
+	The services use port 14444 by default. Open this port in 
+	your firewall, or whatever alternate port you configure the 
+	services to use.
+	
+	Check that the configuration file at
+	/services-tnrs/src/main/resources/tnrs_standalone.properties 
+	has the correct URL for your installation of Taxamatch. This gets
+	packaged in the jar file, so it needs to be modified before 
+	compilation.
+	
+	Enter the /services-tnrs directory from the command line and enter the following commands in this order:
+	
+	$ mvn clean compile install
+	$ mvn dependency:copy-dependencies
+	$ cp target/dependencies/* target
+	   (The target directory is created during compiling in step one.)
+	$ mkdir tnrs-services
+	$ mv target/*jar tnrs-services
+	
+	Copy the start.sh script contained in the source (where, precisely???)
+	to tnrs-standalone
+	
+	We recommend moving the tnrs-standalone directory to /opt for
+	consistency with Tomcat general practice and consistency with 
+	the TNRS batch processing server.
+	
+	The application does not currently have a SysV init script, but
+	one will be provided soon.
+	
+=======================================
+5. Install TNRS batch processing server
+=======================================
+
+    ****************************************************************
+	To install the TNRS batch processing server:
+	
+	The application uses port 14445 by default. Open this port in 
+	your firewall, or whatever alternate port you configure the app
+	to use.
+	
+	Enter the /tnrs-batch-server directory from the command line and 
+	enter the following commands in this order:
+	
+	$ mvn clean compile install
+	$ mvn dependency:copy-dependencies
+	$ cp target/dependencies* /target
+	   (The target directory is created during compiling in step one.)
+	$ mkdir tnrs-batch
+	$ cp target/*.jar tnrs-batch
+	
+	We recommend moving the tnrs-batch directory to /opt for
+	consistency with Tomcat and the TNRS web services.
+	
+	A startup script called start.sh is provided with the source code 
+	(where ???) for managing the server.
+
+
+===============================
+6. Install TNRS web application
+===============================
+
+    ****************************************************************
+	To install the TNRS web application:
+	
+	Check that the configuration file at
+	/services-tnrs/src/main/resources/tnrs_standalone.properties 
+	has the current URLs for the just-installed web services. If they
+	are installed on the same machine as this web application and use
+	the default ports, use:
+	http://localhost:14444/ for services and
+	http://localhost:14445/ for the batch server.
+	
+	Enter the /tnrs-standalone directory from the command line and 
+	enter the following commands in this order:
+	
+	$ mvn clean compile install
+	
+	This will create a tnrs-standalone.war file. Move this file to the
+	webapps directory of your Tomcat installation and restart the
+	container to be sure the application is loaded.
