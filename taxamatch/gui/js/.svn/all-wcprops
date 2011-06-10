@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/gui/js
+END
+class.tm-grid.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/gui/js/class.tm-grid.js
+END
+class.tm-search.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/gui/js/class.tm-search.js
+END
+FileUploadField.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/gui/js/FileUploadField.js
+END
+class.tm-csv.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/gui/js/class.tm-csv.js
+END
+app.js
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/gui/js/app.js
+END
+class.tm-search-bulk.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/gui/js/class.tm-search-bulk.js
+END

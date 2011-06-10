@@ -1,0 +1,1028 @@
+package org.iplantc.tnrs.demo.client;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.iplantc.tnrs.demo.client.ClientCommand;
+import org.iplantc.tnrs.demo.client.views.Hyperlink;
+
+
+import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.Style.SelectionMode;
+import com.extjs.gxt.ui.client.Style.SortDir;
+import com.extjs.gxt.ui.client.data.BaseListLoader;
+import com.extjs.gxt.ui.client.data.BaseModel;
+import com.extjs.gxt.ui.client.data.BasePagingLoadConfig;
+import com.extjs.gxt.ui.client.data.BasePagingLoader;
+import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.data.BeanModelReader;
+import com.extjs.gxt.ui.client.data.HttpProxy;
+import com.extjs.gxt.ui.client.data.JsonLoadResultReader;
+import com.extjs.gxt.ui.client.data.ListLoadResult;
+import com.extjs.gxt.ui.client.data.ListLoader;
+import com.extjs.gxt.ui.client.data.LoadConfig;
+import com.extjs.gxt.ui.client.data.Model;
+import com.extjs.gxt.ui.client.data.ModelData;
+import com.extjs.gxt.ui.client.data.ModelType;
+import com.extjs.gxt.ui.client.data.PagingLoadConfig;
+import com.extjs.gxt.ui.client.data.PagingLoadResult;
+import com.extjs.gxt.ui.client.data.PagingLoader;
+import com.extjs.gxt.ui.client.data.PagingModelMemoryProxy;
+import com.extjs.gxt.ui.client.data.RpcProxy;
+import com.extjs.gxt.ui.client.event.BaseEvent;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.ColumnHeaderEvent;
+import com.extjs.gxt.ui.client.event.ComponentEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.FieldEvent;
+import com.extjs.gxt.ui.client.event.GridEvent;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.store.GroupingStore;
+import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.store.Store;
+import com.extjs.gxt.ui.client.store.StoreSorter;
+import com.extjs.gxt.ui.client.widget.Html;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.Radio;
+import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
+import com.extjs.gxt.ui.client.widget.grid.ColumnData;
+import com.extjs.gxt.ui.client.widget.grid.ColumnHeader;
+import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
+import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
+import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
+import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
+import com.extjs.gxt.ui.client.widget.layout.FitLayout;
+import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
+import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
+import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+import com.google.gwt.core.client.JsArray;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
+
+
+public class RemoteTNRSEditorPanel extends LayoutContainer
+{
+
+	private Grid<BeanModel> grid;
+	private HashMap<Integer, ListStore<ModelData>> groups;
+	private boolean hasFamilies;
+	private PagingLoader<PagingLoadResult<ModelData>>  loader;
+	private final SearchServiceAsync searchService;
+	private PagingToolBar toolBar;
+	private RpcProxy<PagingLoadResult<BeanTNRSEntry>> proxy;
+	private String key;
+	private String email;
+
+	/**
+	 * Default constructor
+	 */
+	public RemoteTNRSEditorPanel(final SearchServiceAsync searchService, final String params)
+	{
+		groups = new HashMap<Integer,ListStore<ModelData>>();
+		this.searchService = searchService;
+		init();
+		String[] paramsA = params.split("#");
+		key=paramsA[1];
+		email=paramsA[0];
+		compose();
+	}
+
+	private void init()
+	{
+
+		setSize(1200, 330);
+		setBorders(false);
+		setStyleAttribute("margin", "5px");
+		setLayout(new FitLayout());
+
+
+	}
+
+	private ToolBar buildDownloadToolbar()
+	{
+		ToolBar ret = new ToolBar();
+
+		ret.add(new FillToolItem());
+
+		Button but = new Button("Download results", new SelectionListener<ButtonEvent>()
+				{
+			@Override
+			public void componentSelected(ButtonEvent ce)
+			{
+				TNRSDownloadDialog select_download = new TNRSDownloadDialog(new SelectionDownloadEvent(email,key));
+
+				select_download.show();
+
+
+			}
+				});
+
+
+		but.setBorders(true);
+		ret.add(but);
+
+		ret.setHeight(30);
+		ret.setBorders(true);
+		return ret;
+	}
+
+
+
+
+	private void compose()
+	{
+		//hasFamilies = hasFamilyNames(json);
+		ListStore<BeanModel> store = buildStore();
+
+		final ColumnModel cm = buildColumnModel();
+
+		buildGrid(store, cm);
+		VerticalPanel vpanel = new VerticalPanel();
+		vpanel.setSize(1600, 330);
+		vpanel.setLayout(new FitLayout());
+		vpanel.add(buildDownloadToolbar());
+		vpanel.add(grid);
+		toolBar = new PagingToolBar(100);
+
+
+
+		toolBar.bind(loader);  
+		//loader.load(0, 100);
+		vpanel.add(toolBar);
+		add(vpanel);
+		layout();
+	}
+
+
+
+
+	// this function will add an entry to our hash map of stores.
+	// if the entry that's added has been selected, the entry is returned for later
+	// addition
+	// to our main grid, otherwise the function returns null. JUST BECAUSE THIS METHOD
+	// RETURNED NULL DOES NOT MEAN THAT AN ENTRY WAS NOT ADDED.
+	/*private TNRSEntry addEntry(JsTNRSEntry jsEntry)
+	{
+		TNRSEntry entry = new TNRSEntry(jsEntry);
+
+		Integer idGroup = entry.getGroup();
+
+		if(groups.containsKey(idGroup))
+		{
+			groups.get(idGroup).add(entry);
+		}
+		else
+		{
+			ListStore<TNRSEntry> group = new ListStore<TNRSEntry>();
+
+			group.sort("overall", SortDir.DESC);
+			group.add(entry);
+			groups.put(idGroup, group);
+		}
+
+		return (entry.isSelected()) ? entry : null;
+	}*/
+
+
+
+
+
+	private ListStore<BeanModel> buildStore()
+	{
+		ListStore<ModelData> entries = new ListStore<ModelData>();
+
+		final JSONObject json = new JSONObject();
+		json.put("email",new JSONString(email));
+		json.put("key", new JSONString(key));
+
+		proxy = new RpcProxy<PagingLoadResult<BeanTNRSEntry>>() {
+
+			@Override
+			protected void load(Object loadConfig,
+					AsyncCallback<PagingLoadResult<BeanTNRSEntry>> callback) {
+				searchService.getRemoteData((PagingLoadConfig)loadConfig, json.toString(), callback);
+
+			}
+		};
+
+		BeanModelReader reader = new BeanModelReader();
+
+
+		loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, reader);  
+		ListStore<BeanModel> store = new ListStore<BeanModel>(loader);  
+
+		loader.load();
+
+
+
+
+
+		return store;
+	}
+
+
+
+
+
+	// build column with custom renderer
+	private ColumnConfig buildConfig(String id, String caption, int width,
+			HorizontalAlignment alignment, final GridCellRenderer<BeanModel> renderer)
+	{
+		ColumnConfig ret = new ColumnConfig(id, caption, width);
+
+
+
+		ret.setMenuDisabled(true);
+		ret.setSortable(true);
+		ret.setAlignment(alignment);
+
+		if(renderer != null)
+		{
+			ret.setRenderer(renderer);
+		}
+
+		return ret;
+	}
+
+	// build column without custom renderer
+	private ColumnConfig buildConfig(final String id, final String caption, int width,
+			final HorizontalAlignment alignment)
+	{
+		return buildConfig(id, caption, width, alignment, null);
+	}
+
+	private ColumnModel buildColumnModel()
+	{
+		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
+
+
+		config
+		.add(buildConfig("submitted", "Name<br/> Submitted", 200,
+				 HorizontalAlignment.LEFT,new SubmittedRenderer()));
+
+		config.add(buildConfig("scientific", "Name Matched", 380,
+				HorizontalAlignment.LEFT, new ScientificNameCellRenderer()));
+
+		config.add(buildConfig("overall", "Score", 60, HorizontalAlignment.CENTER,
+				new OverallCellRenderer()));
+
+		config.add(buildConfig("acceptance","Status", 100, HorizontalAlignment.LEFT));
+
+		config.add(buildConfig("acceptedName", "Accepted Name", 200, HorizontalAlignment.LEFT,new AcceptedNameRenderer()));
+
+		config.add(buildConfig("group", "Details", 60, HorizontalAlignment.CENTER,
+				new DetailsCellRenderer()));
+
+		return new ColumnModel(config);
+
+	}
+
+	private TNRSEntry getSelectedEntry(final GroupColumnData data)
+	{
+		TNRSEntry ret = null; // assume failure
+
+		TNRSEntry entry;
+
+		for(ModelData item : data.models)
+		{
+			entry = (TNRSEntry)item;
+
+			if(entry.isSelected())
+			{
+				ret = entry;
+				break;
+			}
+		}
+
+		return ret;
+	}
+
+	private void buildGrid(final ListStore<BeanModel> store, final ColumnModel cm)
+	{
+
+
+
+		grid = new Grid<BeanModel>(store, cm);
+
+		store.setSortField("submitted");
+		store.setSortDir(SortDir.ASC);
+
+
+		grid.setLoadMask(true);
+
+		grid.getStore().sort("submitted", SortDir.ASC);
+		grid.setBorders(true);		
+		grid.getView().setAutoFill(true);
+		grid.getView().setShowDirtyCells(true);
+		// disallow multi-select
+		grid.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		grid.getView().refresh(true);
+		grid.setSize(1157,300);
+
+	}
+
+
+	@SuppressWarnings("unchecked")
+	/*private void deselectCurrent(int group)
+	{
+		GroupingStore<TNRSEntry> store = (GroupingStore<TNRSEntry>)grid.getStore();
+		ArrayList<TNRSEntry> entries = (ArrayList<TNRSEntry>) store.getData();
+
+		for (TNRSEntry entry : entries)
+		{
+			if(entry.getGroup() == group && entry.isSelected())
+			{
+				// update our model
+				entry.clearSelection();
+				store.update(entry);
+				break;
+			}
+		}
+	}*/
+
+
+	private class ScientificNameCellRenderer implements GridCellRenderer<BeanModel>
+	{
+		private String buildCountOutput(BeanModel entry)
+		{
+			String ret = "";
+
+			int count = Integer.parseInt(entry.get("groupSize").toString());
+
+			count--;
+			if(count > 0) {
+				ret = " (+" + count + " " + "more" + ")";
+			}
+
+
+			return ret;
+		}
+
+		@Override
+		public Object render(BeanModel model, String property, ColumnData config, int rowIndex,
+				int colIndex, ListStore<BeanModel> store, Grid<BeanModel> grid)
+		{
+
+			String ret="";
+
+			if(isDouble(model.get("scientificScore").toString())) {
+				String url = model.get("url").toString();
+
+				return new NameMatchedRenderer(url,model.get("scientific").toString() +" "+model.get("authorAttributed").toString(),buildCountOutput(model),model);
+			}else {
+				ret ="No matches found.";
+
+				return ret;
+			}
+		}
+	}
+
+
+
+	private void promote(final TNRSEntry entry)
+	{
+		//	deselectCurrent(entry.getGroup());
+		entry.setSelected();
+
+		// refresh grid without scrolling
+		int top = grid.getView().getBody().getScrollTop();
+		grid.getView().refresh(false);
+		grid.getView().getBody().scrollTo("top", top);
+	}
+
+	private boolean isDouble(final String test)
+	{
+		boolean ret = false; // assume failure
+
+		try
+		{
+			if(test != null)
+			{
+				Double.parseDouble(test);
+
+				// if we get here, we know parseDouble succeeded
+				ret = true;
+			}
+		}
+		catch(NumberFormatException nfe)
+		{
+			// we are assuming false - setting the return value here would be redundant
+		}
+
+		return ret;
+	}
+
+	private String formatPercentage(final String score)
+	{
+		String ret = ""; // assume failure... if we have no percentage we just return an
+		// empty string
+
+		if(isDouble(score))
+		{
+			double d = Double.parseDouble(score);
+
+			int percentage = (int)(d * 100.0);
+			ret = percentage + "%";
+		}else {
+			ret="";
+		}
+
+		return ret;
+	}
+
+	private String formatPercentageWithParens(final String score)
+	{
+		String ret = formatPercentage(score);
+
+		if(ret.length() > 0)
+		{
+			ret = " (" + ret + ")";
+		}
+
+		return ret;
+	}
+
+	private class DetailsCellRenderer implements GridCellRenderer<BeanModel>
+	{
+		private void launchDetailsWindow(final BeanModel entry)
+		{
+				DetailDialog dlg = new DetailDialog(entry);
+
+				dlg.show();
+
+			
+		}
+
+
+
+		@Override
+		public Object render(final BeanModel model, String property, ColumnData config, int rowIndex,
+				int colIndex, ListStore<BeanModel> store, Grid<BeanModel> grid)
+		{
+			final Hyperlink ret = new Hyperlink("detail", "de_tnrs_hyperlink");
+			ret.setStyleAttribute("color", "blue");
+			ret.setStyleAttribute("text-decoration", "underline");
+			// by default, the hyperlinks un-highlight after mouse over. This is
+			// undesirable, to the following line has
+			// been added as a short term workaround.
+			ret.setOnMouseOutStyle("text-decoration", "underline");
+			ret.setOnMouseOverStyle("cursor", "pointer");
+			ret.addListener(Events.OnClick, new Listener<ComponentEvent>() {
+
+
+
+				@Override
+				public void handleEvent(ComponentEvent be) {
+					launchDetailsWindow(model);
+
+				}
+			});
+
+			if(!isDouble(model.get("scientificScore").toString())) {
+				ret.setEnabled(false);
+			}
+
+			return ret;
+		}
+	}
+
+	private class AcceptedNameRenderer implements GridCellRenderer<BeanModel>{
+
+		@Override
+		public Object render(BeanModel model, String property,
+				ColumnData config, int rowIndex, int colIndex,
+				ListStore<BeanModel> store, Grid<BeanModel> grid) {
+
+			String acceptedName = model.get("acceptedName");
+			String acceptedAuthor = model.get("acceptedAuthor");
+			String acceptedNameUrl = model.get("acceptedNameUrl");
+			if(acceptedName!=null && !acceptedName.equals("")) {
+				setLayout(new ColumnLayout());
+				String prefix =  "<a href='"+acceptedNameUrl+ "' target='_blank'>";
+				String suffix =  "</a>&nbsp;&nbsp; ";
+
+				// setup our base link
+				String ahref = prefix + acceptedName + " "+acceptedAuthor + suffix;
+
+
+				Html link = new Html(ahref);
+				return link;
+
+			}else {
+				return "";
+			}
+
+		}
+
+	}
+
+	private class OverallCellRenderer implements GridCellRenderer<BeanModel>
+	{
+		@Override
+		public Object render(BeanModel model, String property, ColumnData config, int rowIndex,
+				int colIndex, ListStore<BeanModel> store, Grid<BeanModel> grid)
+		{
+			return formatPercentage(model.get("overall").toString());
+		}
+	}
+
+
+
+	private class SelectCellRenderer implements GridCellRenderer<TNRSEntry>
+	{
+		@Override
+		public Object render(final TNRSEntry model, String property, ColumnData config, int rowIndex,
+				int colIndex, ListStore<TNRSEntry> store, Grid<TNRSEntry> grid)
+		{
+			Radio ret = new Radio();
+
+			ret.setValue(model.isSelected());
+
+
+
+			ret.addListener(Events.Change, new Listener<FieldEvent>()
+					{
+				@Override
+				public void handleEvent(FieldEvent be)
+				{
+					promote(model);
+				}
+					});
+
+			return ret;
+		}
+	}
+
+
+
+	/*private String buildSingleSelectedJson() {
+
+		JSONObject result = new JSONObject();
+
+		BeanModel entry = getSelected(grid.getStore());
+
+		JSONArray array = new JSONArray();
+
+		array.set(0, buildEntryJson(entry));
+		result.put("items", array);
+		return result.toString();
+	}
+
+
+	private String buildSimpleJsonString() {
+
+		JSONObject simple = buildSimpleJson(getSelected(grid.getStore()));
+
+		JSONObject main_json= new JSONObject();
+		JSONArray array = new JSONArray();
+		array.set(0, simple);
+		main_json.put("items", array);
+
+		return main_json.toString();
+	}
+
+	private String buildSelectedJson()
+	{
+		JSONObject json = new JSONObject();
+
+		JSONArray array = new JSONArray();
+
+
+		// add items
+		ListStore<TNRSEntry> store = (ListStore<TNRSEntry>)grid.getStore();
+
+		for(int i = 0;i < store.getCount();i++)
+		{
+			TNRSEntry entry = store.getAt(i);
+			array.set(i, buildEntryJson(entry));
+		}
+
+		json.put("items", array);
+
+
+		return json.toString();
+	}
+
+	private String buildSimpleSelectedJson()
+	{
+		JSONObject json = new JSONObject();
+
+		JSONArray array = new JSONArray();
+
+
+		// add items
+		ListStore<TNRSEntry> store = (ListStore<TNRSEntry>)grid.getStore();
+
+		for(int i = 0;i < store.getCount();i++)
+		{
+			TNRSEntry entry = store.getAt(i);
+			array.set(i, buildSimpleJson(entry));
+		}
+
+		json.put("items", array);
+
+
+		return json.toString();
+	}
+
+
+	private String buildAllJson()
+	{
+		JSONObject json = new JSONObject();
+
+		JSONArray array = new JSONArray();
+		int l=0;
+		ListStore<TNRSEntry> list = grid.getStore();
+
+		for(int k=0; k < list.getCount(); k++) {
+			TNRSEntry entry = list.getAt(k);
+
+			if(groups.containsKey(entry.getGroup())) {
+				ListStore<TNRSEntry> store = groups.get(entry.getGroup());
+
+				for(int i = 0;i < store.getCount();i++)
+				{
+					TNRSEntry entry2 = store.getAt(i);
+					array.set(l, buildEntryJson(entry2));
+					l++;
+				}
+			}else {
+				array.set(l, buildEntryJson(entry));
+				l++;
+			}
+		}
+
+		json.put("items", array);
+
+		return json.toString();
+	}
+
+	private String buildAllSimpleJson()
+	{
+		JSONObject json = new JSONObject();
+
+		JSONArray array = new JSONArray();
+		int l=0;
+		ListStore<TNRSEntry> list = grid.getStore();
+
+		for(int k=0; k < list.getCount(); k++) {
+			TNRSEntry entry = list.getAt(k);
+
+			if(groups.containsKey(entry.getGroup())) {
+				ListStore<TNRSEntry> store = groups.get(entry.getGroup());
+
+				for(int i = 0;i < store.getCount();i++)
+				{
+					TNRSEntry entry2 = store.getAt(i);
+					array.set(l, buildSimpleJson(entry2));
+					l++;
+				}
+			}else {
+				array.set(l, buildSimpleJson(entry));
+				l++;
+			}
+		}
+
+		json.put("items", array);
+
+		return json.toString();
+	}
+
+
+
+	private JSONObject buildSimpleJson(TNRSEntry entry) {
+
+		JSONObject json = new JSONObject();	
+
+		json.put("Submitted Name", new JSONString( entry.getSubmittedName()));
+		json.put("Name Matched", new JSONString(entry.getScientificName()));
+		json.put("Author Attributed", new JSONString(entry.getAttributedAuthor()));
+		json.put("Score", new JSONString(formatPercentage(entry.getOverall())));
+		json.put("Acceptance",new JSONString(entry.getAcceptance()));
+		json.put("Accepted Name",new JSONString(entry.getAcceptedName()));
+		json.put("Accepted Author", new JSONString(entry.getAcceptedAuthor()));
+
+		return json;
+	}
+
+
+	private JSONObject buildEntryJson(TNRSEntry entry)
+	{
+
+		JSONObject json = new JSONObject();
+		//wr.write("Name submitted,Matched Name,Matched Name Score, Attributed Author, Family matched,Family Matched Score, Genus Matched,Genus Score, Species Matched, Species Score,Infraspecific Rank 1,Infraspecific Epithet 1 Matched, Infraspecific Epithet 1 Score,Infraspecific Rank2, Infraspecific Epithet 2 Matched, Infraspecific Epithet 2 Score,  Annotation,Acceptance,Accepted Name,Unmatched Terms,overall\n");
+
+		json.put("Submitted Name", new JSONString( entry.getSubmittedName()));
+		json.put("Matched Name", new JSONString(entry.getScientificName()));
+		json.put("Matched Name Score", new JSONString(formatPercentage(entry.getScientificScore())));
+		json.put("Attributed Author", new JSONString(entry.getAttributedAuthor()));
+		json.put("family", new JSONString(entry.getFamily()));
+		json.put("Genus Matched", new JSONString(entry.getGenus()));
+		json.put("Genus Score", new JSONString(formatPercentage(entry.getGenusScore())));
+		json.put("Species",new JSONString( entry.getEpithet()));
+		json.put("Species Score", new JSONString(formatPercentage(entry.getEpithetScore())));
+		json.put("Matched Author", new JSONString(entry.getAuthor()));
+		json.put("Matched Author Score", new JSONString(formatPercentage(entry.getAuthorScore())));
+		json.put("Overall Score", new JSONString(entry.getOverall()));
+		json.put("Matched Family ", new JSONString(entry.getFamilyMatched()));
+		json.put("Matched Family  Score",new JSONString(formatPercentage(entry.getFamilyMatchedScore())));
+		json.put("Matched Species", new JSONString(entry.getSpeciesMatched()));
+		json.put("Matched Species Score", new JSONString(formatPercentage(entry.getFamilyMatchedScore())));
+		json.put("Infra-specific Rank 1", new JSONString(entry.getInfraSpecificRank1()));
+		json.put("Infra-specific Epithet 1", new JSONString(entry.getInfraSpecificEpithet1()));
+		json.put("Infra-specific Epithet 1 Score", new JSONString(formatPercentage(entry.getInfraSpecificEpithet1Score())));
+		json.put("Infra-specific Rank 2", new JSONString(entry.getInfraSpecificRank2()));
+		json.put("Infra-specific Epithet 2", new JSONString(entry.getInfraSpecificEpithet2()));
+		json.put("infra-specific Epithet Score 2", new JSONString(formatPercentage(entry.getInfraSpecificEpithet2Score())));
+		json.put("Annotations", new JSONString(entry.getAnnotation()));
+		json.put("Unmatched Terms", new JSONString(entry.getUnmatched()));
+
+		if(entry.getAcceptance()==null) {
+			json.put("acceptance",new JSONString("Accepted"));
+		}else {
+			json.put("acceptance",new JSONString(entry.getAcceptance()));
+		}
+		if(entry.getAcceptedName()==null) {
+			json.put("acceptedName", new JSONString(""));
+		}else {
+			json.put("acceptedName",new JSONString(entry.getAcceptedName()));
+		}
+		json.put("acceptedAuthor", new JSONString(entry.getAcceptedAuthor()));
+
+		return json;		
+	}*/
+
+
+
+	private void doDownload(final String options)
+	{
+		if(options != null)
+		{
+			searchService.downloadRemoteResults(options, new AsyncCallback<String>()
+					{
+				@Override
+				public void onFailure(Throwable arg0)
+				{
+					MessageBox.alert("Error", "File download failed.", null);
+				}
+
+				@Override
+				public void onSuccess(String result)
+				{		
+					
+
+					Window.open(result, null, "width=100,height=100");					
+				}
+					});
+		}
+	}
+
+
+
+	/*private BeanTNRSEntry getSelected(final ListStore<BeanModel> store)
+	{
+		BeanTNRSEntry ret = null;
+
+		if(store != null)
+		{
+			BeanTNRSEntry entry;
+
+			// loop through our store and find the selected item
+			for(int i = 0;i < store.getCount();i++)
+			{
+				entry = store.getAt(i);
+
+				if(entry.isSelected())
+				{
+					ret = entry;
+					break;
+				}
+			}
+		}
+
+		return ret;
+	}
+
+
+
+	private void updateSelection(final Integer group)
+	{
+		TNRSEntry selected = getSelected(groups.get(group));
+
+		if(selected != null)
+		{
+			TNRSEntry entry;
+
+			ListStore<TNRSEntry> store = grid.getStore();
+
+			for(int i = 0;i < store.getCount();i++)
+			{
+				entry = store.getAt(i);
+
+				if(entry.getGroup() == group)
+				{
+					// remove our original
+					store.remove(i);
+
+					// insert our selected item
+					store.insert(selected, i);
+
+					// refresh our grid so that the correct entry is displayed
+					grid.getView().refresh(false);
+
+					break;
+				}
+			}
+		}
+	}*/
+
+
+	@Override
+	protected void afterRender() {
+		grid.getStore().sort("submitted", SortDir.ASC);
+		super.afterRender();
+	}
+
+	class SelectionUpdatedEvent implements ClientCommand
+	{
+		private Integer group;
+
+		public SelectionUpdatedEvent(Integer group)
+		{
+			this.group = group;
+		}
+
+		@Override
+		public void execute(String h)
+		{
+			//updateSelection(group);
+		}
+	}
+
+	class SelectionDownloadEvent implements ClientCommand
+	{
+		
+		String key;
+		String email;
+		
+		public SelectionDownloadEvent( String email,String key) {
+			this.key= key;
+			this.email =email;
+		}
+
+		@Override
+		public void execute(String options)
+		{
+			options+="#"+email+"#"+key;
+			doDownload(options);
+			
+		}
+	}
+
+	class NameMatchedRenderer extends LayoutContainer{
+
+		BeanModel entry;
+
+		public NameMatchedRenderer(String url,String name,String countString,final BeanModel model) {
+			setLayout(new ColumnLayout());
+			String prefix = (url == null) ? "" : "<a href='" + url + "' target='_blank'>";
+			String suffix = (url == null) ? " " : "</a>&nbsp;&nbsp; ";
+			entry =model;
+			// setup our base link
+			String ahref = prefix + name  + suffix;
+
+
+			Html link = new Html(ahref);
+			add(link);
+
+			if(!countString.equals("")) {
+
+
+				Anchor countLink = new Anchor();
+				countLink.setText("     "+countString);
+				countLink.setStyleName("linkCursor");
+				countLink.addClickHandler(new ClickHandler() {
+
+					@Override
+					public void onClick(ClickEvent arg0) {
+						
+						JSONObject json = new JSONObject();
+						json.put("group", new JSONString(model.get("group").toString()));
+						json.put("email",new JSONString(email));
+						json.put("key", new JSONString(key));
+						
+						
+						searchService.requestGroupMembers(json.toString(), new AsyncCallback<String>() {
+							
+							@Override
+							public void onSuccess(String json) {
+								System.out.println(json);
+								ListStore<TNRSEntry> store = new ListStore<TNRSEntry>();
+								
+								JSONObject objJson = (JSONObject)JSONParser.parse(json);
+
+								JSONValue val = objJson.get("items");
+								JSONArray items = val.isArray();
+
+								JsArray<JsTNRSEntry> jsEntries = JsonUtil.asArrayOf(items.toString());
+								
+								
+								for(int i=0; i < jsEntries.length(); i++) {
+									TNRSEntry entry = new TNRSEntry(jsEntries.get(i));
+									store.add(entry);
+								}
+								
+								System.out.println(store.getCount());
+								
+								if(store != null)
+								{
+									TNRSDetailsDialog dlg = new TNRSDetailsDialog(store, hasFamilies,new SelectionUpdatedEvent(200),false);
+
+									dlg.show();						
+								}
+								
+							}
+							
+							@Override
+							public void onFailure(Throwable arg0) {
+								
+								MessageBox.info("", arg0.getMessage(), null);
+							}
+						});
+
+						
+					}
+				});
+
+				add(countLink);
+
+			}
+
+		}
+
+
+	}
+
+
+    class SubmittedRederer implements GridCellRenderer<BeanModel>{
+	
+	@Override
+	    public Object render(BeanModel model, String property,
+				 ColumnData config, int rowIndex, int colIndex,
+				 ListStore<BeanModel> store, Grid<BeanModel> grid) {
+	    // TODO Auto-generated method stub
+	   
+	    return new Html("<span>"+model.get("submitted").toString()+"</span>");
+	}
+	
+    }
+
+	class AcceptanceRenderer implements GridCellRenderer<BeanModel>{
+
+		/* (non-Javadoc)
+		 * @see com.extjs.gxt.ui.client.widget.grid.GridCellRenderer#render(com.extjs.gxt.ui.client.data.ModelData, java.lang.String, com.extjs.gxt.ui.client.widget.grid.ColumnData, int, int, com.extjs.gxt.ui.client.store.ListStore, com.extjs.gxt.ui.client.widget.grid.Grid)
+		 */
+		@Override
+		public Object render(BeanModel model, String property,
+				ColumnData config, int rowIndex, int colIndex,
+				ListStore<BeanModel> store, Grid<BeanModel> grid) {
+			// TODO Auto-generated method stub
+			return model.get("acceptance");
+		}
+
+	}
+
+	class DetailsSorter extends StoreSorter<TNRSEntry>{
+
+		@Override
+		public int compare(Store<TNRSEntry> store, TNRSEntry m1, TNRSEntry m2,
+				String property) {
+
+			if(property.equals("score")) {
+				Double s1= Double.parseDouble(m1.getOverall());
+				Double s2= Double.parseDouble(m2.getOverall());
+				return s1.compareTo(s2);
+			}else if(property.equals("submitted")) {
+				return m1.getSubmittedName().compareToIgnoreCase(m2.getSubmittedName());
+			}
+
+			return super.compare(store, m1, m2, property);
+		}
+	}
+}

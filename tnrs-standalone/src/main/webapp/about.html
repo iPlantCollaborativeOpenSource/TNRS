@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<title>Taxonomic Name Resolution Service - About</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head> 
+
+<body>
+	<div class="header"> 
+		<div class="subheader">Taxonomic Name Resolution Service 
+		<sup><small><em>(Beta)</em></small></sup>
+		</div>
+	</div> 
+
+	<div class="logolinks">
+		<img src="images/logos.jpg"><br />
+		<a href="index.html">Home</a> &nbsp; &nbsp; 
+		<u>About</u> &nbsp; &nbsp; 
+		<a href="instructions.html">Instructions</a> &nbsp; &nbsp; 
+		<a href="api.html">API/Source Code</a> &nbsp; &nbsp; 
+		<a href="sources.html">Sources</a> &nbsp; &nbsp; 
+		<a href="contributors.html">Contributors</a> &nbsp; &nbsp; 
+		<a href="future.html">Future</a> &nbsp; &nbsp;
+		<a href="TNRSDemo.html">TNRS Application</a>
+	</div>
+	
+	<div id="wrapper">
+		<div id="contentwrapper">
+			<div class="content"> <!-- Main Body Text -->
+				<h1>What is the Taxonomic Name Resolution Service?</h1>
+				<p>The Taxonomic Name Resolution Service (TNRS) is a tool for the computer-assisted standardization of plant scientific names. The TNRS corrects spelling errors and alternative spellings to a standard list of names, and converts out of date names (synonyms) to the current accepted name. The TNRS can process many names at once, saving hours of tedious and error-prone manual name correction. For names that cannot be resolved automatically, the TNRS present a list of possibilities and provides tools for researching and selecting the preferred name.</p>
+				
+				<h1>Why do we need a TNRS?</h1>
+				<p>Taxonomic standardization is a major challenge for virtually every field of plant biology. Ecological studies encompassing large numbers of species, conservation decisions based on data from multiple sources, molecular analyses linking sequence data to organisms—all require accurate species names, and the correct matching of names among data sets.</p>
+				
+				<p>Misspelled or out-of-date, synonymous names can be a major source of error. Large, collaborative databases such as <a href="http://www.gbif.org/">GBIF</a>, <a href="http://splink.cria.org.br/index?&setlang=en">SpeciesLink</a>, <a href="http://www.vegbank.org/">VegBank</a>, <a href="http://www.salvias.net">SALVIAS</a>, <a href="http://traitnet.ecoinformatics.org/">TraitNet</a>, and <a href="http://www.ncbi.nlm.nih.gov/genbank/">GenBank</a> are plagued by taxonomic problems, with up to 30% of names unmatched to any published name. Even among published names, 5% to 20% are synonymous. Despite the growing availability of digitized sources of names (<a href="http://www.ipni.org">www.ipni.org</a>, <a href="http://www.globalnames.org">www.globalnames.org</a>, <a href="http://www.tropicos.org">www.tropicos.org</a>, <a href="http://www.ubio.org">www.ubio.org</a>) and taxonomic opinion (<a href="http://www.tropicos.org">www.tropicos.org</a>, <a href="http://www.theplantlist.org">www.theplantlist.org</a>), taxonomic standardization remains an error-prone and largely manual process. The need for an automated name resolution service has never been greater.</p>
+				
+				<h1>Where does the TNRS get its names?</h1>
+				<p>The TNRS gets its names from the <a href="http://www.mobot.org">Missouri Botanical Garden</a>'s <a href="http://www.tropicos.org">Tropicos</a> database, an electronic repository of nomenclatural, bibliographic and specimen data. Tropicos contains over 1.2 million names and thousands of taxonomic opinions based on the taxonomic literature and expert curatorial opinion.</p>
+				
+				<h1>Where does the TNRS get its synonymy?</h1>
+				<p>Synonymy is the conversion of out-of-date (synonymous) names to accepted names. Such conversions are not always simple; taxonomists can differ in their opinion as to which of a series of names is the correct one. Where possible, the TNRS presents a single best accepted name, as determined by <a href="http://www.tropicos.org">Tropicos</a> according to their Computed Acceptance algorithm. Computed acceptance uses a variety of decision criteria, including date of publication and acceptance within expert-curated project checklists, as the basis for choosing among conflicting taxonomic opinions. Computed acceptance is a machine-based decision process, and users of the TNRS should bear in mind the following caveat provided by Tropicos:</p>
+				<p>Computed acceptance is an automated evaluation of acceptance using Tropicos digital flora projects, homotypic synonymy, and heterotypic synonymy. This is NOT a human-curated, peer-reviewed checklist. Its quality is driven by our algorithm and the accuracy and availability of the data in the Tropicos system.</p>
+				
+				<h1>How does the TNRS work?</h1>
+				<p>The TNRS attempts to match each name submitted to a published scientific name in the TNRS database, correcting spelling if necessary. Once the name has been matched, if the name is a synonym it is converted to the correct (accepted) name.</p>
+				<p>Spelling correction consists of the following steps:
+				<ol>
+				<li><strong>Match.</strong> The TNRS attempts to match the name directly to a name in the TNRS database.</li>
+				<li><strong>Parse.</strong> If matching fails, the name is parsed to separate out any contaminating substrings that may prevent matching, and to decompose the name into component parts that can be analyzed separately (for example, the genus name is separated from the specific epithet). Parsing is performed by our implementation of the GNI name parser.
+				<li><strong>Match.</strong> The parsed name components are again matched against the TNRS database.</li>
+				<li><strong>Fuzzy match.</strong> If the parsed name fails to match fully, the TNRS attempt to find near matches using a modified Taxamatch taxonomic fuzzy matching algorithm. Fuzzy matching is generally slow; however, the Taxamatch algorithm speeds matching by searching within the taxonomic hierarchy. For example, once the genus has been identified, only species within that genus are searched. Although the original Taxamatch was limited to finding genera and species, the TNRS implementation can match up to family (if submitted), and down to subspecies and varieties (trinomials), even varieties within subspecies (quadrinomials).</li>
+				</ol></p>
+				
+				<p>These steps are illustrated in the figure below:</p>
+				<p><img src="images/spellingCorrection.png" /></p>
+				
+				<h1>Additional features</h1>
+				
+				<p>In addition to the functionality described above, the TNRS does the following:</p>
+				<ul>
+				<li>Returns updated family classification for taxa below the level of family, according to the APG III classification (APG III 2009, Chase and Reveal 2009, Haston et al. 2009)</li>
+				<li>Recognizes and extracts annotations of uncertainty (“?”, “cf.”, “aff.”) embedded in or appended to taxon names.</li>
+				<li>Stores unmatched trailing terms in a separate field. Such unmatched terms may be important if they represent an accession number or a morphospecies identifier.  Morphospecies are informal field names to uniquely distinguish an as-yet-unidentified species (for example, “Quercus sp. 3”).</li>
+				<li>Accepts morphospecies identified to family only (for example, “Lauraceae sp.2”).</li>
+				<li>Accepts family names prepended to scientific names (Lauraceae  Beilschmiedia angustifolia). Family, if included, may be helpful during fuzzy matching for discovering the intended identity of a misspelled genus.</li>
+				</ul></p>
+				
+				<h1>Literature cited</h1>
+				
+				<p>APG III. 2009. <em>An update of the angiosperm phylogeny group classification for the orders and families of flowering plants: APG III.</em> Bot. J. Linn. Soc. 161: 105-121.</p>
+				<p>Chase, M. W. & J. L. Reveal. 2009. <em>A phylogenetic classification of the land plants to accompany APG III.</em> Bot. J. Linn. Soc. 161: 122-127.</p>
+				<p>Haston, E., J. E. Richardson, P. F. Stevens, M. W. Chase & D. J. Harris. 2009. <em>The linear angiosperm phylogeny group (LAPG) III: a linear sequence of the families in APG III.</em> Bot. J. Linn. Soc. 161: 128-131.</p>
+				
+			</div> <!-- End Main Body Text -->
+		</div>
+	</div>
+
+</body>
+</html>

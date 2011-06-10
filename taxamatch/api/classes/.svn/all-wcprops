@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/iptol/!svn/ver/660/data_integration/taxamatch-webservice-read-only/api/classes
+END
+class.tnrs_aggregator.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/iptol/!svn/ver/650/data_integration/taxamatch-webservice-read-only/api/classes/class.tnrs_aggregator.php
+END
+class.csv_process.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/classes/class.csv_process.php
+END
+class.misc.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/iptol/!svn/ver/660/data_integration/taxamatch-webservice-read-only/api/classes/class.misc.php
+END
+cache.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/classes/cache.php
+END
+class.xml.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/classes/class.xml.php
+END
+class.taxamatch_splitter.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/classes/class.taxamatch_splitter.php
+END
+class.normalize.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/iptol/!svn/ver/607/data_integration/taxamatch-webservice-read-only/api/classes/class.normalize.php
+END
+class.nearmatch.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/classes/class.nearmatch.php
+END
+class.mysqli_database.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/iptol/!svn/ver/455/data_integration/taxamatch-webservice-read-only/api/classes/class.mysqli_database.php
+END
+class.gni_splitter.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/iptol/!svn/ver/600/data_integration/taxamatch-webservice-read-only/api/classes/class.gni_splitter.php
+END
+class.taxamatch.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/iptol/!svn/ver/645/data_integration/taxamatch-webservice-read-only/api/classes/class.taxamatch.php
+END
+class.taxamatch-cache.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/classes/class.taxamatch-cache.php
+END
+class.authormatch.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/classes/class.authormatch.php
+END
+class.queries.mysql.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/iptol/!svn/ver/655/data_integration/taxamatch-webservice-read-only/api/classes/class.queries.mysql.php
+END
+class.damerau_levenshtein_mod.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/iptol/!svn/ver/555/data_integration/taxamatch-webservice-read-only/api/classes/class.damerau_levenshtein_mod.php
+END

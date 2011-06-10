@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/iptol/!svn/ver/660/data_integration/taxamatch-webservice-read-only/api
+END
+install_norm_authority.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/install_norm_authority.php
+END
+taxamatch.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/iptol/!svn/ver/609/data_integration/taxamatch-webservice-read-only/api/taxamatch.php
+END
+taxamatchsoap.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/taxamatchsoap.php
+END
+install_authority.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/install_authority.php
+END
+taxamatch_commandline.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/iptol/!svn/ver/460/data_integration/taxamatch-webservice-read-only/api/taxamatch_commandline.php
+END
+taxamatch_cli.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/iptol/!svn/ver/500/data_integration/taxamatch-webservice-read-only/api/taxamatch_cli.php
+END
+taxamatch_cli_batch.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/iptol/!svn/ver/462/data_integration/taxamatch-webservice-read-only/api/taxamatch_cli_batch.php
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/iptol/!svn/ver/655/data_integration/taxamatch-webservice-read-only/api/config.php
+END
+taxamatch_csv.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/taxamatch_csv.php
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/index.php
+END
+config.default.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/api/config.default.php
+END

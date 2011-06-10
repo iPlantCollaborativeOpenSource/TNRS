@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `infra2list_infra1list_combined`;
+DROP TABLE IF EXISTS `infra1list_splist_combined`;
+DROP TABLE IF EXISTS `splist_genlist_combined`;
+DROP TABLE IF EXISTS `genlist_famlist_combined`;
+DROP TABLE IF EXISTS `infra1list`;
+DROP TABLE IF EXISTS `infra2list`;
+DROP TABLE IF EXISTS `splist`;
+DROP TABLE IF EXISTS `genlist`;
+DROP TABLE IF EXISTS `famlist`;

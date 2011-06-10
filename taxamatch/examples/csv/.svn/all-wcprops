@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/examples/csv
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/examples/csv/index.html
+END
+sample.csv
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/examples/csv/sample.csv
+END
+sample_output.csv
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/iptol/!svn/ver/308/data_integration/taxamatch-webservice-read-only/examples/csv/sample_output.csv
+END

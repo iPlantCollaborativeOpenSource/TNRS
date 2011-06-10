@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<title>Taxonomic Name Resolution Service - API</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head> 
+
+<body>
+	<div class="header"> 
+		<div class="subheader">Taxonomic Name Resolution Service 
+		<sup><small><em>(Beta)</em></small></sup>
+		</div>
+	</div> 
+	 
+	<div class="logolinks">
+		<img src="images/logos.jpg"><br />
+		<a href="index.html">Home</a> &nbsp; &nbsp; 
+		<a href="about.html">About</a> &nbsp; &nbsp; 
+		<a href="instructions.html">Instructions</a> &nbsp; &nbsp; 
+		<u>API/Source Code</u> &nbsp; &nbsp; 
+		<a href="sources.html">Sources</a> &nbsp; &nbsp; 
+		<a href="contributors.html">Contributors</a> &nbsp; &nbsp;
+		<a href="future.html">Future</a> &nbsp; &nbsp;
+		<a href="TNRSDemo.html">TNRS Application</a>
+	</div>
+	
+	<div id="wrapper">
+		<div id="contentwrapper">
+			<div class="content"> <!-- Main Body Text -->
+				<h1>TNRS API</h1>
+				<p>The TNRS API is in the early stages of development. Currently it consists of a single service to which a list of names is submitted.</p>
+				
+				<p>Use <font face="monospace">GET</font> to call to the matchNames service, found at: <font face="monospace">http://ohmsford.iplantc.org/tnrsm-svc/matchNames</font></p>
+				
+				<p>Easy ways to submit names to the service include entering a query in your web browser or using the Linux <font face="monospace">curl</font> tool.</p>
+				
+				<p>Two parameters are required:
+					<ul>
+						<li><strong>retrieve</strong> specifies whether to retrieve all matches for the names submitted. There are currently two options: <font face="monospace">retrieve=best</font> retrieves only the single best match for each name submitted; <font face="monospace">retrieve=all</font> retrieves all matches.</li>
+						<li><strong>names</strong> is followed by a comma separated list of names being submitted. Spaces in names must be url-encoded.</li>
+					</ul>
+				</p>
+				
+				<p>Here is a short example in which the best matches are requested for four names:<br />
+				<font face="monospace">http://ohmsford.iplantc.org/tnrsm-svc/matchNames?retrieve=best&amp;names=zea%20mays,acacia,solanum,saltea</font></p>
+				
+				<p>Output is currently returned in JSON format. The service will be expanded soon to support output in XML and CSV as well. In addition, parameters will be added soon to specify output format, encoding, and compression of the results.</p>
+				
+				<h1>Source Code</h1>
+				<p>All source code is available in our GitHub repository (link to repo to be added).</p>
+				<p>Except where noted below, code is licensed using <a href="http://www.iplantcollaborative.org/sites/default/files/iPLANT-LICENSE.txt">this standard BSD license</a>, which is an <a href="http://www.opensource.org/licenses/index.html">Open Source Initiative</a>-approved <a href="http://www.opensource.org/licenses/bsd-license">license</a>.</p>
+				<p>We built on two existing open source projects, each of which retain their original licensing.
+				<ul>
+				<li>TaxaMatch (link to repo to be added) from this <a href="http://code.google.com/p/taxamatch-webservice">this repository</a> was modified to customize it for use with our service and uses the Apache 2.0 license.</li>
+				<li>GNI's name parser (link to repo to be added) from <a href="http://github.com/GlobalNamesArchitecture/biodiversity">this repository</a> was also modified slightly to better fit our service and uses a BSD style license.</li>
+				</ul>
+				For these, as with all our code, the exact license for each component is  available in the code repository as LICENSE.</p>
+			</div> <!-- End Main Body Text -->
+		</div>
+	</div>
+</body>
+</html>

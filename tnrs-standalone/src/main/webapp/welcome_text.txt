@@ -1,0 +1,9 @@
+<?-- This is the text used in the Welcome bubble on the application page. -->
+
+TNRS allows you to validate and correct a list of plant names against an authoritative database of published scientific names and authorities. 
+
+You may enter names on the fly by typing or pasting up to 5000 names in the Enter List tab to the left. 
+
+Alternatively, you can upload a text file with an unlimited number of names in the Upload and Submit List tab. Your file MUST be plain text in CSV format; word processor or spreadsheet files are NOT supported. You will receive an email notification when the list is done being processed. You can retrieve your results at that time in the Retrieve Results tab. 
+
+Click the links above for more detailed instructions and other information.

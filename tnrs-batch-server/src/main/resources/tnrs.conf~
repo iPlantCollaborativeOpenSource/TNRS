@@ -1,0 +1,3 @@
+tnrsUrl=http://testbed235.iplantc.org/taxamatch-webservice-read-only/api/taxamatch.php
+hostUrl=http://compson.iplantc.org:14444/
+servicesUrl=http://ohmsford.iplantc.org/svc/

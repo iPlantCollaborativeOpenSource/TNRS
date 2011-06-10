@@ -1,0 +1,55 @@
+The code in this repository is originally from 
+http://code.google.com/p/taxamatch-webservice/
+
+Unless you know you require our changed code (such as because you 
+are using it as a part of our entire TNRS), we recommend you
+download from the source.
+
+Changes added by iPlant Collaborative and noted here are 
+Copyright (c) 2011, The Arizona Board of Regents on behalf 
+of The University of Arizona. iPlant Collaborative is a collaboration
+between participants at BIO5 at The University of Arizona (the 
+primary hosting institution), Cold Spring Harbor Laboratory, The 
+University of Texas at Austin, and individual contributors. Find out 
+more at http://www.iplantcollaborative.org/. Changes are released under
+the same license as the original work.
+
+------------------------------------------------------------------
+iPlant Collaborative made the changes listed below:
+ 
+In the mysql database, we only kept 2 tables, genlist and splist, from the original database , and added new tables to keep the taxonomic data from MBG, and tables to store family, infraspecies names which are similar to the structure of genlist/splist, and join tables, genlist_famlist_combined, splist_genlist_combined, infra1list_splist_combined, infra2list_infra1list_combined to speed up the search.
+ 
+In taxamatch php code, api/taxamatch.php is the entry point, we added a stub to handle the cmd=tnrs_taxamatch, which returned json data including extra meta info such as family, acceptance, etc.
+We added a new class, class.tnrs_aggregator.php, in api/classes. It takes the results from original taxamatch, added those extra meta info and returned json result.
+ 
+We made changes in 6 classes in api/classes:
+In class.misc.php, we added one line in line 55 to ensure the utf8 character set: $conn->set_charset("utf8");
+In class.damerau_levenshtein_mod.php, we corrected some bugs in the edit distance calculation. This has been pushed back into original repository. So only difference is some white space and comments.
+
+In class.gni_splitter.php,
+1. We added functions to enable it to communicate with the local gni parser server
+
+2. Add functionalities to process infraspecies name.
+
+In class.normalizer.php,
+1. We removed one line which retrieved full author name from database based on abbreviation, since we don’t have those.
+
+2. We added some line to avoid “Undefined variable” warning from php.
+
+In class.queries.mysql.php,
+1. We replaced some old queries with new queries to use the join table to speed up the search
+
+2. We added some new queries to search family, and infraspecies
+
+3. We added new queries to retrieve the meta info.
+
+In class.taxamatch.php
+1. We corrected a bug in function ngram, which was used to calculate author name similarity.
+
+2. We added preprocessing steps to deal with family name, deal with annotation, make sure proper upper/lower case due to the gni parser’ sensitivity to it, detect unhyphenated trinomial.
+
+3. We added direct search steps to avoid unnecessary taxamatch search.
+
+4. We adjusted the threshold of maximum allowed difference in genus names from 0.2 to 0.334.
+
+5. We added functions to process family and infraspecies.

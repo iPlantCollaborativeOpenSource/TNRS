@@ -1,0 +1,148 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+a:link {
+	color: #000033;
+}
+a:visited {
+	color: #000033;
+}
+a:hover {
+	color: #000033;
+}
+a:active {
+	color: #000033;
+}
+
+.header {
+	height: 50px;
+	background-color:#D8E6FE;
+	padding: 20px;
+}
+
+.header h1 {
+	font-size: 16px;
+	padding-bottom: 5px;
+}
+
+.menu {
+	background-color: #efefef;
+	height: 25px;
+}
+
+.menu li {
+	float: left;
+	padding-left: 10px;
+}
+
+.footer {
+	height: 50px;
+	background-color:#D8E6FE;
+	padding: 10px;
+}
+
+.home {
+	padding: 20px;
+	font-family: Arial, Helvetica, sans-serif
+}
+
+.search-item {
+    font:normal 11px tahoma, arial, helvetica, sans-serif;
+    padding:3px 10px 3px 10px;
+    border:1px solid #fff;
+    border-bottom:1px solid #eeeeee;
+    white-space:normal;
+    color:#555;
+}
+.search-item h3 {
+    display:block;
+    font:inherit;
+    font-weight:bold;
+    color:#222;
+}
+
+.search-item h3 span {
+    float: right;
+    font-weight:normal;
+    margin:0 0 5px 5px;
+    width:100px;
+    display:block;
+    clear:none;
+}
+
+.col-success {
+	color: #990000;
+	font-weight: bold;
+}
+
+.result {
+	background-color: #D8E6FE;
+	padding: 4px;
+	margin-top: 5px;
+	border: solid #003366 thin;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+}
+
+.exact {
+	background-color: #CC99CC;
+}
+
+.phonetic {
+	background-color: #FFCCCC;
+}
+
+.near_1 {
+	background-color: #FFFFCC;
+}
+
+.near_2 {
+	background-color: #FFFCFC;
+}
+
+.icon_home {
+	background-image: url( ../images/house.png ) !important;	
+}
+
+.icon_help {
+	background-image: url( ../images/help.png ) !important;	
+}
+
+
+.icon_search {
+	background-image: url( ../images/magnifier.png ) !important;	
+}
+
+.icon_upload {
+		background: url('../images/page_go.png') no-repeat 0 0 !important;
+}
+
+.x-form-file-wrap {
+	height:22px;
+	position:relative;
+}
+.x-form-file-wrap .x-form-file {
+	height:22px;
+	opacity:0;
+	position:absolute;
+	right:0;
+	z-index:2;
+}
+.x-form-file-wrap .x-form-file-btn {
+	position:absolute;
+	right:0;
+	z-index:1;
+}
+.x-form-file-wrap .x-form-file-text {
+	color:#777777;
+	left:0;
+	position:absolute;
+	z-index:3;
+}

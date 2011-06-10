@@ -1,0 +1,3962 @@
+total 40
+drwxr-xr-x  12 helmke  staff   408 Jun 10 07:00 .
+drwx------+  6 helmke  staff   204 Jun 10 06:19 ..
+-rw-r--r--@  1 helmke  staff  6148 Jun 10 07:00 .DS_Store
+-rw-r--r--@  1 helmke  staff  6064 Jun 10 06:30 INSTALL
+-rw-r--r--@  1 helmke  staff  1975 Apr  4 05:53 LICENSE
+drwxr-xr-x  13 helmke  staff   442 Jun 10 06:38 biodiversity
+-rw-r--r--   1 helmke  staff     0 Jun 10 07:01 list.txt
+drwxr-xr-x@ 10 helmke  staff   340 Jun 10 06:59 services-tnrs
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 taxamatch
+drwxr-xr-x@  7 helmke  staff   238 Jun 10 06:59 tnrs-batch-server
+drwxr-xr-x@  7 helmke  staff   238 Jun 10 07:00 tnrs-standalone
+drwxr-xr-x@ 15 helmke  staff   510 Jun 10 06:18 tnrs_db_scripts
+
+./biodiversity:
+total 56
+drwxr-xr-x  13 helmke  staff   442 Jun 10 06:38 .
+drwxr-xr-x  12 helmke  staff   408 Jun 10 07:00 ..
+-rw-r--r--   1 helmke  staff    60 May 20 09:10 .document
+-rw-r--r--@  1 helmke  staff   910 Jun  1 08:46 CHANGES
+-rw-r--r--@  1 helmke  staff  1500 May 20 09:18 LICENSE
+-rw-r--r--@  1 helmke  staff  2793 Jun  2 07:08 README.rdoc
+-rw-r--r--   1 helmke  staff  1935 May 20 09:10 Rakefile
+-rw-r--r--   1 helmke  staff     6 May 20 09:10 VERSION
+drwxr-xr-x   4 helmke  staff   136 May 20 09:10 bin
+drwxr-xr-x   3 helmke  staff   102 May 20 09:10 conf
+drwxr-xr-x   4 helmke  staff   136 May 20 09:10 lib
+drwxr-xr-x   3 helmke  staff   102 May 20 09:10 pkg
+drwxr-xr-x   6 helmke  staff   204 May 20 09:10 spec
+
+./biodiversity/bin:
+total 16
+drwxr-xr-x   4 helmke  staff   136 May 20 09:10 .
+drwxr-xr-x  13 helmke  staff   442 Jun 10 06:38 ..
+-rwxr-xr-x   1 helmke  staff  1262 May 20 09:10 nnparse
+-rwxr-xr-x   1 helmke  staff   536 May 20 09:10 parserver
+
+./biodiversity/conf:
+total 8
+drwxr-xr-x   3 helmke  staff  102 May 20 09:10 .
+drwxr-xr-x  13 helmke  staff  442 Jun 10 06:38 ..
+-rw-r--r--   1 helmke  staff   57 May 20 09:10 environment.rb
+
+./biodiversity/lib:
+total 8
+drwxr-xr-x   4 helmke  staff  136 May 20 09:10 .
+drwxr-xr-x  13 helmke  staff  442 Jun 10 06:38 ..
+drwxr-xr-x   6 helmke  staff  204 May 20 09:10 biodiversity
+-rw-r--r--   1 helmke  staff  258 May 20 09:10 biodiversity.rb
+
+./biodiversity/lib/biodiversity:
+total 16
+drwxr-xr-x  6 helmke  staff   204 May 20 09:10 .
+drwxr-xr-x  4 helmke  staff   136 May 20 09:10 ..
+drwxr-xr-x  3 helmke  staff   102 May 20 09:10 guid
+-rw-r--r--  1 helmke  staff    68 May 20 09:10 guid.rb
+drwxr-xr-x  5 helmke  staff   170 May 20 09:47 parser
+-rw-r--r--  1 helmke  staff  3348 May 20 09:10 parser.rb
+
+./biodiversity/lib/biodiversity/guid:
+total 8
+drwxr-xr-x  3 helmke  staff  102 May 20 09:10 .
+drwxr-xr-x  6 helmke  staff  204 May 20 09:10 ..
+-rw-r--r--  1 helmke  staff  291 May 20 09:10 lsid.rb
+
+./biodiversity/lib/biodiversity/parser:
+total 80
+drwxr-xr-x  5 helmke  staff    170 May 20 09:47 .
+drwxr-xr-x  6 helmke  staff    204 May 20 09:10 ..
+-rw-r--r--  1 helmke  staff   1898 May 20 09:10 scientific_name_canonical.treetop
+-rw-r--r--@ 1 helmke  staff  25350 May 20 09:47 scientific_name_clean.treetop
+-rw-r--r--  1 helmke  staff   4697 May 20 09:10 scientific_name_dirty.treetop
+
+./biodiversity/pkg:
+total 0
+drwxr-xr-x   3 helmke  staff  102 May 20 09:10 .
+drwxr-xr-x  13 helmke  staff  442 Jun 10 06:38 ..
+-rw-r--r--   1 helmke  staff    0 May 20 09:10 .gitignore
+
+./biodiversity/spec:
+total 0
+drwxr-xr-x   6 helmke  staff  204 May 20 09:10 .
+drwxr-xr-x  13 helmke  staff  442 Jun 10 06:38 ..
+-rw-r--r--   1 helmke  staff    0 May 20 09:10 biodiversity_spec.rb
+drwxr-xr-x   3 helmke  staff  102 May 20 09:10 guid
+drwxr-xr-x   8 helmke  staff  272 May 20 09:10 parser
+-rw-r--r--   1 helmke  staff    0 May 20 09:10 spec_helper.rb
+
+./biodiversity/spec/guid:
+total 8
+drwxr-xr-x  3 helmke  staff  102 May 20 09:10 .
+drwxr-xr-x  6 helmke  staff  204 May 20 09:10 ..
+-rw-r--r--  1 helmke  staff  384 May 20 09:10 lsid.spec.rb
+
+./biodiversity/spec/parser:
+total 376
+drwxr-xr-x  8 helmke  staff     272 May 20 09:10 .
+drwxr-xr-x  6 helmke  staff     204 May 20 09:10 ..
+-rw-r--r--  1 helmke  staff    1515 May 20 09:10 scientific_name.spec.rb
+-rw-r--r--  1 helmke  staff    1424 May 20 09:10 scientific_name_canonical.spec.rb
+-rw-r--r--  1 helmke  staff   47043 May 20 09:10 scientific_name_clean.spec.rb
+-rw-r--r--  1 helmke  staff    7374 May 20 09:10 scientific_name_dirty.spec.rb
+-rw-r--r--  1 helmke  staff    1592 May 20 09:10 spec_helper.rb
+-rw-r--r--  1 helmke  staff  121984 May 20 09:10 test_data.txt
+
+./services-tnrs:
+total 88
+drwxr-xr-x@ 10 helmke  staff    340 Jun 10 06:59 .
+drwxr-xr-x  12 helmke  staff    408 Jun 10 07:00 ..
+-rw-r--r--@  1 helmke  staff  14151 May 25 10:43 .classpath
+-rw-r--r--@  1 helmke  staff    446 May 25 10:43 .project
+drwxr-xr-x@  3 helmke  staff    102 May 25 10:43 .settings
+-rw-r--r--@  1 helmke  staff   1281 May 25 10:43 assembly.xml
+-rw-r--r--@  1 helmke  staff    140 May 25 10:43 deps.sh
+-rw-r--r--@  1 helmke  staff      0 May 25 10:43 log.out
+-rw-r--r--@  1 helmke  staff  13187 Jun  1 17:45 pom.xml
+drwxr-xr-x@  4 helmke  staff    136 May 25 10:43 src
+
+./services-tnrs/.settings:
+total 8
+drwxr-xr-x@  3 helmke  staff  102 May 25 10:43 .
+drwxr-xr-x@ 10 helmke  staff  340 Jun 10 06:59 ..
+-rw-r--r--@  1 helmke  staff  203 May 25 10:43 org.eclipse.jdt.core.prefs
+
+./services-tnrs/src:
+total 0
+drwxr-xr-x@  4 helmke  staff  136 May 25 10:43 .
+drwxr-xr-x@ 10 helmke  staff  340 Jun 10 06:59 ..
+drwxr-xr-x@  4 helmke  staff  136 May 25 10:43 main
+drwxr-xr-x@  4 helmke  staff  136 May 25 10:43 test
+
+./services-tnrs/src/main:
+total 0
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 java
+drwxr-xr-x@ 8 helmke  staff  272 May 25 10:43 resources
+
+./services-tnrs/src/main/java:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 org
+
+./services-tnrs/src/main/java/org:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 iplantc
+
+./services-tnrs/src/main/java/org/iplantc:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 ..
+drwxr-xr-x@ 6 helmke  staff  204 May 25 10:43 tnrs
+
+./services-tnrs/src/main/java/org/iplantc/tnrs:
+total 8
+drwxr-xr-x@ 6 helmke  staff  204 May 25 10:43 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 ..
+-rw-r--r--@ 1 helmke  staff  548 May 25 10:43 TNRSMain.java
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 service
+drwxr-xr-x@ 6 helmke  staff  204 May 25 10:43 transform
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 util
+
+./services-tnrs/src/main/java/org/iplantc/tnrs/service:
+total 24
+drwxr-xr-x@ 3 helmke  staff    102 May 25 10:43 .
+drwxr-xr-x@ 6 helmke  staff    204 May 25 10:43 ..
+-rw-r--r--@ 1 helmke  staff  12001 May 25 12:47 TNRSService.java
+
+./services-tnrs/src/main/java/org/iplantc/tnrs/transform:
+total 48
+drwxr-xr-x@ 6 helmke  staff   204 May 25 10:43 .
+drwxr-xr-x@ 6 helmke  staff   204 May 25 10:43 ..
+-rw-r--r--@ 1 helmke  staff   803 May 25 10:43 DebugTransformer.java
+-rw-r--r--@ 1 helmke  staff  1075 May 25 10:43 PlainStringToCompressedBASE64Transformer.java
+-rw-r--r--@ 1 helmke  staff  5209 May 25 10:43 TaxamatchOuputTransformer.java
+-rw-------@ 1 helmke  staff  4430 May 25 10:43 TaxamatchOuputTransformer.java~
+
+./services-tnrs/src/main/java/org/iplantc/tnrs/util:
+total 8
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 .
+drwxr-xr-x@ 6 helmke  staff  204 May 25 10:43 ..
+-rw-r--r--@ 1 helmke  staff  735 May 25 10:43 CompressionUtil.java
+
+./services-tnrs/src/main/resources:
+total 64
+-rw-r--r--@ 1 helmke  staff    168 May 25 10:43 #tnrs_standalone.properties#
+drwxr-xr-x@ 8 helmke  staff    272 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff    136 May 25 10:43 ..
+-rw-r--r--@ 1 helmke  staff    295 May 25 10:43 exampleQuery.dtd
+-rw-r--r--@ 1 helmke  staff    646 May 25 10:43 exampleQuery.xml
+-rw-r--r--@ 1 helmke  staff  10145 May 25 10:43 mule-config.xml
+-rw-r--r--@ 1 helmke  staff    174 May 27 12:12 tnrs_standalone.properties
+-rw-r--r--@ 1 helmke  staff    168 May 25 10:43 tnrs_standalone.properties~
+
+./services-tnrs/src/test:
+total 0
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 java
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 resources
+
+./services-tnrs/src/test/java:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 ..
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 org
+
+./services-tnrs/src/test/java/org:
+total 0
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 iplantc
+drwxr-xr-x@ 2 helmke  staff   68 May 25 10:43 mule
+
+./services-tnrs/src/test/java/org/iplantc:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 10:43 tnrs
+
+./services-tnrs/src/test/java/org/iplantc/tnrs:
+total 8
+drwxr-xr-x@ 3 helmke  staff   102 May 25 10:43 .
+drwxr-xr-x@ 3 helmke  staff   102 May 25 10:43 ..
+-rw-r--r--@ 1 helmke  staff  1084 May 25 10:43 TnrsservicesTestCase.java
+
+./services-tnrs/src/test/java/org/mule:
+total 0
+drwxr-xr-x@ 2 helmke  staff   68 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 10:43 ..
+
+./services-tnrs/src/test/resources:
+total 16
+drwxr-xr-x@ 4 helmke  staff   136 May 25 10:43 .
+drwxr-xr-x@ 4 helmke  staff   136 May 25 10:43 ..
+-rw-r--r--@ 1 helmke  staff   170 May 25 10:43 tnrs_standalone.properties
+-rw-r--r--@ 1 helmke  staff  2962 May 25 10:43 tnrsservices-functional-test-config.xml
+
+./taxamatch:
+total 64
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 .
+drwxr-xr-x  12 helmke  staff   408 Jun 10 07:00 ..
+-rw-r--r--@  1 helmke  staff  6148 Jun  2 06:04 .DS_Store
+-rw-r--r--   1 helmke  staff    53 May 20 09:52 CHANGELOG
+-rw-r--r--@  1 helmke  staff  3155 Jun  1 08:46 CHANGES
+-rw-r--r--   1 helmke  staff  1594 May 20 09:52 INSTALL
+-rw-r--r--@  1 helmke  staff   609 May 23 06:36 LICENSE
+-rw-r--r--@  1 helmke  staff  2342 Jun  1 08:52 README
+drwxr-xr-x  16 helmke  staff   544 May 20 09:52 api
+drwxr-xr-x   3 helmke  staff   102 May 20 09:52 authorities
+drwxr-xr-x   3 helmke  staff   102 May 20 09:52 cache
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 examples
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 gui
+-rw-r--r--   1 helmke  staff   734 May 20 09:52 index.php
+drwxr-xr-x   4 helmke  staff   136 May 20 09:52 lib
+drwxr-xr-x  11 helmke  staff   374 May 20 09:52 mobile
+drwxr-xr-x   3 helmke  staff   102 May 20 09:52 process
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 setup
+drwxr-xr-x   7 helmke  staff   238 May 20 09:52 tests
+drwxr-xr-x  14 helmke  staff   476 May 20 09:52 unittests
+
+./taxamatch/api:
+total 120
+drwxr-xr-x  16 helmke  staff   544 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .svn
+drwxr-xr-x  18 helmke  staff   612 May 20 09:52 classes
+-rw-r--r--   1 helmke  staff  1454 May 20 09:52 config.default.php
+-rw-r--r--   1 helmke  staff  1498 May 20 09:52 config.php
+drwxr-xr-x   3 helmke  staff   102 May 20 09:52 csv_process
+-rw-r--r--   1 helmke  staff    59 May 20 09:52 index.php
+-rw-r--r--   1 helmke  staff  8030 May 20 09:52 install_authority.php
+-rw-r--r--   1 helmke  staff  6934 May 20 09:52 install_norm_authority.php
+-rw-r--r--   1 helmke  staff  6563 May 20 09:52 taxamatch.php
+-rw-r--r--   1 helmke  staff   952 May 20 09:52 taxamatch_cli.php
+-rw-r--r--   1 helmke  staff   597 May 20 09:52 taxamatch_cli_batch.php
+-rw-r--r--   1 helmke  staff  1188 May 20 09:52 taxamatch_commandline.php
+-rw-r--r--   1 helmke  staff  3511 May 20 09:52 taxamatch_csv.php
+-rw-r--r--   1 helmke  staff  5377 May 20 09:52 taxamatchsoap.php
+
+./taxamatch/api/.svn:
+total 16
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  16 helmke  staff   544 May 20 09:52 ..
+-r--r--r--   1 helmke  staff  1758 May 20 09:52 all-wcprops
+-r--r--r--   1 helmke  staff  1947 May 20 09:52 entries
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 prop-base
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 props
+drwxr-xr-x  13 helmke  staff   442 May 20 09:52 text-base
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 tmp
+
+./taxamatch/api/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/api/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/api/.svn/text-base:
+total 120
+drwxr-xr-x  13 helmke  staff   442 May 20 09:52 .
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--   1 helmke  staff  1454 May 20 09:52 config.default.php.svn-base
+-r--r--r--   1 helmke  staff  1498 May 20 09:52 config.php.svn-base
+-r--r--r--   1 helmke  staff    59 May 20 09:52 index.php.svn-base
+-r--r--r--   1 helmke  staff  8030 May 20 09:52 install_authority.php.svn-base
+-r--r--r--   1 helmke  staff  6934 May 20 09:52 install_norm_authority.php.svn-base
+-r--r--r--   1 helmke  staff  6563 May 20 09:52 taxamatch.php.svn-base
+-r--r--r--   1 helmke  staff   952 May 20 09:52 taxamatch_cli.php.svn-base
+-r--r--r--   1 helmke  staff   597 May 20 09:52 taxamatch_cli_batch.php.svn-base
+-r--r--r--   1 helmke  staff  1188 May 20 09:52 taxamatch_commandline.php.svn-base
+-r--r--r--   1 helmke  staff  3511 May 20 09:52 taxamatch_csv.php.svn-base
+-r--r--r--   1 helmke  staff  5377 May 20 09:52 taxamatchsoap.php.svn-base
+
+./taxamatch/api/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/api/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/classes:
+total 472
+drwxr-xr-x  18 helmke  staff    612 May 20 09:52 .
+drwxr-xr-x  16 helmke  staff    544 May 20 09:52 ..
+drwxr-xr-x   8 helmke  staff    272 May 20 09:52 .svn
+-rw-r--r--   1 helmke  staff   4640 May 20 09:52 cache.php
+-rw-r--r--   1 helmke  staff   5909 May 20 09:52 class.authormatch.php
+-rw-r--r--   1 helmke  staff   4087 May 20 09:52 class.csv_process.php
+-rw-r--r--   1 helmke  staff   7408 May 20 09:52 class.damerau_levenshtein_mod.php
+-rw-r--r--   1 helmke  staff   5201 May 20 09:52 class.gni_splitter.php
+-rw-r--r--   1 helmke  staff   1596 May 20 09:52 class.misc.php
+-rw-r--r--   1 helmke  staff  24808 May 20 09:52 class.mysqli_database.php
+-rw-r--r--   1 helmke  staff   8967 May 20 09:52 class.nearmatch.php
+-rw-r--r--   1 helmke  staff  19806 May 20 09:52 class.normalize.php
+-rw-r--r--   1 helmke  staff  33617 May 20 09:52 class.queries.mysql.php
+-rw-r--r--   1 helmke  staff   1107 May 20 09:52 class.taxamatch-cache.php
+-rw-r--r--   1 helmke  staff  63573 May 20 09:52 class.taxamatch.php
+-rw-r--r--   1 helmke  staff    638 May 20 09:52 class.taxamatch_splitter.php
+-rw-r--r--   1 helmke  staff  23209 May 20 09:52 class.tnrs_aggregator.php
+-rw-r--r--   1 helmke  staff    596 May 20 09:52 class.xml.php
+
+./taxamatch/api/classes/.svn:
+total 16
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  18 helmke  staff   612 May 20 09:52 ..
+-r--r--r--   1 helmke  staff  2591 May 20 09:52 all-wcprops
+-r--r--r--   1 helmke  staff  2590 May 20 09:52 entries
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 prop-base
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 props
+drwxr-xr-x  17 helmke  staff   578 May 20 09:52 text-base
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 tmp
+
+./taxamatch/api/classes/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/api/classes/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/api/classes/.svn/text-base:
+total 472
+drwxr-xr-x  17 helmke  staff    578 May 20 09:52 .
+drwxr-xr-x   8 helmke  staff    272 May 20 09:52 ..
+-r--r--r--   1 helmke  staff   4640 May 20 09:52 cache.php.svn-base
+-r--r--r--   1 helmke  staff   5909 May 20 09:52 class.authormatch.php.svn-base
+-r--r--r--   1 helmke  staff   4087 May 20 09:52 class.csv_process.php.svn-base
+-r--r--r--   1 helmke  staff   7408 May 20 09:52 class.damerau_levenshtein_mod.php.svn-base
+-r--r--r--   1 helmke  staff   5201 May 20 09:52 class.gni_splitter.php.svn-base
+-r--r--r--   1 helmke  staff   1596 May 20 09:52 class.misc.php.svn-base
+-r--r--r--   1 helmke  staff  24808 May 20 09:52 class.mysqli_database.php.svn-base
+-r--r--r--   1 helmke  staff   8967 May 20 09:52 class.nearmatch.php.svn-base
+-r--r--r--   1 helmke  staff  19806 May 20 09:52 class.normalize.php.svn-base
+-r--r--r--   1 helmke  staff  33617 May 20 09:52 class.queries.mysql.php.svn-base
+-r--r--r--   1 helmke  staff   1107 May 20 09:52 class.taxamatch-cache.php.svn-base
+-r--r--r--   1 helmke  staff  63573 May 20 09:52 class.taxamatch.php.svn-base
+-r--r--r--   1 helmke  staff    638 May 20 09:52 class.taxamatch_splitter.php.svn-base
+-r--r--r--   1 helmke  staff  23209 May 20 09:52 class.tnrs_aggregator.php.svn-base
+-r--r--r--   1 helmke  staff    596 May 20 09:52 class.xml.php.svn-base
+
+./taxamatch/api/classes/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/api/classes/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/classes/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/classes/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/csv_process:
+total 0
+drwxr-xr-x   3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  16 helmke  staff  544 May 20 09:52 ..
+drwxr-xr-x   8 helmke  staff  272 May 20 09:52 .svn
+
+./taxamatch/api/csv_process/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  124 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  250 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/api/csv_process/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/api/csv_process/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/api/csv_process/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/api/csv_process/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/api/csv_process/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/csv_process/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/api/csv_process/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/authorities:
+total 0
+drwxr-xr-x   3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff  680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff  272 May 20 09:52 .svn
+
+./taxamatch/authorities/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  120 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  246 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/authorities/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/authorities/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/authorities/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/authorities/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/authorities/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/authorities/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/authorities/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/cache:
+total 0
+drwxr-xr-x   3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff  680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff  272 May 20 09:52 .svn
+
+./taxamatch/cache/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  114 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  240 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/cache/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/cache/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/cache/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/cache/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/cache/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/cache/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/cache/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples:
+total 8
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .svn
+drwxr-xr-x   6 helmke  staff   204 May 20 09:52 csv
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 embedgrid
+-rw-r--r--   1 helmke  staff  1315 May 20 09:52 first_genus.php
+drwxr-xr-x   4 helmke  staff   136 May 20 09:52 soap
+drwxr-xr-x   7 helmke  staff   238 May 20 09:52 suggestion
+
+./taxamatch/examples/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  266 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  447 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/examples/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/.svn/text-base:
+total 8
+drwxr-xr-x  3 helmke  staff   102 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  1315 May 20 09:52 first_genus.php.svn-base
+
+./taxamatch/examples/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/examples/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/csv:
+total 24
+drwxr-xr-x  6 helmke  staff   204 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff   957 May 20 09:52 index.html
+-rw-r--r--  1 helmke  staff    71 May 20 09:52 sample.csv
+-rw-r--r--  1 helmke  staff  2223 May 20 09:52 sample_output.csv
+
+./taxamatch/examples/csv/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  564 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  686 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/examples/csv/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/csv/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/csv/.svn/text-base:
+total 24
+drwxr-xr-x  5 helmke  staff   170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff   957 May 20 09:52 index.html.svn-base
+-r--r--r--  1 helmke  staff    71 May 20 09:52 sample.csv.svn-base
+-r--r--r--  1 helmke  staff  2223 May 20 09:52 sample_output.csv.svn-base
+
+./taxamatch/examples/csv/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/examples/csv/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/csv/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/csv/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/embedgrid:
+total 16
+drwxr-xr-x  5 helmke  staff   170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff  1657 May 20 09:52 embed.js
+-rw-r--r--  1 helmke  staff  1173 May 20 09:52 index.html
+
+./taxamatch/examples/embedgrid/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  421 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  541 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/examples/embedgrid/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/embedgrid/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/embedgrid/.svn/text-base:
+total 16
+drwxr-xr-x  4 helmke  staff   136 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  1657 May 20 09:52 embed.js.svn-base
+-r--r--r--  1 helmke  staff  1173 May 20 09:52 index.html.svn-base
+
+./taxamatch/examples/embedgrid/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/examples/embedgrid/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/embedgrid/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/embedgrid/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/soap:
+total 8
+drwxr-xr-x  4 helmke  staff   136 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff  1562 May 20 09:52 sample1.php
+
+./taxamatch/examples/soap/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  268 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  394 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/examples/soap/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/soap/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/soap/.svn/text-base:
+total 8
+drwxr-xr-x  3 helmke  staff   102 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  1562 May 20 09:52 sample1.php.svn-base
+
+./taxamatch/examples/soap/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/examples/soap/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/soap/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/soap/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/suggestion:
+total 32
+drwxr-xr-x  7 helmke  staff   238 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff  2437 May 20 09:52 google.jpg
+-rw-r--r--  1 helmke  staff  1395 May 20 09:52 index.html
+-rw-r--r--  1 helmke  staff  3535 May 20 09:52 jsonp.js
+-rw-r--r--  1 helmke  staff  2860 May 20 09:52 suggestion.js
+
+./taxamatch/examples/suggestion/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  7 helmke  staff  238 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  731 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  844 May 20 09:52 entries
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/examples/suggestion/.svn/prop-base:
+total 8
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff   53 May 20 09:52 google.jpg.svn-base
+
+./taxamatch/examples/suggestion/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/examples/suggestion/.svn/text-base:
+total 32
+drwxr-xr-x  6 helmke  staff   204 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  2437 May 20 09:52 google.jpg.svn-base
+-r--r--r--  1 helmke  staff  1395 May 20 09:52 index.html.svn-base
+-r--r--r--  1 helmke  staff  3535 May 20 09:52 jsonp.js.svn-base
+-r--r--r--  1 helmke  staff  2860 May 20 09:52 suggestion.js.svn-base
+
+./taxamatch/examples/suggestion/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/examples/suggestion/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/suggestion/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/examples/suggestion/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui:
+total 8
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .svn
+drwxr-xr-x   4 helmke  staff   136 May 20 09:52 css
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 docs
+drwxr-xr-x   7 helmke  staff   238 May 20 09:52 images
+-rw-r--r--   1 helmke  staff  1031 May 20 09:52 index.html
+drwxr-xr-x   9 helmke  staff   306 May 20 09:52 js
+
+./taxamatch/gui/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  246 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  426 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/gui/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/.svn/text-base:
+total 8
+drwxr-xr-x  3 helmke  staff   102 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  1031 May 20 09:52 index.html.svn-base
+
+./taxamatch/gui/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/gui/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/css:
+total 8
+drwxr-xr-x  4 helmke  staff   136 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff  2325 May 20 09:52 style.css
+
+./taxamatch/gui/css/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  252 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  386 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/gui/css/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/css/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/css/.svn/text-base:
+total 8
+drwxr-xr-x  3 helmke  staff   102 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  2325 May 20 09:52 style.css.svn-base
+
+./taxamatch/gui/css/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/gui/css/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/css/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/css/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/docs:
+total 16
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff  798 May 20 09:52 help.html
+-rw-r--r--  1 helmke  staff  161 May 20 09:52 home.html
+
+./taxamatch/gui/docs/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  391 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  529 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/gui/docs/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/docs/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/docs/.svn/text-base:
+total 16
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  798 May 20 09:52 help.html.svn-base
+-r--r--r--  1 helmke  staff  161 May 20 09:52 home.html.svn-base
+
+./taxamatch/gui/docs/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/gui/docs/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/docs/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/docs/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/images:
+total 32
+drwxr-xr-x  7 helmke  staff  238 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff  786 May 20 09:52 help.png
+-rw-r--r--  1 helmke  staff  806 May 20 09:52 house.png
+-rw-r--r--  1 helmke  staff  615 May 20 09:52 magnifier.png
+-rw-r--r--  1 helmke  staff  779 May 20 09:52 page_go.png
+
+./taxamatch/gui/images/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  7 helmke  staff  238 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  685 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  858 May 20 09:52 entries
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/gui/images/.svn/prop-base:
+total 32
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff   53 May 20 09:52 help.png.svn-base
+-r--r--r--  1 helmke  staff   53 May 20 09:52 house.png.svn-base
+-r--r--r--  1 helmke  staff   53 May 20 09:52 magnifier.png.svn-base
+-r--r--r--  1 helmke  staff   53 May 20 09:52 page_go.png.svn-base
+
+./taxamatch/gui/images/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/images/.svn/text-base:
+total 32
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  786 May 20 09:52 help.png.svn-base
+-r--r--r--  1 helmke  staff  806 May 20 09:52 house.png.svn-base
+-r--r--r--  1 helmke  staff  615 May 20 09:52 magnifier.png.svn-base
+-r--r--r--  1 helmke  staff  779 May 20 09:52 page_go.png.svn-base
+
+./taxamatch/gui/images/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/gui/images/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/images/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/images/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/js:
+total 72
+drwxr-xr-x  9 helmke  staff    306 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff    272 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff    272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff   3914 May 20 09:52 FileUploadField.js
+-rw-r--r--  1 helmke  staff   2436 May 20 09:52 app.js
+-rw-r--r--  1 helmke  staff   1782 May 20 09:52 class.tm-csv.js
+-rw-r--r--  1 helmke  staff   2538 May 20 09:52 class.tm-grid.js
+-rw-r--r--  1 helmke  staff   2243 May 20 09:52 class.tm-search-bulk.js
+-rw-r--r--  1 helmke  staff  12509 May 20 09:52 class.tm-search.js
+
+./taxamatch/gui/js/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  9 helmke  staff   306 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  1009 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  1148 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff    68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff    68 May 20 09:52 props
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff   170 May 20 09:52 tmp
+
+./taxamatch/gui/js/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/js/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/gui/js/.svn/text-base:
+total 72
+drwxr-xr-x  8 helmke  staff    272 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff    272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff   3914 May 20 09:52 FileUploadField.js.svn-base
+-r--r--r--  1 helmke  staff   2436 May 20 09:52 app.js.svn-base
+-r--r--r--  1 helmke  staff   1782 May 20 09:52 class.tm-csv.js.svn-base
+-r--r--r--  1 helmke  staff   2538 May 20 09:52 class.tm-grid.js.svn-base
+-r--r--r--  1 helmke  staff   2243 May 20 09:52 class.tm-search-bulk.js.svn-base
+-r--r--r--  1 helmke  staff  12509 May 20 09:52 class.tm-search.js.svn-base
+
+./taxamatch/gui/js/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/gui/js/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/js/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/gui/js/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib:
+total 0
+drwxr-xr-x   4 helmke  staff  136 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff  680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff  272 May 20 09:52 .svn
+drwxr-xr-x   4 helmke  staff  136 May 20 09:52 https:
+
+./taxamatch/lib/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  112 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  251 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/lib/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/lib/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https::
+total 0
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 simpletest.svn.sourceforge.net
+
+./taxamatch/lib/https:/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  119 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  282 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/lib/https:/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/lib/https:/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net:
+total 0
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 svnroot
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  151 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  290 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot:
+total 0
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 simpletest
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  159 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  301 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest:
+total 0
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 simpletest
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  170 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  312 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest:
+total 0
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 tags
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  181 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  317 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags:
+total 0
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  186 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  311 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/lib/https:/simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/mobile:
+total 80
+drwxr-xr-x  11 helmke  staff   374 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--   1 helmke  staff  1497 May 20 09:52 LICENSE.txt
+-rw-r--r--   1 helmke  staff   801 May 20 09:52 NOTICE.txt
+-rw-r--r--   1 helmke  staff   341 May 20 09:52 README.txt
+-rw-r--r--   1 helmke  staff  8561 May 20 09:52 apple-touch-icon.png
+-rw-r--r--   1 helmke  staff  1137 May 20 09:52 index.html
+drwxr-xr-x  24 helmke  staff   816 May 20 09:52 iui
+-rw-r--r--   1 helmke  staff  1161 May 20 09:52 releaseNotes.txt
+-rw-r--r--   1 helmke  staff  7150 May 20 09:52 search.php
+
+./taxamatch/mobile/.svn:
+total 16
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  11 helmke  staff   374 May 20 09:52 ..
+-r--r--r--   1 helmke  staff  1108 May 20 09:52 all-wcprops
+-r--r--r--   1 helmke  staff  1290 May 20 09:52 entries
+drwxr-xr-x   3 helmke  staff   102 May 20 09:52 prop-base
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 props
+drwxr-xr-x   9 helmke  staff   306 May 20 09:52 text-base
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 tmp
+
+./taxamatch/mobile/.svn/prop-base:
+total 8
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff   53 May 20 09:52 apple-touch-icon.png.svn-base
+
+./taxamatch/mobile/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/mobile/.svn/text-base:
+total 80
+drwxr-xr-x  9 helmke  staff   306 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  1497 May 20 09:52 LICENSE.txt.svn-base
+-r--r--r--  1 helmke  staff   801 May 20 09:52 NOTICE.txt.svn-base
+-r--r--r--  1 helmke  staff   341 May 20 09:52 README.txt.svn-base
+-r--r--r--  1 helmke  staff  8561 May 20 09:52 apple-touch-icon.png.svn-base
+-r--r--r--  1 helmke  staff  1137 May 20 09:52 index.html.svn-base
+-r--r--r--  1 helmke  staff  1161 May 20 09:52 releaseNotes.txt.svn-base
+-r--r--r--  1 helmke  staff  7150 May 20 09:52 search.php.svn-base
+
+./taxamatch/mobile/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/mobile/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/mobile/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/mobile/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/mobile/iui:
+total 216
+drwxr-xr-x  24 helmke  staff    816 May 20 09:52 .
+drwxr-xr-x  11 helmke  staff    374 May 20 09:52 ..
+drwxr-xr-x   8 helmke  staff    272 May 20 09:52 .svn
+-rw-r--r--   1 helmke  staff    816 May 20 09:52 backButton.png
+-rw-r--r--   1 helmke  staff    517 May 20 09:52 blueButton.png
+-rw-r--r--   1 helmke  staff    362 May 20 09:52 cancel.png
+-rw-r--r--   1 helmke  staff    943 May 20 09:52 grayButton.png
+-rw-r--r--   1 helmke  staff   2887 May 20 09:52 iui-logo-touch-icon.png
+-rw-r--r--   1 helmke  staff   8595 May 20 09:52 iui.css
+-rw-r--r--   1 helmke  staff  11258 May 20 09:52 iui.js
+-rw-r--r--   1 helmke  staff   5777 May 20 09:52 iuix.css
+-rw-r--r--   1 helmke  staff   6456 May 20 09:52 iuix.js
+-rw-r--r--   1 helmke  staff    259 May 20 09:52 listArrow.png
+-rw-r--r--   1 helmke  staff    308 May 20 09:52 listArrowSel.png
+-rw-r--r--   1 helmke  staff   2867 May 20 09:52 listGroup.png
+-rw-r--r--   1 helmke  staff   1435 May 20 09:52 loading.gif
+-rw-r--r--   1 helmke  staff    117 May 20 09:52 pinstripes.png
+-rw-r--r--   1 helmke  staff    159 May 20 09:52 selection.png
+-rw-r--r--   1 helmke  staff   2835 May 20 09:52 thumb.png
+-rw-r--r--   1 helmke  staff   2815 May 20 09:52 toggle.png
+-rw-r--r--   1 helmke  staff    163 May 20 09:52 toggleOn.png
+-rw-r--r--   1 helmke  staff    531 May 20 09:52 toolButton.png
+-rw-r--r--   1 helmke  staff    171 May 20 09:52 toolbar.png
+-rw-r--r--   1 helmke  staff    978 May 20 09:52 whiteButton.png
+
+./taxamatch/mobile/iui/.svn:
+total 16
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  24 helmke  staff   816 May 20 09:52 ..
+-r--r--r--   1 helmke  staff  3169 May 20 09:52 all-wcprops
+-r--r--r--   1 helmke  staff  3476 May 20 09:52 entries
+drwxr-xr-x  19 helmke  staff   646 May 20 09:52 prop-base
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 props
+drwxr-xr-x  23 helmke  staff   782 May 20 09:52 text-base
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 tmp
+
+./taxamatch/mobile/iui/.svn/prop-base:
+total 136
+drwxr-xr-x  19 helmke  staff  646 May 20 09:52 .
+drwxr-xr-x   8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--   1 helmke  staff   53 May 20 09:52 backButton.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 blueButton.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 cancel.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 grayButton.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 iui-logo-touch-icon.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 listArrow.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 listArrowSel.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 listGroup.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 loading.gif.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 pinstripes.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 selection.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 thumb.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 toggle.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 toggleOn.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 toolButton.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 toolbar.png.svn-base
+-r--r--r--   1 helmke  staff   53 May 20 09:52 whiteButton.png.svn-base
+
+./taxamatch/mobile/iui/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/mobile/iui/.svn/text-base:
+total 216
+drwxr-xr-x  23 helmke  staff    782 May 20 09:52 .
+drwxr-xr-x   8 helmke  staff    272 May 20 09:52 ..
+-r--r--r--   1 helmke  staff    816 May 20 09:52 backButton.png.svn-base
+-r--r--r--   1 helmke  staff    517 May 20 09:52 blueButton.png.svn-base
+-r--r--r--   1 helmke  staff    362 May 20 09:52 cancel.png.svn-base
+-r--r--r--   1 helmke  staff    943 May 20 09:52 grayButton.png.svn-base
+-r--r--r--   1 helmke  staff   2887 May 20 09:52 iui-logo-touch-icon.png.svn-base
+-r--r--r--   1 helmke  staff   8595 May 20 09:52 iui.css.svn-base
+-r--r--r--   1 helmke  staff  11258 May 20 09:52 iui.js.svn-base
+-r--r--r--   1 helmke  staff   5777 May 20 09:52 iuix.css.svn-base
+-r--r--r--   1 helmke  staff   6456 May 20 09:52 iuix.js.svn-base
+-r--r--r--   1 helmke  staff    259 May 20 09:52 listArrow.png.svn-base
+-r--r--r--   1 helmke  staff    308 May 20 09:52 listArrowSel.png.svn-base
+-r--r--r--   1 helmke  staff   2867 May 20 09:52 listGroup.png.svn-base
+-r--r--r--   1 helmke  staff   1435 May 20 09:52 loading.gif.svn-base
+-r--r--r--   1 helmke  staff    117 May 20 09:52 pinstripes.png.svn-base
+-r--r--r--   1 helmke  staff    159 May 20 09:52 selection.png.svn-base
+-r--r--r--   1 helmke  staff   2835 May 20 09:52 thumb.png.svn-base
+-r--r--r--   1 helmke  staff   2815 May 20 09:52 toggle.png.svn-base
+-r--r--r--   1 helmke  staff    163 May 20 09:52 toggleOn.png.svn-base
+-r--r--r--   1 helmke  staff    531 May 20 09:52 toolButton.png.svn-base
+-r--r--r--   1 helmke  staff    171 May 20 09:52 toolbar.png.svn-base
+-r--r--r--   1 helmke  staff    978 May 20 09:52 whiteButton.png.svn-base
+
+./taxamatch/mobile/iui/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/mobile/iui/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/mobile/iui/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/mobile/iui/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/process:
+total 0
+drwxr-xr-x   3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff  680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff  272 May 20 09:52 .svn
+
+./taxamatch/process/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  116 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  242 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/process/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/process/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/process/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/process/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/process/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/process/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/process/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/setup:
+total 16
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--   1 helmke  staff  2226 May 20 09:52 create.sql
+-rw-r--r--   1 helmke  staff   318 May 20 09:52 index.php
+
+./taxamatch/setup/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  384 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  528 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  4 helmke  staff  136 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/setup/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/setup/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/setup/.svn/text-base:
+total 16
+drwxr-xr-x  4 helmke  staff   136 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  2226 May 20 09:52 create.sql.svn-base
+-r--r--r--  1 helmke  staff   318 May 20 09:52 index.php.svn-base
+
+./taxamatch/setup/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/setup/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/setup/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/setup/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests:
+total 8
+drwxr-xr-x   7 helmke  staff  238 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff  680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff  272 May 20 09:52 .svn
+-rw-r--r--   1 helmke  staff  928 May 20 09:52 run_tests.php
+drwxr-xr-x   6 helmke  staff  204 May 20 09:52 test_data_files
+drwxr-xr-x   6 helmke  staff  204 May 20 09:52 unit_tests
+drwxr-xr-x   3 helmke  staff  102 May 20 09:52 web_tests
+
+./taxamatch/tests/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  7 helmke  staff  238 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  256 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  442 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/tests/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/.svn/text-base:
+total 8
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  928 May 20 09:52 run_tests.php.svn-base
+
+./taxamatch/tests/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/tests/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/test_data_files:
+total 24
+drwxr-xr-x  6 helmke  staff   204 May 20 09:52 .
+drwxr-xr-x  7 helmke  staff   238 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff   998 May 20 09:52 author_comparisons.txt
+-rw-r--r--  1 helmke  staff  2163 May 20 09:52 damerau_levenshtein_mod.txt
+-rw-r--r--  1 helmke  staff  1029 May 20 09:52 taxamatch.txt
+
+./taxamatch/tests/test_data_files/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  653 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  722 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/tests/test_data_files/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/test_data_files/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/test_data_files/.svn/text-base:
+total 24
+drwxr-xr-x  5 helmke  staff   170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff   998 May 20 09:52 author_comparisons.txt.svn-base
+-r--r--r--  1 helmke  staff  2163 May 20 09:52 damerau_levenshtein_mod.txt.svn-base
+-r--r--r--  1 helmke  staff  1029 May 20 09:52 taxamatch.txt.svn-base
+
+./taxamatch/tests/test_data_files/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/tests/test_data_files/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/test_data_files/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/test_data_files/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/unit_tests:
+total 40
+drwxr-xr-x  6 helmke  staff   204 May 20 09:52 .
+drwxr-xr-x  7 helmke  staff   238 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--  1 helmke  staff  1828 May 20 09:52 TestAuthorMatch.php
+-rw-r--r--  1 helmke  staff  1262 May 20 09:52 TestDamerauLevenshteinMod.php
+-rw-r--r--  1 helmke  staff  9692 May 20 09:52 TestTaxaMatch.php
+
+./taxamatch/tests/unit_tests/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  6 helmke  staff  204 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  639 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  721 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/tests/unit_tests/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/unit_tests/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/unit_tests/.svn/text-base:
+total 40
+drwxr-xr-x  5 helmke  staff   170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  1828 May 20 09:52 TestAuthorMatch.php.svn-base
+-r--r--r--  1 helmke  staff  1262 May 20 09:52 TestDamerauLevenshteinMod.php.svn-base
+-r--r--r--  1 helmke  staff  9692 May 20 09:52 TestTaxaMatch.php.svn-base
+
+./taxamatch/tests/unit_tests/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/tests/unit_tests/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/unit_tests/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/unit_tests/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/web_tests:
+total 0
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 .
+drwxr-xr-x  7 helmke  staff  238 May 20 09:52 ..
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .svn
+
+./taxamatch/tests/web_tests/.svn:
+total 16
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 .
+drwxr-xr-x  3 helmke  staff  102 May 20 09:52 ..
+-r--r--r--  1 helmke  staff  124 May 20 09:52 all-wcprops
+-r--r--r--  1 helmke  staff  250 May 20 09:52 entries
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 tmp
+
+./taxamatch/tests/web_tests/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/web_tests/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/web_tests/.svn/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/tests/web_tests/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/tests/web_tests/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/web_tests/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/tests/web_tests/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/unittests:
+total 88
+drwxr-xr-x  14 helmke  staff   476 May 20 09:52 .
+drwxr-xr-x  20 helmke  staff   680 Jun  2 06:04 ..
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .svn
+-rw-r--r--   1 helmke  staff  1793 May 20 09:52 index.html
+-rw-r--r--   1 helmke  staff   893 May 20 09:52 test01.php
+-rw-r--r--   1 helmke  staff   972 May 20 09:52 test02.php
+-rw-r--r--   1 helmke  staff  1014 May 20 09:52 test03.php
+-rw-r--r--   1 helmke  staff   775 May 20 09:52 test04.php
+-rw-r--r--   1 helmke  staff  1111 May 20 09:52 test05.php
+-rw-r--r--   1 helmke  staff   916 May 20 09:52 test06.php
+-rw-r--r--   1 helmke  staff  1016 May 20 09:52 test07.php
+-rw-r--r--   1 helmke  staff   920 May 20 09:52 test08.php
+-rw-r--r--   1 helmke  staff   952 May 20 09:52 test09.php
+-rw-r--r--   1 helmke  staff  1005 May 20 09:52 test10.php
+
+./taxamatch/unittests/.svn:
+total 16
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 .
+drwxr-xr-x  14 helmke  staff   476 May 20 09:52 ..
+-r--r--r--   1 helmke  staff  1658 May 20 09:52 all-wcprops
+-r--r--r--   1 helmke  staff  1833 May 20 09:52 entries
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 prop-base
+drwxr-xr-x   2 helmke  staff    68 May 20 09:52 props
+drwxr-xr-x  13 helmke  staff   442 May 20 09:52 text-base
+drwxr-xr-x   5 helmke  staff   170 May 20 09:52 tmp
+
+./taxamatch/unittests/.svn/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/unittests/.svn/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+
+./taxamatch/unittests/.svn/text-base:
+total 88
+drwxr-xr-x  13 helmke  staff   442 May 20 09:52 .
+drwxr-xr-x   8 helmke  staff   272 May 20 09:52 ..
+-r--r--r--   1 helmke  staff  1793 May 20 09:52 index.html.svn-base
+-r--r--r--   1 helmke  staff   893 May 20 09:52 test01.php.svn-base
+-r--r--r--   1 helmke  staff   972 May 20 09:52 test02.php.svn-base
+-r--r--r--   1 helmke  staff  1014 May 20 09:52 test03.php.svn-base
+-r--r--r--   1 helmke  staff   775 May 20 09:52 test04.php.svn-base
+-r--r--r--   1 helmke  staff  1111 May 20 09:52 test05.php.svn-base
+-r--r--r--   1 helmke  staff   916 May 20 09:52 test06.php.svn-base
+-r--r--r--   1 helmke  staff  1016 May 20 09:52 test07.php.svn-base
+-r--r--r--   1 helmke  staff   920 May 20 09:52 test08.php.svn-base
+-r--r--r--   1 helmke  staff   952 May 20 09:52 test09.php.svn-base
+-r--r--r--   1 helmke  staff  1005 May 20 09:52 test10.php.svn-base
+
+./taxamatch/unittests/.svn/tmp:
+total 0
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 .
+drwxr-xr-x  8 helmke  staff  272 May 20 09:52 ..
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 prop-base
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 props
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 text-base
+
+./taxamatch/unittests/.svn/tmp/prop-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/unittests/.svn/tmp/props:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./taxamatch/unittests/.svn/tmp/text-base:
+total 0
+drwxr-xr-x  2 helmke  staff   68 May 20 09:52 .
+drwxr-xr-x  5 helmke  staff  170 May 20 09:52 ..
+
+./tnrs-batch-server:
+total 40
+drwxr-xr-x@  7 helmke  staff   238 Jun 10 06:59 .
+drwxr-xr-x  12 helmke  staff   408 Jun 10 07:00 ..
+-rw-r--r--@  1 helmke  staff  4420 May 26 10:21 .classpath
+-rw-r--r--@  1 helmke  staff   481 May 27 14:29 .project
+drwxr-xr-x@  4 helmke  staff   136 May 26 10:20 .settings
+-rw-r--r--@  1 helmke  staff  5848 May 25 13:34 pom.xml
+drwxr-xr-x@  4 helmke  staff   136 May 25 11:19 src
+
+./tnrs-batch-server/.settings:
+total 16
+drwxr-xr-x@ 4 helmke  staff  136 May 26 10:20 .
+drwxr-xr-x@ 7 helmke  staff  238 Jun 10 06:59 ..
+-rw-r--r--@ 1 helmke  staff  103 May 26 10:21 com.google.gwt.eclipse.core.prefs
+-rw-r--r--@ 1 helmke  staff  203 May 25 11:19 org.eclipse.jdt.core.prefs
+
+./tnrs-batch-server/src:
+total 16
+drwxr-xr-x@ 4 helmke  staff   136 May 25 11:19 .
+drwxr-xr-x@ 7 helmke  staff   238 Jun 10 06:59 ..
+-rw-r--r--@ 1 helmke  staff  6148 May 25 11:19 .DS_Store
+drwxr-xr-x@ 4 helmke  staff   136 May 25 11:19 main
+
+./tnrs-batch-server/src/main:
+total 0
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 java
+drwxr-xr-x@ 6 helmke  staff  204 May 25 11:19 resources
+
+./tnrs-batch-server/src/main/java:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 org
+
+./tnrs-batch-server/src/main/java/org:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 iplantc
+
+./tnrs-batch-server/src/main/java/org/iplantc:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 tnrs
+
+./tnrs-batch-server/src/main/java/org/iplantc/tnrs:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 ..
+drwxr-xr-x@ 8 helmke  staff  272 May 25 11:19 server
+
+./tnrs-batch-server/src/main/java/org/iplantc/tnrs/server:
+total 136
+drwxr-xr-x@ 8 helmke  staff    272 May 25 11:19 .
+drwxr-xr-x@ 3 helmke  staff    102 May 25 11:19 ..
+-rw-r--r--@ 1 helmke  staff  31210 May 27 15:11 BatchProcessingServer.java
+-rw-r--r--@ 1 helmke  staff  27641 May 25 11:19 BatchProcessingServer.java~
+-rw-r--r--@ 1 helmke  staff   2059 May 25 11:19 NameMatchingJob.java
+-rw-r--r--@ 1 helmke  staff   1022 May 26 15:00 NameMatchingRequest.java
+drwxr-xr-x@ 4 helmke  staff    136 May 25 11:19 request
+drwxr-xr-x@ 5 helmke  staff    170 May 25 14:37 test
+
+./tnrs-batch-server/src/main/java/org/iplantc/tnrs/server/request:
+total 24
+drwxr-xr-x@ 4 helmke  staff   136 May 25 11:19 .
+drwxr-xr-x@ 8 helmke  staff   272 May 25 11:19 ..
+-rw-r--r--@ 1 helmke  staff  7486 May 25 11:19 MultipartParser.java
+-rw-r--r--@ 1 helmke  staff  2956 May 25 11:19 MultipartRequestParser.java
+
+./tnrs-batch-server/src/main/java/org/iplantc/tnrs/server/test:
+total 24
+drwxr-xr-x@ 5 helmke  staff   170 May 25 14:37 .
+drwxr-xr-x@ 8 helmke  staff   272 May 25 11:19 ..
+-rw-r--r--@ 1 helmke  staff  1200 May 25 14:48 IndexCSV.java
+-rw-r--r--@ 1 helmke  staff  1213 May 25 14:58 RetrieveGroup.java
+-rw-r--r--@ 1 helmke  staff   528 May 25 11:19 TestCSVReader.java
+
+./tnrs-batch-server/src/main/resources:
+total 16
+drwxr-xr-x@ 6 helmke  staff  204 May 25 11:19 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 META-INF
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 archetype-resources
+-rw-r--r--@ 1 helmke  staff  235 May 27 12:16 tnrs.conf
+-rw-r--r--@ 1 helmke  staff  173 May 25 11:19 tnrs.conf~
+
+./tnrs-batch-server/src/main/resources/META-INF:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 6 helmke  staff  204 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 maven
+
+./tnrs-batch-server/src/main/resources/META-INF/maven:
+total 8
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 ..
+-rw-r--r--@ 1 helmke  staff  204 May 25 11:19 archetype.xml
+
+./tnrs-batch-server/src/main/resources/archetype-resources:
+total 8
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 .
+drwxr-xr-x@ 6 helmke  staff  204 May 25 11:19 ..
+-rw-r--r--@ 1 helmke  staff  566 May 25 11:19 pom.xml
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 src
+
+./tnrs-batch-server/src/main/resources/archetype-resources/src:
+total 0
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 main
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 test
+
+./tnrs-batch-server/src/main/resources/archetype-resources/src/main:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 java
+
+./tnrs-batch-server/src/main/resources/archetype-resources/src/main/java:
+total 8
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 ..
+-rw-r--r--@ 1 helmke  staff  179 May 25 11:19 App.java
+
+./tnrs-batch-server/src/main/resources/archetype-resources/src/test:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 11:19 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 java
+
+./tnrs-batch-server/src/main/resources/archetype-resources/src/test/java:
+total 8
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 11:19 ..
+-rw-r--r--@ 1 helmke  staff  644 May 25 11:19 AppTest.java
+
+./tnrs-standalone:
+total 32
+drwxr-xr-x@  7 helmke  staff   238 Jun 10 07:00 .
+drwxr-xr-x  12 helmke  staff   408 Jun 10 07:00 ..
+-rw-r--r--@  1 helmke  staff  2895 May 27 14:30 .classpath
+-rw-r--r--@  1 helmke  staff   686 May 27 13:21 .project
+drwxr-xr-x@  6 helmke  staff   204 May 25 09:22 .settings
+-rw-r--r--@  1 helmke  staff  7023 May 26 17:15 pom.xml
+drwxr-xr-x@  3 helmke  staff   102 May 25 09:22 src
+
+./tnrs-standalone/.settings:
+total 40
+drwxr-xr-x@ 6 helmke  staff   204 May 25 09:22 .
+drwxr-xr-x@ 7 helmke  staff   238 Jun 10 07:00 ..
+-rw-r--r--@ 1 helmke  staff   155 May 26 09:35 com.google.gdt.eclipse.core.prefs
+-rw-r--r--@ 1 helmke  staff   118 May 27 14:30 com.google.gwt.eclipse.core.prefs
+-rw-r--r--@ 1 helmke  staff   203 May 25 09:22 org.eclipse.jdt.core.prefs
+-rw-r--r--@ 1 helmke  staff  5129 May 25 09:22 org.eclipse.jdt.ui.prefs
+
+./tnrs-standalone/src:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 .
+drwxr-xr-x@ 7 helmke  staff  238 Jun 10 07:00 ..
+drwxr-xr-x@ 5 helmke  staff  170 May 25 09:22 main
+
+./tnrs-standalone/src/main:
+total 0
+drwxr-xr-x@  5 helmke  staff  170 May 25 09:22 .
+drwxr-xr-x@  3 helmke  staff  102 May 25 09:22 ..
+drwxr-xr-x@  3 helmke  staff  102 May 25 09:22 java
+drwxr-xr-x@  3 helmke  staff  102 May 25 19:01 resources
+drwxr-xr-x@ 20 helmke  staff  680 May 26 13:08 webapp
+
+./tnrs-standalone/src/main/java:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 .
+drwxr-xr-x@ 5 helmke  staff  170 May 25 09:22 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 org
+
+./tnrs-standalone/src/main/java/org:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 iplantc
+
+./tnrs-standalone/src/main/java/org/iplantc:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 tnrs
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs:
+total 0
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 .
+drwxr-xr-x@ 3 helmke  staff  102 May 25 09:22 ..
+drwxr-xr-x@ 6 helmke  staff  204 May 25 10:37 demo
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo:
+total 8
+drwxr-xr-x@  6 helmke  staff   204 May 25 10:37 .
+drwxr-xr-x@  3 helmke  staff   102 May 25 09:22 ..
+-rw-r--r--@  1 helmke  staff  1261 May 26 16:52 TNRSDemo.gwt.xml
+drwxr-xr-x@ 34 helmke  staff  1156 May 31 15:47 client
+drwxr-xr-x@  7 helmke  staff   238 May 25 10:37 server
+drwxr-xr-x@  3 helmke  staff   102 May 26 17:07 shared
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/client:
+total 464
+drwxr-xr-x@ 34 helmke  staff   1156 May 31 15:47 .
+drwxr-xr-x@  6 helmke  staff    204 May 25 10:37 ..
+-rw-r--r--@  1 helmke  staff   2837 May 25 10:37 ApplicationLayout.java
+-rw-------@  1 helmke  staff  10104 May 26 17:07 BeanTNRSEntry.java
+-rw-r--r--@  1 helmke  staff    207 May 25 10:37 ClientCommand.java
+-rw-r--r--@  1 helmke  staff   5454 May 25 10:37 DetailDialog.java
+-rw-r--r--@  1 helmke  staff   5815 May 25 10:37 JsTNRSEntry.java
+-rw-r--r--@  1 helmke  staff   2129 May 25 10:37 JsonUtil.java
+-rw-------@  1 helmke  staff  21098 Jun  1 11:29 LocalTNRSEditorPanel.java
+-rw-r--r--@  1 helmke  staff   5172 May 25 10:37 RemoteTNRSDetailsDialog.java
+-rw-r--r--@  1 helmke  staff  15270 May 31 16:03 RemoteTNRSEditorPanel.java
+-rw-r--r--@  1 helmke  staff  26456 May 25 09:22 RemoteTNRSEditorPanel.java~
+-rw-r--r--@  1 helmke  staff   3758 May 27 15:00 ResultsPanel.java
+-rw-r--r--@  1 helmke  staff   1074 May 27 13:31 SearchService.java
+-rw-r--r--@  1 helmke  staff   1160 May 27 13:31 SearchServiceAsync.java
+-rw-r--r--@  1 helmke  staff    293 May 25 10:37 SearchTextArea.java
+-rw-r--r--@  1 helmke  staff   2004 May 25 10:37 SubmitBatchJobWindow.java
+-rw-r--r--@  1 helmke  staff    970 May 26 10:14 TNRSDemo.java
+-rw-r--r--@  1 helmke  staff   1506 May 27 15:29 TNRSDescriptionPanel.java
+-rw-r--r--@  1 helmke  staff  10920 May 25 10:37 TNRSDetailsDialog.java
+-rw-r--r--@  1 helmke  staff   3235 May 26 18:21 TNRSDownloadDialog.java
+-rw-r--r--@  1 helmke  staff   1795 May 31 15:54 TNRSEditorPanel.java
+-rw-r--r--@  1 helmke  staff  25488 May 25 09:22 TNRSEditorPanel.java~
+-rw-r--r--@  1 helmke  staff   9530 May 25 10:37 TNRSEntry.java
+-rw-r--r--@  1 helmke  staff   9054 May 31 15:44 TNRSPanel.java
+-rw-r--r--@  1 helmke  staff   1036 May 27 10:48 TNRSProgressPanel.java
+-rw-r--r--@  1 helmke  staff   3203 May 26 12:22 TNRSSearchPanel.java
+-rw-r--r--@  1 helmke  staff   3694 May 27 12:10 UploadFilePanel.java
+-rw-r--r--@  1 helmke  staff   3885 May 25 09:22 UploadFilePanel.java~
+drwxr-xr-x@  2 helmke  staff     68 May 25 09:22 gxt
+drwxr-xr-x@  5 helmke  staff    170 May 25 10:37 images
+drwxr-xr-x@  4 helmke  staff    136 May 31 16:01 util
+drwxr-xr-x@  6 helmke  staff    204 May 27 14:58 validation
+drwxr-xr-x@  3 helmke  staff    102 May 25 10:37 views
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/client/gxt:
+total 0
+drwxr-xr-x@  2 helmke  staff    68 May 25 09:22 .
+drwxr-xr-x@ 34 helmke  staff  1156 May 31 15:47 ..
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/client/images:
+total 24
+drwxr-xr-x@  5 helmke  staff   170 May 25 10:37 .
+drwxr-xr-x@ 34 helmke  staff  1156 May 31 15:47 ..
+-rw-r--r--@  1 helmke  staff   374 May 25 10:37 Resources.java
+-rw-r--r--@  1 helmke  staff   839 May 25 10:37 download.png
+-rwxr-xr-x@  1 helmke  staff   744 May 25 10:37 help.png
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/client/util:
+total 16
+drwxr-xr-x@  4 helmke  staff   136 May 31 16:01 .
+drwxr-xr-x@ 34 helmke  staff  1156 May 31 15:47 ..
+-rw-r--r--@  1 helmke  staff   841 May 31 16:04 NumberUtil.java
+-rw-r--r--@  1 helmke  staff   310 May 25 10:37 ValidationUtil.java
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/client/validation:
+total 32
+drwxr-xr-x@  6 helmke  staff   204 May 27 14:58 .
+drwxr-xr-x@ 34 helmke  staff  1156 May 31 15:47 ..
+-rw-r--r--@  1 helmke  staff   412 May 25 10:37 BlankValidator.java
+-rw-r--r--@  1 helmke  staff   652 May 25 10:37 EmailValidator.java
+-rw-r--r--@  1 helmke  staff   474 May 25 10:37 FIleInputValidator.java
+-rw-r--r--@  1 helmke  staff   561 May 27 15:01 KeyValidator.java
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/client/views:
+total 8
+drwxr-xr-x@  3 helmke  staff   102 May 25 10:37 .
+drwxr-xr-x@ 34 helmke  staff  1156 May 31 15:47 ..
+-rw-r--r--@  1 helmke  staff  1986 May 25 10:37 Hyperlink.java
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/server:
+total 64
+drwxr-xr-x@ 7 helmke  staff   238 May 25 10:37 .
+drwxr-xr-x@ 6 helmke  staff   204 May 25 10:37 ..
+-rw-r--r--@ 1 helmke  staff   618 May 25 10:37 CompressionUtil.java
+-rw-r--r--@ 1 helmke  staff   435 May 25 10:37 ConfigurationProperties.java
+-rw-r--r--@ 1 helmke  staff  2482 May 26 15:09 FileUploadServlet.java
+-rw-r--r--@ 1 helmke  staff  8122 May 27 14:07 SearchServiceImpl.java
+-rw-r--r--@ 1 helmke  staff  8245 May 25 09:22 SearchServiceImpl.java~
+
+./tnrs-standalone/src/main/java/org/iplantc/tnrs/demo/shared:
+total 8
+drwxr-xr-x@ 3 helmke  staff   102 May 26 17:07 .
+drwxr-xr-x@ 6 helmke  staff   204 May 25 10:37 ..
+-rw-r--r--@ 1 helmke  staff  1517 May 25 10:37 FieldVerifier.java
+
+./tnrs-standalone/src/main/resources:
+total 8
+drwxr-xr-x@ 3 helmke  staff  102 May 25 19:01 .
+drwxr-xr-x@ 5 helmke  staff  170 May 25 09:22 ..
+-rw-r--r--@ 1 helmke  staff   99 May 26 15:18 tnrs.properties
+
+./tnrs-standalone/src/main/webapp:
+total 176
+-rw-r--r--@  1 helmke  staff   1634 May 25 10:37 #index.html#
+drwxr-xr-x@ 20 helmke  staff    680 May 26 13:08 .
+drwxr-xr-x@  5 helmke  staff    170 May 25 09:22 ..
+-rw-r--r--@  1 helmke  staff  20341 Jun  1 11:24 TNRSDemo.css
+-rw-r--r--@  1 helmke  staff   1509 Jun  1 13:15 TNRSDemo.html
+drwxr-xr-x@  3 helmke  staff    102 May 25 10:37 WEB-INF
+-rw-r--r--@  1 helmke  staff   8376 May 25 10:38 about.html
+-rw-r--r--@  1 helmke  staff   3861 May 26 13:08 api.html
+-rw-r--r--@  1 helmke  staff   3985 May 25 10:38 contributors.html
+-rw-r--r--@  1 helmke  staff   2393 May 25 10:38 future.html
+drwxr-xr-x@  8 helmke  staff    272 May 25 16:11 gxt
+drwxr-xr-x@ 42 helmke  staff   1428 May 25 10:38 images
+-rw-r--r--@  1 helmke  staff   3105 May 25 10:38 index.html
+-rw-r--r--@  1 helmke  staff   5365 May 25 09:22 instructions-1.html
+-rw-r--r--@  1 helmke  staff   5365 May 25 10:38 instructions.html
+drwxr-xr-x@  3 helmke  staff    102 May 25 10:37 js
+-rw-r--r--@  1 helmke  staff   2905 May 25 09:22 sources-1.html
+-rw-r--r--@  1 helmke  staff   2905 May 25 10:38 sources.html
+-rw-r--r--@  1 helmke  staff   1693 May 26 13:00 style.css
+-rw-r--r--@  1 helmke  staff    768 May 25 10:37 welcome_text.txt
+
+./tnrs-standalone/src/main/webapp/WEB-INF:
+total 8
+drwxr-xr-x@  3 helmke  staff   102 May 25 10:37 .
+drwxr-xr-x@ 20 helmke  staff   680 May 26 13:08 ..
+-rw-r--r--@  1 helmke  staff  1173 May 26 15:55 web.xml
+
+./tnrs-standalone/src/main/webapp/gxt:
+total 0
+drwxr-xr-x@  8 helmke  staff  272 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff  680 May 26 13:08 ..
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 chart
+drwxr-xr-x@  4 helmke  staff  136 May 25 16:11 css
+drwxr-xr-x@  5 helmke  staff  170 May 25 16:11 desktop
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 flash
+drwxr-xr-x@  5 helmke  staff  170 May 25 16:11 images
+drwxr-xr-x@  4 helmke  staff  136 May 25 16:11 themes
+
+./tnrs-standalone/src/main/webapp/gxt/chart:
+total 552
+drwxr-xr-x@ 3 helmke  staff     102 May 25 16:11 .
+drwxr-xr-x@ 8 helmke  staff     272 May 25 16:11 ..
+-rw-r--r--@ 1 helmke  staff  280287 May 25 16:11 open-flash-chart.swf
+
+./tnrs-standalone/src/main/webapp/gxt/css:
+total 328
+drwxr-xr-x@ 4 helmke  staff     136 May 25 16:11 .
+drwxr-xr-x@ 8 helmke  staff     272 May 25 16:11 ..
+-rw-r--r--@ 1 helmke  staff  155584 May 25 16:11 gxt-all.css
+-rw-r--r--@ 1 helmke  staff   11433 May 25 16:11 gxt-gray.css
+
+./tnrs-standalone/src/main/webapp/gxt/desktop:
+total 0
+drwxr-xr-x@  5 helmke  staff  170 May 25 16:11 .
+drwxr-xr-x@  8 helmke  staff  272 May 25 16:11 ..
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 css
+drwxr-xr-x@ 25 helmke  staff  850 May 25 16:11 images
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 wallpapers
+
+./tnrs-standalone/src/main/webapp/gxt/desktop/css:
+total 32
+drwxr-xr-x@ 3 helmke  staff    102 May 25 16:11 .
+drwxr-xr-x@ 5 helmke  staff    170 May 25 16:11 ..
+-rw-r--r--@ 1 helmke  staff  13022 May 25 16:11 desktop.css
+
+./tnrs-standalone/src/main/webapp/gxt/desktop/images:
+total 600
+drwxr-xr-x@ 25 helmke  staff     850 May 25 16:11 .
+drwxr-xr-x@  5 helmke  staff     170 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   63601 May 25 16:11 desktop.gif
+-rw-r--r--@  1 helmke  staff  158508 May 25 16:11 desktop3.jpg
+-rw-r--r--@  1 helmke  staff     996 May 25 16:11 gears.gif
+-rw-r--r--@  1 helmke  staff     967 May 25 16:11 gears.png
+-rw-r--r--@  1 helmke  staff     513 May 25 16:11 grid.png
+-rw-r--r--@  1 helmke  staff     842 May 25 16:11 hatch.gif
+-rw-r--r--@  1 helmke  staff     992 May 25 16:11 hd-bg.gif
+-rw-r--r--@  1 helmke  staff     808 May 25 16:11 hd-tb-bg.gif
+-rw-r--r--@  1 helmke  staff     400 May 25 16:11 icon_padlock.png
+-rw-r--r--@  1 helmke  staff     191 May 25 16:11 icons-bg.png
+-rw-r--r--@  1 helmke  staff     944 May 25 16:11 launcher-bg.gif
+-rw-r--r--@  1 helmke  staff    1247 May 25 16:11 launcher-btn.gif
+-rw-r--r--@  1 helmke  staff     920 May 25 16:11 logout.gif
+-rw-r--r--@  1 helmke  staff     505 May 25 16:11 logout.png
+-rw-r--r--@  1 helmke  staff     972 May 25 16:11 member.gif
+-rw-r--r--@  1 helmke  staff     832 May 25 16:11 member.png
+-rw-r--r--@  1 helmke  staff    2291 May 25 16:11 powered.gif
+-rw-r--r--@  1 helmke  staff    3606 May 25 16:11 powered.png
+-rw-r--r--@  1 helmke  staff      43 May 25 16:11 s.gif
+drwxr-xr-x@  3 helmke  staff     102 May 25 16:11 taskbar
+-rw-r--r--@  1 helmke  staff     888 May 25 16:11 winbar-bg.gif
+-rw-r--r--@  1 helmke  staff    1316 May 25 16:11 winbar-btn.gif
+-rw-r--r--@  1 helmke  staff     830 May 25 16:11 windows-bg.gif
+
+./tnrs-standalone/src/main/webapp/gxt/desktop/images/taskbar:
+total 0
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff  850 May 25 16:11 ..
+drwxr-xr-x@ 16 helmke  staff  544 May 25 16:11 black
+
+./tnrs-standalone/src/main/webapp/gxt/desktop/images/taskbar/black:
+total 112
+drwxr-xr-x@ 16 helmke  staff   544 May 25 16:11 .
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   166 May 25 16:11 item-over.gif
+-rw-r--r--@  1 helmke  staff  1405 May 25 16:11 scroll-left.gif
+-rw-r--r--@  1 helmke  staff  1405 May 25 16:11 scroll-right.gif
+-rw-r--r--@  1 helmke  staff   206 May 25 16:11 start-menu-left-corners.png
+-rw-r--r--@  1 helmke  staff   143 May 25 16:11 start-menu-left-right.png
+-rw-r--r--@  1 helmke  staff   224 May 25 16:11 start-menu-right-corners.png
+-rw-r--r--@  1 helmke  staff   141 May 25 16:11 start-menu-right.png
+-rw-r--r--@  1 helmke  staff   158 May 25 16:11 start-menu-top-bottom.png
+-rw-r--r--@  1 helmke  staff   748 May 25 16:11 startbutton-icon.gif
+-rw-r--r--@  1 helmke  staff  2419 May 25 16:11 startbutton.gif
+-rw-r--r--@  1 helmke  staff   327 May 25 16:11 taskbar-split-h.gif
+-rw-r--r--@  1 helmke  staff   890 May 25 16:11 taskbar-start-panel-bg.gif
+-rw-r--r--@  1 helmke  staff  1894 May 25 16:11 taskbutton.gif
+-rw-r--r--@  1 helmke  staff   195 May 25 16:11 taskbuttons-panel-bg.gif
+
+./tnrs-standalone/src/main/webapp/gxt/desktop/wallpapers:
+total 168
+drwxr-xr-x@ 3 helmke  staff    102 May 25 16:11 .
+drwxr-xr-x@ 5 helmke  staff    170 May 25 16:11 ..
+-rw-r--r--@ 1 helmke  staff  84237 May 25 16:11 desktop.jpg
+
+./tnrs-standalone/src/main/webapp/gxt/flash:
+total 24
+drwxr-xr-x@ 3 helmke  staff   102 May 25 16:11 .
+drwxr-xr-x@ 8 helmke  staff   272 May 25 16:11 ..
+-rw-r--r--@ 1 helmke  staff  9763 May 25 16:11 swfobject.js
+
+./tnrs-standalone/src/main/webapp/gxt/images:
+total 0
+drwxr-xr-x@  5 helmke  staff  170 May 25 16:11 .
+drwxr-xr-x@  8 helmke  staff  272 May 25 16:11 ..
+drwxr-xr-x@ 25 helmke  staff  850 May 25 16:11 default
+drwxr-xr-x@ 12 helmke  staff  408 May 25 16:11 gray
+drwxr-xr-x@ 10 helmke  staff  340 May 25 16:11 gxt
+
+./tnrs-standalone/src/main/webapp/gxt/images/default:
+total 40
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 .
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 ..
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 box
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 button
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 dd
+drwxr-xr-x@ 17 helmke  staff   578 May 25 16:11 editor
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 form
+-rw-r--r--@  1 helmke  staff  1472 May 25 16:11 gradient-bg.gif
+drwxr-xr-x@ 56 helmke  staff  1904 May 25 16:11 grid
+drwxr-xr-x@ 18 helmke  staff   612 May 25 16:11 layout
+drwxr-xr-x@  8 helmke  staff   272 May 25 16:11 menu
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 panel
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 progress
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 qtip
+-rw-r--r--@  1 helmke  staff    43 May 25 16:11 s.gif
+-rw-r--r--@  1 helmke  staff   118 May 25 16:11 shadow-c.png
+-rw-r--r--@  1 helmke  staff   135 May 25 16:11 shadow-lr.png
+-rw-r--r--@  1 helmke  staff   311 May 25 16:11 shadow.png
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 shared
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 sizer
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 slider
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 tabs
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 toolbar
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 tree
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 window
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/box:
+total 64
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1010 May 25 16:11 corners-blue.gif
+-rw-r--r--@  1 helmke  staff  1005 May 25 16:11 corners.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 l-blue.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 l.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 r-blue.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 r.gif
+-rw-r--r--@  1 helmke  staff   851 May 25 16:11 tb-blue.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 tb.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/button:
+total 112
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   828 May 25 16:11 arrow.gif
+-rw-r--r--@  1 helmke  staff   870 May 25 16:11 btn-arrow.gif
+-rw-r--r--@  1 helmke  staff  1341 May 25 16:11 btn-sprite.gif
+-rw-r--r--@  1 helmke  staff  4298 May 25 16:11 btn.gif
+-rw-r--r--@  1 helmke  staff  2459 May 25 16:11 group-cs.gif
+-rw-r--r--@  1 helmke  staff   861 May 25 16:11 group-lr.gif
+-rw-r--r--@  1 helmke  staff   846 May 25 16:11 group-tb.gif
+-rw-r--r--@  1 helmke  staff   898 May 25 16:11 s-arrow-b-noline.gif
+-rw-r--r--@  1 helmke  staff   937 May 25 16:11 s-arrow-b.gif
+-rw-r--r--@  1 helmke  staff   955 May 25 16:11 s-arrow-bo.gif
+-rw-r--r--@  1 helmke  staff   863 May 25 16:11 s-arrow-noline.gif
+-rw-r--r--@  1 helmke  staff   937 May 25 16:11 s-arrow-o.gif
+-rw-r--r--@  1 helmke  staff   937 May 25 16:11 s-arrow.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/dd:
+total 24
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1001 May 25 16:11 drop-add.gif
+-rw-r--r--@  1 helmke  staff   949 May 25 16:11 drop-no.gif
+-rw-r--r--@  1 helmke  staff  1016 May 25 16:11 drop-yes.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/editor:
+total 120
+drwxr-xr-x@ 17 helmke  staff   578 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   892 May 25 16:11 tb-bold.gif
+-rw-r--r--@  1 helmke  staff   905 May 25 16:11 tb-font-color.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 tb-font-decrease.gif
+-rw-r--r--@  1 helmke  staff   941 May 25 16:11 tb-font-highlight.gif
+-rw-r--r--@  1 helmke  staff   906 May 25 16:11 tb-font-increase.gif
+-rw-r--r--@  1 helmke  staff   862 May 25 16:11 tb-italic.gif
+-rw-r--r--@  1 helmke  staff   848 May 25 16:11 tb-justify-center.gif
+-rw-r--r--@  1 helmke  staff   848 May 25 16:11 tb-justify-left.gif
+-rw-r--r--@  1 helmke  staff   848 May 25 16:11 tb-justify-right.gif
+-rw-r--r--@  1 helmke  staff  1060 May 25 16:11 tb-link.gif
+-rw-r--r--@  1 helmke  staff   877 May 25 16:11 tb-ol.gif
+-rw-r--r--@  1 helmke  staff   952 May 25 16:11 tb-source.gif
+-rw-r--r--@  1 helmke  staff  2072 May 25 16:11 tb-sprite.gif
+-rw-r--r--@  1 helmke  staff   871 May 25 16:11 tb-ul.gif
+-rw-r--r--@  1 helmke  staff   884 May 25 16:11 tb-underline.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/form:
+total 96
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  2061 May 25 16:11 checkbox.gif
+-rw-r--r--@  1 helmke  staff  1988 May 25 16:11 clear-trigger.gif
+-rw-r--r--@  1 helmke  staff  1603 May 25 16:11 date-trigger.gif
+-rw-r--r--@  1 helmke  staff  4183 May 25 16:11 error-tip-corners.gif
+-rw-r--r--@  1 helmke  staff   996 May 25 16:11 exclamation.gif
+-rw-r--r--@  1 helmke  staff  1746 May 25 16:11 radio.gif
+-rw-r--r--@  1 helmke  staff  2182 May 25 16:11 search-trigger.gif
+-rw-r--r--@  1 helmke  staff  3186 May 25 16:11 spinner.gif
+-rw-r--r--@  1 helmke  staff   819 May 25 16:11 text-bg.gif
+-rw-r--r--@  1 helmke  staff  1487 May 25 16:11 trigger-tpl.gif
+-rw-r--r--@  1 helmke  staff  1688 May 25 16:11 trigger.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/grid:
+total 432
+drwxr-xr-x@ 56 helmke  staff  1904 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   825 May 25 16:11 arrow-left-white.gif
+-rw-r--r--@  1 helmke  staff   825 May 25 16:11 arrow-right-white.gif
+-rw-r--r--@  1 helmke  staff   868 May 25 16:11 col-move-bottom.gif
+-rw-r--r--@  1 helmke  staff   869 May 25 16:11 col-move-top.gif
+-rw-r--r--@  1 helmke  staff   962 May 25 16:11 columns.gif
+-rw-r--r--@  1 helmke  staff   832 May 25 16:11 dirty.gif
+-rw-r--r--@  1 helmke  staff   133 May 25 16:11 done.gif
+-rw-r--r--@  1 helmke  staff   947 May 25 16:11 drop-no.gif
+-rw-r--r--@  1 helmke  staff   860 May 25 16:11 drop-yes.gif
+-rw-r--r--@  1 helmke  staff   834 May 25 16:11 footer-bg.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 grid-blue-hd.gif
+-rw-r--r--@  1 helmke  staff   817 May 25 16:11 grid-blue-split.gif
+-rw-r--r--@  1 helmke  staff   855 May 25 16:11 grid-hrow.gif
+-rw-r--r--@  1 helmke  staff   701 May 25 16:11 grid-loading.gif
+-rw-r--r--@  1 helmke  staff   817 May 25 16:11 grid-split.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 grid-vista-hd.gif
+-rw-r--r--@  1 helmke  staff  1298 May 25 16:11 grid3-hd-btn.gif
+-rw-r--r--@  1 helmke  staff   811 May 25 16:11 grid3-hrow-group.gif
+-rw-r--r--@  1 helmke  staff   823 May 25 16:11 grid3-hrow-over.gif
+-rw-r--r--@  1 helmke  staff   836 May 25 16:11 grid3-hrow.gif
+-rw-r--r--@  1 helmke  staff   837 May 25 16:11 grid3-special-col-bg.gif
+-rw-r--r--@  1 helmke  staff   843 May 25 16:11 grid3-special-col-sel-bg.gif
+-rw-r--r--@  1 helmke  staff   917 May 25 16:11 group-by.gif
+-rw-r--r--@  1 helmke  staff   955 May 25 16:11 group-expand-sprite.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 hd-pop.gif
+-rw-r--r--@  1 helmke  staff   931 May 25 16:11 hmenu-asc.gif
+-rw-r--r--@  1 helmke  staff   930 May 25 16:11 hmenu-desc.gif
+-rw-r--r--@  1 helmke  staff   955 May 25 16:11 hmenu-lock.gif
+-rw-r--r--@  1 helmke  staff   648 May 25 16:11 hmenu-lock.png
+-rw-r--r--@  1 helmke  staff   971 May 25 16:11 hmenu-unlock.gif
+-rw-r--r--@  1 helmke  staff   697 May 25 16:11 hmenu-unlock.png
+-rw-r--r--@  1 helmke  staff   815 May 25 16:11 invalid_line.gif
+-rw-r--r--@  1 helmke  staff   771 May 25 16:11 loading.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 mso-hd.gif
+-rw-r--r--@  1 helmke  staff   884 May 25 16:11 nowait.gif
+-rw-r--r--@  1 helmke  staff   925 May 25 16:11 page-first-disabled.gif
+-rw-r--r--@  1 helmke  staff   925 May 25 16:11 page-first.gif
+-rw-r--r--@  1 helmke  staff   923 May 25 16:11 page-last-disabled.gif
+-rw-r--r--@  1 helmke  staff   923 May 25 16:11 page-last.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 page-next-disabled.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 page-next.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 page-prev-disabled.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 page-prev.gif
+-rw-r--r--@  1 helmke  staff  1036 May 25 16:11 pick-button.gif
+-rw-r--r--@  1 helmke  staff   977 May 25 16:11 refresh.gif
+-rw-r--r--@  1 helmke  staff   791 May 25 16:11 refresh.png
+-rw-r--r--@  1 helmke  staff  1083 May 25 16:11 row-check-sprite.gif
+-rw-r--r--@  1 helmke  staff   955 May 25 16:11 row-expand-sprite.gif
+-rw-r--r--@  1 helmke  staff   823 May 25 16:11 row-over.gif
+-rw-r--r--@  1 helmke  staff   823 May 25 16:11 row-sel.gif
+-rw-r--r--@  1 helmke  staff  1473 May 25 16:11 sort-hd.gif
+-rw-r--r--@  1 helmke  staff   830 May 25 16:11 sort_asc.gif
+-rw-r--r--@  1 helmke  staff   833 May 25 16:11 sort_desc.gif
+-rw-r--r--@  1 helmke  staff  1100 May 25 16:11 wait.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/layout:
+total 128
+drwxr-xr-x@ 18 helmke  staff   612 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   842 May 25 16:11 collapse.gif
+-rw-r--r--@  1 helmke  staff   842 May 25 16:11 expand.gif
+-rw-r--r--@  1 helmke  staff  1472 May 25 16:11 gradient-bg.gif
+-rw-r--r--@  1 helmke  staff   856 May 25 16:11 mini-bottom.gif
+-rw-r--r--@  1 helmke  staff   871 May 25 16:11 mini-left.gif
+-rw-r--r--@  1 helmke  staff   872 May 25 16:11 mini-right.gif
+-rw-r--r--@  1 helmke  staff   856 May 25 16:11 mini-top.gif
+-rw-r--r--@  1 helmke  staff   842 May 25 16:11 ns-collapse.gif
+-rw-r--r--@  1 helmke  staff   843 May 25 16:11 ns-expand.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 panel-close.gif
+-rw-r--r--@  1 helmke  staff   838 May 25 16:11 panel-title-bg.gif
+-rw-r--r--@  1 helmke  staff   835 May 25 16:11 panel-title-light-bg.gif
+-rw-r--r--@  1 helmke  staff   874 May 25 16:11 stick.gif
+-rw-r--r--@  1 helmke  staff    92 May 25 16:11 stuck.gif
+-rw-r--r--@  1 helmke  staff   880 May 25 16:11 tab-close-on.gif
+-rw-r--r--@  1 helmke  staff   859 May 25 16:11 tab-close.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/menu:
+total 48
+drwxr-xr-x@  8 helmke  staff  272 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff  850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  959 May 25 16:11 checked.gif
+-rw-r--r--@  1 helmke  staff  891 May 25 16:11 group-checked.gif
+-rw-r--r--@  1 helmke  staff  820 May 25 16:11 item-over.gif
+-rw-r--r--@  1 helmke  staff  854 May 25 16:11 menu-parent.gif
+-rw-r--r--@  1 helmke  staff  834 May 25 16:11 menu.gif
+-rw-r--r--@  1 helmke  staff  941 May 25 16:11 unchecked.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/panel:
+total 96
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1418 May 25 16:11 corners-sprite.gif
+-rw-r--r--@  1 helmke  staff   815 May 25 16:11 left-right.gif
+-rw-r--r--@  1 helmke  staff   827 May 25 16:11 light-hd.gif
+-rw-r--r--@  1 helmke  staff   971 May 25 16:11 tool-sprite-tpl.gif
+-rw-r--r--@  1 helmke  staff  4392 May 25 16:11 tool-sprites.gif
+-rw-r--r--@  1 helmke  staff  2843 May 25 16:11 tools-sprites-trans.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 top-bottom.gif
+-rw-r--r--@  1 helmke  staff   218 May 25 16:11 top-bottom.png
+-rw-r--r--@  1 helmke  staff  1366 May 25 16:11 white-corners-sprite.gif
+-rw-r--r--@  1 helmke  staff   815 May 25 16:11 white-left-right.gif
+-rw-r--r--@  1 helmke  staff   872 May 25 16:11 white-top-bottom.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/progress:
+total 8
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff  850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  834 May 25 16:11 progress-bg.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/qtip:
+total 40
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1091 May 25 16:11 bg.gif
+-rw-r--r--@  1 helmke  staff   972 May 25 16:11 close.gif
+-rw-r--r--@  1 helmke  staff   951 May 25 16:11 tip-anchor-sprite.gif
+-rw-r--r--@  1 helmke  staff  4271 May 25 16:11 tip-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/shared:
+total 80
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  3236 May 25 16:11 blue-loading.gif
+-rw-r--r--@  1 helmke  staff   979 May 25 16:11 calendar.gif
+-rw-r--r--@  1 helmke  staff    43 May 25 16:11 clear.gif
+-rw-r--r--@  1 helmke  staff   873 May 25 16:11 glass-bg.gif
+-rw-r--r--@  1 helmke  staff  1099 May 25 16:11 hd-sprite.gif
+-rw-r--r--@  1 helmke  staff  3236 May 25 16:11 large-loading.gif
+-rw-r--r--@  1 helmke  staff   870 May 25 16:11 left-btn.gif
+-rw-r--r--@  1 helmke  staff  2118 May 25 16:11 loading-balls.gif
+-rw-r--r--@  1 helmke  staff   871 May 25 16:11 right-btn.gif
+-rw-r--r--@  1 helmke  staff   960 May 25 16:11 warning.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/sizer:
+total 104
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1062 May 25 16:11 e-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  1586 May 25 16:11 e-handle.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 ne-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   854 May 25 16:11 ne-handle.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 nw-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   853 May 25 16:11 nw-handle.gif
+-rw-r--r--@  1 helmke  staff  1060 May 25 16:11 s-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  1318 May 25 16:11 s-handle.gif
+-rw-r--r--@  1 helmke  staff   838 May 25 16:11 se-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   853 May 25 16:11 se-handle.gif
+-rw-r--r--@  1 helmke  staff   864 May 25 16:11 square.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 sw-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   855 May 25 16:11 sw-handle.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/slider:
+total 32
+drwxr-xr-x@  6 helmke  staff  204 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff  850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  300 May 25 16:11 slider-bg.png
+-rw-r--r--@  1 helmke  staff  933 May 25 16:11 slider-thumb.png
+-rw-r--r--@  1 helmke  staff  288 May 25 16:11 slider-v-bg.png
+-rw-r--r--@  1 helmke  staff  883 May 25 16:11 slider-v-thumb.png
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/tabs:
+total 96
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1295 May 25 16:11 scroll-left.gif
+-rw-r--r--@  1 helmke  staff  1300 May 25 16:11 scroll-right.gif
+-rw-r--r--@  1 helmke  staff  1100 May 25 16:11 scroller-bg.gif
+-rw-r--r--@  1 helmke  staff   886 May 25 16:11 tab-btm-inactive-left-bg.gif
+-rw-r--r--@  1 helmke  staff  1386 May 25 16:11 tab-btm-inactive-right-bg.gif
+-rw-r--r--@  1 helmke  staff   863 May 25 16:11 tab-btm-left-bg.gif
+-rw-r--r--@  1 helmke  staff  1402 May 25 16:11 tab-btm-right-bg.gif
+-rw-r--r--@  1 helmke  staff   896 May 25 16:11 tab-close.gif
+-rw-r--r--@  1 helmke  staff   835 May 25 16:11 tab-strip-bg.gif
+-rw-r--r--@  1 helmke  staff   259 May 25 16:11 tab-strip-bg.png
+-rw-r--r--@  1 helmke  staff   826 May 25 16:11 tab-strip-btm-bg.gif
+-rw-r--r--@  1 helmke  staff  2120 May 25 16:11 tabs-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/toolbar:
+total 80
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   904 May 25 16:11 bg.gif
+-rw-r--r--@  1 helmke  staff   916 May 25 16:11 btn-arrow-light.gif
+-rw-r--r--@  1 helmke  staff   919 May 25 16:11 btn-arrow.gif
+-rw-r--r--@  1 helmke  staff   837 May 25 16:11 btn-over-bg.gif
+-rw-r--r--@  1 helmke  staff   832 May 25 16:11 gray-bg.gif
+-rw-r--r--@  1 helmke  staff   845 May 25 16:11 more.gif
+-rw-r--r--@  1 helmke  staff   862 May 25 16:11 tb-bg.gif
+-rw-r--r--@  1 helmke  staff  1127 May 25 16:11 tb-btn-sprite.gif
+-rw-r--r--@  1 helmke  staff  1663 May 25 16:11 tb-xl-btn-sprite.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 tb-xl-sep.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/tree:
+total 184
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1024 May 25 16:11 arrows.gif
+-rw-r--r--@  1 helmke  staff  1001 May 25 16:11 drop-add.gif
+-rw-r--r--@  1 helmke  staff   907 May 25 16:11 drop-between.gif
+-rw-r--r--@  1 helmke  staff   949 May 25 16:11 drop-no.gif
+-rw-r--r--@  1 helmke  staff   911 May 25 16:11 drop-over.gif
+-rw-r--r--@  1 helmke  staff   911 May 25 16:11 drop-under.gif
+-rw-r--r--@  1 helmke  staff  1016 May 25 16:11 drop-yes.gif
+-rw-r--r--@  1 helmke  staff   898 May 25 16:11 elbow-end-minus-nl.gif
+-rw-r--r--@  1 helmke  staff   905 May 25 16:11 elbow-end-minus.gif
+-rw-r--r--@  1 helmke  staff   900 May 25 16:11 elbow-end-plus-nl.gif
+-rw-r--r--@  1 helmke  staff   907 May 25 16:11 elbow-end-plus.gif
+-rw-r--r--@  1 helmke  staff   844 May 25 16:11 elbow-end.gif
+-rw-r--r--@  1 helmke  staff   846 May 25 16:11 elbow-line.gif
+-rw-r--r--@  1 helmke  staff   898 May 25 16:11 elbow-minus-nl.gif
+-rw-r--r--@  1 helmke  staff   908 May 25 16:11 elbow-minus.gif
+-rw-r--r--@  1 helmke  staff   900 May 25 16:11 elbow-plus-nl.gif
+-rw-r--r--@  1 helmke  staff   910 May 25 16:11 elbow-plus.gif
+-rw-r--r--@  1 helmke  staff   850 May 25 16:11 elbow.gif
+-rw-r--r--@  1 helmke  staff   956 May 25 16:11 folder-open.gif
+-rw-r--r--@  1 helmke  staff   952 May 25 16:11 folder.gif
+-rw-r--r--@  1 helmke  staff   945 May 25 16:11 leaf.gif
+-rw-r--r--@  1 helmke  staff   771 May 25 16:11 loading.gif
+-rw-r--r--@  1 helmke  staff    43 May 25 16:11 s.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/default/window:
+total 64
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 .
+drwxr-xr-x@ 25 helmke  staff   850 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1669 May 25 16:11 icon-error.gif
+-rw-r--r--@  1 helmke  staff  1586 May 25 16:11 icon-info.gif
+-rw-r--r--@  1 helmke  staff  1607 May 25 16:11 icon-question.gif
+-rw-r--r--@  1 helmke  staff  1483 May 25 16:11 icon-warning.gif
+-rw-r--r--@  1 helmke  staff   200 May 25 16:11 left-corners.png
+-rw-r--r--@  1 helmke  staff   152 May 25 16:11 left-right.png
+-rw-r--r--@  1 helmke  staff   256 May 25 16:11 right-corners.png
+-rw-r--r--@  1 helmke  staff   180 May 25 16:11 top-bottom.png
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray:
+total 16
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 .
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 ..
+drwxr-xr-x@  8 helmke  staff   272 May 25 16:11 button
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 form
+-rw-r--r--@  1 helmke  staff  1472 May 25 16:11 gradient-bg.gif
+drwxr-xr-x@ 24 helmke  staff   816 May 25 16:11 grid
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 panel
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 qtip
+-rw-r--r--@  1 helmke  staff    43 May 25 16:11 s.gif
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 tabs
+drwxr-xr-x@  9 helmke  staff   306 May 25 16:11 toolbar
+drwxr-xr-x@ 11 helmke  staff   374 May 25 16:11 window
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/button:
+total 48
+drwxr-xr-x@  8 helmke  staff   272 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   870 May 25 16:11 btn-arrow.gif
+-rw-r--r--@  1 helmke  staff  1222 May 25 16:11 btn-sprite.gif
+-rw-r--r--@  1 helmke  staff  3319 May 25 16:11 btn.gif
+-rw-r--r--@  1 helmke  staff  2459 May 25 16:11 group-cs.gif
+-rw-r--r--@  1 helmke  staff   861 May 25 16:11 group-lr.gif
+-rw-r--r--@  1 helmke  staff   846 May 25 16:11 group-tb.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/form:
+total 8
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  3046 May 25 16:11 spinner.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/grid:
+total 176
+drwxr-xr-x@ 24 helmke  staff  816 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff  408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  177 May 25 16:11 col-move-bottom.gif
+-rw-r--r--@  1 helmke  staff  178 May 25 16:11 col-move-top.gif
+-rw-r--r--@  1 helmke  staff  809 May 25 16:11 grid-split.gif
+-rw-r--r--@  1 helmke  staff  482 May 25 16:11 grid3-hd-btn.gif
+-rw-r--r--@  1 helmke  staff   56 May 25 16:11 grid3-hrow-over.gif
+-rw-r--r--@  1 helmke  staff  107 May 25 16:11 grid3-hrow-over2.gif
+-rw-r--r--@  1 helmke  staff  836 May 25 16:11 grid3-hrow.gif
+-rw-r--r--@  1 helmke  staff  107 May 25 16:11 grid3-hrow2.gif
+-rw-r--r--@  1 helmke  staff  158 May 25 16:11 grid3-special-col-bg.gif
+-rw-r--r--@  1 helmke  staff  158 May 25 16:11 grid3-special-col-bg2.gif
+-rw-r--r--@  1 helmke  staff  158 May 25 16:11 grid3-special-col-sel-bg.gif
+-rw-r--r--@  1 helmke  staff  136 May 25 16:11 group-collapse.gif
+-rw-r--r--@  1 helmke  staff  196 May 25 16:11 group-expand-sprite.gif
+-rw-r--r--@  1 helmke  staff  138 May 25 16:11 group-expand.gif
+-rw-r--r--@  1 helmke  staff  327 May 25 16:11 page-first.gif
+-rw-r--r--@  1 helmke  staff  325 May 25 16:11 page-last.gif
+-rw-r--r--@  1 helmke  staff  183 May 25 16:11 page-next.gif
+-rw-r--r--@  1 helmke  staff  186 May 25 16:11 page-prev.gif
+-rw-r--r--@  1 helmke  staff  570 May 25 16:11 refresh.gif
+-rw-r--r--@  1 helmke  staff  196 May 25 16:11 row-expand-sprite.gif
+-rw-r--r--@  1 helmke  staff   59 May 25 16:11 sort_asc.gif
+-rw-r--r--@  1 helmke  staff   59 May 25 16:11 sort_desc.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/panel:
+total 96
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   765 May 25 16:11 corners-sprite.gif
+-rw-r--r--@  1 helmke  staff    63 May 25 16:11 left-right.gif
+-rw-r--r--@  1 helmke  staff   827 May 25 16:11 light-hd.gif
+-rw-r--r--@  1 helmke  staff   971 May 25 16:11 tool-sprite-tpl.gif
+-rw-r--r--@  1 helmke  staff  4464 May 25 16:11 tool-sprites.gif
+-rw-r--r--@  1 helmke  staff  2640 May 25 16:11 tools-sprites-trans.gif
+-rw-r--r--@  1 helmke  staff   873 May 25 16:11 top-bottom.gif
+-rw-r--r--@  1 helmke  staff   218 May 25 16:11 top-bottom.png
+-rw-r--r--@  1 helmke  staff  1365 May 25 16:11 white-corners-sprite.gif
+-rw-r--r--@  1 helmke  staff   815 May 25 16:11 white-left-right.gif
+-rw-r--r--@  1 helmke  staff   868 May 25 16:11 white-top-bottom.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/qtip:
+total 24
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1024 May 25 16:11 bg.gif
+-rw-r--r--@  1 helmke  staff   972 May 25 16:11 close.gif
+-rw-r--r--@  1 helmke  staff  4033 May 25 16:11 tip-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/tabs:
+total 96
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1260 May 25 16:11 scroll-left.gif
+-rw-r--r--@  1 helmke  staff  1269 May 25 16:11 scroll-right.gif
+-rw-r--r--@  1 helmke  staff  1090 May 25 16:11 scroller-bg.gif
+-rw-r--r--@  1 helmke  staff   881 May 25 16:11 tab-btm-inactive-left-bg.gif
+-rw-r--r--@  1 helmke  staff  1383 May 25 16:11 tab-btm-inactive-right-bg.gif
+-rw-r--r--@  1 helmke  staff   863 May 25 16:11 tab-btm-left-bg.gif
+-rw-r--r--@  1 helmke  staff  1402 May 25 16:11 tab-btm-right-bg.gif
+-rw-r--r--@  1 helmke  staff   896 May 25 16:11 tab-close.gif
+-rw-r--r--@  1 helmke  staff   835 May 25 16:11 tab-strip-bg.gif
+-rw-r--r--@  1 helmke  staff   259 May 25 16:11 tab-strip-bg.png
+-rw-r--r--@  1 helmke  staff   826 May 25 16:11 tab-strip-btm-bg.gif
+-rw-r--r--@  1 helmke  staff  2109 May 25 16:11 tabs-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/toolbar:
+total 56
+drwxr-xr-x@  9 helmke  staff   306 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   853 May 25 16:11 bg.gif
+-rw-r--r--@  1 helmke  staff   916 May 25 16:11 btn-arrow-light.gif
+-rw-r--r--@  1 helmke  staff   919 May 25 16:11 btn-arrow.gif
+-rw-r--r--@  1 helmke  staff   837 May 25 16:11 btn-over-bg.gif
+-rw-r--r--@  1 helmke  staff   815 May 25 16:11 gray-bg.gif
+-rw-r--r--@  1 helmke  staff   862 May 25 16:11 tb-bg.gif
+-rw-r--r--@  1 helmke  staff  1021 May 25 16:11 tb-btn-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gray/window:
+total 80
+drwxr-xr-x@ 11 helmke  staff   374 May 25 16:11 .
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1669 May 25 16:11 icon-error.gif
+-rw-r--r--@  1 helmke  staff  1586 May 25 16:11 icon-info.gif
+-rw-r--r--@  1 helmke  staff  1607 May 25 16:11 icon-question.gif
+-rw-r--r--@  1 helmke  staff  1483 May 25 16:11 icon-warning.gif
+-rw-r--r--@  1 helmke  staff   325 May 25 16:11 left-corners.png
+-rw-r--r--@  1 helmke  staff  4385 May 25 16:11 left-corners.pspimage
+-rw-r--r--@  1 helmke  staff  2815 May 25 16:11 left-right.png
+-rw-r--r--@  1 helmke  staff   344 May 25 16:11 right-corners.png
+-rw-r--r--@  1 helmke  staff  2860 May 25 16:11 top-bottom.png
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt:
+total 0
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 .
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 ..
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 dd
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 grid
+drwxr-xr-x@ 32 helmke  staff  1088 May 25 16:11 icons
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 info
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 menu
+drwxr-xr-x@  9 helmke  staff   306 May 25 16:11 shared
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 table
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 tree
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/dd:
+total 8
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff  340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   54 May 25 16:11 insert-bg.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/grid:
+total 16
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   819 May 25 16:11 row-editor-bg.gif
+-rw-r--r--@  1 helmke  staff  1087 May 25 16:11 row-editor-btns.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/icons:
+total 240
+drwxr-xr-x@ 32 helmke  staff  1088 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   927 May 25 16:11 bottom2.gif
+-rw-r--r--@  1 helmke  staff   962 May 25 16:11 columns.gif
+-rw-r--r--@  1 helmke  staff   133 May 25 16:11 done.gif
+-rw-r--r--@  1 helmke  staff   174 May 25 16:11 doubleleft2.gif
+-rw-r--r--@  1 helmke  staff   171 May 25 16:11 doubleright2.gif
+-rw-r--r--@  1 helmke  staff   920 May 25 16:11 down2.gif
+-rw-r--r--@  1 helmke  staff   999 May 25 16:11 folder-closed.gif
+-rw-r--r--@  1 helmke  staff   686 May 25 16:11 folder-closed.png
+-rw-r--r--@  1 helmke  staff   996 May 25 16:11 folder.gif
+-rw-r--r--@  1 helmke  staff   711 May 25 16:11 folder.png
+-rw-r--r--@  1 helmke  staff   701 May 25 16:11 grid-loading.gif
+-rw-r--r--@  1 helmke  staff   931 May 25 16:11 hmenu-asc.gif
+-rw-r--r--@  1 helmke  staff   930 May 25 16:11 hmenu-desc.gif
+-rw-r--r--@  1 helmke  staff   920 May 25 16:11 left2.gif
+-rw-r--r--@  1 helmke  staff   771 May 25 16:11 loading.gif
+-rw-r--r--@  1 helmke  staff   884 May 25 16:11 nowait.gif
+-rw-r--r--@  1 helmke  staff   925 May 25 16:11 page-first-disabled.gif
+-rw-r--r--@  1 helmke  staff   925 May 25 16:11 page-first.gif
+-rw-r--r--@  1 helmke  staff   923 May 25 16:11 page-last-disabled.gif
+-rw-r--r--@  1 helmke  staff   923 May 25 16:11 page-last.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 page-next-disabled.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 page-next.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 page-prev-disabled.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 page-prev.gif
+-rw-r--r--@  1 helmke  staff   989 May 25 16:11 paging.gif
+-rw-r--r--@  1 helmke  staff   925 May 25 16:11 right2.gif
+-rw-r--r--@  1 helmke  staff   917 May 25 16:11 tabs.gif
+-rw-r--r--@  1 helmke  staff   927 May 25 16:11 top2.gif
+-rw-r--r--@  1 helmke  staff   920 May 25 16:11 up2.gif
+-rw-r--r--@  1 helmke  staff  1100 May 25 16:11 wait.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/info:
+total 16
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1154 May 25 16:11 corners-sprite.gif
+-rw-r--r--@  1 helmke  staff  1329 May 25 16:11 top-bottom.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/menu:
+total 8
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff  340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  907 May 25 16:11 disabledcheck.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/shared:
+total 56
+drwxr-xr-x@  9 helmke  staff   306 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff    43 May 25 16:11 clear.gif
+-rw-r--r--@  1 helmke  staff  3236 May 25 16:11 large-loading.gif
+-rw-r--r--@  1 helmke  staff   508 May 25 16:11 select-18-bg.gif
+-rw-r--r--@  1 helmke  staff  1192 May 25 16:11 select-19-bg-gray.gif
+-rw-r--r--@  1 helmke  staff  2018 May 25 16:11 select-19-bg.gif
+-rw-r--r--@  1 helmke  staff  1431 May 25 16:11 select-bg.gif
+-rw-r--r--@  1 helmke  staff   540 May 25 16:11 select-light.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/table:
+total 32
+drwxr-xr-x@  6 helmke  staff  204 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff  340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  823 May 25 16:11 row-over.gif
+-rw-r--r--@  1 helmke  staff  548 May 25 16:11 vs-column-bg.gif
+-rw-r--r--@  1 helmke  staff  846 May 25 16:11 vsort-asc.gif
+-rw-r--r--@  1 helmke  staff  845 May 25 16:11 vsort-desc.gif
+
+./tnrs-standalone/src/main/webapp/gxt/images/gxt/tree:
+total 64
+drwxr-xr-x@ 10 helmke  staff  340 May 25 16:11 .
+drwxr-xr-x@ 10 helmke  staff  340 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  533 May 25 16:11 checked.gif
+-rw-r--r--@  1 helmke  staff  900 May 25 16:11 joint-close.gif
+-rw-r--r--@  1 helmke  staff  898 May 25 16:11 joint-open.gif
+-rw-r--r--@  1 helmke  staff  321 May 25 16:11 notchecked.gif
+-rw-r--r--@  1 helmke  staff  835 May 25 16:11 tree-table-special-col-sel.gif
+-rw-r--r--@  1 helmke  staff   96 May 25 16:11 tree-table-special-col.gif
+-rw-r--r--@  1 helmke  staff  846 May 25 16:11 vnode.gif
+-rw-r--r--@  1 helmke  staff  972 May 25 16:11 vnode_transparent.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes:
+total 0
+drwxr-xr-x@ 4 helmke  staff  136 May 25 16:11 .
+drwxr-xr-x@ 8 helmke  staff  272 May 25 16:11 ..
+drwxr-xr-x@ 4 helmke  staff  136 May 25 16:11 access
+drwxr-xr-x@ 4 helmke  staff  136 May 25 16:11 slate
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access:
+total 0
+drwxr-xr-x@  4 helmke  staff  136 May 25 16:11 .
+drwxr-xr-x@  4 helmke  staff  136 May 25 16:11 ..
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 css
+drwxr-xr-x@ 20 helmke  staff  680 May 25 16:11 images
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/css:
+total 104
+drwxr-xr-x@ 3 helmke  staff    102 May 25 16:11 .
+drwxr-xr-x@ 4 helmke  staff    136 May 25 16:11 ..
+-rw-r--r--@ 1 helmke  staff  49980 May 25 16:11 xtheme-access.css
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images:
+total 0
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 .
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 ..
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 box
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 button
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 editor
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 form
+drwxr-xr-x@ 59 helmke  staff  2006 May 25 16:11 grid
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 icons
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 layout
+drwxr-xr-x@  8 helmke  staff   272 May 25 16:11 menu
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 panel
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 progress
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 qtip
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 shared
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 sizer
+drwxr-xr-x@  7 helmke  staff   238 May 25 16:11 slider
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 tabs
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 toolbar
+drwxr-xr-x@ 27 helmke  staff   918 May 25 16:11 tree
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 window
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/box:
+total 64
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1010 May 25 16:11 corners-blue.gif
+-rw-r--r--@  1 helmke  staff  1005 May 25 16:11 corners.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 l-blue.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 l.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 r-blue.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 r.gif
+-rw-r--r--@  1 helmke  staff   843 May 25 16:11 tb-blue.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 tb.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/button:
+total 88
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   833 May 25 16:11 arrow.gif
+-rw-r--r--@  1 helmke  staff  2871 May 25 16:11 btn.gif
+-rw-r--r--@  1 helmke  staff  2459 May 25 16:11 group-cs.gif
+-rw-r--r--@  1 helmke  staff   861 May 25 16:11 group-lr.gif
+-rw-r--r--@  1 helmke  staff    70 May 25 16:11 group-tb.gif
+-rw-r--r--@  1 helmke  staff   904 May 25 16:11 s-arrow-b-noline.gif
+-rw-r--r--@  1 helmke  staff   943 May 25 16:11 s-arrow-b.gif
+-rw-r--r--@  1 helmke  staff   961 May 25 16:11 s-arrow-bo.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 s-arrow-noline.gif
+-rw-r--r--@  1 helmke  staff   155 May 25 16:11 s-arrow-o.gif
+-rw-r--r--@  1 helmke  staff   956 May 25 16:11 s-arrow.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/editor:
+total 16
+drwxr-xr-x@  4 helmke  staff   136 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   952 May 25 16:11 tb-source.gif
+-rw-r--r--@  1 helmke  staff  1994 May 25 16:11 tb-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/form:
+total 112
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  2061 May 25 16:11 checkbox.gif
+-rw-r--r--@  1 helmke  staff  2027 May 25 16:11 clear-trigger.gif
+-rw-r--r--@  1 helmke  staff  1620 May 25 16:11 date-trigger.gif
+-rw-r--r--@  1 helmke  staff  4183 May 25 16:11 error-tip-corners.gif
+-rw-r--r--@  1 helmke  staff   614 May 25 16:11 exclamation.gif
+-rw-r--r--@  1 helmke  staff  1746 May 25 16:11 radio.gif
+-rw-r--r--@  1 helmke  staff  2134 May 25 16:11 search-trigger.gif
+-rw-r--r--@  1 helmke  staff  4142 May 25 16:11 spinner.gif
+-rw-r--r--@  1 helmke  staff    66 May 25 16:11 text-bg.gif
+-rw-r--r--@  1 helmke  staff   605 May 25 16:11 trigger-single.gif
+-rw-r--r--@  1 helmke  staff   908 May 25 16:11 trigger-tpl.gif
+-rw-r--r--@  1 helmke  staff  1451 May 25 16:11 trigger.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/grid:
+total 456
+drwxr-xr-x@ 59 helmke  staff  2006 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   825 May 25 16:11 arrow-left-white.gif
+-rw-r--r--@  1 helmke  staff   825 May 25 16:11 arrow-right-white.gif
+-rw-r--r--@  1 helmke  staff   868 May 25 16:11 col-move-bottom.gif
+-rw-r--r--@  1 helmke  staff   869 May 25 16:11 col-move-top.gif
+-rw-r--r--@  1 helmke  staff   962 May 25 16:11 columns.gif
+-rw-r--r--@  1 helmke  staff    68 May 25 16:11 dirty.gif
+-rw-r--r--@  1 helmke  staff   133 May 25 16:11 done.gif
+-rw-r--r--@  1 helmke  staff   947 May 25 16:11 drop-no.gif
+-rw-r--r--@  1 helmke  staff   860 May 25 16:11 drop-yes.gif
+-rw-r--r--@  1 helmke  staff   834 May 25 16:11 footer-bg.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 grid-blue-hd.gif
+-rw-r--r--@  1 helmke  staff    47 May 25 16:11 grid-blue-split.gif
+-rw-r--r--@  1 helmke  staff   855 May 25 16:11 grid-hrow.gif
+-rw-r--r--@  1 helmke  staff   701 May 25 16:11 grid-loading.gif
+-rw-r--r--@  1 helmke  staff   817 May 25 16:11 grid-split.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 grid-vista-hd.gif
+-rw-r--r--@  1 helmke  staff   336 May 25 16:11 grid3-hd-btn-contrast.gif
+-rw-r--r--@  1 helmke  staff   419 May 25 16:11 grid3-hd-btn.gif
+-rw-r--r--@  1 helmke  staff   268 May 25 16:11 grid3-hrow-over.gif
+-rw-r--r--@  1 helmke  staff   164 May 25 16:11 grid3-hrow.gif
+-rw-r--r--@  1 helmke  staff   162 May 25 16:11 grid3-special-col-bg.gif
+-rw-r--r--@  1 helmke  staff   162 May 25 16:11 grid3-special-col-sel-bg.gif
+-rw-r--r--@  1 helmke  staff   917 May 25 16:11 group-by.gif
+-rw-r--r--@  1 helmke  staff    77 May 25 16:11 group-collapse.gif
+-rw-r--r--@  1 helmke  staff   131 May 25 16:11 group-expand-sprite.gif
+-rw-r--r--@  1 helmke  staff    82 May 25 16:11 group-expand.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 hd-pop.gif
+-rw-r--r--@  1 helmke  staff   931 May 25 16:11 hmenu-asc.gif
+-rw-r--r--@  1 helmke  staff   930 May 25 16:11 hmenu-desc.gif
+-rw-r--r--@  1 helmke  staff   955 May 25 16:11 hmenu-lock.gif
+-rw-r--r--@  1 helmke  staff   648 May 25 16:11 hmenu-lock.png
+-rw-r--r--@  1 helmke  staff   971 May 25 16:11 hmenu-unlock.gif
+-rw-r--r--@  1 helmke  staff   697 May 25 16:11 hmenu-unlock.png
+-rw-r--r--@  1 helmke  staff    46 May 25 16:11 invalid_line.gif
+-rw-r--r--@  1 helmke  staff   771 May 25 16:11 loading.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 mso-hd.gif
+-rw-r--r--@  1 helmke  staff   884 May 25 16:11 nowait.gif
+-rw-r--r--@  1 helmke  staff   340 May 25 16:11 page-first-disabled.gif
+-rw-r--r--@  1 helmke  staff    96 May 25 16:11 page-first.gif
+-rw-r--r--@  1 helmke  staff   340 May 25 16:11 page-last-disabled.gif
+-rw-r--r--@  1 helmke  staff    96 May 25 16:11 page-last.gif
+-rw-r--r--@  1 helmke  staff   195 May 25 16:11 page-next-disabled.gif
+-rw-r--r--@  1 helmke  staff    82 May 25 16:11 page-next.gif
+-rw-r--r--@  1 helmke  staff   197 May 25 16:11 page-prev-disabled.gif
+-rw-r--r--@  1 helmke  staff    82 May 25 16:11 page-prev.gif
+-rw-r--r--@  1 helmke  staff  1036 May 25 16:11 pick-button.gif
+-rw-r--r--@  1 helmke  staff    91 May 25 16:11 refresh.gif
+-rw-r--r--@  1 helmke  staff   932 May 25 16:11 row-check-sel.gif
+-rw-r--r--@  1 helmke  staff  1083 May 25 16:11 row-check-sprite.gif
+-rw-r--r--@  1 helmke  staff   918 May 25 16:11 row-check.gif
+-rw-r--r--@  1 helmke  staff   955 May 25 16:11 row-expand-sprite.gif
+-rw-r--r--@  1 helmke  staff   823 May 25 16:11 row-over.gif
+-rw-r--r--@  1 helmke  staff   823 May 25 16:11 row-sel.gif
+-rw-r--r--@  1 helmke  staff  2075 May 25 16:11 sort-hd.gif
+-rw-r--r--@  1 helmke  staff    74 May 25 16:11 sort_asc.gif
+-rw-r--r--@  1 helmke  staff    73 May 25 16:11 sort_desc.gif
+-rw-r--r--@  1 helmke  staff  1100 May 25 16:11 wait.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/icons:
+total 64
+drwxr-xr-x@ 10 helmke  staff  340 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff  680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  927 May 25 16:11 bottom2.gif
+-rw-r--r--@  1 helmke  staff  174 May 25 16:11 doubleleft2.gif
+-rw-r--r--@  1 helmke  staff  171 May 25 16:11 doubleright2.gif
+-rw-r--r--@  1 helmke  staff  920 May 25 16:11 down2.gif
+-rw-r--r--@  1 helmke  staff  920 May 25 16:11 left2.gif
+-rw-r--r--@  1 helmke  staff  925 May 25 16:11 right2.gif
+-rw-r--r--@  1 helmke  staff  927 May 25 16:11 top2.gif
+-rw-r--r--@  1 helmke  staff  920 May 25 16:11 up2.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/layout:
+total 16
+drwxr-xr-x@  4 helmke  staff  136 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff  680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  856 May 25 16:11 mini-bottom.gif
+-rw-r--r--@  1 helmke  staff  856 May 25 16:11 mini-top.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/menu:
+total 48
+drwxr-xr-x@  8 helmke  staff  272 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff  680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  959 May 25 16:11 checked.gif
+-rw-r--r--@  1 helmke  staff  856 May 25 16:11 group-checked.gif
+-rw-r--r--@  1 helmke  staff  820 May 25 16:11 item-over.gif
+-rw-r--r--@  1 helmke  staff   73 May 25 16:11 menu-parent.gif
+-rw-r--r--@  1 helmke  staff  826 May 25 16:11 menu.gif
+-rw-r--r--@  1 helmke  staff  941 May 25 16:11 unchecked.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/panel:
+total 136
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   577 May 25 16:11 corners-sprite.gif
+-rw-r--r--@  1 helmke  staff    52 May 25 16:11 left-right.gif
+-rw-r--r--@  1 helmke  staff   161 May 25 16:11 light-hd.gif
+-rw-r--r--@  1 helmke  staff   104 May 25 16:11 tool-close.gif
+-rw-r--r--@  1 helmke  staff    95 May 25 16:11 tool-collapse.gif
+-rw-r--r--@  1 helmke  staff    93 May 25 16:11 tool-expand.gif
+-rw-r--r--@  1 helmke  staff   106 May 25 16:11 tool-gear.gif
+-rw-r--r--@  1 helmke  staff   111 May 25 16:11 tool-maximize.gif
+-rw-r--r--@  1 helmke  staff    93 May 25 16:11 tool-minimize.gif
+-rw-r--r--@  1 helmke  staff   101 May 25 16:11 tool-pin.gif
+-rw-r--r--@  1 helmke  staff   971 May 25 16:11 tool-sprite-tpl.gif
+-rw-r--r--@  1 helmke  staff  1822 May 25 16:11 tool-sprites.gif
+-rw-r--r--@  1 helmke  staff  2843 May 25 16:11 tools-sprites-trans.gif
+-rw-r--r--@  1 helmke  staff   116 May 25 16:11 top-bottom.gif
+-rw-r--r--@  1 helmke  staff  1366 May 25 16:11 white-corners-sprite.gif
+-rw-r--r--@  1 helmke  staff    52 May 25 16:11 white-left-right.gif
+-rw-r--r--@  1 helmke  staff   115 May 25 16:11 white-top-bottom.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/progress:
+total 8
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff  680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  151 May 25 16:11 progress-bg.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/qtip:
+total 24
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   972 May 25 16:11 close.gif
+-rw-r--r--@  1 helmke  staff   951 May 25 16:11 tip-anchor-sprite.gif
+-rw-r--r--@  1 helmke  staff  3376 May 25 16:11 tip-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/shared:
+total 32
+drwxr-xr-x@  6 helmke  staff  204 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff  680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  103 May 25 16:11 glass-bg.gif
+-rw-r--r--@  1 helmke  staff  673 May 25 16:11 hd-sprite.gif
+-rw-r--r--@  1 helmke  staff   77 May 25 16:11 left-btn.gif
+-rw-r--r--@  1 helmke  staff   79 May 25 16:11 right-btn.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/sizer:
+total 104
+drwxr-xr-x@ 15 helmke  staff  510 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff  680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  248 May 25 16:11 e-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  753 May 25 16:11 e-handle.gif
+-rw-r--r--@  1 helmke  staff   66 May 25 16:11 ne-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  115 May 25 16:11 ne-handle.gif
+-rw-r--r--@  1 helmke  staff   66 May 25 16:11 nw-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  114 May 25 16:11 nw-handle.gif
+-rw-r--r--@  1 helmke  staff  246 May 25 16:11 s-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  494 May 25 16:11 s-handle.gif
+-rw-r--r--@  1 helmke  staff   65 May 25 16:11 se-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  114 May 25 16:11 se-handle.gif
+-rw-r--r--@  1 helmke  staff  123 May 25 16:11 square.gif
+-rw-r--r--@  1 helmke  staff   66 May 25 16:11 sw-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  116 May 25 16:11 sw-handle.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/slider:
+total 40
+drwxr-xr-x@  7 helmke  staff   238 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  3636 May 25 16:11 slider-bg.png
+-rw-r--r--@  1 helmke  staff  3067 May 25 16:11 slider-thumb-single.png
+-rw-r--r--@  1 helmke  staff  3436 May 25 16:11 slider-thumb.png
+-rw-r--r--@  1 helmke  staff  3630 May 25 16:11 slider-v-bg.png
+-rw-r--r--@  1 helmke  staff  3432 May 25 16:11 slider-v-thumb.png
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/tabs:
+total 80
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   996 May 25 16:11 scroll-left.gif
+-rw-r--r--@  1 helmke  staff   999 May 25 16:11 scroll-right.gif
+-rw-r--r--@  1 helmke  staff   130 May 25 16:11 tab-btm-inactive-left-bg.gif
+-rw-r--r--@  1 helmke  staff   513 May 25 16:11 tab-btm-inactive-right-bg.gif
+-rw-r--r--@  1 helmke  staff   117 May 25 16:11 tab-btm-left-bg.gif
+-rw-r--r--@  1 helmke  staff   512 May 25 16:11 tab-btm-right-bg.gif
+-rw-r--r--@  1 helmke  staff    76 May 25 16:11 tab-close.gif
+-rw-r--r--@  1 helmke  staff   827 May 25 16:11 tab-strip-bg.gif
+-rw-r--r--@  1 helmke  staff    70 May 25 16:11 tab-strip-btm-bg.gif
+-rw-r--r--@  1 helmke  staff  1221 May 25 16:11 tabs-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/toolbar:
+total 80
+drwxr-xr-x@ 12 helmke  staff   408 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff    82 May 25 16:11 bg.gif
+-rw-r--r--@  1 helmke  staff   916 May 25 16:11 btn-arrow-light.gif
+-rw-r--r--@  1 helmke  staff   919 May 25 16:11 btn-arrow.gif
+-rw-r--r--@  1 helmke  staff   837 May 25 16:11 btn-over-bg.gif
+-rw-r--r--@  1 helmke  staff   832 May 25 16:11 gray-bg.gif
+-rw-r--r--@  1 helmke  staff    67 May 25 16:11 more.gif
+-rw-r--r--@  1 helmke  staff   186 May 25 16:11 s-arrow-bo.gif
+-rw-r--r--@  1 helmke  staff  1127 May 25 16:11 tb-btn-sprite.gif
+-rw-r--r--@  1 helmke  staff  1663 May 25 16:11 tb-xl-btn-sprite.gif
+-rw-r--r--@  1 helmke  staff   810 May 25 16:11 tb-xl-sep.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/tree:
+total 200
+drwxr-xr-x@ 27 helmke  staff   918 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   183 May 25 16:11 arrows.gif
+-rw-r--r--@  1 helmke  staff  1001 May 25 16:11 drop-add.gif
+-rw-r--r--@  1 helmke  staff   907 May 25 16:11 drop-between.gif
+-rw-r--r--@  1 helmke  staff   949 May 25 16:11 drop-no.gif
+-rw-r--r--@  1 helmke  staff   911 May 25 16:11 drop-over.gif
+-rw-r--r--@  1 helmke  staff   911 May 25 16:11 drop-under.gif
+-rw-r--r--@  1 helmke  staff  1016 May 25 16:11 drop-yes.gif
+-rw-r--r--@  1 helmke  staff    86 May 25 16:11 elbow-end-minus-nl.gif
+-rw-r--r--@  1 helmke  staff   104 May 25 16:11 elbow-end-minus.gif
+-rw-r--r--@  1 helmke  staff    89 May 25 16:11 elbow-end-plus-nl.gif
+-rw-r--r--@  1 helmke  staff   108 May 25 16:11 elbow-end-plus.gif
+-rw-r--r--@  1 helmke  staff   844 May 25 16:11 elbow-end.gif
+-rw-r--r--@  1 helmke  staff   846 May 25 16:11 elbow-line.gif
+-rw-r--r--@  1 helmke  staff    86 May 25 16:11 elbow-minus-nl.gif
+-rw-r--r--@  1 helmke  staff   106 May 25 16:11 elbow-minus.gif
+-rw-r--r--@  1 helmke  staff    89 May 25 16:11 elbow-plus-nl.gif
+-rw-r--r--@  1 helmke  staff   111 May 25 16:11 elbow-plus.gif
+-rw-r--r--@  1 helmke  staff   850 May 25 16:11 elbow.gif
+-rw-r--r--@  1 helmke  staff   342 May 25 16:11 folder-open.gif
+-rw-r--r--@  1 helmke  staff   340 May 25 16:11 folder.gif
+-rw-r--r--@  1 helmke  staff   945 May 25 16:11 leaf.gif
+-rw-r--r--@  1 helmke  staff   771 May 25 16:11 loading.gif
+-rw-r--r--@  1 helmke  staff    43 May 25 16:11 s.gif
+-rw-r--r--@  1 helmke  staff  2928 May 25 16:11 tree-collapsed.png
+-rw-r--r--@  1 helmke  staff  2904 May 25 16:11 tree-expanded.png
+
+./tnrs-standalone/src/main/webapp/gxt/themes/access/images/window:
+total 64
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 .
+drwxr-xr-x@ 20 helmke  staff   680 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   256 May 25 16:11 icon-error.gif
+-rw-r--r--@  1 helmke  staff   172 May 25 16:11 icon-info.gif
+-rw-r--r--@  1 helmke  staff   217 May 25 16:11 icon-question.gif
+-rw-r--r--@  1 helmke  staff   173 May 25 16:11 icon-warning.gif
+-rw-r--r--@  1 helmke  staff  3612 May 25 16:11 left-corners.png
+-rw-r--r--@  1 helmke  staff  3578 May 25 16:11 left-right.png
+-rw-r--r--@  1 helmke  staff  3612 May 25 16:11 right-corners.png
+-rw-r--r--@  1 helmke  staff  3600 May 25 16:11 top-bottom.png
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate:
+total 0
+drwxr-xr-x@ 4 helmke  staff  136 May 25 16:11 .
+drwxr-xr-x@ 4 helmke  staff  136 May 25 16:11 ..
+drwxr-xr-x@ 3 helmke  staff  102 May 25 16:11 css
+drwxr-xr-x@ 3 helmke  staff  102 May 25 16:11 images
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/css:
+total 56
+drwxr-xr-x@ 3 helmke  staff    102 May 25 16:11 .
+drwxr-xr-x@ 4 helmke  staff    136 May 25 16:11 ..
+-rw-r--r--@ 1 helmke  staff  25363 May 25 16:11 xtheme-slate.css
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images:
+total 0
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 .
+drwxr-xr-x@  4 helmke  staff  136 May 25 16:11 ..
+drwxr-xr-x@ 19 helmke  staff  646 May 25 16:11 slate
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate:
+total 16
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 .
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 ..
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 button
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 editor
+drwxr-xr-x@ 11 helmke  staff   374 May 25 16:11 form
+-rw-r--r--@  1 helmke  staff  1472 May 25 16:11 gradient-bg.gif
+drwxr-xr-x@ 32 helmke  staff  1088 May 25 16:11 grid
+drwxr-xr-x@  9 helmke  staff   306 May 25 16:11 menu
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 panel
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 progress
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 qtip
+-rw-r--r--@  1 helmke  staff    43 May 25 16:11 s.gif
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 shared
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 sizer
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 slider
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 tabs
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 toolbar
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 tree
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 window
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/button:
+total 112
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff    59 May 25 16:11 arrow.gif
+-rw-r--r--@  1 helmke  staff   871 May 25 16:11 btn-arrow.gif
+-rw-r--r--@  1 helmke  staff  1394 May 25 16:11 btn-sprite.gif
+-rw-r--r--@  1 helmke  staff  4687 May 25 16:11 btn.gif
+-rw-r--r--@  1 helmke  staff  1598 May 25 16:11 group-cs.gif
+-rw-r--r--@  1 helmke  staff    94 May 25 16:11 group-lr.gif
+-rw-r--r--@  1 helmke  staff    88 May 25 16:11 group-tb.gif
+-rw-r--r--@  1 helmke  staff    82 May 25 16:11 s-arrow-b-noline.gif
+-rw-r--r--@  1 helmke  staff   151 May 25 16:11 s-arrow-b.gif
+-rw-r--r--@  1 helmke  staff   151 May 25 16:11 s-arrow-bo.gif
+-rw-r--r--@  1 helmke  staff    82 May 25 16:11 s-arrow-noline.gif
+-rw-r--r--@  1 helmke  staff   152 May 25 16:11 s-arrow-o.gif
+-rw-r--r--@  1 helmke  staff   152 May 25 16:11 s-arrow.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/editor:
+total 8
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1994 May 25 16:11 tb-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/form:
+total 80
+drwxr-xr-x@ 11 helmke  staff   374 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1483 May 25 16:11 checkbox.gif
+-rw-r--r--@  1 helmke  staff  2091 May 25 16:11 clear-trigger.gif
+-rw-r--r--@  1 helmke  staff  1612 May 25 16:11 date-trigger.gif
+-rw-r--r--@  1 helmke  staff  4183 May 25 16:11 error-tip-corners.gif
+-rw-r--r--@  1 helmke  staff  1846 May 25 16:11 radio.gif
+-rw-r--r--@  1 helmke  staff  2345 May 25 16:11 search-trigger.gif
+-rw-r--r--@  1 helmke  staff  1857 May 25 16:11 spinner.gif
+-rw-r--r--@  1 helmke  staff  1506 May 25 16:11 trigger-tpl.gif
+-rw-r--r--@  1 helmke  staff  1657 May 25 16:11 trigger.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/grid:
+total 240
+drwxr-xr-x@ 32 helmke  staff  1088 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   825 May 25 16:11 arrow-left-white.gif
+-rw-r--r--@  1 helmke  staff   825 May 25 16:11 arrow-right-white.gif
+-rw-r--r--@  1 helmke  staff   868 May 25 16:11 col-move-bottom.gif
+-rw-r--r--@  1 helmke  staff   869 May 25 16:11 col-move-top.gif
+-rw-r--r--@  1 helmke  staff   834 May 25 16:11 footer-bg.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 grid-blue-hd.gif
+-rw-r--r--@  1 helmke  staff   817 May 25 16:11 grid-blue-split.gif
+-rw-r--r--@  1 helmke  staff   855 May 25 16:11 grid-hrow.gif
+-rw-r--r--@  1 helmke  staff   817 May 25 16:11 grid-split.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 grid-vista-hd.gif
+-rw-r--r--@  1 helmke  staff  1212 May 25 16:11 grid3-hd-btn.gif
+-rw-r--r--@  1 helmke  staff   826 May 25 16:11 grid3-hrow-over.gif
+-rw-r--r--@  1 helmke  staff   828 May 25 16:11 grid3-hrow.gif
+-rw-r--r--@  1 helmke  staff   837 May 25 16:11 grid3-special-col-bg.gif
+-rw-r--r--@  1 helmke  staff   847 May 25 16:11 grid3-special-col-sel-bg.gif
+-rw-r--r--@  1 helmke  staff   955 May 25 16:11 group-expand-sprite.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 mso-hd.gif
+-rw-r--r--@  1 helmke  staff   925 May 25 16:11 page-first-disabled.gif
+-rw-r--r--@  1 helmke  staff   925 May 25 16:11 page-first.gif
+-rw-r--r--@  1 helmke  staff   923 May 25 16:11 page-last-disabled.gif
+-rw-r--r--@  1 helmke  staff   923 May 25 16:11 page-last.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 page-next-disabled.gif
+-rw-r--r--@  1 helmke  staff   875 May 25 16:11 page-next.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 page-prev-disabled.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 page-prev.gif
+-rw-r--r--@  1 helmke  staff   980 May 25 16:11 refresh.gif
+-rw-r--r--@  1 helmke  staff   823 May 25 16:11 row-over.gif
+-rw-r--r--@  1 helmke  staff   823 May 25 16:11 row-sel.gif
+-rw-r--r--@  1 helmke  staff   830 May 25 16:11 sort_asc.gif
+-rw-r--r--@  1 helmke  staff   833 May 25 16:11 sort_desc.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/menu:
+total 56
+drwxr-xr-x@  9 helmke  staff  306 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff  646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  894 May 25 16:11 checked.gif
+-rw-r--r--@  1 helmke  staff  887 May 25 16:11 group-checked.gif
+-rw-r--r--@  1 helmke  staff  833 May 25 16:11 item-over - Copy.gif
+-rw-r--r--@  1 helmke  staff  833 May 25 16:11 item-over.gif
+-rw-r--r--@  1 helmke  staff  853 May 25 16:11 menu-parent.gif
+-rw-r--r--@  1 helmke  staff  839 May 25 16:11 menu.gif
+-rw-r--r--@  1 helmke  staff  877 May 25 16:11 unchecked.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/panel:
+total 96
+drwxr-xr-x@ 13 helmke  staff   442 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1384 May 25 16:11 corners-sprite.gif
+-rw-r--r--@  1 helmke  staff   807 May 25 16:11 left-right.gif
+-rw-r--r--@  1 helmke  staff   844 May 25 16:11 light-hd.gif
+-rw-r--r--@  1 helmke  staff  1197 May 25 16:11 tool-sprite-tpl.gif
+-rw-r--r--@  1 helmke  staff  5787 May 25 16:11 tool-sprites.gif
+-rw-r--r--@  1 helmke  staff  2640 May 25 16:11 tools-sprites-trans.gif
+-rw-r--r--@  1 helmke  staff   870 May 25 16:11 top-bottom.gif
+-rw-r--r--@  1 helmke  staff   215 May 25 16:11 top-bottom.png
+-rw-r--r--@  1 helmke  staff  1365 May 25 16:11 white-corners-sprite.gif
+-rw-r--r--@  1 helmke  staff   805 May 25 16:11 white-left-right.gif
+-rw-r--r--@  1 helmke  staff   864 May 25 16:11 white-top-bottom.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/progress:
+total 8
+drwxr-xr-x@  3 helmke  staff  102 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff  646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  837 May 25 16:11 progress-bg.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/qtip:
+total 32
+drwxr-xr-x@  5 helmke  staff   170 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1091 May 25 16:11 bg.gif
+-rw-r--r--@  1 helmke  staff   972 May 25 16:11 close.gif
+-rw-r--r--@  1 helmke  staff  4129 May 25 16:11 tip-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/shared:
+total 32
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   865 May 25 16:11 glass-bg.gif
+-rw-r--r--@  1 helmke  staff  1099 May 25 16:11 hd-sprite.gif
+-rw-r--r--@  1 helmke  staff   878 May 25 16:11 left-btn.gif
+-rw-r--r--@  1 helmke  staff   879 May 25 16:11 right-btn.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/sizer:
+total 104
+drwxr-xr-x@ 15 helmke  staff   510 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1069 May 25 16:11 e-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  1599 May 25 16:11 e-handle.gif
+-rw-r--r--@  1 helmke  staff   843 May 25 16:11 ne-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 ne-handle.gif
+-rw-r--r--@  1 helmke  staff   841 May 25 16:11 nw-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 nw-handle.gif
+-rw-r--r--@  1 helmke  staff  1051 May 25 16:11 s-handle-dark.gif
+-rw-r--r--@  1 helmke  staff  1311 May 25 16:11 s-handle.gif
+-rw-r--r--@  1 helmke  staff   844 May 25 16:11 se-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   838 May 25 16:11 se-handle.gif
+-rw-r--r--@  1 helmke  staff   841 May 25 16:11 square.gif
+-rw-r--r--@  1 helmke  staff   844 May 25 16:11 sw-handle-dark.gif
+-rw-r--r--@  1 helmke  staff   839 May 25 16:11 sw-handle.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/slider:
+total 32
+drwxr-xr-x@  6 helmke  staff   204 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1033 May 25 16:11 slider-bg.png
+-rw-r--r--@  1 helmke  staff  1569 May 25 16:11 slider-thumb.png
+-rw-r--r--@  1 helmke  staff  1016 May 25 16:11 slider-v-bg.png
+-rw-r--r--@  1 helmke  staff  1476 May 25 16:11 slider-v-thumb.png
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/tabs:
+total 96
+drwxr-xr-x@ 14 helmke  staff   476 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1260 May 25 16:11 scroll-left.gif
+-rw-r--r--@  1 helmke  staff  1269 May 25 16:11 scroll-right.gif
+-rw-r--r--@  1 helmke  staff  1090 May 25 16:11 scroller-bg.gif
+-rw-r--r--@  1 helmke  staff   883 May 25 16:11 tab-btm-inactive-left-bg.gif
+-rw-r--r--@  1 helmke  staff  1553 May 25 16:11 tab-btm-inactive-right-bg.gif
+-rw-r--r--@  1 helmke  staff   888 May 25 16:11 tab-btm-left-bg.gif
+-rw-r--r--@  1 helmke  staff  1586 May 25 16:11 tab-btm-right-bg.gif
+-rw-r--r--@  1 helmke  staff   853 May 25 16:11 tab-close.gif
+-rw-r--r--@  1 helmke  staff   906 May 25 16:11 tab-strip-bg.gif
+-rw-r--r--@  1 helmke  staff   259 May 25 16:11 tab-strip-bg.png
+-rw-r--r--@  1 helmke  staff   826 May 25 16:11 tab-strip-btm-bg.gif
+-rw-r--r--@  1 helmke  staff  2625 May 25 16:11 tabs-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/toolbar:
+total 64
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff   540 May 25 16:11 bg.gif
+-rw-r--r--@  1 helmke  staff   916 May 25 16:11 btn-arrow-light.gif
+-rw-r--r--@  1 helmke  staff   908 May 25 16:11 btn-arrow.gif
+-rw-r--r--@  1 helmke  staff   829 May 25 16:11 btn-over-bg.gif
+-rw-r--r--@  1 helmke  staff   832 May 25 16:11 gray-bg.gif
+-rw-r--r--@  1 helmke  staff    66 May 25 16:11 sep.gif
+-rw-r--r--@  1 helmke  staff   862 May 25 16:11 tb-bg.gif
+-rw-r--r--@  1 helmke  staff  1070 May 25 16:11 tb-btn-sprite.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/tree:
+total 8
+drwxr-xr-x@  3 helmke  staff   102 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1024 May 25 16:11 arrows.gif
+
+./tnrs-standalone/src/main/webapp/gxt/themes/slate/images/slate/window:
+total 64
+drwxr-xr-x@ 10 helmke  staff   340 May 25 16:11 .
+drwxr-xr-x@ 19 helmke  staff   646 May 25 16:11 ..
+-rw-r--r--@  1 helmke  staff  1669 May 25 16:11 icon-error.gif
+-rw-r--r--@  1 helmke  staff  1586 May 25 16:11 icon-info.gif
+-rw-r--r--@  1 helmke  staff  1607 May 25 16:11 icon-question.gif
+-rw-r--r--@  1 helmke  staff  1483 May 25 16:11 icon-warning.gif
+-rw-r--r--@  1 helmke  staff   432 May 25 16:11 left-corners.png
+-rw-r--r--@  1 helmke  staff   160 May 25 16:11 left-right.png
+-rw-r--r--@  1 helmke  staff   459 May 25 16:11 right-corners.png
+-rw-r--r--@  1 helmke  staff   294 May 25 16:11 top-bottom.png
+
+./tnrs-standalone/src/main/webapp/images:
+total 5064
+drwxr-xr-x@ 42 helmke  staff    1428 May 25 10:38 .
+drwxr-xr-x@ 20 helmke  staff     680 May 26 13:08 ..
+-rw-r--r--@  1 helmke  staff   34267 May 25 10:37 0001_blonder_IMG_7724.jpg
+-rw-r--r--@  1 helmke  staff   67051 May 25 10:37 0002_blonder_IMG_0653.jpg
+-rw-r--r--@  1 helmke  staff   60315 May 25 10:37 0003_blazing_star.jpg
+-rw-r--r--@  1 helmke  staff   50019 May 25 10:37 0004_Lycium fruit.jpg
+-rw-r--r--@  1 helmke  staff   38405 May 25 10:37 0005_DSCN1474_Ipomoea_pubescens.jpg
+-rw-r--r--@  1 helmke  staff   73630 May 25 10:37 0006_DSCN5505.jpg
+-rw-r--r--@  1 helmke  staff  443166 May 25 10:37 0007_DSCN4030_Polemonium_confertum.jpg
+-rw-r--r--@  1 helmke  staff   55534 May 25 10:37 0008_DSCN5759_Echinocereus_triglochidiatus.jpg
+-rw-r--r--@  1 helmke  staff   35109 May 25 10:37 0009_DSCN2811.jpg
+-rw-r--r--@  1 helmke  staff   98474 May 25 10:37 0010_Echinocereus engelmannii.jpg
+-rw-r--r--@  1 helmke  staff   44965 May 25 10:37 0011_guaiacum_coulteri.jpg
+-rw-r--r--@  1 helmke  staff   41444 May 25 10:37 0012_Encelia fruticosa flower.jpg
+-rw-r--r--@  1 helmke  staff   48631 May 25 10:37 0014_DSCN9817_malacothrix.jpg
+-rw-r--r--@  1 helmke  staff   36427 May 25 10:37 0015_DSCN6718.jpg
+-rw-r--r--@  1 helmke  staff   75738 May 25 10:37 013-Nama_hispidum.JPG
+-rw-r--r--@  1 helmke  staff    4671 May 25 10:37 128px-Gouache-arabidopsis-thaliana.jpg
+-rw-r--r--@  1 helmke  staff   12680 May 25 10:37 256px-Gouache-arabidopsis-thaliana.jpg
+-rw-r--r--@  1 helmke  staff   96755 May 25 10:37 IMG_4137.jpg
+-rw-r--r--@  1 helmke  staff   60380 May 25 10:37 about1.png
+-rw-r--r--@  1 helmke  staff   28251 May 25 10:37 about2.png
+-rw-r--r--@  1 helmke  staff   12303 May 25 10:38 acceptedName.png
+-rw-r--r--@  1 helmke  staff  180488 May 25 10:37 background.jpg
+-rw-r--r--@  1 helmke  staff   26273 May 25 10:38 enterNamesDisplay.png
+-rw-r--r--@  1 helmke  staff    6143 May 25 10:37 foot_graphic.jpg
+-rw-r--r--@  1 helmke  staff   29090 May 25 10:37 header.jpg
+-rw-r--r--@  1 helmke  staff   21498 May 25 10:37 headerlogo_85h.png
+-rw-r--r--@  1 helmke  staff   15676 May 25 10:37 instruct1.jpg
+-rw-r--r--@  1 helmke  staff   11643 May 25 10:37 instruct1.png
+-rw-r--r--@  1 helmke  staff   43426 May 25 10:37 instruct2.jpg
+-rw-r--r--@  1 helmke  staff   10291 May 25 10:37 instruct3.jpg
+-rw-r--r--@  1 helmke  staff   50822 May 25 10:37 logos.jpg
+-rw-r--r--@  1 helmke  staff   94042 May 25 10:37 logos_old.jpg
+-rw-r--r--@  1 helmke  staff   11610 May 25 10:38 nameMatched.png
+-rw-r--r--@  1 helmke  staff    9209 May 25 10:37 oneMore.png
+-rw-r--r--@  1 helmke  staff  343149 May 25 10:37 slide1a.jpg
+-rw-r--r--@  1 helmke  staff   85113 May 25 10:37 spellingCorrection.png
+-rw-r--r--@  1 helmke  staff   75766 May 25 10:37 tnrs-logos.jpg
+-rw-r--r--@  1 helmke  staff    8367 May 25 10:37 tnrs_banner_885a.png
+-rw-r--r--@  1 helmke  staff   33385 May 25 10:37 tnrs_collab.png
+-rw-r--r--@  1 helmke  staff   32985 May 25 10:37 tryitnowbutton.jpg
+
+./tnrs-standalone/src/main/webapp/js:
+total 32
+drwxr-xr-x@  3 helmke  staff    102 May 25 10:37 .
+drwxr-xr-x@ 20 helmke  staff    680 May 26 13:08 ..
+-rw-r--r--@  1 helmke  staff  14188 May 25 10:37 fadeslideshow.js
+
+./tnrs_db_scripts:
+total 152
+drwxr-xr-x@ 15 helmke  staff    510 Jun 10 06:18 .
+drwxr-xr-x  12 helmke  staff    408 Jun 10 07:00 ..
+drwxr-xr-x@  8 helmke  staff    272 Jun  9 16:06 create_tnrs_core
+-rw-r--r--@  1 helmke  staff   6052 Jun  9 16:17 functions.inc
+-rw-r--r--@  1 helmke  staff   5552 Jun  9 16:44 global_params.inc
+drwxr-xr-x@ 14 helmke  staff    476 Jun  9 16:18 import
+drwxr-xr-x@ 17 helmke  staff    578 Jun  9 16:06 load_core_db
+drwxr-xr-x@ 16 helmke  staff    544 Jun  9 16:23 load_staging
+-rw-r--r--   1 helmke  staff    791 Jun  9 16:13 readme.txt
+-rw-r--r--@  1 helmke  staff  24511 Jun  9 16:17 sql_functions.inc
+-rw-r--r--@  1 helmke  staff    214 Jun  9 16:07 strSplit.txt
+drwxr-xr-x@ 24 helmke  staff    816 Jun  9 16:07 taxamatch_tables
+-rw-r--r--@  1 helmke  staff  18229 Jun  9 16:16 taxon_functions.inc
+-rw-r--r--@  1 helmke  staff    313 Jun  9 16:16 timer_off.inc
+-rw-r--r--@  1 helmke  staff    313 Jun  9 16:16 timer_on.inc
+
+./tnrs_db_scripts/create_tnrs_core:
+total 56
+drwxr-xr-x@  8 helmke  staff   272 Jun  9 16:06 .
+drwxr-xr-x@ 15 helmke  staff   510 Jun 10 06:18 ..
+-rw-r--r--@  1 helmke  staff   333 Jun  9 16:06 create_tables.inc
+-rw-r--r--@  1 helmke  staff  6123 Jun  9 16:06 create_tables.sql
+-rw-r--r--@  1 helmke  staff   287 Jun  9 16:06 create_tnrs_core.php
+-rw-r--r--@  1 helmke  staff   201 Jun  9 16:06 drop_tables.sql
+-rw-r--r--@  1 helmke  staff   336 Jun  9 16:06 params.inc
+-rw-r--r--@  1 helmke  staff    68 Jun  9 16:06 readme.txt
+
+./tnrs_db_scripts/import:
+total 728
+drwxr-xr-x@ 14 helmke  staff     476 Jun  9 16:18 .
+drwxr-xr-x@ 15 helmke  staff     510 Jun 10 06:18 ..
+-rw-r--r--@  1 helmke  staff     807 Jun  9 16:06 add_names.inc
+-rw-r--r--@  1 helmke  staff    1923 Jun  9 16:06 create_error_table.inc
+-rw-r--r--@  1 helmke  staff    1835 Jun  9 16:06 create_raw_data_tables.inc
+-rw-r--r--@  1 helmke  staff    2747 Jun  9 16:06 create_staging_table.inc
+-rw-r--r--@  1 helmke  staff     970 Jun  9 16:06 fix_errors.inc
+-rw-r--r--@  1 helmke  staff    1551 Jun  9 16:06 flag_errors.inc
+-rw-r--r--@  1 helmke  staff     640 Jun  9 16:06 import.inc
+-rw-r--r--@  1 helmke  staff    1346 Jun  9 16:06 import.php
+-rw-r--r--@  1 helmke  staff    1182 Jun  9 16:20 params.inc
+-rw-r--r--@  1 helmke  staff    1296 Jun  9 16:06 readme.txt
+-rw-r--r--   1 helmke  staff  326842 Jun  9 16:06 tropicos_api_pinaceae_example.txt
+-rw-r--r--@  1 helmke  staff     535 Jun  9 16:06 zero_id_set_null.inc
+
+./tnrs_db_scripts/load_core_db:
+total 120
+drwxr-xr-x@ 17 helmke  staff   578 Jun  9 16:06 .
+drwxr-xr-x@ 15 helmke  staff   510 Jun 10 06:18 ..
+-rw-r--r--@  1 helmke  staff   481 Jun  9 16:06 alter_tbl_temp.inc
+-rw-r--r--@  1 helmke  staff   232 Jun  9 16:06 cleanup.inc
+-rw-r--r--@  1 helmke  staff   317 Jun  9 16:06 clear_fks.inc
+-rw-r--r--@  1 helmke  staff  3876 Jun  9 16:06 clear_previous.inc
+-rw-r--r--@  1 helmke  staff  1939 Jun  9 16:06 index_name_parts.inc
+-rw-r--r--@  1 helmke  staff   615 Jun  9 16:06 load_classification.inc
+-rw-r--r--@  1 helmke  staff  2073 Jun  9 16:06 load_core_db.php
+-rw-r--r--@  1 helmke  staff  1319 Jun  9 16:06 load_default_classification.inc
+-rw-r--r--@  1 helmke  staff   499 Jun  9 16:06 load_default_synonymy.inc
+-rw-r--r--@  1 helmke  staff   564 Jun  9 16:06 load_name_sources.inc
+-rw-r--r--@  1 helmke  staff  3991 Jun  9 16:06 load_names.inc
+-rw-r--r--@  1 helmke  staff  1214 Jun  9 16:06 load_source.inc
+-rw-r--r--@  1 helmke  staff   974 Jun  9 16:06 load_synonymy.inc
+-rw-r--r--@  1 helmke  staff   316 Jun  9 16:06 params.inc
+-rw-r--r--@  1 helmke  staff   490 Jun  9 16:06 readme.txt
+
+./tnrs_db_scripts/load_staging:
+total 120
+drwxr-xr-x@ 16 helmke  staff   544 Jun  9 16:23 .
+drwxr-xr-x@ 15 helmke  staff   510 Jun 10 06:18 ..
+-rw-r--r--@  1 helmke  staff   749 Jun  9 16:06 delete_orphan_parentIDs.inc
+-rw-r--r--@  1 helmke  staff  6503 Jun  9 16:06 find_parent.inc
+-rw-r--r--@  1 helmke  staff  2667 Jun  9 16:06 fix_character_sets.inc
+-rw-r--r--@  1 helmke  staff   346 Jun  9 16:06 fix_hybrid_x.inc
+-rw-r--r--@  1 helmke  staff   429 Jun  9 16:06 flag_hybrids.inc
+-rw-r--r--@  1 helmke  staff   716 Jun  9 16:06 flag_null_parentID.inc
+-rw-r--r--@  1 helmke  staff  1438 Jun  9 16:06 higher_taxa.inc
+-rw-r--r--@  1 helmke  staff  2960 Jun  9 16:06 index_taxa.inc
+-rw-r--r--@  1 helmke  staff  2200 Jun  9 16:06 load_staging.php
+-rw-r--r--@  1 helmke  staff   241 Jun  9 16:06 params.inc
+-rw-r--r--@  1 helmke  staff  1292 Jun  9 16:06 parse_infraspecific_taxa.inc
+-rw-r--r--@  1 helmke  staff   235 Jun  9 16:06 readme.txt
+-rw-r--r--@  1 helmke  staff  1102 Jun  9 16:06 standardize_rank_indicators.inc
+-rw-r--r--@  1 helmke  staff   247 Jun  9 16:06 update_error_table.inc
+
+./tnrs_db_scripts/taxamatch_tables:
+total 2696
+drwxr-xr-x@ 24 helmke  staff      816 Jun  9 16:07 .
+drwxr-xr-x@ 15 helmke  staff      510 Jun 10 06:18 ..
+-rw-r--r--@  1 helmke  staff      309 Jun  9 16:07 create_tables.inc
+-rw-r--r--@  1 helmke  staff     9226 Jun  9 16:07 create_tables.sql
+-rw-r--r--@  1 helmke  staff     2017 Jun  9 16:07 delete_orphan_species.inc
+-rw-r--r--@  1 helmke  staff      368 Jun  9 16:07 drop_tables.sql
+-rw-r--r--@  1 helmke  staff  1272934 Jun  9 16:07 fg_all_final.txt
+-rw-r--r--@  1 helmke  staff     1994 Jun  9 16:07 fg_alternate.inc
+-rw-r--r--@  1 helmke  staff      683 Jun  9 16:07 genus_family_combined.inc
+-rw-r--r--@  1 helmke  staff      873 Jun  9 16:07 infra1_species_combined.inc
+-rw-r--r--@  1 helmke  staff      887 Jun  9 16:07 infra2_infra1_combined.inc
+-rw-r--r--@  1 helmke  staff      464 Jun  9 16:07 insert_families.inc
+-rw-r--r--@  1 helmke  staff      462 Jun  9 16:07 insert_genera.inc
+-rw-r--r--@  1 helmke  staff      566 Jun  9 16:07 insert_infra1.inc
+-rw-r--r--@  1 helmke  staff      666 Jun  9 16:07 insert_infra2.inc
+-rw-r--r--@  1 helmke  staff      360 Jun  9 16:07 insert_species.inc
+-rw-r--r--@  1 helmke  staff     4262 Jun  9 16:07 link_genus_defaultfamily.inc
+-rw-r--r--@  1 helmke  staff     4377 Jun  9 16:07 link_infra1_species.inc
+-rw-r--r--@  1 helmke  staff     3578 Jun  9 16:07 link_infra2_infra1.inc
+-rw-r--r--@  1 helmke  staff     4233 Jun  9 16:07 link_species_genus.inc
+-rw-r--r--@  1 helmke  staff      939 Jun  9 16:07 params.inc
+-rw-r--r--@  1 helmke  staff     2418 Jun  9 16:07 readme.txt
+-rw-r--r--@  1 helmke  staff      581 Jun  9 16:07 species_genus_combined.inc
+-rw-r--r--@  1 helmke  staff     1993 Jun  9 16:07 taxamatch_tables.php

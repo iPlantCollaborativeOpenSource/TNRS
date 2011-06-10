@@ -1,0 +1,36 @@
+###
+#
+# Tests for string comparison by taxamatch algorithm
+#
+##
+
+# additional authorship should match
+Puma concolor|Puma concolor L.|true
+
+# one-letter misspeling in species epithet should match
+Puma concolor|Puma cancolor|true
+
+Pomatomus saltatrix|Pomatomus saltratix|true
+
+# following should not match
+Pomatomus saltator|Pomatomus saltatrix|false
+Loligo pealeii|Loligo plei|false
+Quercus incomita|Quercus incana|false
+
+# different authors should not match
+Puma concolor Linnaeus|Puma concolor Kurtz|false
+
+# same authors in different years
+Puma concolor Linnaeus 2009|Puma concolor Linnaeus 1776|false
+
+# same authors in similar years
+Puma concolor Linnaeus 2009|Puma concolor Linnaeus 2008|true
+
+# similar authors
+Puma concolor Linneaus 2009|Puma concolor Linnaeus 2009|true
+Puma concolor L. 2009|Puma concolor Linnaeus 2009|true
+Puma concolor Lin 2009|Puma concolor Linnaeus 2009|true
+Puma concolor L. Smith 2009|Puma concolor Linnaeus Jones 2009|false
+
+#misc
+Aa paleacea (Kunth) Rchb. f.|Aa paludosa (Rchb.f.) Schltr.|false

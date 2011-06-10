@@ -1,0 +1,58 @@
+######################
+# Tests for modified Damerau Levenshtein Distance algorithm (UTF-8 compatible)
+#
+# * B. Boehmer, T. Rees, Modified Damerau-Levenshtein Distance, Boehmer & Rees 2008
+# * F.J. Damerau. A technique for computer detection and correction of spelling errors, Communications of the ACM, 1964
+#
+# Fields:
+# String1|String2|maximum distance|transposition block size|expected distance
+#  - String1, String2
+#     compared strings
+#  - maximum distance
+#     stops execution of the algorithm when calculated distance exceeds the maximum distance number
+#  - transosition block size
+#     determines how many characters can be transposed. Block size 1 returns score according to Damerau-Levenshtein algorithm
+#  - expected distance
+#     resulting distance that has to be achieved by the algorithm
+#  Note: algorithm does not try to normalize or interpret strings in any way.
+######################
+
+#it whould recognize the exact match
+Pomatomus|Pomatomus|10|1|0
+
+#it should not try to normalize incoming strings
+ Pomatomus|Pomatomus|10|1|1
+Pomatomus|pomatomus|10|1|1
+
+#it should calculate special cases
+Pomatomus||10|1|9
+|Pomatomus|10|1|9
+P|p|10|1|1
+
+
+#it should calculate Damerau Levenshtein distance with 1 character transpositions, insertions, deletions, substitutions (block size 1)
+Pomatomus|Pomatomux|10|1|1
+Pmatomus|Pomatomus|10|1|1
+Pomatomus|Pmatomus|10|1|1
+Rpmatomus|Pomatomus|10|1|2
+Pommtomus|Pomatomus|10|1|1
+Potamomus|Pomatomus|10|1|2
+Cedarinia scabra Sjöstedt 1921|Cedarinia scabra Sjostedt 1921|10|1|1
+Pomatomus|oPmatomus|10|1|1
+Pomatomus|Pomatomsu|10|1|1
+Pomtaomus|Pomatomus|10|1|1
+Pomatoums|Pomatomus|10|1|1
+Potamomus|Pomatomus|10|1|2
+Cedarinia scabra Sjöstedt 1921|Cedarinia scabra Söjstedt 1921|10|2|1
+
+#it should calculate Modified Damerau Levenshtein distance with 2 or more characters transposition (block size > 2)
+serrulatus|serratulus|10|2|2
+Pomatomus|Poomumats|10|3|3
+vesiculosus|vecusilosus|10|1|4
+vesiculosus|vecusilosus|10|2|2
+trimerophyton|mertriophyton|10|1|6
+trimerophyton|mertriophyton|10|3|3
+
+#it should stop trying if distance exceeds maximum allowed distance
+Pxxxxomus|Pomatomus|10|1|4
+Pxxxxomus|Pomatomus|2|1|3

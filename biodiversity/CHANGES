@@ -1,0 +1,15 @@
+The code in this repository is originally from 
+https://github.com/GlobalNamesArchitecture/biodiversity 
+
+Unless you know you require our changed code (such as because you 
+are using it as a part of our entire TNRS), we recommend you
+download from the source.
+
+iPlant Collaborative changed 1 line in 
+lib/biodiversity/parser/scientific_name_clean.treetop
+ 
+$diff ../package/GlobalNamesArchitecture-biodiversity-13e8be2/lib/biodiversity/parser/scientific_name_clean.treetop /var/www/html/biodiversity/lib/biodiversity/parser/scientific_name_clean.treetop
+406c406
+<     ("morph."/"f.sp."/"B"/"ssp."/"mut."/"nat"/"nothosubsp."/"pseudovar."/"sect."/"ser."/"var."/"subvar."/ "[var.]" /"var"/"subsp."/"subsp"/"subf."/"race"/"α"
+---
+>     ("sbsp."/"cv."/"subfo."/"morph."/"f.sp."/"B"/"ssp."/"mut."/"nat"/"nothosubsp."/"pseudovar."/"sect."/"ser."/"var."/"subvar."/ "[var.]" /"var"/"subsp."/"subsp"/"subf."/"race"/"α"
