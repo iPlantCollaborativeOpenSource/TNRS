@@ -1,0 +1,41 @@
+Taxonomic Name Resolution Service (TNRS)
+========================================
+
+==INTRODUCTION
+This repo includes all of the code that powers iPlant's Taxonomic 
+Name Resolution Service.
+
+Parts of this code come from other projects, as noted below in 
+LICENSE. The rest was written by iPlant.
+
+More information about iPlant's Open Source policies and current 
+status is available at 
+http://iplantcollaborative.org/opensource
+
+
+==LICENSE
+All code, except where noted below, is released as described in the 
+LICENSE file included with this code.
+
+Exceptions are biodiversity (BSD) and taxamatch (Apache 2.0), which
+are open source projects that we modified and are releasing here with
+our changes. The licenses for these are included in the LICENSE files
+in the respective directories.
+
+
+==SOURCE
+Source code is available at: https://github.com/iPlantCollaborativeOpenSource/TNRS
+
+
+==INSTALLATION
+For instructions, see INSTALL.
+
+
+==ISSUES/BUGS/QUESTIONS
+Use the issue tracker available from the GitHub repository at the link listed under SOURCE above. Click Issues to submit a question or report a problem.
+
+
+==CONTRIBUTING
+iPlant requires all outside collaborators (those not employed by iPlant) to sign and submit a Contributor License Agreement. Details as well as answers to Frequently Asked Questions about this agreement are available at http://www.iplantcollaborative.org/opensource/CLA.
+
+Other steps in the process are still being created. While this message remains, email opensource@iplantcollaborative.org
