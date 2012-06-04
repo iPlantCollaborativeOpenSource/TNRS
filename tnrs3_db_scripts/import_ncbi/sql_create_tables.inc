@@ -1,0 +1,68 @@
+<?php
+
+$sql_create_tables="
+CREATE TABLE $tbl_nodes (
+	tax_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
+ 	parent_tax_id INTEGER UNSIGNED DEFAULT NULL,
+ 	rank VARCHAR(50) DEFAULT NULL,
+ 	embl_code VARCHAR(100) DEFAULT NULL,
+ 	division_id INTEGER UNSIGNED DEFAULT NULL,
+ 	inherited_div_flag INTEGER(1) UNSIGNED NOT NULL DEFAULT 0,
+ 	genetic_code_id INTEGER UNSIGNED DEFAULT NULL,
+ 	inherited_GC_flag INTEGER(1) UNSIGNED NOT NULL DEFAULT 0,
+ 	mitochondrial_genetic_code_id  INTEGER UNSIGNED DEFAULT NULL,
+ 	inherited_MGC_flag INTEGER(1) UNSIGNED NOT NULL DEFAULT 0,
+ 	GenBank_hidden_flag INTEGER(1) UNSIGNED NOT NULL DEFAULT 0,
+ 	hidden_subtree_root_flag INTEGER(1) UNSIGNED NOT NULL DEFAULT 0,
+	comments VARCHAR(250) DEFAULT NULL,
+	INDEX idx_rank(rank),
+	INDEX idx_parent_tax_id(parent_tax_id)
+) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE $tbl_names (
+	tax_id INTEGER UNSIGNED NOT NULL,
+	name_txt VARCHAR(250) NOT NULL,
+	unique_name VARCHAR(300) DEFAULT NULL,
+	name_class VARCHAR(50) DEFAULT NULL,
+	INDEX idx_tax_id(tax_id),
+	INDEX idx_name_txt(name_txt),
+	INDEX idx_name_class(name_class)
+) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ 
+CREATE TABLE $tbl_division (
+	division_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
+	division_cde VARCHAR(3) DEFAULT NULL,
+	division_name VARCHAR(50) DEFAULT NULL,
+	comments VARCHAR(250) DEFAULT NULL,
+	INDEX idx_division_name(division_name)
+) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE $tbl_gencode (
+	genetic_code_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
+	abbreviation VARCHAR(50) DEFAULT NULL,
+	`name` VARCHAR(150) DEFAULT NULL,
+	cde VARCHAR(50) DEFAULT NULL,
+	starts VARCHAR(50) DEFAULT NULL
+) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE $tbl_delnodes (
+	tax_id INTEGER UNSIGNED NOT NULL
+) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE $tbl_merged (
+	old_tax_id INTEGER UNSIGNED NOT NULL,
+	new_tax_id INTEGER UNSIGNED DEFAULT NULL
+) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE $tbl_citations (
+	cit_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
+	cit_key	 VARCHAR(250) DEFAULT NULL,
+	pubmed_id VARCHAR(250) NOT NULL DEFAULT '0',
+	medline_id VARCHAR(250) NOT NULL DEFAULT '0',
+	url VARCHAR(250) DEFAULT NULL,
+	text VARCHAR(500) DEFAULT NULL,
+	taxid_list VARCHAR(500) DEFAULT NULL
+) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+";
+
+?>

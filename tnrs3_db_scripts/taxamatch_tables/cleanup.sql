@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS `infra1list`;
+DROP TABLE IF EXISTS `infra2list`;
+DROP TABLE IF EXISTS `splist`;
+
