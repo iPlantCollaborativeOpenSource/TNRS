@@ -2,7 +2,7 @@ package org.iplantc.tnrs.server;
 
 /**
  * This class holds information regarding a user request
- * for name matching. It is used to create a TNRSJob object.
+ * for name matching 
  * 
  * @author Juan Antonio Raygoza Garay -- The iPlant Collaborative
  */
@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class NameMatchingRequest implements Serializable{
+public class TnrsJobRequest implements Serializable{
 
 	private String email;
 	private String filename;
@@ -19,7 +19,7 @@ public class NameMatchingRequest implements Serializable{
 	private String original;
 	private boolean emailResults;
 	
-	public NameMatchingRequest(String email, String inputFile,String original_filename,boolean email_results) throws Exception{
+	public TnrsJobRequest(String email, String inputFile,String original_filename,boolean email_results) throws Exception{
 		this.email = email;
 		this.filename = inputFile;
 		id = DigestUtils.md5Hex(email+inputFile);

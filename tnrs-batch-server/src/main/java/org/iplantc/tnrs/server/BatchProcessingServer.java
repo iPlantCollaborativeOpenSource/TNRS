@@ -1,62 +1,78 @@
 package org.iplantc.tnrs.server;
 
+/**
+ * BatchProcessing
+ * 
+ * this class works as a middle layer between the user and other services such as the taxamatch application and GNI parser. Also it provides 
+ * preprocessing and postprocessing steps.
+ * 
+ * @author Juan Antonio Raygoza Garay
+ */
+
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
-import java.net.URLEncoder;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.CharacterCodingException;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetDecoder;
-import java.nio.charset.CharsetEncoder;
-import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.TreeSet;
 import java.util.UUID;
 import java.util.Vector;
 import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 import org.apache.commons.codec.binary.Base64InputStream;
-import org.apache.commons.codec.binary.StringUtils;
-import org.apache.commons.codec.net.URLCodec;
+import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpHost;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.input.BOMInputStream;
-import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.commons.lang.time.StopWatch;
 import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.HtmlEmail;
-import org.iplantc.tnrs.server.request.MultipartRequestParser;
+import org.apache.commons.mail.MultiPartEmail;
+import org.apache.commons.mail.SimpleEmail;
+import org.apache.log4j.DailyRollingFileAppender;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.HTMLLayout;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.iplantc.tnrs.server.handler.GroupRetrieverHandler;
+import org.iplantc.tnrs.server.handler.GroupUpdater;
+import org.iplantc.tnrs.server.handler.HandlerHelper;
+import org.iplantc.tnrs.server.handler.JobInfoHandler;
+import org.iplantc.tnrs.server.handler.NameParsingHandler;
+import org.iplantc.tnrs.server.handler.ResultsChunkRetrieverHandler;
+import org.iplantc.tnrs.server.handler.SourcesHandler;
+import org.iplantc.tnrs.server.processing.TNRSResultsTransformer;
 import org.mozilla.universalchardet.UniversalDetector;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import java.io.*;
+
 
 
 
@@ -65,42 +81,69 @@ public class BatchProcessingServer extends Thread {
 
 	private String tnrsBaseUrl;
 	private HttpServer server;
-	private String hostUrl;
-	private static int staticCounter=0;
-	private final int nBits=4;
 
-	private HashMap<String, NameMatchingJob> job_ids = new HashMap<String, NameMatchingJob>();
-	private List<NameMatchingJob> jobs;
-	private int executing=0;
+	private HashMap<String, TnrsJob> job_ids = new HashMap<String, TnrsJob>();
+	private List<TnrsJob> jobs;
 	private SimpleDateFormat dateFormat;
+
 	private Vector<ExecutionThread> threads = new Vector<BatchProcessingServer.ExecutionThread>();
 	private String servicesUrl;
+	private String baseFolder;
+	private GNIParserInterface gni_interface;
+	private Properties properties;
+
+
+	static Logger log = Logger.getLogger(BatchProcessingServer.class);
 
 	public BatchProcessingServer(String tnrsBaseUrl, int port) throws Exception{
 
 		InetSocketAddress address = new InetSocketAddress(port);
 		server = HttpServer.create(address, 10);
-		jobs = Collections.synchronizedList( new LinkedList<NameMatchingJob>());
+		jobs = Collections.synchronizedList( new LinkedList<TnrsJob>());
 
-		dateFormat = new SimpleDateFormat("E MMM d yyyy h:m:s z");
-		Properties props = new Properties();
+		dateFormat = new SimpleDateFormat("E MMM d yyyy hh:mm:ss z");
+		properties = new Properties();
 
-		props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("tnrs.conf"));
-
-		this.tnrsBaseUrl= props.getProperty("tnrsUrl");
-		hostUrl= props.getProperty("hostUrl");
-		servicesUrl = props.getProperty("servicesUrl");
+		properties.load(new FileInputStream(System.getProperty("user.home")+"/.tnrs/tnrs.properties"));
+        
+		this.tnrsBaseUrl= properties.getProperty("tnrsUrl");
 
 
-		server.createContext("/submit_job", new SubmitRequestHttpHandler());
+		gni_interface = new GNIParserInterface(properties.getProperty("gni_parser_url"));
+		servicesUrl = properties.getProperty("servicesUrl");
+		baseFolder = "/tnrs-jobs/";
+		FileAppender appender = new DailyRollingFileAppender(new HTMLLayout(), "tnrs.html", "'.'yyyy-MM-dd");
+		log.addAppender(appender);
+
+		log.setLevel(Level.ALL);
+
+		server.createContext("/submit", new FileUploadHandler());
 		server.createContext("/status", new JobStatusRetriever()); 
 		server.createContext("/upload", new FileUploadHandler());  
 		server.createContext("/retrievedata", new ResultsChunkRetrieverHandler());
-		server.createContext("/group",new GroupRetriever());
+		server.createContext("/group",new GroupRetrieverHandler());
 		server.createContext("/download", new RemoteDownloadHandler());
-		server.createContext("/update_group", new GroupUpdater());
+		server.createContext("/updategroup", new GroupUpdater());
+		server.createContext("/support", new SupportHandler());
+		server.createContext("/downloaddirect", new DirectDownloader());
+		server.createContext("/serverStatus", new GetStatusHttphandler());
+		server.createContext("/parseNames",new NameParsingHandler());
+		server.createContext("/modifyJob", new JobManager());
+		server.createContext("/sources",new SourcesHandler());
+		server.createContext("/jobinfo", new JobInfoHandler(properties));
 		server.start();
 	}
+
+
+
+
+	/**
+	 * This main loop iterates over the submitted jobs and creates the corresponding threads 
+	 * that will carry the execution of each job segment.
+	 * 
+	 * 
+	 * 
+	 */
 
 
 	@Override
@@ -119,11 +162,19 @@ public class BatchProcessingServer extends Thread {
 				}
 
 
-				NameMatchingJob job = jobs.get(jobno % jobs.size());
+				TnrsJob job = jobs.get(jobno % jobs.size());
 				if(job.status().equalsIgnoreCase("idle")) {
 					ExecutionThread thread = new ExecutionThread(job);
 					threads.add(thread);
 					thread.start();
+				}else if(job.status().equalsIgnoreCase("stopped")) {
+					jobs.remove(job);
+					JobHelper.cleanJobData(baseFolder,job);
+					jobno=0;
+					continue;
+				}else if(job.status().equals("failed")){
+					sendFailedJobEmail(job);
+					job.setStatus("error");
 				}
 				jobno++;
 
@@ -132,9 +183,7 @@ public class BatchProcessingServer extends Thread {
 				if(jobs.size()==200) {
 
 					for(int i=0; i < threads.size();i++) {
-
 						threads.elementAt(i).join();
-
 					}
 					jobno=0;
 					threads.clear();
@@ -143,18 +192,77 @@ public class BatchProcessingServer extends Thread {
 				sleep(10);
 			}
 
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
+			log.error(ExceptionUtils.getFullStackTrace(e));
 			e.printStackTrace();
 		}
 	}
 
 
+
+	class JobManager implements HttpHandler{
+
+		@Override
+		public void handle(HttpExchange arg0) throws IOException {
+
+			try {
+				JSONObject command = (JSONObject) JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
+
+				String job_id = command.getString("job_id");
+
+				TnrsJob job = null;
+
+				for(TnrsJob jobc: jobs) {
+					if(jobc.getRequest().getId().equals(job_id)) {
+						job = jobc;
+						break;
+					}
+				}
+
+				if(job==null) {
+					HandlerHelper.writeResponseRequest(arg0, 500, "Invalid job identifier", "text/plain");
+				}
+
+				if(command.getString("command").equals("stop")) {
+
+					synchronized (job) {
+						job.disable();
+					}
+
+
+				}else if (command.getString("command").equals("pause")){
+
+					synchronized (job) {
+						job.pause();
+					}
+
+
+				}else if (command.getString("command").equals("resume")){
+
+					synchronized (job) {
+						job.resume();
+					}
+
+
+				}else {
+					HandlerHelper.writeResponseRequest(arg0, 500, "Wrong command", "text/plain");
+					return;
+				}
+
+				HandlerHelper.writeResponseRequest(arg0, 200, "", "text/plain");
+			}catch(Exception ex) {
+				log.error(ExceptionUtils.getFullStackTrace(ex));
+
+			}
+		}
+
+	}
+
 	class ExecutionThread extends Thread{
 
-		NameMatchingJob job;
+		TnrsJob job;
 
-		public ExecutionThread(NameMatchingJob job) {
+		public ExecutionThread(TnrsJob job) {
 			this.job = job;
 		}
 
@@ -162,72 +270,65 @@ public class BatchProcessingServer extends Thread {
 		@Override
 		public void run() {
 			try {
+				StopWatch stp2 = new StopWatch();
+				stp2.start();
+				JSONObject json=new JSONObject();
 				job.setStatus("running");
 				if(job.progress()==100.0) {
 
-					synchronized (jobs) {
-						jobs.remove(job);
-					}
-
-					Email response = new HtmlEmail();
-					response.setHostName("localhost");
-					response.setSmtpPort(25);
-					response.setFrom("iplant-tnrs@iplantcollaborative.org");
-					response.setSubject("TNRS Job execution");
-
-
-					response.setMsg("Your TNRS job for the file "+job.getRequest().getOriginalFilename()+" completed on "+dateFormat.format(new Date())+". Your results will be available for 7 days, after which they will be deleted from our system. 	\n\n" + 
-							"To view your results, go to the TNRS website at http://ohmsford.iplantc.org/tnrs-standalone/, select the \"Retrieve results\" tab, and enter your email address and the following submission key:\n\n" + 
-
-							job.getRequest().getId()+"\n\n" + 
-							"Please contact us at support@iplantcollaborative.org if you have any difficulty retrieving your results.\n" + 
-							"\n" + 
-							"Thank you,\n" + 
-					"iPlant Collaborative");
-					response.addTo(job.getRequest().getEmail());
-					response.send();
+					finalizeJob(job);
+					return;
 				}
+				Vector<String> ids = new Vector<String>();
+				Vector<String> original_names = new Vector<String>(); 
 
-				URLCodec encoder = new URLCodec();
-				String cmd="cmd=tnrs_taxamatch&source=tropicos&str=";
 				String data = job.getNextDataBatch();
 
 				if(data==null || data.equals("")) return;
 
 				String[] lines= data.split("\n");
-				if(lines[0].equals("null")) {
-					return;
+
+				if(job.containsId()){
+					for(int i=0; i < lines.length;i++) {
+						if(lines[i].trim().equals("")) continue;
+						ids.add(NameUtil.getNameId(lines[i]));
+					}
 				}
 
-				String names="";
-				names+= encoder.encode(lines[0].replace(",", "").replace("null", ""));
-
-				for(int i=1; i < lines.length;i++) {
-					if(lines[i].trim().equals("")) continue;
-					names+= "," + encoder.encode(lines[i].replace(",", ""));
+				for(int i=0; i < lines.length;i++) {
+					original_names.add(NameUtil.processName(lines[i], job.containsId()));
 				}
 
+
+				String names = NameUtil.CleanNames(lines, job);
 
 				if(names.equals("")) return;
 
+				if(job.getType()==TnrsJob.NAME_MATCH_JOB) {
 
+					TaxamatchInterface taxa_match = new TaxamatchInterface(tnrsBaseUrl);
 
-				HttpClient client = new HttpClient();
+					String result =taxa_match.queryTaxamatch(names,job);
+					json = (JSONObject) JSONSerializer.toJSON(result);
 
-				PostMethod post = new PostMethod(tnrsBaseUrl);
+				}else if(job.getType()==TnrsJob.PARSING_JOB) {
 
-				post.setRequestEntity(new StringRequestEntity(cmd+names, "application/x-www-form-urlencoded", "UTF-8"));
+					json = gni_interface.parseNames(names);
+				}
+				if(job.outstandingNames()==0){
+					JobHelper.persistJobInfo(baseFolder,job);
+					
+				}
+				saveResults(job, json,ids,original_names,"");
 
-				client.executeMethod(post);
-
-
-				JSONObject json = (JSONObject) JSONSerializer.toJSON(post.getResponseBodyAsString());
-
-				saveResults(job, json);
+				
 				job.setStatus("idle");
-
+				stp2.stop();
+				log.info("overall :"+stp2.toString());
 			}
 			catch(Exception ex) {
+				log.error(ExceptionUtils.getFullStackTrace(ex));
+				job.setStatus("failed");
 				ex.printStackTrace();
 			}
 
@@ -237,6 +338,113 @@ public class BatchProcessingServer extends Thread {
 	}//thread
 
 
+	public void finalizeJob(TnrsJob job) throws Exception{
+		synchronized (jobs) {
+			jobs.remove(job);
+		}
+		
+		job.setStatus("complete");
+
+		if(job.email() && !job.getRequest().getEmail().trim().equals("tnrs@lka5jjs.orv")) {
+			job.setFinishedAt(new Date().toString());
+			job_ids.remove(job.getRequest().getId());
+			sendNormalCompletionEmail(job);
+
+		}
+
+	}
+
+
+
+
+	private void sendNormalCompletionEmail(TnrsJob job) throws Exception{
+
+		
+		EmailAttachment attachment = new EmailAttachment();
+		attachment.setPath(JobHelper.createJobInfoFile(job));
+		attachment.setDisposition(EmailAttachment.ATTACHMENT);
+		attachment.setDescription("Job information");
+		attachment.setName(job.getRequest().getFilename()+" "+job.getRequest().getId()+".txt");
+		MultiPartEmail response = new MultiPartEmail();
+		response.setHostName(properties.getProperty("org.iplantc.tnrs.mail.host"));
+		response.setSmtpPort(Integer.parseInt(properties.getProperty("org.iplantc.tnrs.mail.port")));
+		response.setFrom("iplant-tnrs@iplantcollaborative.org");
+		response.setSubject("TNRS Job completion");
+		response.setMsg("Your TNRS "+job.getTypeString()+" job for the file "+job.getRequest().getOriginalFilename()+" completed on "+dateFormat.format(new Date())+".Details describing the settings applied for this job are attached to this email. You may wish to retain this for your records. \n\n Your results will be available for 7 days, after which they will be deleted from our system. 	\n\n" + 
+				"To view your results, go to the TNRS website at http://tnrs.iplantcollaborative.org, select the \"Retrieve results\" tab, and enter your email address and the following submission key:\n\n" + 
+
+				job.getRequest().getId()+"\n\n" + 
+				"Please contact us at support@iplantcollaborative.org if you have any difficulty retrieving your results.\n" + 
+				"\n" + 
+				"Thank you,\n" + 
+				"iPlant Collaborative");
+		response.addTo(job.getRequest().getEmail());
+		response.attach(attachment);
+		response.send();
+
+	}
+
+	
+	private void sendFailedJobEmail(TnrsJob job) throws Exception{
+		if(!job.email()) return;
+		
+		HtmlEmail response = new HtmlEmail();
+		response.setHostName("localhost");
+		response.setSmtpPort(25);
+		response.setFrom("support@iplantcollaborative.org");
+		response.setSubject("TNRS Job failure");
+		response.setMsg("Your TNRS "+job.getTypeString()+" job for the file "+job.getRequest().getOriginalFilename()+" failed on "+dateFormat.format(new Date())+". Please provide the job key and if possible the name list you were runing so we can better help you diagnose the issue.	\n\n" + 
+			"The job key is:"+ 
+
+				job.getRequest().getId()+"\n\n" + 
+				"Thank you,\n" + 
+				"iPlant Collaborative");
+		response.addTo(job.getRequest().getEmail());
+		response.send();
+
+	}
+
+
+	class JobInfohandler implements HttpHandler {
+
+		@Override
+		public void handle(HttpExchange arg0) throws IOException {
+			try{
+				JSONObject request = (JSONObject) JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
+
+				String email = request.getString("email");
+				String key = request.getString("key");
+
+
+
+				for(int i=0; i < jobs.size();i++){
+					TnrsJob job = jobs.get(i);
+					if(job.getRequest().getId().equals(key) && job.getRequest().getEmail().equals(email)){
+						JSONObject json =(JSONObject)JSONSerializer.toJSON(job.toJsonString());
+						json.put("status","incomplete");
+						json.put("progress", job.progress());
+
+						HandlerHelper.writeResponseRequest(arg0, 200, json.toString(), "application/json");
+						return;
+					}
+				}
+				if(JobHelper.jobFileExists(baseFolder, email, key)){
+					TnrsJob job = JobHelper.readJobInfo(baseFolder, email, key);
+
+					HandlerHelper.writeResponseRequest(arg0, 200, job.toJsonString(), "application/json");
+				}else{
+					HandlerHelper.writeResponseRequest(arg0, 500, "No such job exists o it might have expired", "text/plain");
+				}
+
+			}catch(Exception ex){
+				log.error(ExceptionUtils.getFullStackTrace(ex));
+				throw new IOException(ex);
+			}
+		}
+
+
+	}
+
 	class FileUploadHandler implements HttpHandler{
 
 		@Override
@@ -244,20 +452,42 @@ public class BatchProcessingServer extends Thread {
 			try {
 
 
-				JSONObject datas = (JSONObject) JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
+				String request = IOUtils.toString(arg0.getRequestBody());
+				JSONObject datas = (JSONObject) JSONSerializer.toJSON(request);
+
+
+				UUID uid = UUID.randomUUID();
 
 				HashMap<String, String> info = new HashMap<String, String>();
 				info.put("email", datas.getString("email"));
-				info.put("institution", datas.getString("institution"));
-				info.put("name", datas.getString("name"));
-
-
+				info.put("institution", "");
+				info.put("name","");
+				info.put("sensitivity", datas.getString("sensitivity"));
+				info.put("has_id", datas.getString("has_id"));
+				info.put("id", uid.toString().replace("-", ""));
+				info.put("type", datas.getString("type"));
+				info.put("sources", datas.getString("sources"));
+				info.put("classification", datas.getString("classification"));
+				info.put("match_to_rank", datas.getString("match_to_rank"));
 				/***
 				 * 
 				 * To be replaced by better code
 				 */
 
-				byte[] data= IOUtils.toByteArray(new GZIPInputStream(new Base64InputStream(new ByteArrayInputStream(datas.getString("upload").getBytes()))));
+
+				byte[] data=null;
+
+				if(datas.has("upload")){
+
+					data = IOUtils.toByteArray(new GZIPInputStream(new Base64InputStream(new ByteArrayInputStream(datas.getString("upload").getBytes()))));
+				}else if(datas.has("names")){
+					data = datas.getString("names").getBytes();
+				}else{
+					HandlerHelper.writeResponseRequest(arg0, 500, "Invalid request!",null);
+					return;
+				}
+
+
 
 				UniversalDetector detector = new UniversalDetector(null);
 
@@ -266,7 +496,7 @@ public class BatchProcessingServer extends Thread {
 				detector.dataEnd();
 				String content="";
 				String encoding = detector.getDetectedCharset();
-				System.out.println(encoding);
+
 				if (encoding != null) {
 					if(encoding.equals("WINDOWS-1252")){
 						encoding="ISO-8859-1";
@@ -287,8 +517,9 @@ public class BatchProcessingServer extends Thread {
 					content =new String(data,"UTF-8");
 				}
 
-				System.out.println(content);
+
 				info.put("upload", content);
+
 
 				/**
 				 * 
@@ -299,28 +530,32 @@ public class BatchProcessingServer extends Thread {
 
 				json.put("submitted_date",new Date().toString().replace(":", ""));
 				json.put("original", datas.getString("file_name"));
-				NameMatchingJob job = submitJob(json.toString());
+				json.put("sensitivity",datas.getString("sensitivity"));
+				
+				TnrsJob job = submitJob(json.toString());
+				job.setTaxonomic(datas.getBoolean("taxonomic"));
+				job.setEmail(!info.containsKey("noemail"));
+				job.setSources(info.get("sources"));
+				job.setClassification(info.get("classification"));
+				job.setAllowPartial(Boolean.parseBoolean(info.get("match_to_rank")));
+				
+				log.info(job.getRequest().getId()+"  "+job.getRequest().getEmail());
 
+				HandlerHelper.writeResponseRequest(arg0, 200, job.getRequest().getId(),null);
 
-				writeResponseRequest(arg0, 200, null);
+				if(info.get("email").trim().equals("tnrs@lka5jjs.orv") || !job.email()) return;
 
+				try {
 
-				Email response = new HtmlEmail();
-				response.setHostName("localhost");
-				response.setSmtpPort(25);
-				response.setFrom("iplant-tnrs@iplantcollaborative.org");
-				response.setSubject("TNRS Job submission");
-				response.setMsg("Your TNRS job ("+job.getRequest().getOriginalFilename()+") was successfully submitted on "+dateFormat.format(new Date())+". \n\n" + 
-						"When your list is done processing, you will receive an email notification that contains instructions regarding retrieval of your results from the TNRS website at http://ohmsford.iplantc.org/tnrs-standalone/.\n\n"+
-						"Please contact us at support@iplantcollaborative.org if you have any difficulty retrieving your results. <br/>\n" + 
-						"\n<br/>" +
-						job.getRequest().getId()+"<br/><br/>"+
-						"Thank you, \n" + 
-				"iPlant Collaborative"); 
-				response.addTo(json.getString("email"));
-				response.send();
+					
+					sendSubmissionEmail(job);
 
+				}catch(Exception ex) {
+					log.error(ExceptionUtils.getFullStackTrace(ex));
+					ex.printStackTrace();
+				}
 			}catch(Exception ex) {
+				log.error(ExceptionUtils.getFullStackTrace(ex));
 				ex.printStackTrace();
 				throw new IOException(ex);
 			}
@@ -329,181 +564,90 @@ public class BatchProcessingServer extends Thread {
 
 
 		public JSONObject createJSONJobRequest(HashMap<String, String> data) throws Exception{
-
 			JSONObject json = new JSONObject();
 
 			json.put("institution", data.get("institution").trim());
 			json.put("name", data.get("name").trim());
 			json.put("email", data.get("email").trim());
-			json.put("file_name", persistFileData(data.get("upload"),data.get("email").trim()));
-
+			json.put("file_name", persistFileData(data.get("upload"),data.get("email").trim(),data.get("id")));
+			json.put("has_id", Boolean.parseBoolean(data.get("has_id")));
+			json.put("id", data.get("id"));
+			json.put("type", data.get("type"));
 			return json;
 		}
 
 
 
 
-		public String persistFileData(String contents,String email) throws Exception {
-
-			File user_dir = new File("/tnrs-jobs/"+email.replace("@","-").replace(".", "-"));
+		public String persistFileData(String contents,String email,String id) throws Exception {
+			File user_dir = new File(baseFolder+email.replace("@","-").replace(".", "-"));
 
 			if(!user_dir.exists()) {
 				user_dir.mkdir();
 			}
 
-			UUID uid = UUID.randomUUID();
-
-			String filename = user_dir.getAbsolutePath()+"/"+uid.toString().replace("-", "")+new Date().toString().replaceAll("[ |:]", "")+".csv";
+			String filename = user_dir.getAbsolutePath()+"/"+id+new Date().toString().replaceAll("[ |:]", "")+".csv";
 
 			OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(filename, true),"UTF-8");
 			BufferedWriter bwr = new BufferedWriter(osw,600000);
-			bwr.write(contents.trim());
+			bwr.write(contents.replaceAll("\\p{Cf}", "").replace("\r\n","\n").replace("\r", "\n"));
 			bwr.close();
 			return filename;
 
 		}
 	}
 
+	
+	public void sendSubmissionEmail(TnrsJob job) throws Exception{
+		
 
-
-
-
-	private void saveResults(NameMatchingJob job, JSONObject results) throws Exception{
-
-		String folder_name = "/tnrs-jobs/"+job.getRequest().getEmail().replace("@","-").replace(".", "-");
-
-		String filename="result"+job.getRequest().getId()+"";
-		File rsFile = new File(folder_name+"/"+filename);
-		boolean header=false;
-
-
-		if(!rsFile.exists()) {
-			header=true;
+		String job_type = "";
+		if(job.getType()==TnrsJob.NAME_MATCH_JOB){
+			job_type=" matching ";
+		}else{
+			job_type=" parsing ";
 		}
-
-		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(rsFile, true),"UTF-8");
-		BufferedWriter result_file = new BufferedWriter(osw,600000);
-
-		JSONArray array = taxamatchToIplantFormat(results,job.getCurrentBatch()-1);
-
-		result_file.write(jsonToCsv(array.getJSONObject(0), header)+"\n");
-
-		for(int i=1; i < array.size(); i++) {
-			result_file.write(jsonToCsv(array.getJSONObject(i),false)+" \n");
-		}
-
-		result_file.close();
+		
+		Email response = new HtmlEmail();
+		
+		response.setHostName("localhost");
+		response.setSmtpPort(25);
+		response.setFrom("iplant-tnrs@iplantcollaborative.org");
+		response.setSubject("TNRS Job submission");
+		response.setMsg("Your TNRS "+job_type+" job ("+job.getRequest().getOriginalFilename()+") was successfully submitted on "+dateFormat.format(new Date())+". \n\n" + 
+				"When your list is done processing, you will receive an email notification that contains instructions regarding retrieval of your results from the TNRS website at http://tnrs.iplantcollaborative.org/.\n\n"+
+				"Please contact us at support@iplantcollaborative.org if you have any difficulty retrieving your results. \n" + 
+				"\n\n You can check the status of your job in the 'Retrieve results' tab of the application using your email and the following key:  " +
+				job.getRequest().getId()+".\n\nTo update the status for your job in progress, please select the 'Retrieve results' button again. Your progress will update at this time.\n\n"+
+				"Thank you, \n" + 
+				"iPlant Collaborative"); 
+		response.addTo(job.getRequest().getEmail());
+		response.send();
 	}
 
 
-	private JSONArray taxamatchToIplantFormat(JSONObject json,int batch) {
 
+	private void saveResults(TnrsJob job, JSONObject results,Vector<String> ids,Vector<String> original_names,String session_id) throws Exception{
 
-		JSONArray data = json.getJSONArray("data");
-
-		JSONArray outputArray = new JSONArray();
-
-		long group = (batch)*100;
-		for(int i=0; i < data.size(); i++) {
-
-			JSONArray cur_array = data.getJSONArray(i);
-
-
-			for(int k=0; k < cur_array.size();k++) {
-				JSONObject cur_result = cur_array.getJSONObject(k);
-				JSONObject item = new JSONObject();
-
-				item.put("group", group);
-				item.put("acceptedAuthor",cur_result.optString("Accepted_author","").toString().replace("null", ""));
-				item.put("nameSubmitted", cur_result.optString("ScientificName_submitted","").toString().replace("null", ""));
-				item.put("url", cur_result.optString("NameSourceUrl","").replace("\\", "").toString().replace("null", ""));
-				item.put("nameScientific", cur_result.optString("Lowest_scientificName_matched","").toString().replace("null", ""));
-				item.put("scientificScore",cur_result.optString("Lowest_sciName_matched_score", "").toString().replace("null", ""));
-				item.put("matchedFamily", cur_result.optString("Family_matched", "").toString().replace("null", ""));
-				item.put("matchedFamilyScore", cur_result.optString("Family_matched_score", "").toString().replace("null", ""));
-				item.put("authorAttributed", cur_result.optString("Canonical_author","").toString().replace("null", ""));
-				item.put("family", cur_result.optString("Accepted_family","").toString().replace("null", ""));
-				item.put("genus",cur_result.optString("Genus_matched","").toString().replace("null", ""));
-				item.put("genusScore",cur_result.optString("Genus_matched_score", "").toString().replace("null", ""));
-				item.put("speciesMatched", cur_result.optString("SpecificEpithet_matched", "").toString().replace("null", ""));
-				item.put("speciesMatchedScore", cur_result.optString("SpecificEpithet_matched_score", "").toString().replace("null", ""));
-				item.put("infraspecific1Rank", cur_result.optString("infraspecific1Rank", "").toString().replace("null", ""));
-				item.put("infraspecific1Epithet",  cur_result.optString("infraspecific1Epithet", "").toString().replace("null", ""));
-				item.put("infraspecific1EpithetScore",  cur_result.optString("infraspecific1Score", "").toString().replace("null", ""));
-				item.put("infraspecific2Rank", cur_result.optString("infraspecific2Rank", "").toString().replace("null", ""));
-				item.put("infraspecific2Epithet",  cur_result.optString("infraspecific2Epithet", "").toString().replace("null", ""));
-				item.put("infraspecific2EpithetScore",  cur_result.optString("infraspecific2EpithetScore", "").toString().replace("null", ""));
-				item.put("epithet", cur_result.optString("SpecificEpithet_matched","").toString().replace("null", ""));
-				item.put("epithetScore", cur_result.optString("SpecificEpithet_matched_score","").toString().replace("null", ""));
-				item.put("author",cur_result.optString("Author_matched","").toString().replace("null", "") );
-				item.put("authorScore",cur_result.optString("Author_matched_score", "").toString().replace("null", ""));
-				item.put("annotation", cur_result.optString("Status", "").toString().replace("null", ""));
-				item.put("unmatched", cur_result.optString("Unmatched", "").toString().replace("null", ""));
-				item.put("overall", cur_result.optString("Overall_match_score", "").toString().replace("null", ""));
-				item.put("acceptedName",cur_result.optString("Accepted_name", "").replace("null", ""));
-
-
-
-				if(cur_result.optString("Acceptance", "").replace("null", "").trim().equalsIgnoreCase("A")) {
-					item.put("acceptance","Accepted" );
-				}else if(cur_result.optString("Acceptance", "").replace("null", "").trim().equalsIgnoreCase("S")) {
-					item.put("acceptance","Synonym" );
-				}else {
-					item.put("acceptance","No opinion" );
-				}
-				item.put("familySubmitted", cur_result.optString("family", "").replace("null", "") );
-
-				if(k==0) {
-					item.put("selected", new Boolean(true));
-				}else {
-					item.put("selected", new Boolean(false));
-				}
-
-
-				item.put("groupSize",cur_array.size());
-
-				item.put("acceptedNameUrl",  cur_result.optString("Accepted_name_SourceUrl", "").toString().replace("null", ""));
-
-				outputArray.add(item);
-			}
-
-			group++;
-
+		if(job.getType()==TnrsJob.PARSING_JOB){
+			ParsingResultsFile csv = new ParsingResultsFile(job, baseFolder);
+			csv.writeJsonData(results.getJSONArray("parsedNames"),ids);
+			
+		}else {
+			MatchingResultsFile csv = new MatchingResultsFile(job, baseFolder,session_id,false);
+			TNRSResultsTransformer transformer = new TNRSResultsTransformer();
+			JSONArray results_array = transformer.transform(results,job,ids,original_names); 
+			csv.writeJsonData(results_array, ids);
+			csv.close();
 		}
 
-
-
-		return outputArray;
 	}
 
-	private String jsonToCsv(JSONObject item, boolean header) {
 
-		StringBuffer buffer = new StringBuffer();
-		Vector<String> header_names = new Vector<String>(item.keySet());
-
-		if(header) {
-
-			buffer.append(header_names.elementAt(0));
-
-			for(int i=1; i < header_names.size(); i++) {
-				buffer.append("\t ");
-				buffer.append(header_names.elementAt(i)+" ");
-			}
-
-			buffer.append("\n");
-		}
+	
+	
 
 
-		buffer.append(item.getString(header_names.elementAt(0)));
-
-		for(int i=1; i < header_names.size(); i++) {
-			buffer.append("\t ");
-			buffer.append(item.getString(header_names.elementAt(i)));
-
-		}
-
-		return buffer.toString();
-	}
 
 
 
@@ -512,19 +656,19 @@ public class BatchProcessingServer extends Thread {
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
 			try {
-				String address = arg0.getRequestURI().toString();
-				String[] components = address.split("/");
+				String message="<html><body><table border=\"1\"><tr><th>Email</th><th>Submitted at:</th><th>Progress:</th><th>Status:</th><th>Job id</th></tr>";
+				for (int i=0; i < jobs.size(); i++) {
+					TnrsJob job = jobs.get(i);
 
-				NameMatchingJob job = job_ids.get(components[2]);
-
-				String message = "<html><body> "+job.getRequest().getEmail() + "<br/> Submitted at: " + job.getSubmissionDate()+" <br/> Progress:" + job.progress() +"% <br/> Status: "+ job.status();
-
-				writeResponseRequest(arg0, 200, message);
+					message += "<tr> <td> "+job.getRequest().getEmail() + "</td><td>" + job.getSubmissionDate()+" </td><td> " + job.progress() +"% </td><td>  "+ job.status()+"</td><td>"+job.getRequest().getId()+"</td></tr>\n";
+				}
+				message+="</table>";
+				HandlerHelper.writeResponseRequest(arg0, 200, message,"text/html");
 
 			}catch(Exception ex) {
+				log.error(ExceptionUtils.getFullStackTrace(ex));
 				throw new IOException(ex);
 			}
-
 		}
 
 	}
@@ -536,98 +680,56 @@ public class BatchProcessingServer extends Thread {
 
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
-
-			int k=0;
 			try {
-				String value = IOUtils.toString(arg0.getRequestBody());
 
-				String[] options = value.split("#");
-
-				String email = options[2];
-				String key= options[3];
-
-				String filename ="/tnrs-jobs/"+email.replace("@","-").replace(".", "-")+"/result"+key;
+				JSONObject json = (JSONObject)JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
 
 
-				BufferedReader rd = new BufferedReader(new FileReader(filename),204800);
-				BufferedWriter wr = new BufferedWriter(new FileWriter("/tmp/csv"+key+".csv"));
+				String email = json.getString("email");
+				String key= json.getString("key");
+				String session_id = json.getString("session_id");
 
+				TnrsJob job = JobHelper.readJobInfo(baseFolder,email, key);
 
-				String line="";
+				if(job.getType()==TnrsJob.PARSING_JOB) {
 
-				String separator="\t";
-				if(options[1].equals("Detailed")) {
-					wr.write("group"+separator+"nameSubmitted"+separator+"overallScore"+separator+"nameMatched"+separator+"nameMatchedScore"+separator+"nameMatchedAuthor"+separator+"nameMatchedUrl"+separator+"authorMatched"+separator+"" +
-							"authorMatchedScore"+separator+"familyMatched"+separator+"familyMatchedScore"+separator+"genusMatched"+separator+"genusMatchedScore"+separator+"speciesMatched"+separator+"speciesMatchedScore"+separator+"" +
-							"infraspecific1Rank"+separator+"infraspecific1Matched"+separator+"infraspecific1MatchedScore"+separator+"infraspecific2Rank"+separator+"infraspecific2RankMatched"+separator+"" +
-							"infraspecific2RankMatchedScore"+separator+"annotation"+separator+"unmatchedTerms"+separator+"selected"+separator+"acceptance"+separator+"acceptedFamily"+separator+"acceptedName"+separator+"acceptedNameAuthor"+separator+"" +
-					"acceptedNameUrl\n");
-					rd.readLine();
+					ParsingResultsFile results = new ParsingResultsFile(job, baseFolder);
+
+					results.createFileForDownload(properties.getProperty("org.iplantc.folder.tmp"));
+					
 				}else {
-					String[] head=rd.readLine().split("\t");
-					wr.write("nameSubmitted"+separator+"nameMatched"+separator+"nameMatchedAuthor"+separator+"overallScore"+separator+"acceptance"+separator+"acceptedName"+separator+"acceptedNameAuthor"+"\n");
+
+					MatchingResultsFile results = new MatchingResultsFile(job, baseFolder,session_id,false);
+
+					results.createFileForDownload(properties.getProperty("org.iplantc.tnrs.folder.tmp"),json);
+
+					results.close();
 				}
 
-				while(true) {
-					line = rd.readLine();
-					if(line==null) break;
-					line =line.replace("\"", "");
-					String[] data = line.split("\t");
-					if(options[0].equals("All matches") && options[1].equals("Detailed")) {
-
-						wr.write(data[0]+separator+data[2]+separator+data[26]+separator+data[4]+separator+data[5]+separator+data[8]+separator+data[3]+separator+data[22]+separator+data[23]+separator+data[6]+separator+data[7]+separator+data[10]+separator+data[11]+separator+data[12]+separator+data[13]+separator+data[14]+separator+data[15]+separator+data[16]+separator+data[17]+separator+data[18]+separator+data[19]+separator+data[24]+separator+data[25]+separator+data[30]+separator+data[28]+separator+data[9]+separator+data[27]+separator+data[1]+separator+data[32]+"\n");
-						continue;
-
-					}
-
-					k++;
-					if(options[0].equals("Best matches only") && options[1].equals("Detailed")) {
-
-						if(data[30].toLowerCase().trim().equals("true")) {
-							wr.write(data[0]+separator+data[2]+separator+data[26]+separator+data[4]+separator+data[5]+separator+data[8]+separator+data[3]+separator+data[22]+separator+data[23]+separator+data[6]+separator+data[7]+separator+data[10]+separator+data[11]+separator+data[12]+separator+data[13]+separator+data[14]+separator+data[15]+separator+data[16]+separator+data[17]+separator+data[18]+separator+data[19]+separator+data[24]+separator+data[25]+separator+data[30]+separator+data[28]+separator+data[9]+separator+data[27]+separator+data[1]+separator+data[32]+"\n");
-							continue;
-						}
-					}
-
-					if(options[0].equals("Best matches only") && options[1].equals("Simple")) {
-
-						if(data[30].toLowerCase().trim().equals("true")) {
-							wr.write(data[2]+separator+data[4]+separator+data[8]+separator+data[26]+separator+data[28]+separator+data[27]+separator+data[1]+"\n");
-							continue;
-						}
-
-
-					}
-					if(options[0].equals("All matches") && options[1].equals("Simple")) {
-
-						wr.write(data[2]+separator+data[4]+separator+data[8]+separator+data[26]+separator+data[28]+separator+data[27]+separator+data[1]+"\n");
-						continue;
-					}
-
-
-				}
-
-				wr.flush();
-				wr.close();
 
 				String url=servicesUrl+"getcsv?id="+key;
 
-
-
-				arg0.sendResponseHeaders(200, url.getBytes().length);
-
-				BufferedWriter wr2 = new BufferedWriter(new OutputStreamWriter(arg0.getResponseBody()));
-				wr2.write(url);
-				wr2.close();
-
+				HandlerHelper.writeResponseRequest(arg0, 200, url,null);
 			}catch(Exception ex) {
+				log.error(ExceptionUtils.getFullStackTrace(ex));
 				ex.printStackTrace();
-				System.out.println(k);
+
 			}
 
 		}
 
 	}
+
+	/*class ShutdownHandler extends HttpHandler {
+
+		@Override
+		public void handle(HttpExchange arg0) throws IOException {
+
+		}
+
+	}*/
+
+
 
 
 
@@ -638,16 +740,44 @@ public class BatchProcessingServer extends Thread {
 
 			try {
 
-				submitJob(IOUtils.toString(arg0.getRequestBody()));
+				JSONObject json = (JSONObject)JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
 
-				arg0.setAttribute("Content-type", "application/json");
-				arg0.sendResponseHeaders(200, 0);
+				String contents = json.getString("names");
 
-				BufferedWriter bwr = new BufferedWriter(new OutputStreamWriter(arg0.getResponseBody()));
+				byte[] fileContents = contents.getBytes("UTF-8");
 
-				bwr.close();
+				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+
+				GZIPOutputStream gzipStr = new GZIPOutputStream(byteArray);
+
+				gzipStr.write(fileContents);
+				gzipStr.close();
+
+				ByteArrayOutputStream byteArray2 = new ByteArrayOutputStream();
+
+				Base64OutputStream base64 = new Base64OutputStream(byteArray2);
+
+				base64.write(byteArray.toByteArray());
+				base64.close();
+
+				String value = new String(byteArray2.toByteArray());
+
+				json.remove("names");
+				json.put("upload", value);
+
+				HttpClient client = new HttpClient();
+
+
+				PostMethod post = new PostMethod("http://"+properties.getProperty("org.iplantc.tnrs.servicesHost")+"/tnrs-svc/upload");
+				
+				post.setRequestEntity(new StringRequestEntity(json.toString(),"text/plain","UTF-8"));
+
+				client.executeMethod(post);
+				
+				HandlerHelper.writeResponseRequest(arg0, 200, "", "text/plain");
 
 			}catch(Exception ex) {
+				log.error(ExceptionUtils.getFullStackTrace(ex));
 				ex.printStackTrace();
 				throw new IOException(ex);
 			}
@@ -657,19 +787,21 @@ public class BatchProcessingServer extends Thread {
 	}
 
 
-	public NameMatchingJob submitJob(String jsons) throws Exception{
-
+	public TnrsJob submitJob(String jsons) throws Exception{
 		JSONObject json = (JSONObject) JSONSerializer.toJSON(jsons);
+		boolean emailr =false;
 
-		NameMatchingRequest request = new NameMatchingRequest(json.getString("email"), json.getString("file_name"),json.getString("original"));
-		NameMatchingJob job = new NameMatchingJob(request,json.getString("submitted_date"));
+		TnrsJobRequest request = new TnrsJobRequest(json.getString("email"), json.getString("file_name"),json.getString("original"),emailr);
+		TnrsJob job = new TnrsJob(request,new Date().toString(),json.getString("type"));
+		job.setSensitivity(Double.parseDouble(json.getString("sensitivity").toLowerCase().trim()));
+		job.setTnrs_version(properties.getProperty("org.iplantc.tnrs.version"));
 		synchronized (jobs) {
 			jobs.add(job);
 		}
 		job_ids.put(request.getId(), job);
-
+		job.setContainsId(json.getBoolean("has_id"));
 		job.setStatus("idle");
-
+		job.getRequest().setId(json.getString("id"));
 
 		return job;
 
@@ -680,11 +812,10 @@ public class BatchProcessingServer extends Thread {
 
 
 	public static void main(String[] args) throws Exception{
-
 		BatchProcessingServer server = new BatchProcessingServer("", 14445);
-
+		System.out.println("Starting server....");
 		server.start();
-
+		System.out.println("Done...");
 		server.join();
 
 	}
@@ -706,22 +837,28 @@ public class BatchProcessingServer extends Thread {
 
 				for(int i=0; i < jobs.size(); i++) {
 
-					NameMatchingJob job = jobs.get(i);
+					TnrsJob job = jobs.get(i);
+
 
 					if(job.getRequest().getEmail().equals(email) && job.getRequest().getId().equals(key)) {
-						result.put("type", "incomplete");
-						result.put("progress", job.progress());
-						arg0.sendResponseHeaders(200, result.toString().getBytes().length);
-						BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(arg0.getResponseBody(),"UTF-8"));
-						wr.write(result.toString());
-						wr.close();
+						if(job.status().equals("failed")|| job.status().equals("error")){
+							result.put("type", "failed");
+						}else{
+							result.put("type", "incomplete");
+							double progress=job.progress();
+							if(job.progress()==100.0){
+								progress=99.0;
+							}
+							result.put("progress", progress);
+						}
+						HandlerHelper.writeResponseRequest(arg0, 200, result.toString(), "application/json");
+
 						return;
 
 					}
 				}
 
-
-				String filename ="/tnrs-jobs/"+email.replace("@","-").replace(".", "-")+"/result"+key;
+				String filename =baseFolder+email.replace("@","-").replace(".", "-")+"/result"+key;
 
 				File results = new File(filename);
 
@@ -729,17 +866,17 @@ public class BatchProcessingServer extends Thread {
 					result.put("type", "non-existent");
 				}else {
 					result.put("type", "complete");
+					TnrsJob job = JobHelper.readJobInfo(baseFolder,email, key);
+
+					result.put("job_type", job.getTypeString());
 				}
 
 
+				HandlerHelper.writeResponseRequest(arg0, 200, result.toString(), "application/json");
 
-				arg0.sendResponseHeaders(200, result.toString().getBytes().length);
-				BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(arg0.getResponseBody(),"UTF-8"));
-				wr.write(result.toString());
-				wr.close();
 				return;
 			}catch(Exception ex ) {
-				ex.printStackTrace();
+				log.error(ExceptionUtils.getFullStackTrace(ex));
 				throw new IOException(ex);
 			}
 
@@ -748,340 +885,100 @@ public class BatchProcessingServer extends Thread {
 	}
 
 
-	class ResultsChunkRetrieverHandler implements HttpHandler {
 
-		@Override
-		public void handle(HttpExchange arg0) throws IOException {
-			try {
-				String jsons = IOUtils.toString(new InputStreamReader(arg0.getRequestBody(),"UTF-8"));
-
-				JSONObject json = (JSONObject)JSONSerializer.toJSON(jsons);
-
-				String email = json.getString("email");
-				String key = json.getString("key");
-				int start = json.getInt("start");
-				int how_many = json.getInt("how_many");
-
-				//System.out.println(jsons);
-
-				String filename ="/tnrs-jobs/"+email.replace("@","-").replace(".", "-")+"/result"+key;
-
-				File results = new File(filename);
-
-				if(!results.exists()) {
-					writeResponseRequest(arg0, 200, " ");
-				}
-
-				BufferedReader rd = new BufferedReader(new FileReader(results),60000);
-
-				int c=0;
-
-				String[] header = rd.readLine().split("\t");
-
-				String line ="";
-
-				int l=0;
-
-				JSONObject json_res = new JSONObject();
-
-				JSONArray array = new JSONArray();
-				int k=0;
-				String group ="";
-				while(true) {
-					line=rd.readLine();
-					if(line==null) break;
-					if(line.endsWith("\t")) {
-						line+=" ";
-					}
-					String[] values = line.split("\t");
-					if(!values[0].equals(group)) {
-						group = values[0];
-						k++;
-					}
-					if(values[30].trim().equals("true")) {
-						c++;
-					}
-					if(c>=start && c<(start+how_many) && values[30].trim().equals("true")) {
-						//System.out.println(c);
-
-						JSONObject res = new JSONObject();
-
-						res.put(header[0].trim(),values[0]);
-
-						for(int i=1; i < header.length; i++) {
-
-							res.put(header[i].trim(), values[i].trim());
-						}
-
-						array.add(res);
-					}
-
-
-				}
-
-				json_res.put("items", array);
-				json_res.put("total",k);
-
-
-				String result = json_res.toString();
-				//System.out.println(result);
-				arg0.sendResponseHeaders(200, result.getBytes().length);
-				arg0.setAttribute("Content-type", "application/json");
-
-				OutputStreamWriter owr = new OutputStreamWriter(arg0.getResponseBody(),"UTF-8");
-				BufferedWriter wr = new BufferedWriter(owr);
-				wr.write(result);
-				wr.flush();
-				wr.close();
-			}catch(Exception ex) {
-				ex.printStackTrace();
-				throw new IOException(ex);
-
-			}
-
-		}
-
-
-	}
 
 
 	class JobReporter implements HttpHandler {
 
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
-
-			JSONObject json = new JSONObject();
-			JSONArray array = new JSONArray();
-
-
-			for(int i=0; i < jobs.size(); i++) {
-				JSONObject job_info = new JSONObject();
-				NameMatchingJob job = jobs.get(i);
-
-				job_info.put("email", job.getRequest().getEmail());
-				job_info.put("progress",job.progress());
-
-				array.add(job_info);
-			}
-
-			json.put("jobs", array);
-
-			arg0.sendResponseHeaders(200, json.toString().getBytes().length);
-
-			BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(arg0.getResponseBody()));
-			wr.write(json.toString());
-			wr.flush();
-			wr.close();
-		}
-
-	}
-
-	class GroupRetriever implements HttpHandler {
-
-		@Override
-		public void handle(HttpExchange arg0) throws IOException {
 			try {
-				String jsons = IOUtils.toString(arg0.getRequestBody());
-
-				JSONObject json = (JSONObject)JSONSerializer.toJSON(jsons);
-
-				String email = json.getString("email");
-				String key = json.getString("key");
-				String group = json.getString("group");
-
-
-				//System.out.println(jsons);
-
-				String filename ="/tnrs-jobs/"+email.replace("@","-").replace(".", "-")+"/result"+key;
-
-				File results = new File(filename);
-
-				if(!results.exists()) {
-					writeResponseRequest(arg0, 500, "The requested job doesn't exist or might have already expired");
-					return;
-				}
-
-				BufferedReader rd = new BufferedReader(new FileReader(results),60000);
-
-				int c=0;
-
-				String[] header = rd.readLine().split("\t");
-
-				String line ="";
-
-				int l=0;
-
-				JSONObject json_res = new JSONObject();
-
+				JSONObject json = new JSONObject();
 				JSONArray array = new JSONArray();
-				int k=0;
 
-				while(true) {
-					line=rd.readLine();
-					if(line==null) break;
-					if(line.endsWith("\t")) {
-						line+=" ";
-					}
-					String[] values = line.split("\t");
+				for(int i=0; i < jobs.size(); i++) {
+					JSONObject job_info = new JSONObject();
+					TnrsJob job = jobs.get(i);
 
-					if(values[0].equals(group)) {
+					job_info.put("email", job.getRequest().getEmail());
+					job_info.put("progress",job.progress());
 
-
-						JSONObject res = new JSONObject();
-
-						res.put(header[0].trim(),values[0]);
-
-						for(int i=1; i < header.length; i++) {
-							if(header[i].trim().equals("selected")) {
-								res.put("selected", Boolean.parseBoolean(values[i]));
-								continue;
-							}
-							res.put(header[i].trim(), values[i].trim());
-						}
-
-						array.add(res);
-					}
-
-
+					array.add(job_info);
 				}
 
-				json_res.put("items", array);
-				json_res.put("total",k);
+				json.put("jobs", array);
 
-
-				String result = json_res.toString();
-
-				arg0.sendResponseHeaders(200, result.getBytes().length);
-				arg0.setAttribute("Content-type", "application/json");
-
-				BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(arg0.getResponseBody()));
-				wr.write(result);
-				wr.flush();
-				wr.close();
+				HandlerHelper.writeResponseRequest(arg0, 200, json.toString(),"application/json");
 			}catch(Exception ex) {
-				ex.printStackTrace();
+				log.error(ExceptionUtils.getFullStackTrace(ex));
 				throw new IOException(ex);
-
 			}
-
 		}
+
 	}
 
 
 
-	public void writeResponseRequest(HttpExchange exchange, int status, String response_body) throws Exception{
-
-		if(response_body==null) {
-			exchange.sendResponseHeaders(status,0);
-			exchange.getResponseBody().close();
-			return;
-		}
-
-
-		exchange.sendResponseHeaders(status, response_body.getBytes().length);
-		BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(exchange.getResponseBody()),40000);
-		wr.write(response_body);
-		wr.close();
-
-
-	}
-
-
-	class GroupUpdater implements HttpHandler {
+	class SupportHandler implements HttpHandler {
 
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
 			try {
 				String jsons = IOUtils.toString(arg0.getRequestBody());
 
-				//System.out.println(jsons);
-
 				JSONObject json = (JSONObject)JSONSerializer.toJSON(jsons);
-
-				String email = json.getString("email");
-				String key = json.getString("key");
-				String group = json.getString("group");
-				int position = json.getInt("selected");
-
-				//System.out.println("entering");
-
-				String filename ="/tnrs-jobs/"+email.replace("@","-").replace(".", "-")+"/result"+key;
-				String temp_filename ="/tnrs-jobs/"+email.replace("@","-").replace(".", "-")+"/result"+key+"temp";
-
-
-				File results = new File(filename);
-
-				if(!results.exists()) {
-					writeResponseRequest(arg0, 500, "No such job exists or your results might have already expired");
-					return;
-				}
-
-				File temp_file = new File(temp_filename);
-
-				BufferedReader rd = new BufferedReader(new FileReader(results),60000);
-				BufferedWriter wr = new BufferedWriter(new FileWriter(temp_file),80000);
-				int c=0;
-
-				String header_line =rd.readLine();
-				wr.write(header_line+"\n");
-				String[] header = header_line.split("\t");
-
-				String line ="";
-
-				int l=0;
-
-
-				int k=0;
-
-				while(true) {
-					line=rd.readLine();
-					if(line==null) break;
-					if(line.endsWith("\t")) {
-						line+=" ";
-					}
-					line = line.replace("\"", "");
-					String[] values = line.split("\t");
-
-					if(values[0].equals(group)) {
-						values[30]="false";
-
-						if(c==position) {
-							values[30]="true";
-						}
-
-						c++;
-						wr.write(values[0]);
-						for(int i=1; i < values.length;i++) {
-							wr.write("\t"+values[i]);
-						}
-
-						wr.write("\n");
-
-					}else {
-						wr.write(line+"\n");
-					}
-
-				}
-
-				wr.close();
-				rd.close();
-
-				results.delete();
-				temp_file = new File(temp_filename);
-				temp_file.renameTo(new File(filename));
-
-				//System.out.println("exiting");
-
-				arg0.sendResponseHeaders(200, 0);
-				arg0.getResponseBody().close();
-
-
+				if(!json.containsKey("valid")) return;
+				Email response = new SimpleEmail();
+				response.setHostName(properties.getProperty("org.iplantc.tnrs.mail.host"));
+				response.setSmtpPort(Integer.parseInt(properties.getProperty("org.iplantc.tnrs.mail.port")));
+				response.setFrom("support@iplantcollaborative.org");
+				response.setSubject("TNRS support Ticket");
+				response.setMsg("TNRS support ticket from: "+json.getString("name")+" ("+json.getString("email")+"). " +
+						"\n\n\n" + json.getString("contents")); 
+				response.addTo("support@iplantcollaborative.org");
+				response.send();
 			}catch(Exception ex) {
-				ex.printStackTrace();
+				log.error(ExceptionUtils.getFullStackTrace(ex));
 				throw new IOException(ex);
-
 			}
 
 		}
+
 	}
+
+
+	class DirectDownloader implements HttpHandler {
+
+		@Override
+		public void handle(HttpExchange arg0) throws IOException {
+			byte[] utf8b = org.apache.commons.io.ByteOrderMark.UTF_8.getBytes();
+
+			String l ="a\tb\tc\t\nb\th\tj\n";
+
+			ByteArrayOutputStream ous = new ByteArrayOutputStream();
+
+			ous.write(utf8b);
+			ous.write(l.getBytes("UTF-8"));
+			ous.close();
+
+			byte[] k = ous.toByteArray();
+
+			Headers hdrs = arg0.getResponseHeaders();
+
+			hdrs.set("Content-Type", "application/csv");
+			hdrs.set("Content-Disposition", "attachment; filename=genome.csv");
+			hdrs.set("Content-Encoding", "binary");
+			hdrs.set("Charset", "utf-8");
+
+			arg0.sendResponseHeaders(200, k.length);
+
+
+			arg0.getResponseBody().write(k);
+			arg0.getResponseBody().close();
+
+
+		}
+	}
+
+	
 }

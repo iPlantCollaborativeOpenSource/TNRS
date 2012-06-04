@@ -1,3 +1,4 @@
-tnrsUrl=http://testbed235.iplantc.org/taxamatch-webservice-read-only/api/taxamatch.php
-hostUrl=http://compson.iplantc.org:14444/
-servicesUrl=http://ohmsford.iplantc.org/svc/
+tnrsUrl=http://arjuna.iplantc.org/taxamatch-webservice-read-only/api/taxamatch.php
+hostUrl=http://testbed235.iplantc.org/tnrsm-svc/
+servicesUrl=http://testbed235.iplantc.org/tnrsm-svc/
+org.iplantc.tnrs.baseResultsFolder=/tnrs-jobs/
