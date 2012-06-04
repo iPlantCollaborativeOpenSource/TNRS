@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
+import org.mule.api.transport.PropertyScope;
 import org.mule.transformer.AbstractMessageAwareTransformer;
 
 public class DebugTransformer extends AbstractMessageAwareTransformer{
@@ -20,10 +21,11 @@ public class DebugTransformer extends AbstractMessageAwareTransformer{
 			throws TransformerException {
 		
 		try {
-		String ctype = message.getEncoding();
-		
-		
-		
+		String ctype = message.getOrginalPayload().toString();
+		message.setProperty("Content-type", "application/csv", PropertyScope.OUTBOUND);	
+		System.out.println(message.toString());
+		System.out.println(message.getProperty("http.request"));
+		System.out.println(message.getProperty("Content-type"));
 		
 		
 		return message;

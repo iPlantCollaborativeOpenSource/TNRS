@@ -30,13 +30,15 @@
 
     <http:connector name="HttpConn" serverSoTimeout="0" clientSoTimeout="0"   />
 
-    <context:property-placeholder location="tnrs_standalone.properties" />
+ 
+
+    <context:property-placeholder location="tnrs.properties" />
     
     <message-properties-transformer name="setCsvContentType">
         <delete-message-property key="content-type"/>
         <add-message-property key="Content-Type" value="application/csv"/>
         <add-message-property key="Content-Disposition" value="attachment;filename=tnrs_results.csv"/>
-        <add-message-property key="Charset" value="UTF-16LE" />
+        <add-message-property key="Charset" value="UTF-8" />
         <add-message-property key="Content-Transfer-Encoding" value="binary"/>
     </message-properties-transformer>
     
@@ -54,6 +56,7 @@
     <custom-transformer class="org.iplantc.tnrs.transform.PlainStringToCompressedBASE64Transformer" name="compressBody"/>
     <custom-transformer class="org.iplantc.tnrs.transform.TaxamatchOuputTransformer" name="TaxaMatchOutputTransformer" />
     <custom-transformer class="org.iplantc.tnrs.transform.DebugTransformer" name="debug"/>
+    <custom-transformer class="org.iplantc.tnrs.transform.DownloadPropertiesTransformer" name="download_properties"/>
     
     <spring:beans xmlns="http://www.springframework.org/schema/beans">
         
@@ -70,7 +73,7 @@
         
        <service name="submit query">
             <inbound>
-                <http:inbound-endpoint address="http://localhost:14444/submitNames" method="POST" synchronous="true" responseTransformer-refs="TaxaMatchOutputTransformer setJSONContentType">
+                <http:inbound-endpoint address="http://localhost:14444/submitNames" method="POST" synchronous="true" transformer-refs="debug" responseTransformer-refs="TaxaMatchOutputTransformer setJSONContentType">
                    <byte-array-to-string-transformer/>
                 </http:inbound-endpoint>
             </inbound>
@@ -127,7 +130,7 @@
 
         <service name="Return file data">
             <inbound>
-                <http:inbound-endpoint address="http://localhost:14444/getcsv" method="GET" contentType="application/x-www-form-urlencoded" responseTransformer-refs="setCsvContentType">
+                <http:inbound-endpoint address="http://localhost:14444/getcsv" method="GET" contentType="application/x-www-form-urlencoded" responseTransformer-refs="download_properties debug">
                     <custom-transformer name="myTransformer" class="org.mule.transport.http.transformers.HttpRequestBodyToParamMap" />
                 </http:inbound-endpoint>
             </inbound>

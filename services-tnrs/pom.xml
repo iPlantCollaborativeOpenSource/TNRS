@@ -265,6 +265,11 @@
             <version>${mule.version}</version>
         </dependency>
         
+       <dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.0.1</version>
+</dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
@@ -310,38 +315,20 @@
             <artifactId>opencsv</artifactId>
             <version>2.1</version>
         </dependency>
+	<dependency>
+                        <groupId>commons-codec</groupId>
+                        <artifactId>commons-codec</artifactId>
+                        <version>1.5</version>
+                </dependency>
     </dependencies>
     
     <repositories>
         <repository>
-            <id>iplantCollaborative</id>
+            <id>iplantCollabodrative</id>
             <name>iPlant Collaborative local repository</name>
-            <url>http://projects.iplantcollaborative.org/archiva/repository/internal/
-            </url>
+            <url>http://projects.iplantcollaborative.org/archiva/repository/internal/</url>
         </repository>
-	<repository>
-            <id>muleforge-repo</id>
-            <name>MuleForge Repository</name>
-            <url>http://repository.muleforge.org</url>
-            <layout>default</layout>
-        </repository>
-        
-<!--        <repository>
-            <id>codehaus-repo</id>
-            <name>Codehaus Repository</name>
-            <url>http://dist.codehaus.org/mule/dependencies/maven2</url>
-            <layout>default</layout>
-        </repository> -->
-    
-    
-
-    <repository>
-            <id>iplantCollaborative</id>
-            <name>iPlant Collaborative local repository</name>
-            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2/</url>
-        </repository>
-
-    
+	
     </repositories>
     
 </project>
