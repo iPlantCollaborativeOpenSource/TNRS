@@ -10,8 +10,8 @@
 
 	@require_once('config.php');
 	set_time_limit(0);
+	ini_set("memory_limit","128M");
 	$program_start = microtime();
-	debug("call_start");
 	
 	$expected=array(
 		  'cmd'
@@ -22,20 +22,25 @@
 		, 'search_mode'
 		, 'debug'
 		, 'source'
+		, 'classification'
 		, 'strip_ending'
 		, 'normalize'
 		, 'cache'
-		,	'layout'
-		,	'block_limit'
-		,	'max_distance'
+		, 'layout'
+		, 'block_limit'
+		, 'max_distance'
+		, 'parse_only'
 	); 
 	
 	// Initialize allowed variables
 	foreach ($expected as $formvar)
 		$$formvar = (isset(${"_$_SERVER[REQUEST_METHOD]"}[$formvar])) ? urldecode(${"_$_SERVER[REQUEST_METHOD]"}[$formvar]):NULL;
 
-	$source = (trim($source) == '' ? 'test1' : $source);
+	//$source = (trim($source) == '' ? 'test1' : $source);
+	$source = explode(",", $source);
+	//$classification = isset($classification) ? $classification : DEFAULT_CLASSIFICATION;
 	$cache = (trim($cache) == 'true') ? true: false;
+	$parse_only = (trim($parse_only) == 'true') ? true: false;
 
 	require_once('classes/class.mysqli_database.php');
 	require_once('classes/class.misc.php');
@@ -55,7 +60,7 @@
 
 		case 'normalize_auth':
 			require_once('classes/class.normalize.php');
-			$db = select_source( $source );
+			$db = select_source( $source, $classification);
 			$norm = new Normalize( $db );
 			$norm->set('post_fix', '_'.$source);
 			$norm->set('source', $source);
@@ -119,10 +124,9 @@
 			if($cache) {
 				$output = 'rest';
 			}
-			$db = select_source( $source );
+			$db = select_source( $source, $classification );
 			$data = array();
-			//$str=mb_convert_encoding($str, 'UTF-8');
-			$names = preg_split("/[\r\n;,]+/", $str);
+			$names = preg_split("/[\r\n;]+/", $str);
 			if (is_array($names)) {
 			foreach( $names as $name ) {
 				$tm = new Taxamatch($db);
@@ -153,10 +157,9 @@
 			if($cache) {
 				$output = 'rest';
 			}
-			$db = select_source( $source );
+			$db = select_source( $source, $classification );
 			$data = array();
-			//$str=mb_convert_encoding($str, 'UTF-8');
-			$names = preg_split("/[\r\n;,]+/u", $str);
+			$names = preg_split("/[\r\n;]+/u", $str);
 			if (is_array($names)) {
 			foreach( $names as $name ) {
 				$tm = new Taxamatch($db);
@@ -166,15 +169,11 @@
 				$tm->set('cache_path',CACHE_PATH);
 				$tm->set('name_parser',NAME_PARSER);
 				$tm->set('chop_overload',CHOP_OVERLOAD);
+				$tm->set('parse_only', $parse_only);
 
-				debug('taxamatch_start');
 				if ( $tm->process( $name, $search_mode, $cache )) {
-					debug("taxamatch_response_start");
 					$tm->generateResponse($cache);
-					debug("taxamatch_response_end");
 				}
-				debug("taxamatch_end");
-				//$data = array_merge($data, (array)($tm->getData($layout)));
 				$ta=new TnrsAggregator($db);
 				$ta->aggregate($tm);
 				$data[]=$ta->getData();
@@ -188,14 +187,14 @@
 			break;
 
 		case 'sources':
-			$sources = getSources();
-			$data = $sources;
+			$db = select_source( $source, $classification );
+			$data = $db->getSources();
 			break;
 
-		case 'sources':
-			$sources = getSources();
-			$data = $sources;
-			break;
+		//case 'sources':
+		//	$sources = getSources();
+		//	$data = $sources;
+		//	break;
 
 		default:
 			header('Content-type: application/json');
@@ -215,7 +214,6 @@
 			break;
 		default:
 			$program_end = microtime();
-			debug("call_end");
 			header('Content-type: application/json');
 			if ($_REQUEST['debug'] == 1) {
 				print_c( @json_encode( array( 'success' => true, 'duration'=>microtime_diff($program_start, $program_end), 'cache' => $cache, 'data' => $data, 'debug' => $debug ) ) );

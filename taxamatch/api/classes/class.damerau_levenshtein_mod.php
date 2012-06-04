@@ -50,7 +50,7 @@ class DamerauLevenshteinMod {
 	static function mdld_php( $p_str1, $p_str2, $p_block_limit = null, $max_distance ) {
 		$p_block_limit = is_null($p_block_limit) ? 1 : $p_block_limit;
 		$len1 = strlen($p_str1);$len2 = strlen($p_str2);
-		$current_distance = 10000;
+		$current_distance=$max_distance;
 
 		if($p_str1 == $p_str2) {
 			return 0;
@@ -88,6 +88,7 @@ class DamerauLevenshteinMod {
 				#populate remaining columns
 				for( $s = 1; $s<= $len1; $s++ ) {
 					$v_my_columns[$s][0] = $s;
+					$current=$max_distance;
 					
 					#populate each cell of one column:
 					for( $t = 1; $t<= $len2; $t++ ) {
@@ -161,9 +162,9 @@ if ($print) {
 							}
 							$v_temp_block_length -= 1;
 						}
-//						if ($current_distance > $v_my_columns[$s][$t]) $current_distance = $v_my_columns[$s][$t];
+						if ($current_distance > $v_my_columns[$s][$t]) $current_distance = $v_my_columns[$s][$t];
 					}
-					//if ($current_distance > $max_distance) return $current_distance;
+					if ($current_distance >= $max_distance) return $current_distance;
 				}
 			}
 

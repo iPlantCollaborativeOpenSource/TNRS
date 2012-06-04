@@ -34,6 +34,7 @@ Class Splitter
 		$this->genus = '';
 		$this->infraspecies=array();
 		$this->author = '';
+		$this->authors=array();
 			
 		if (isset($cnts->scientificName->details[0]->species->string)) {
 			$this->species = $cnts->scientificName->details[0]->species->string;
@@ -45,19 +46,29 @@ Class Splitter
 			}
 
 			if (isset($cnts->scientificName->details[0]->species->authorship)) {
-				$this->author = $cnts->scientificName->details[0]->species->authorship;				
-			} elseif (isset($cnts->scientificName->details[0]->infraspecies)) {
-				$infra=end($cnts->scientificName->details[0]->infraspecies);
-				if (isset($infra->authorship)) {
-					$this->author = $infra->authorship;
+				$this->authors[]=trim($cnts->scientificName->details[0]->species->authorship);
+			} else {
+				$this->authors[]='';
+			}
+
+			if (isset($cnts->scientificName->details[0]->infraspecies)) {
+				foreach ($cnts->scientificName->details[0]->infraspecies as $infra) {
+					if (isset($infra->authorship)) {
+						$this->authors[] = trim($infra->authorship);
+					} else {
+						$this->authors[]='';
+					}
 				}
 			}
 		} elseif (isset($cnts->scientificName->details[0]->uninomial->string)) {
 			$this->genus = $cnts->scientificName->details[0]->uninomial->string;
 			if (isset($cnts->scientificName->details[0]->uninomial->authorship)) {
-				$this->author = $cnts->scientificName->details[0]->uninomial->authorship;
+				$this->authors[] = trim($cnts->scientificName->details[0]->uninomial->authorship);
+			} else {
+				$this->authors[]='';
 			}
 		}
+		$this->author=end($this->authors);
 		$this->authors_years = $this->get_authorship();
   }
 	

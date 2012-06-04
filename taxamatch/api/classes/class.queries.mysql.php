@@ -17,16 +17,54 @@
 		 * @param mixed $db : database connection object
 		 * @param string $source : to select the project and database
 		 */
-		public function __construct( $db=null, $source ) {
+		public function __construct( $db=null, $source, $classification=null ) {
 			$this->db = $db;
-			$this->source = $source;
-			$this->post_fix = '_' . $source;
+			$source_res=$this->getSourceIDBySourceName($source);
+			$this->source_id=array();
+			foreach ($source_res as $so) {
+				$this->source_id[$so->sourceName]=$so->sourceID;
+			}
+			$this->source_name=array();
+			$this->source=array();
+			foreach ($source as $so) {
+				if (array_key_exists($so, $this->source_id)) {
+					$this->source_name[$this->source_id[$so]]=$so;
+					$this->source[]=$so;
+				}
+			}
+			$this->source_id_string=implode(",", array_values($this->source_id));
+			if (is_null($classification) && count($this->source) == 1) {
+				$classification=$this->source[0];
+			}
+			$this->classification=$classification;
+			if ($classification) {
+				if (isset($this->source_id[$classification])) {
+					$this->classification_id=$this->source_id[$classification];
+				} else {
+					$class_res=$this->getSourceIDBySourceName(array($classification));
+					if(count($class_res)) {
+						$this->classification_id=$class_res[0]->sourceID;
+					}
+				}
+			}
+			//$this->post_fix = '_' . $source;
+		}
+
+		public function getSourceIDBySourceName ($source) {
+			foreach ($source as &$so) {
+				$so="'" . mysql_escape_string($so) . "'";
+			}
+			$query=sprintf("SELECT sourceID, sourceName from source WHERE sourceName IN ( %s )", implode(",", $source));
+			$res=$this->db->query_all($query);
+			if (is_null($res)) {
+				$res=array();
+			}
+			return $res;
 		}
 
 		/**
 		 * User in Normalize Auth to find full name from abrrivated author
 		 * @param string $this_word : Abbrevated Author
-		 */
 		public function get_auth_full( $this_word ) {
 		
 			$value = null;			
@@ -38,230 +76,8 @@
 			return( $value->auth_full );
 			
 		}
-		
-		/**
-		 * Select details from the genus and species list
-		 * @param string $search_mode : normal / rapid / no_shaping
-		 * @param mixed $this_near_match_genus
-		 * @param mixed $this_near_match_species
-		 * @param integer $this_genus_length
-		 * @param integer $this_genus_start
-		 * @param integer $this_genus_end
-		 * @return mixed
 		 */
-		public function genus_cur($search_mode, $this_near_match_genus, $this_near_match_species, $this_genus_length,$this_genus_start,$this_genus_end) {
-
-
-/*			$query = sprintf("SELECT distinct A.genus_id, A.genus, A.near_match_genus, A.search_genus_name FROM genlist%s A ",mysql_escape_string($this->post_fix));
-
-			if(!is_null($this_near_match_species) && $this_near_match_species!='') {
-				$query .= sprintf(", splist%s B ",mysql_escape_string($this->post_fix));
-			}
-
-			$query .= sprintf(" WHERE A.near_match_genus = '%s'",mysql_escape_string($this_near_match_genus));
-
-			$this->debug['genus_cur'][] = "1 (search_mode:$search_mode)";
-			if ( is_null($search_mode) || ( !is_null($search_mode) && $search_mode != 'rapid')) {
-				$this->debug['genus_cur'][] = "1a";
-			
-				$query .= sprintf(" OR ( 
-					A.gen_length between %s AND %s AND 
-			
-					(least(%s, A.gen_length) <4 and (A.search_genus_name like '%s' 
-					OR A.search_genus_name like '%s'))
-			
-					OR (least(%s, A.gen_length) = 4 and (A.search_genus_name like '%s' 
-						OR A.search_genus_name like '%s'))
-			
-					OR (least(%s, A.gen_length) = 5 and (A.search_genus_name like '%s' 
-						OR A.search_genus_name like '%s'))
-			
-					OR (least(%s, A.gen_length) >5 and (A.search_genus_name like '%s%%' 
-							OR A.search_genus_name like '%%%s')) ) "
-					, mysql_escape_string($this_genus_length - 2)
-					, mysql_escape_string($this_genus_length + 2)
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string(substr($this_genus_start,0,1).'%')
-					, mysql_escape_string('%'.substr($this_genus_end,-1))
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string(substr($this_genus_start,0,2).'%')
-					, mysql_escape_string('%'.substr($this_genus_end,-2))
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string(substr($this_genus_start,0,2).'%')
-					, mysql_escape_string('%'.substr($this_genus_end,-3))
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string($this_genus_start)
-					, mysql_escape_string($this_genus_end)
-				);
-			}
-
-			$this->debug['genus_cur'][] = "2 (this_near_match_species:$this_near_match_species)";
-			if(!is_null($this_near_match_species) && $this_near_match_species!='') {
-				$this->debug['genus_cur'][] = "2a";
-				$query .= sprintf(" OR ( A.gen_length between %s AND %s AND B.near_match_species = '%s' AND A.genus_id = B.genus_id) "
-					, mysql_escape_string($this_genus_length - 3)
-					, mysql_escape_string($this_genus_length + 3)
-					, mysql_escape_string($this_near_match_species)
-				);
-			}
-			$query .= " GROUP BY A.genus_id, A.genus, A.near_match_genus, A.search_genus_name ORDER BY A.genus";*/
-// print $query;
-// *************
-
-			$base_query = sprintf("SELECT distinct A.genus_id, A.genus, A.near_match_genus, A.search_genus_name FROM genlist%s A ",mysql_escape_string($this->post_fix));
-
-			$tail_query = " GROUP BY A.genus_id, A.genus, A.near_match_genus, A.search_genus_name ";
-			# This ORDER may not be needed and would reduce the use of using filesort in mysql.
-			$tail_query .= " ORDER BY A.genus";
-
-			$query = $base_query . sprintf(" WHERE A.near_match_genus = '%s'",mysql_escape_string($this_near_match_genus)) . $tail_query;
-
-			$value = $this->db->query_all( $query );
-
-			$value = (!is_null($value)) ? $value : array();
-
-			if ( is_null($search_mode) || ( !is_null($search_mode) && $search_mode != 'rapid')) {
-				$query = $base_query . 
-					sprintf(" WHERE 
-					(A.gen_length between %s AND %s) AND (
-			
-					(least(%s, A.gen_length) <4 and (A.search_genus_name like '%s' 
-					OR A.search_genus_name like '%s'))
-			
-					OR (least(%s, A.gen_length) = 4 and (A.search_genus_name like '%s' 
-						OR A.search_genus_name like '%s'))
-			
-					OR (least(%s, A.gen_length) = 5 and (A.search_genus_name like '%s' 
-						OR A.search_genus_name like '%s'))
-			
-					OR (least(%s, A.gen_length) >5 and (A.search_genus_name like '%s%%' 
-							OR A.search_genus_name like '%%%s'))) "
-					, mysql_escape_string($this_genus_length - 2)
-					, mysql_escape_string($this_genus_length + 2)
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string(substr($this_genus_start,0,1).'%')
-					, mysql_escape_string('%'.substr($this_genus_end,-1))
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string(substr($this_genus_start,0,2).'%')
-					, mysql_escape_string('%'.substr($this_genus_end,-2))
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string(substr($this_genus_start,0,2).'%')
-					, mysql_escape_string('%'.substr($this_genus_end,-3))
-					, mysql_escape_string($this_genus_length)
-					, mysql_escape_string($this_genus_start)
-					, mysql_escape_string($this_genus_end)
-				) . $tail_query;
-
-			$value1 = $this->db->query_all( $query );
-			$value = ( !is_null($value1) ) ? array_merge($value,$value1) : $value;
-			}
-
-			// This is used to get genera that have a species phonetic match and wider length buffer on the genus
-			// Might consider putting a flag to run this or not
-			if(!is_null($this_near_match_species) && $this_near_match_species!='') {
-				$query = $base_query . 
-					sprintf(", splist%s B ",mysql_escape_string($this->post_fix)) . 
- 					sprintf(" WHERE ( A.gen_length between %s AND %s AND B.near_match_species = '%s' AND A.genus_id = B.genus_id) "
-					, mysql_escape_string($this_genus_length - 3)
-					, mysql_escape_string($this_genus_length + 3)
-					, mysql_escape_string($this_near_match_species)
-				) . $tail_query;
-
-			$value1 = $this->db->query_all( $query );
-			
-			$value = ( !is_null($value1) ) ? array_merge($value,$value1) : $value;
-			}
-
-// 			var_dump($value);
-
-// *******************
-
-/*			$this->debug['genus_cur'][] = "3 $query";
-			$value = $this->db->query_all( $query );
-			$this->debug['genus_cur'][] = $value;*/
-			
-			return( $value );
-		}
-
-      /**
-       * Select details from the genus and species list
-       * @param string $search_mode : normal / rapid / no_shaping
-       * @param mixed $this_near_match_genus
-       * @param mixed $this_near_match_species
-       * @param integer $this_genus_length
-       * @param integer $this_genus_start
-       * @param integer $this_genus_end
-       * @return mixed
-       */
-      public function genus_cur2($search_mode, $this_near_match_genus, $this_near_match_species, $this_genus_length,$this_genus_start,$this_genus_end) {
-         $base_query = sprintf("SELECT distinct genus_id, genus, near_match_genus, search_genus_name FROM genlist%s ",
-				mysql_escape_string($this->post_fix));
-
-         $tail_query = " GROUP BY genus_id, genus, near_match_genus, search_genus_name ";
-         # This ORDER may not be needed and would reduce the use of using filesort in mysql.
-         $tail_query .= " ORDER BY genus";
-
-         $query = $base_query . sprintf(" WHERE near_match_genus = '%s'",mysql_escape_string($this_near_match_genus)) . $tail_query;
-
-         $value = $this->db->query_all( $query );
-
-         $value = (!is_null($value)) ? $value : array();
-
-         if ( is_null($search_mode) || ( !is_null($search_mode) && $search_mode != 'rapid')) {
-            $query = $base_query .
-               sprintf(" WHERE 
-               (gen_length between %s AND %s) AND (
-         
-               (least(%s, gen_length) <4 and (sgn_head1 = '%s' OR sgn_tail1 = '%s'))
-         
-               OR (least(%s, gen_length) = 4 and (sgn_head2 = '%s' OR sgn_tail2 = '%s'))
-         
-               OR (least(%s, gen_length) = 5 and (sgn_head2 = '%s' OR sgn_tail3 = '%s'))
-         
-               OR (least(%s, gen_length) >5 and (sgn_head3 = '%s' OR sgn_tail3 = '%s'))) "
-               , mysql_escape_string($this_genus_length - 2)
-               , mysql_escape_string($this_genus_length + 2)
-               , mysql_escape_string($this_genus_length)
-               , mysql_escape_string(substr($this_genus_start,0,1)) # pos 1, 1 char
-               , mysql_escape_string(substr($this_genus_end,-1)) # pos last, 1 char
-               , mysql_escape_string($this_genus_length)
-               , mysql_escape_string(substr($this_genus_start,0,2)) # pos 1, 2 char
-               , mysql_escape_string(substr($this_genus_end,-2)) # pos last, 2 char
-               , mysql_escape_string($this_genus_length)
-               , mysql_escape_string(substr($this_genus_start,0,2)) # pos 1, 2 char
-               , mysql_escape_string(substr($this_genus_end,-3)) # pos last, 2 char
-               , mysql_escape_string($this_genus_length)
-               , mysql_escape_string($this_genus_start)
-               , mysql_escape_string($this_genus_end)
-            ) . $tail_query;
-
-            $value1 = $this->db->query_all( $query );
-            $value = ( !is_null($value1) ) ? array_merge($value,$value1) : $value;
-         }
-
-         // This is used to get genera that have a species phonetic match and wider length buffer on the genus
-         // Might consider putting a flag to run this or not
-         if(!is_null($this_near_match_species) && $this_near_match_species!='') {
-            // since we already normalized the splist_genlist_combined table, might as well use it
-            $base_query = sprintf("SELECT distinct genus_id, genus, near_match_genus, search_genus_name FROM splist_genlist_combined%s ",
-				   mysql_escape_string($this->post_fix));
-            $query = $base_query .
-               sprintf(" WHERE ( gen_length between %s AND %s AND near_match_species = '%s') "
-               , mysql_escape_string($this_genus_length - 3)
-               , mysql_escape_string($this_genus_length + 3)
-               , mysql_escape_string($this_near_match_species)
-            ) . $tail_query;
-
-            $value1 = $this->db->query_all( $query );
-
-            $value = ( !is_null($value1) ) ? array_merge($value,$value1) : $value;
-         }
-
-         return( $value );
-      }
-
-
-
+		
       /**
        * Select details from the genus and species list
        * @param string $search_mode : normal / rapid / no_shaping
@@ -273,16 +89,16 @@
        * @return mixed
        */
       public function genus_cur3($search_mode, $this_near_match_genus, $this_near_match_species, $this_genus_length,$this_genus_start,$this_genus_end) {
-         $base_query = sprintf("SELECT distinct genus_id, genus, near_match_genus, search_genus_name FROM genlist%s ",
-				mysql_escape_string($this->post_fix));
+		  $length_diff=2;
+		  if ($search_mode == 'extended') {
+			  $length_diff=4;
+		  }
+         $base_query = sprintf("SELECT distinct genus_id, genus, near_match_genus, search_genus_name FROM genlist g JOIN name_source ns ON g.genus_id=ns.nameID WHERE ns.sourceID in ( %s )", $this->source_id_string);
 		 $tail_query ="";
 
 		 #$tail_query = " GROUP BY genus_id, genus, near_match_genus, search_genus_name ";
          # This ORDER may not be needed and would reduce the use of using filesort in mysql.
          #$tail_query .= " ORDER BY genus";
-
-			$base_where = sprintf(" WHERE near_match_genus = '%s'",mysql_escape_string($this_near_match_genus));
-
          $other_where = "";
 
          if ( is_null($search_mode) || ( !is_null($search_mode) && $search_mode != 'rapid')) {
@@ -290,21 +106,16 @@
                sprintf(" OR 
                ((gen_length between %s AND %s) AND (
          
-               (least(%s, gen_length) <4 and (sgn_head1 = '%s' OR sgn_tail1 = '%s'))
-         
-               OR (least(%s, gen_length) = 4 and (sgn_head2 = '%s' OR sgn_tail2 = '%s'))
+               (least(%s, gen_length) <5 and (sgn_head1 = '%s' OR sgn_tail1 = '%s'))
          
                OR (least(%s, gen_length) = 5 and (sgn_head2 = '%s' OR sgn_tail3 = '%s'))
          
                OR (least(%s, gen_length) >5 and (sgn_head3 = '%s' OR sgn_tail3 = '%s')))) "
-               , mysql_escape_string($this_genus_length - 2)
-               , mysql_escape_string($this_genus_length + 2)
+               , mysql_escape_string($this_genus_length - $length_diff)
+               , mysql_escape_string($this_genus_length + $length_diff)
                , mysql_escape_string($this_genus_length)
                , mysql_escape_string(substr($this_genus_start,0,1)) # pos 1, 1 char
                , mysql_escape_string(substr($this_genus_end,-1)) # pos last, 1 char
-               , mysql_escape_string($this_genus_length)
-               , mysql_escape_string(substr($this_genus_start,0,2)) # pos 1, 2 char
-               , mysql_escape_string(substr($this_genus_end,-2)) # pos last, 2 char
                , mysql_escape_string($this_genus_length)
                , mysql_escape_string(substr($this_genus_start,0,2)) # pos 1, 2 char
                , mysql_escape_string(substr($this_genus_end,-3)) # pos last, 2 char
@@ -314,7 +125,9 @@
             );
          }
 
-			$query = $base_query . $base_where . $other_where . $tail_query;
+		$base_where = sprintf(" AND ( near_match_genus = '%s' $other_where ) ",mysql_escape_string($this_near_match_genus));
+
+		 $query = $base_query . $base_where . $tail_query;
 
          $value = $this->db->query_all( $query );
 
@@ -324,12 +137,11 @@
          // Might consider putting a flag to run this or not
          if(!is_null($this_near_match_species) && $this_near_match_species!='') {
             // since we already normalized the splist_genlist_combined table, might as well use it
-            $base_query = sprintf("SELECT distinct genus_id, genus, near_match_genus, search_genus_name FROM splist_genlist_combined%s ",
-				   mysql_escape_string($this->post_fix));
+            $base_query = sprintf("SELECT distinct genus_id, genus, near_match_genus, search_genus_name FROM splist_genlist_combined sg JOIN name_source ns ON sg.genus_id=ns.nameID WHERE ns.sourceID IN ( %s )", $this->source_id_string);
             $query = $base_query .
-               sprintf(" WHERE ( gen_length between %s AND %s AND near_match_species = '%s') "
-               , mysql_escape_string($this_genus_length - 3)
-               , mysql_escape_string($this_genus_length + 3)
+               sprintf(" AND ( gen_length between %s AND %s AND near_match_species = '%s' ) "
+               , mysql_escape_string($this_genus_length - 4)
+               , mysql_escape_string($this_genus_length + 4)
                , mysql_escape_string($this_near_match_species)
             ) . $tail_query;
 
@@ -343,11 +155,12 @@
 
 
 	  public function family_cur($search_mode, $this_near_match_family, $this_family_length, $this_family_start) {
-         $base_query = sprintf("SELECT distinct family_id, family, near_match_family, search_family_name FROM famlist%s ",
-				mysql_escape_string($this->post_fix));
+		  $length_diff=2;
+		  if ($search_mode == 'extended') {
+			  $length_diff=4;
+		  }
+         $base_query = sprintf("SELECT distinct family_id, family, near_match_family, search_family_name FROM famlist f JOIN name_source ns ON f.family_id=ns.nameID WHERE ns.sourceID IN ( %s )", $this->source_id_string);
 		 $tail_query ="";
-
-			$base_where = sprintf(" WHERE near_match_family = '%s'",mysql_escape_string($this_near_match_family));
 
          $other_where = "";
 
@@ -356,13 +169,15 @@
                sprintf(" OR 
                ((fam_length between %s AND %s) AND (
 				   (sgn_head1 = '%s'))) "
-               , mysql_escape_string($this_family_length - 2)
-               , mysql_escape_string($this_family_length + 2)
+               , mysql_escape_string($this_family_length - $length_diff)
+               , mysql_escape_string($this_family_length + $length_diff)
                , mysql_escape_string(substr($this_family_start,0,1)) # pos 1, 1 char
             );
          }
+		
+		 $base_where = sprintf(" AND ( near_match_family = '%s' $other_where ) ",mysql_escape_string($this_near_match_family));
 
-			$query = $base_query . $base_where . $other_where . $tail_query;
+		 $query = $base_query . $base_where . $tail_query;
 
          $value = $this->db->query_all( $query );
          $value = (!is_null($value)) ? $value : array();
@@ -380,73 +195,15 @@
 		 * @param integer $this_species_length
 		 * @return mixed
 		 */
-		public function species_cur( $gen_id, $this_species_length ) {
-			$query = sprintf("
-				SELECT DISTINCT A.species_id, A.species, A.search_species_name, A.near_match_species, concat(B.near_match_genus,' ',A.near_match_species) AS near_match_gen_sp
-					, concat(B.genus,' ',A.species) AS genus_species
-				FROM splist%s A
-				JOIN  genlist%s B ON B.genus_id = A.genus_id
-				WHERE B.genus_id = '%s' 
-					AND sp_length BETWEEN %s AND %s 
-				GROUP BY A.species_id
-					, A.species
-					, A.search_species_name
-					, A.near_match_species
-					, concat(B.near_match_genus,' ',A.near_match_species)
-					, concat(B.genus,' ',A.species)
-				ORDER BY A.species;"
-				, mysql_escape_string($this->post_fix)
-				, mysql_escape_string($this->post_fix)
-				, mysql_escape_string($gen_id)
-				, mysql_escape_string($this_species_length - 4)
-				, mysql_escape_string($this_species_length + 4));
-
-			$this->debug['species_cur'][] = "1 (query:$query)";
-			$value = $this->db->query_all( $query );
-			$this->debug['species_cur'][] = $value;
-			
-			return( $value );
-		}
-
-		//EJS - species_cur_in takes an array of gen_ids and batch queries the list
-                public function species_cur_in( $gen_ids, $this_species_length ) {
-                        $query = sprintf("
-                                SELECT DISTINCT A.species_id, A.species, A.search_species_name, A.near_match_species, concat(B.near_match_genus,' ',A.near_match_species) AS near_match_gen_sp
-                                        , concat(B.genus,' ',A.species) AS genus_species, A.genus_id
-                                FROM splist%s A
-                                JOIN  genlist%s B ON B.genus_id = A.genus_id
-                                WHERE B.genus_id IN (%s)
-                                        AND sp_length BETWEEN %s AND %s 
-                                GROUP BY A.species_id
-                                        , A.species
-                                        , A.search_species_name
-                                        , A.near_match_species
-                                        , concat(B.near_match_genus,' ',A.near_match_species)
-                                        , concat(B.genus,' ',A.species)
-                                ORDER BY A.species;"
-                                , mysql_escape_string($this->post_fix)
-                                , mysql_escape_string($this->post_fix)
-#                                , mysql_escape_string($gen_id)
-                                , implode (",", $gen_ids)
-                                , mysql_escape_string($this_species_length - 4)
-                                , mysql_escape_string($this_species_length + 4));
-
-                        $this->debug['species_cur'][] = "1 (query:$query)";
-                        $value = $this->db->query_all( $query );
-                        $this->debug['species_cur'][] = $value;
-
-                        return( $value );
-                }
-
                 //EJS - species_cur_in takes an array of gen_ids and batch queries the list
                 public function species_cur_in2( $gen_ids, $this_species_length ) {
                         $query = sprintf("
                                 SELECT DISTINCT species_id, species, search_species_name, near_match_species, near_match_gen_sp,
 					genus_species, genus_id
-                                FROM splist_genlist_combined%s
-                                WHERE genus_id IN (%s)
+                                FROM splist_genlist_combined sgc JOIN name_source ns ON sgc.species_id=ns.nameID WHERE ns.sourceID IN ( %s )
+                                AND genus_id IN (%s)
                                         AND sp_length BETWEEN %s AND %s" 
-                                , mysql_escape_string($this->post_fix)
+                                , $this->source_id_string
                                 , implode (",", $gen_ids)
                                 , mysql_escape_string($this_species_length - 4)
                                 , mysql_escape_string($this_species_length + 4));
@@ -461,10 +218,10 @@
                         $query = sprintf("
                                 SELECT DISTINCT infra1_id, infra1, search_infra1_name, near_match_infra1, near_match_sp_infra1,
 					species_infra1, species_id
-                                FROM infra1list_splist_combined%s
-                                WHERE species_id IN (%s)
+                                FROM infra1list_splist_combined isc JOIN name_source ns ON isc.infra1_id=ns.nameID WHERE ns.sourceID IN ( %s )
+                                AND species_id IN ( %s )
                                         AND infra1_length BETWEEN %s AND %s" 
-                                , mysql_escape_string($this->post_fix)
+                                , $this->source_id_string
                                 , implode (",", $sp_ids)
                                 , mysql_escape_string($this_infra1_length - 4)
                                 , mysql_escape_string($this_infra1_length + 4));
@@ -476,10 +233,10 @@
                         $query = sprintf("
                                 SELECT DISTINCT infra2_id, infra2, search_infra2_name, near_match_infra2, near_match_infra1_infra2,
 					infra1_infra2, infra1_id
-                                FROM infra2list_infra1list_combined%s
-                                WHERE infra1_id IN (%s)
+                                FROM infra2list_infra1list_combined iic JOIN name_source ns ON iic.infra2_id=ns.nameID WHERE ns.sourceID IN ( %s )
+                                AND infra1_id IN ( %s )
                                         AND infra2_length BETWEEN %s AND %s" 
-                                , mysql_escape_string($this->post_fix)
+                                , $this->source_id_string
                                 , implode (",", $infra1_ids)
                                 , mysql_escape_string($this_infra2_length - 4)
                                 , mysql_escape_string($this_infra2_length + 4));
@@ -636,7 +393,6 @@
 		 * Count Species Matches
 		 * @param integer $gen_sp_ed
 		 * @return integer
-		 */
 		public function countSpeciesMatches($gen_sp_ed) {
 			$query = sprintf("SELECT count(*) ct FROM species_id_matches%s WHERE phonetic_flag = '' AND gen_sp_ed = %s", mysql_escape_string($this->post_fix), mysql_escape_string($gen_sp_ed));
 			$this->debug['countSpeciesMatches'][] = "1 (query:$query)";
@@ -644,11 +400,11 @@
 			$this->debug['countSpeciesMatches'][] = $res;
 			return( $ret->ct );
 		}
+		 */
 
 		/**
 		 * Clear Temporary Tables
 		 * @return bool
-		 */
 		public function clearTempTables() {
 			$query = sprintf(" DELETE FROM `genus_id_matches%s` ",mysql_escape_string($this->post_fix));
 			$this->db->query($query);
@@ -656,93 +412,72 @@
 			$this->db->query($query);
 			return true;
 		}
-
-		public function getFamilyName ($name_id) {
-			foreach ($name_id as &$nid) {
-				$nid=mysql_escape_string($nid);
-			}
-			$query=sprintf("SELECT nameID, defaultFamily AS family_name FROM name WHERE nameID IN ( %s )", implode(",", $name_id));
-			$res=$this->db->query_all($query);
-			return $res;
-		}
+		 */
 
 		public function getNameSourceUrl ($name_id) {
-			foreach ($name_id as &$nid) {
-				$nid=mysql_escape_string($nid);
+			$query=sprintf("SELECT nameID, sourceID, nameSourceUrl AS name_source_url 
+				FROM name_source
+				WHERE sourceID IN ( %s ) AND nameID IN ( %s )", $this->source_id_string, implode(",", $name_id)
+			);
+			$res=$this->db->query_all($query);
+			return $res;
+		}
+
+		public function checkScientificName ($string) {
+			foreach ($string as &$str) {
+				$str="'" . mysql_escape_string($str) . "'";
 			}
-			$query=sprintf("SELECT ns.nameID, ns.nameSourceUrl AS name_source_url 
-				FROM source s INNER JOIN name_source ns
-				ON s.sourceID=ns.sourceID
-				WHERE s.sourceName='Tropicos' AND ns.nameID IN ( %s )", implode(",", $name_id)
+			$query=sprintf("SELECT scientificName, count(*) AS count FROM name n JOIN name_source ns USING (nameID) WHERE n.scientificName='%s' AND ns.sourceID IN ( %s )",
+				implode(",", $string), $this->source_id_string
 			);
-			$res=$this->db->query_all($query);
-			return $res;
-		}
-
-		//public function getAcceptance ($name_id) {
-		//	foreach ($name_id as &$nid) {
-		//		$nid=mysql_escape_string($nid);
-		//	}
-		//	$query=sprintf("SELECT sy.nameID, sy.acceptedNameID, sy.acceptance
-		//		FROM synonym sy INNER JOIN source so
-		//		ON so.sourceID=sy.sourceID
-		//		WHERE so.sourceName='Tropicos' AND sy.nameID IN ( %s ) ORDER BY sy.acceptance", implode(",", $name_id)
-		//	);
-		//	$res=$this->db->query_all($query);
-		//	return $res;
-		//}
-
-		public function checkScientificName ($str) {
-			$query=sprintf("SELECT scientificName FROM name WHERE scientificName='%s'",
-				mysql_escape_string($str)
-			);
-			$res=$this->db->query_value($query, "string");
-			return $res;
-		}
-		public function checkScientificNameWithAuthor ($str) {
-			$query=sprintf("SELECT scientificNameWithAuthor FROM nameParsed WHERE scientificNameWithAuthor='%s'",
-				mysql_escape_string($str)
-			);
-			$res=$this->db->query_value($query, "string");
-			return $res;
-		}
-
-		public function searchScientificName($str) {
-			$query=sprintf("SELECT nameID, scientificName, scientificNameAuthorship, scientificNameWithAuthor, genus, specificEpithet, nameRank FROM name WHERE scientificName='%s' or scientificNameWithAuthor='%s'", 
-				mysql_escape_string($str), mysql_escape_string($str));
-			$res=$this->db->query_all($query);
-			return $res;
-		}
-
-		public function searchFamilyName($str) {
-			$query=sprintf("SELECT nameID, scientificName as family from name where nameRank='family' and scientificName='%s'", 
-				mysql_escape_string($str));
-			$res=$this->db->query_all($query);
-			return $res;
-		}
-
-		//public function getCanonicalFamilyName($name_id) {
-		//	foreach ($name_id as &$nid) {
-		//		$nid=mysql_escape_string($nid);
-		//	}
-		//	$query=sprintf("select n.nameID, n2.scientificName as family_name from name n inner join synonym s join name n2 on n.nameID=s.nameID and s.acceptedNameID=n2.nameID where n.nameRank='family' and n.nameID IN ( %s )", implode(",", $name_id));
-		//	$res=$this->db->query_all($query);
-		//	return $res;
-		//}
-
-		public function getFamilyByGenus($genus) {
-			$query = sprintf("SELECT family_id FROM genlist_famlist_combined%s WHERE genus='%s'", mysql_escape_string($this->post_fix), mysql_escape_string($genus));
 			$res=$this->db->query_all($query);
 			if (is_null($res)) {
 				$res=array();
 			}
 			return $res;
-		}	
-		public function getNameMetaData($name_id) {
-			foreach ($name_id as &$nid) {
-				$nid=mysql_escape_string($nid);
+		}
+
+		public function searchScientificName($string) {
+			foreach ($string as &$str) {
+				$str="'" . mysql_escape_string($str) . "'";
 			}
-			$query=sprintf("SELECT nameID, defaultFamily AS accepted_family, defaultAcceptance AS acceptance, defaultAcceptedNameID AS accepted_name_id from name WHERE nameID IN ( %s )", implode(",", $name_id)
+			$query=sprintf("SELECT DISTINCT nameID, scientificName, scientificNameAuthorship, scientificNameWithAuthor, genus, specificEpithet, infraspecificEpithet, rankIndicator, infraspecificEpithet2, infraspecificRank2, nameRank, isHybrid FROM name n JOIN name_source ns USING (nameID) WHERE (scientificName IN ( %s ) or scientificNameWithAuthor IN ( %s )) AND ns.sourceID IN ( %s )", 
+				implode(",", $string), implode(",", $string), $this->source_id_string);
+			$res=$this->db->query_all($query);
+			if (is_null($res)) {
+				$res=array();
+			}
+			return $res;
+		}
+
+		public function searchFamilyName($str) {
+			$query=sprintf("SELECT nameID, scientificName as family from name n JOIN name_source ns USING (nameID)  where scientificName='%s' and (nameRank='family' or nameRank='unknown') AND ns.sourceID IN ( %s )",
+				mysql_escape_string($str), $this->source_id_string);
+			$res=$this->db->query_all($query);
+			return $res;
+		}
+
+		public function getAltFamily($family, $genus) {
+			$query=sprintf("SELECT altFamily FROM gf_lookup WHERE genus='%s' AND family='%s'", mysql_escape_string($genus),  mysql_escape_string($family));
+			$res=$this->db->query_all($query);
+			if (is_null($res)) {
+				$res=array();
+			}
+			return $res;
+		}
+		public function getFamilyAcceptedFamily ($family) {
+			foreach ($family as &$fm) {
+				$fm="'" . mysql_escape_string($fm) . "'";
+			}
+			$query=sprintf("SELECT family, acceptedFamily AS accepted_family FROM family_acceptedFamily_lookup WHERE family IN ( %s )", implode(",", $family));
+			$res=$this->db->query_all($query);
+			if (is_null($res)) {
+				$res=array();
+			}
+			return $res;
+		}
+		public function getSynonym ($name_id) {
+			$query=sprintf("SELECT nameID, sourceID, acceptance, acceptedNameID AS accepted_name_id from synonym WHERE nameID IN ( %s ) AND sourceID IN ( %s )", implode(",", $name_id), $this->source_id_string
 			);
 			$res=$this->db->query_all($query);
 			if (is_null($res)) {
@@ -751,11 +486,46 @@
 			return $res;
 		}
 		public function getScientificName($name_id) {
-			foreach ($name_id as &$nid) {
-				$nid=mysql_escape_string($nid);
-			}
-			$query=sprintf("SELECT nameID, scientificName AS scientific_name, scientificNameAuthorship AS author from name WHERE nameID IN ( %s )", implode(",", $name_id)
+			$query=sprintf("SELECT nameID, scientificName AS scientific_name, scientificNameAuthorship AS author, genus, specificEpithet, infraspecificEpithet, rankIndicator, infraspecificEpithet2, infraspecificRank2, nameRank, isHybrid, nameSourceUrl AS name_source_url, lsid, sourceID from name n JOIN name_source ns USING (nameID) WHERE nameID IN ( %s ) AND sourceID IN ( %s )", implode(",", $name_id), $this->source_id_string
 			);
+			$res=$this->db->query_all($query);
+			if (is_null($res)) {
+				$res=array();
+			}
+			return $res;
+		}
+		public function getClassificationFamily ($name_id) {
+			$query='';
+			if (isset($this->classification_id)) {
+				if (count($this->source) > 1 || ! array_key_exists($this->classification_id, $this->source_name)) {
+					$query=sprintf("SELECT nameID, classificationSourceID as sourceID, family FROM higherClassification WHERE nameID IN ( %s ) AND classificationSourceID = %s", implode(",", $name_id), $this->classification_id);
+				} else {
+					$query=sprintf("SELECT nameID, sourceID, family FROM classification WHERE nameID IN ( %s ) AND sourceID = %s", implode(",", $name_id), $this->classification_id);
+				}
+			} else	{
+				$query=sprintf("SELECT nameID, sourceID, family FROM classification WHERE nameID IN ( %s ) AND sourceID IN ( %s )", implode(",", $name_id), implode(",", $this->source_id));
+			}
+			$res=$this->db->query_all($query);
+			if (is_null($res)) {
+				$res=array();
+			}
+			return $res;
+		}
+
+		public function checkSpecificEpithet($string) {
+			foreach ($string as &$str) {
+				$str="'" . mysql_escape_string($str) . "'";
+			}
+			
+			$query=sprintf("SELECT specificEpithet, COUNT(*) AS count FROM name n JOIN name_source ns USING (nameID) WHERE specificEpithet IN ( %s ) AND ns.sourceID IN ( %s ) GROUP BY specificEpithet", implode(",", $string), $this->source_id_string);
+			$res=$this->db->query_all($query);
+			if (is_null($res)) {
+				$res=array();
+			}
+			return $res;
+		}
+		public function getSources () {
+			$query="SELECT * from source";
 			$res=$this->db->query_all($query);
 			if (is_null($res)) {
 				$res=array();

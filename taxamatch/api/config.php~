@@ -20,7 +20,7 @@
 	// CONSTANTS
 	define('DB_NAME', 'default');
 	//define('DEFAULT_CLASSIFICATION', 'tropicos'); 
-	define('TAXAMATCH_URL','http://bennett.iplantcollaborative.org/taxamatch-webservice-read-only.v3/api/taxamatch.php');
+	define('TAXAMATCH_URL','http://arjuna.iplantcollaborative.org/taxamatch-webservice-read-only.v3/api/taxamatch.php');
 	define('CACHE_PATH', '../cache/');
 
 $xml_str = <<<EOT

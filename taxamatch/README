@@ -1,43 +1,30 @@
 -----------
 ABOUT
 -----------
-TAXAMATCH is an algorithm for fuzzy (approximate string) matching of 
-taxon scientific names. With normal exact matching, it is trivial to 
-retrieve desired information from a taxonomic database, or match 
-content across 2 or more systems, or determine that the same taxon 
-name appears multiple times on a single list (deduplication). However 
-if there is a character error affecting one or multiple characters 
-in one or both names such that they do not match exactly, use of some 
-sort of fuzzy match is required; TAXAMATCH is intended to fulfil that 
-function, with particular tuning to the types of errors found in real 
-world taxonomic data. Using TAXAMATCH, the intention is to always 
-return candidate "true" near matches where these exist (as close as 
-possible to 100% recall); suppress as many as practicable "false" 
-near matches (high precision); and do all this in as short a time as 
-possible (high efficiency), even against large reference datasets 
-(>1 million names). 
+TAXAMATCH is an algorithm for fuzzy (approximate string) matching of taxon scientific names. 
+With normal exact matching, it is trivial to retrieve desired information from a taxonomic 
+database, or match content across 2 or more systems, or determine that the same taxon name 
+appears multiple times on a single list (deduplication). However if there is a character error 
+affecting one or multiple characters in one or both names such that they do not match exactly, 
+use of some sort of fuzzy match is required; TAXAMATCH is intended to fulfil that function, with 
+particular tuning to the types of errors found in real world taxonomic data. Using TAXAMATCH, the 
+intention is to always return candidate "true" near matches where these exist (as close as possible 
+to 100% recall); suppress as many as practicable "false" near matches (high precision); and do all 
+this in as short a time as possible (high efficiency), even against large reference 
+datasets (>1 million names). 
 
-The original project developed by Tony is a human interactive model 
-made to be used much like a online dictionary to help identify a 
-species.
+The original project developed by Tony is a human interactive model made to be used much 
+like a online dictionary to help identify a species.
 
-Original Resource developed by Tony Rees: 
-http://www.cmar.csiro.au/datacentre/taxamatch.htm
+Original Resource developed by Tony Rees: http://www.cmar.csiro.au/datacentre/taxamatch.htm
 
-Taxamatch Webservice is a branch aimed to provide an API JSON service 
-based on a PHP/MySQL model providing the same service but focused 
-towards data cleaning, scripting applications, and real time mashups. 
+Taxamatch Webservice is a branch aimed to provide an API JSON service based on a PHP/MySQL 
+model providing the same service but focused towards data cleaning, scripting applications, 
+and real time mashups. 
 
-This project has been developed by SilverBiology 
-(www.SilverBiology.com)
+This project has been developed by SilverBiology (www.SilverBiology.com)
 
-This version was modified by iPlant as detailed in CHANGES.
-
-Please check the svn for the most current SilverBioloby release: 
-http://code.google.com/p/taxamatch-webservice/
-
-The current iPlant release is available from:
-
+Please check the svn for the most current release: http://code.google.com/p/taxamatch-webservice/
 
 -----------
 INSTALL
@@ -53,11 +40,9 @@ See http://taxamatch.silverbiology.com/ for more information about demos.
 CHANGES
 -----------
 See CHANGELOG for version changes.
-See CHANGES for changes made by iPlant Collaborative to the original source.
 
 -----------
 LICENSE
 -----------
-The taxamatch-webservice classes and all associated examples are 
-subject to the Apache License, Version 2.0. See LICENSE for full 
-information.
+The taxamatch-webservice classes and all 
+associated examples are subject to the a GNU LESSER GENERAL PUBLIC LICENSE. See LICENSE for full information.

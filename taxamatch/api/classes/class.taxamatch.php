@@ -38,6 +38,10 @@
 		* @var string
 		*/
 		private $data;
+		static $ext_th=0.5;
+		static $nor_th=0.3334;
+		static $ext_mt=3;
+		static $nor_mt=2;
 		
 		/**
 		 * Constructor
@@ -258,118 +262,6 @@
 			$result = round(( 2 * $match_count ) / ( $source_ngram_number + $target_ngram_number ), 4);
 
 			return $result;
-
-			/*
-
-			//$this->debug['ngram'][] = "3 (this_source_string:$this_source_string) (this_target_string:$this_target_string)";
-		
-			while ( strlen( $this_source_string ) >= $n_used ) {
-			
-				$this_ngram = substr( $this_source_string, 1, $n_used);
-				$this->debug['ngram'][] = "4 (this_ngram:$this_ngram)";
-				$source_ngram_string='';
-				
-				//	look for up to 9 repeats here
-				if ( strpos($source_ngram_string, $this_ngram.'(8)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(9)';
-					$this->debug['ngram'][] = "4a (source_ngram_string:$source_ngram_string)";
-				} elseif ( strpos($source_ngram_string, $this_ngram.'(7)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(8)';
-					$this->debug['ngram'][] = "4b (source_ngram_string:$source_ngram_string)";
-				} elseif ( strpos($source_ngram_string, $this_ngram.'(6)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(7)';
-					$this->debug['ngram'][] = "4c (source_ngram_string:$source_ngram_string)";
-				} elseif ( strpos($source_ngram_string , $this_ngram.'(5)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(6)';
-					$this->debug['ngram'][] = "4d (source_ngram_string:$source_ngram_string)";
-				} elseif ( strpos($source_ngram_string, $this_ngram.'(4)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(5)';
-					$this->debug['ngram'][] = "4e (source_ngram_string:$source_ngram_string)";
-				} elseif ( strpos($source_ngram_string, $this_ngram.'(3)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(4)';
-					$this->debug['ngram'][] = "4f (source_ngram_string:$source_ngram_string)";
-				} elseif ( strpos($source_ngram_string, $this_ngram.'(2)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(3)';
-					$this->debug['ngram'][] = "4g (source_ngram_string:$source_ngram_string)";
-				} elseif ( strpos($source_ngram_string, $this_ngram.'(1)') !== false ) {
-					$source_ngram_string .= $this_ngram . '(2)';
-					$this->debug['ngram'][] = "4h (source_ngram_string:$source_ngram_string)";
-				} else {
-					$source_ngram_string .= $this_ngram . '(1)';
-					$this->debug['ngram'][] = "4i (source_ngram_string:$source_ngram_string)";
-				}
-				
-				$this_source_string = substr( $this_source_string, 2);
-				$this->debug['ngram'][] = "5 (this_source_string:$this_source_string)";
-				
-			}
-
-			while ( strlen( $this_target_string ) >= $n_used ) {
-			
-				$this_ngram = substr( $this_target_string, 1, $n_used );
-				$this->debug['ngram'][] = "6 (this_ngram:$this_ngram)";
-				$target_ngram_string='';
-
-				// look for up to 9 repeats here
-				if ( strpos($target_ngram_string, $this_ngram.'(8)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(9)';
-					$this->debug['ngram'][] = "6a (target_ngram_string:$target_ngram_string)";
-				} elseif ( strpos($target_ngram_string, $this_ngram.'(7)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(8)';
-					$this->debug['ngram'][] = "6b (target_ngram_string:$target_ngram_string)";
-				} elseif ( strpos($target_ngram_string, $this_ngram.'(6)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(7)';
-					$this->debug['ngram'][] = "6c (target_ngram_string:$target_ngram_string)";
-				} elseif ( strpos($target_ngram_string, $this_ngram.'(5)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(6)';
-					$this->debug['ngram'][] = "6d (target_ngram_string:$target_ngram_string)";
-				} elseif ( strpos($target_ngram_string, $this_ngram.'(4)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(5)';
-					$this->debug['ngram'][] = "6e (target_ngram_string:$target_ngram_string)";
-				} elseif ( strpos($target_ngram_string, $this_ngram.'(3)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(4)';
-					$this->debug['ngram'][] = "6f (target_ngram_string:$target_ngram_string)";
-				} elseif ( strpos($target_ngram_string, $this_ngram.'(2)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(3)';
-					$this->debug['ngram'][] = "6g (target_ngram_string:$target_ngram_string)";
-				} elseif ( strpos($target_ngram_string, $this_ngram.'(1)') !== false ) {
-					$target_ngram_string .= $this_ngram . '(2)';
-					$this->debug['ngram'][] = "6h (target_ngram_string:$target_ngram_string)";
-				} else {
-					$target_ngram_string .= $this_ngram . '(1)';
-					$this->debug['ngram'][] = "6i (target_ngram_string:$target_ngram_string)";
-				}
-				
-				$this_target_string = substr( $this_target_string, 2 );
-				$this->debug['ngram'][] = "7 (this_target_string:$this_target_string)";
-				
-			}
-
-			// now check common substrings
-			// count ngrams in source string that also occur in target string
-			$this->debug['ngram'][] = "8 (source_ngram_string:$source_ngram_string)";
-			while ( strlen( $source_ngram_string ) > 1 ) {
-				$this_ngram = substr( $source_ngram_string, 1, $n_used + 3 );
-				$this->debug['ngram'][] = "8a (this_ngram:$this_ngram)";
-//				if ( $target_ngram_string like '%' || $this_ngram || '%' ) {
-// 					$match_count = $match_count + 1;
-//				}
-				if ( strpos($target_ngram_string, $this_ngram) !== false ) {
-					$match_count++;
-					$this->debug['ngram'][] = "8b (match_count:$match_count)";
-				}
-				
-				$source_ngram_string = substr( $source_ngram_string, $n_used + 4 );
-				$this->debug['ngram'][] = "8c (source_ngram_string:$source_ngram_string)";
-				
-			}
-			
-			// calculate similarity and round to 4 decimal places
-			$result = round( ( 2 * $match_count ) / ( strlen( $target_string ) + strlen( $source_string ) + ($n_used - 1 ) + ( $n_used - 1 ) ) , 4);
-			$this->debug['ngram'][] = "Return: (result:$result)";
-
-			return( $result );
-			*/
 		}
 		
 		public function name_strings_match($name_string1, $name_string2) {
@@ -401,7 +293,6 @@
 				if(!$author_match_score) $match['match'] = false;
 			}
 			
-			debug("end name_objects_match\n");
 			return $this->match_response_to_float($match, $total_length);
 		}
 		
@@ -426,7 +317,12 @@
 
 			$temp_family_ED = $this->mdld($family2, $family1, 2, 3);
 			$min_family_length = $family1_length < $family2_length ? $family1_length : $family2_length;
-      if ($temp_family_ED/$min_family_length > 0.3334) return array('edit_distance' => $temp_family_ED, 'phonetic_match' => false, 'match' => false);
+			$nor_thrs=self::$nor_th;
+			if ($this->search_mode == 'extended') {
+				$nor_thrs=self::$ext_th;
+			}
+			$ext_thrs=self::$ext_th;
+			if ($min_family_length == 0 || $min_family_length < 6 && $temp_family_ED/$min_family_length > $ext_thrs || $min_family_length >= 6 && $temp_family_ED/$min_family_length > $nor_thrs) return array('edit_distance' => $temp_family_ED, 'phonetic_match' => false, 'match' => false);
 			// first char must match for ED 2+
 			if( ($temp_family_ED <= 3 && ( $min_family_length >= ( $temp_family_ED * 2 ))
 						&& ( $temp_family_ED < 2 || ( substr($family2,0,1) == substr($family1,0,1) ) ) )    
@@ -453,7 +349,12 @@
 			//$temp_genus_ED = $this->mdld($genus2, $genus1, 2, 3);
 			$temp_genus_ED = $this->mdld($genus2, $genus1, 2, 3); // there is a bug in modified Damerau Levenshtein, when it is fixed change 1 to 2:  $this->mdld($genus2, $genus1, 2, 3)
 			$min_genus_length = $genus1_length < $genus2_length ? $genus1_length : $genus2_length;
-      if ($temp_genus_ED/$min_genus_length > 0.3334) return array('edit_distance' => $temp_genus_ED, 'phonetic_match' => false, 'match' => false);
+			$nor_thrs=self::$nor_th;
+			if ($this->search_mode == 'extended') {
+				$nor_thrs=self::$ext_th;
+			}
+			$ext_thrs=self::$ext_th;
+			if ($min_genus_length == 0 || $min_genus_length < 6 && $temp_genus_ED/$min_genus_length > $ext_thrs || $min_genus_length >= 6 && $temp_genus_ED/$min_genus_length > $nor_thrs) return array('edit_distance' => $temp_genus_ED, 'phonetic_match' => false, 'match' => false);
 			// add the genus post-filter
 			// min. 51% "good" chars
 			// first char must match for ED 2+
@@ -485,9 +386,15 @@
 			$epithet2_phonetic = $nm->near_match($species_epithet2);
 			//$temp_species_ED = $this->mdld($species_epithet2, $species_epithet1, 4, 4);
 			$temp_species_ED = $this->mdld($species_epithet2, $species_epithet1, 4, 4);// there is a bug in modified Damerau Levenshtein, when it is fixed change 1 to 2:  $this->mdld($genus2, $genus1, 4, 4)
-      //edit distance/word length threshold
-      $min_sp_length = $epithet1_length < $epithet2_length ? $epithet1_length : $epithet2_length;
-      if ($temp_species_ED/$min_sp_length > 0.3334) return array('edit_distance' => $temp_species_ED, 'phonetic_match' => false, 'match' => false);
+			//edit distance/word length threshold
+			$min_sp_length = $epithet1_length < $epithet2_length ? $epithet1_length : $epithet2_length;
+			$nor_thrs=self::$nor_th;
+			if ($this->search_mode == 'extended') {
+				$nor_thrs=self::$ext_th;
+			}
+			$ext_thrs=self::$ext_th;
+
+			if ($min_sp_length == 0 || $min_sp_length < 6 && $temp_species_ED/$min_sp_length > $ext_thrs || $min_sp_length >=6 && $temp_species_ED/$min_sp_length > $nor_thrs) return array('edit_distance' => $temp_species_ED, 'phonetic_match' => false, 'match' => false);
 			// add the species post-filter
 			// min. 50% "good" chars
 			// first char must match for ED2+
@@ -503,7 +410,11 @@
 		}
 
 		public function match_matches($matches) {
-			$max_ed=count($matches) * 2;
+			$mtpl=self::$nor_mt;
+			if ($this->search_mode == 'extended') {
+				$mtpl=self::$ext_mt;
+			}
+			$max_ed=count($matches) * $mtpl;
 			$match=array_shift($matches);
 			foreach ($matches as $mt) {
 				$match["edit_distance"]+=$mt["edit_distance"];
@@ -605,26 +516,15 @@
 		 */
 		public function process($searchtxt, $search_mode='normal', $cache = false) {
 			$this->input = $searchtxt;
-
-			$this->debug['process'][] = "1 (searchtxt:$searchtxt) (search_mode:$search_mode)";
-			$this->searchtxt = $searchtxt;
 			$this->search_mode=$search_mode;
-
-			$text_str = $this->searchtxt;
-
-			// accept "+" as separator if supplied, tranform to space
-			if ( strpos($text_str,'+') !== false ) {
-				$text_str = str_replace('+',' ',$text_str);
-			}
-			if ( strpos($searchtxt,'  ') !== false ) {
-				$text_str = trim(preg_replace("/ {2,}/", ' ',$text_str));
-			}
-			$this->searchtxt=$text_str;
+			$this->searchtxt = $searchtxt;
+			$this->debug['process'][] = "1 (searchtxt:$searchtxt) (search_mode:$search_mode)";
 
 			$this->this_search_family='';
 			$this->this_search_genus = '';
 			$this->this_search_species = '';
 			$this->this_authority = '';
+			$this->this_authorities=array();
 			$this->this_search_infra1='';
 			$this->this_search_infra2='';
 			$this->this_search_rank1='';
@@ -636,6 +536,21 @@
 			$this->this_family_unmatched='';
 			$this->this_status_string='';
 
+			$text_str = $searchtxt;
+
+			// accept "+" as separator if supplied, tranform to space
+			if ( strpos($text_str,'+') !== false ) {
+				$text_str = str_replace('+',' ',$text_str);
+			}
+
+			#$replace=array("%", "<", "{", "}", "&", "_", "\t");  
+			$replace=array("\t");  
+			$text_str = str_replace($replace,' ',$text_str);
+
+			if ( strpos($text_str,'  ') !== false ) {
+				$text_str = preg_replace("/ {2,}/", ' ',$text_str);
+			}
+			$text_str = trim($text_str);
 
 			$this->debug['process'][] = "1a (text_str:$text_str)";
 			
@@ -647,21 +562,36 @@
 				$text_str=str_replace($start_matches[0],'',$text_str);
 				$this->this_start_string=$start_matches[0];
 			}
-			if (preg_match("/(?:\s(?:\-?cf\.?|vel\.? sp\.? aff\.?|\-?aff\.?)(?:\s|$))|(?:\?+)/i", $text_str, $anno_matches)) {
-				$text_str=str_replace($anno_matches[0],' ',$text_str);
-				$this->this_status_string=$anno_matches[0];
+			if (preg_match("/(?:(?:\s|^)(?:\-?cf\.?|vel\.? sp\.? aff\.?|\-?aff\.?)(?:\s|$))|(?:\?+)/i", $text_str, $anno_matches)) {
+				$text_str=trim(str_replace($anno_matches[0],' ',$text_str));
+				$this->this_status_string=trim($anno_matches[0]);
 			}
-			if (preg_match('/^((?:[[:alpha:]]+aceae)|Cruciferae|Guttiferae|Umbelliferae|Compositae|Leguminosae|Palmae|Labiatae|Gramineae)(\S*)(?:\s+|$)/i', $text_str, $fam_matches)) {
-				$text_str=str_replace($fam_matches[0],'',$text_str);
-				$this->this_family_string=$fam_matches[0];
-				$this->this_search_family=$fam_matches[1];
-				$this->this_family_unmatched=$fam_matches[2];
-				$searchFamilyName=$this->db->searchFamilyName($this->this_search_family);
-				if (isset($searchFamilyName)) {
-					foreach ($searchFamilyName as $returnedFamilyName){
-						$this->saveFamilyMatches($returnedFamilyName->nameID, $returnedFamilyName->family, 0, 'Y');
+			$text_str=str_replace(' -','-',$text_str);
+			$text_str=str_replace('- ','-',$text_str);
+			$this->this_preprocessed_txt=$text_str;
+			$text_str = preg_replace("/(?<=\s|^)(?:\S*[^[:alpha:][:space:]])?(indeterminad[ao]|undetermined|unknown|indet\.?|sp\.?\s+nov\.?|sp\.?)(?:[^[:alpha:][:space:]]\S*)?(?=\s|$)/i", ' ',$text_str);
+			if ( strpos($text_str,'  ') !== false ) {
+				$text_str = preg_replace("/ {2,}/", ' ',$text_str);
+			}
+			$text_str = trim($text_str);
+			if (preg_match('/^(((?:[[:alpha:]]+aceae)|Cruciferae|Guttiferae|Umbelliferae|Compositae|Leguminosae|Palmae|Labiatae|Gramineae|Mimosoideae|Papilionoideae|Caesalpinioideae|fam(?:ily)?)((?:[^[:alpha:][:space:]]\S*)?))(?=\s+|$)/i', $text_str, $fam_matches)) {
+				$text_str=trim(str_replace($fam_matches[0],'',$text_str));
+				$this->this_family_string=$fam_matches[1];
+				#$this->this_search_family=$fam_matches[2];
+				$this->this_search_family=mb_strtoupper(mb_substr($fam_matches[2],0,1)) . mb_strtolower(mb_substr($fam_matches[2],1));
+				$this->this_family_unmatched=$fam_matches[3];
+				if (preg_match("/^fam(ily)?$/i", $this->this_search_family)) {
+					$this->this_family_unmatched=$this->this_search_family . $this->this_family_unmatched;
+					$this->this_search_family='';
+				}
+				if (! $this->parse_only && $this->this_search_family) {
+					$searchFamilyName=$this->db->searchFamilyName($this->this_search_family);
+
+					if (isset($searchFamilyName)) {
+						foreach ($searchFamilyName as $returnedFamilyName){
+							$this->saveFamilyMatches($returnedFamilyName->nameID, $this->this_search_family, 0, 'Y');
+						}
 					}
-				} else {
 					$nm = new NearMatch();
 					$this_near_match_family = $nm->near_match($this->this_search_family);
 					$this_family_start = substr($this->this_search_family,0,3);
@@ -674,8 +604,8 @@
 								$phonetic_flag = $family_match['phonetic_match'] ? 'Y' : null;
 								$this->saveFamilyMatches($drec->family_id, $drec->family, $family_match['edit_distance'], $phonetic_flag);
 						   }
-						}
-					} // end foreach
+						} // end foreach
+					}
 				}
 			}
 
@@ -683,11 +613,15 @@
 				return true;
 			}
 
+			//unhyphened trinormial
 			if (preg_match('/^([[:alpha:]]+) ([[:alpha:]]+)[\.\s]([[:alpha:]]+)(.*)/', $text_str, $matches)) {
-				$tmp_str="$matches[1] $matches[2]-$matches[3]";
-				$res=$this->db->checkScientificName($tmp_str);
-				if (isset($res)) {
-					$text_str=$res . $matches[4];
+				$specific_epithet_str="$matches[2]-$matches[3]";
+				$check_res=$this->db->checkSpecificEpithet(array($specific_epithet_str));
+				foreach($check_res as $ck) {
+				   if ($ck->count > 0 &&  mb_strtolower($ck->specificEpithet) == mb_strtolower($specific_epithet_str)) {	
+						$text_str=str_ireplace_first("$matches[2] $matches[3]", "$matches[2]-$matches[3]", $text_str);
+						$this->this_preprocessed_txt=str_ireplace_first("$matches[2] $matches[3]", "$matches[2]-$matches[3]", $this->this_preprocessed_txt); 
+				   }
 				}
 			}
 
@@ -695,11 +629,13 @@
 
 			$token=explode(" ", $text_str);
 			for($i=0; $i < count($token); $i++) {
-				if (preg_match('/^[[:alpha:]]+$/u', $token[$i])) {
+				if (preg_match('/^[[:alpha:]]+\.?$/u', $token[$i])) {
 					if ($i == 0) {
 						$token[$i]=mb_strtoupper(mb_substr($token[$i],0,1)) . mb_strtolower(mb_substr($token[$i],1));
 					} elseif ( mb_strtoupper($token[$i]) == $token[$i] ) {
 						$token[$i]=mb_strtolower($token[$i]);
+					} else {
+						break;
 					}
 				} 
 			}
@@ -709,40 +645,6 @@
 			// Clearing the temporary tables
 			//$this->db->clearTempTables();
 
-			$searchScientificName=$this->db->searchScientificName($text_str);
-			if (isset($searchScientificName)) {
-
-				foreach ($searchScientificName as $returnedScientificName){
-					$this->this_authority=trim(str_replace($returnedScientificName->scientificName,'',$text_str));
-					$this->this_search_species = $returnedScientificName->specificEpithet;
-					$this->this_search_genus = $returnedScientificName->genus;
-					if($returnedScientificName->specificEpithet != '') {
-						if ($returnedScientificName->nameRank != 'species') {
-							$infraspecies=trim(str_replace($this->this_search_genus . ' ' . $this->this_search_species,'',$returnedScientificName->scientificName));
-							$infra=explode(' ', $infraspecies);
-							if (count($infra) == 2) {
-								$this->this_search_rank1=$infra[0];
-								$this->this_search_infra1=$infra[1];
-							} elseif(count($infra) == 4) {
-								$this->this_search_rank1=$infra[0];
-								$this->this_search_infra1=$infra[1];
-								$this->this_search_rank2=$infra[2];
-								$this->this_search_infra2=$infra[3];
-							}
-							if ($this->this_search_infra2) {
-								$this->saveInfra2Matches($returnedScientificName->nameID, $returnedScientificName->scientificName, 0, 0, 0, 0, 0, 'Y');
-							} elseif ($this->this_search_infra1) {
-								$this->saveInfra1Matches($returnedScientificName->nameID, $returnedScientificName->scientificName, 0, 0, 0, 0, 'Y');
-							}
-						} else {
-							$this->saveSpeciesMatches($returnedScientificName->nameID, $returnedScientificName->scientificName, 0, 0, 0, 'Y');
-						}
-					} elseif ($returnedScientificName->genus != '') {
-						$this->saveGenusMatches($returnedScientificName->nameID, $returnedScientificName->scientificName, 0, 'Y');
-					}
-				}
-				return true;
-			}
 			// includes stripping of presumed non-relevant content including subgenera, comments, cf's, aff's, etc... to 
 
 			// Normalizing the search text
@@ -752,13 +654,18 @@
 
 			if(!$this->chop_overload) {
 				// leave presumed genus + species + authority (in this instance), with  genus and species in uppercase
-				debug("gni_parsing_start");
 				$splitter = new Splitter($n,$text_str);
-				debug("gni_parsing_end");
 				
 				$this->this_search_genus = $this_search_genus = $splitter->get('genus');
 				$this->this_search_species = $this_search_species = $splitter->get('species');
-				$this->this_authority = $this_authority = $splitter->get('author');			
+				$this->this_authorities=$splitter->get('authors');
+				$this->this_authority = $this_authority = end($this->this_authorities);			
+				if (preg_match("/^gen(us)?$/i", $this->this_search_genus)) {
+					$this->this_search_genus='';
+				}
+				if (preg_match("/^sp(p|ecies)?$/i", $this->this_search_species)) {
+					$this->this_search_species='';
+				}
 				$infraspecies = $splitter->get('infraspecies');
 				if (isset($infraspecies)) {
 					if(isset($infraspecies[0])) {
@@ -777,6 +684,9 @@
 				if ( NAME_PARSER == 'gni') {
 					$this->gni_parser_result = $splitter->parsed_response;
 				}
+			}
+			if ($this->parse_only) {
+				return true;
 			}
 
 			// cache_flag switch detemines if caching is allowed for the source
@@ -805,7 +715,6 @@
 			}
 
 			if(!$cache_loop_flag) {
-				debug("direct_search_start");
 				$search_str=$this->this_search_genus;
 				if ($this->this_search_species) {
 					$search_str .= ' ' . $this_search_species; 
@@ -822,29 +731,30 @@
 						}
 					$search_str .= ' ' . $this->this_search_infra2; 
 				}
-				//if (isset($this_authority)) {
-				//	$search_str .= ' ' . $this_authority; 
-				//}
-				$searchScientificName=$this->db->searchScientificName($search_str);
-				debug("direct_search_end");
+
+				$searchScientificName=$this->db->searchScientificName(array($text_str, $search_str));
 				if (isset($searchScientificName)) {
+					$has_match=0;
 					foreach ($searchScientificName as $returnedScientificName){
-						if($returnedScientificName->specificEpithet != '') {
-							if ($returnedScientificName->nameRank != 'species') {
-							//TODO
-								if ($this->this_search_infra2) {
+						if ($returnedScientificName->specificEpithet != '') {
+							$has_match=1;
+							if ($returnedScientificName->nameRank != 'species' && $returnedScientificName->nameRank != 'nothospecies') {
+								if ($returnedScientificName->infraspecificEpithet2 || $this->this_search_infra2) {
 									$this->saveInfra2Matches($returnedScientificName->nameID, $returnedScientificName->scientificName, 0, 0, 0, 0, 0, 'Y');
-								} elseif ($this->this_search_infra1){
+								} elseif ($returnedScientificName->infraspecificEpithet || $this->this_search_infra1){
 									$this->saveInfra1Matches($returnedScientificName->nameID, $returnedScientificName->scientificName, 0, 0, 0, 0, 'Y');
 								}
 							} else {
 								$this->saveSpeciesMatches($returnedScientificName->nameID, $returnedScientificName->scientificName, 0, 0, 0, 'Y');
 							}
-						} elseif($returnedScientificName->genus != '') {
+						} elseif ($returnedScientificName->genus != '') {
+							$has_match=1;
 							$this->saveGenusMatches($returnedScientificName->nameID, $returnedScientificName->genus, 0, 'Y');
 						}
 					}
-					return true;
+					if ($has_match) {
+						return true;
+					}
 				}
 
 				$this->debug['process'][] = "3a (this_search_genus:$this_search_genus) (this_search_species:$this_search_species) (this_authority:$this_authority)";
@@ -870,9 +780,7 @@
 				// now look for exact or near matches on genus first select candidate genera for edit distance (MDLD) test
 	
 				// for drec in genus_cur loop -- includes the genus pre-filter (main portion)
-				debug("genus_search_start");
 				$genus_res = $this->db->genus_cur3($this->search_mode, $this_near_match_genus, $this_near_match_species, $this_genus_length,$this_genus_start,$this_genus_end);
-				debug("genus_search_end");
 	
 #				$this->debug['process'][] = array("5 (genus_res)" => $genus_res);
 
@@ -882,9 +790,7 @@
 					// EJS -- attempt to reduce the amount of species_cur
 					// this will be the naive approach
 					foreach ($genus_res as $drec) {
-							debug("genus_match_start");
 					        $genus_match = $this->match_genera($this_search_genus, $drec->search_genus_name);
-							debug("genus_match_end");
 					        if ($genus_match['match']) {
 					           // don't include a genus already in the array
 						        if (!array_key_exists($drec->genus_id,$genus_matches)) {
@@ -899,9 +805,7 @@
 					$species_matches = array();
 
 					if ($this_search_species != '' && count ($genus_matches)) {
-						debug("species_search_start");
 						$species_res = $this->db->species_cur_in2(array_keys($genus_matches), $this_species_length );
-						debug("species_search_end");
 						if (isset($species_res)) {
 							foreach ($species_res as $drec) {
 								$species_epithets_match = $this->match_species_epithets($this_search_species, $drec->search_species_name);
@@ -910,9 +814,7 @@
 								if ($binomials_match['match']) {		
 									if (!array_key_exists($drec->species_id,$species_matches)) {
 										$binomial_phonetic_flag = $binomials_match['phonetic_match'] ? 'Y' : null;
-										debug("species_save_start");
 										$this->saveSpeciesMatches($drec->species_id, $drec->genus_species, $genus_match['edit_distance'], $species_epithets_match['edit_distance'], $binomials_match['edit_distance'], $binomial_phonetic_flag);
-										debug("species_save_end");
 										$this->species_tested++;
 									}
 									$species_epithets_match['genus_match']=$genus_match;
@@ -1013,6 +915,11 @@
 					$this->getFamilyAuthority('P','phonetic',$this->this_authority);
 					$this->getFamilyAuthority(1,'near_1',$this->this_authority);
 					$this->getFamilyAuthority(2,'near_2',$this->this_authority);
+
+					if ($this->search_mode == 'extended') {
+						$this->getFamilyAuthority(3,'near_4',$this->this_authority);
+						$this->getFamilyAuthority(4,'near_4',$this->this_authority);
+					}
 				}
 				$this->debug['generateResponse'][] = "1 (input:" . $this->searchtxt . ")";
 		
@@ -1027,8 +934,12 @@
 				$this->getGenusAuthority(1,'near_1', $this->this_authority);
 				$this->debug['generateResponse'][] = "1d (getGenusAuthority:near_2)";
 				$this->getGenusAuthority(2,'near_2', $this->this_authority);
+				if ($this->search_mode == 'extended') {
+					$this->getGenusAuthority(3,'near_3', $this->this_authority);
+					$this->getGenusAuthority(4,'near_4', $this->this_authority);
+				}
 	
-				if ( !is_null($this->this_search_species) ) {
+				if ($this->this_search_species) {
 					// species exact, phonetic, and other near matches
 		
 					$this->debug['generateResponse'][] = "2a (getSpeciesAuthority:exact) ($this->this_authority)";
@@ -1039,31 +950,43 @@
 					$this->getSpeciesAuthority( 1, 'near_1', $this->this_authority );
 					$this->debug['generateResponse'][] = "2d (getSpeciesAuthority:near_2) ($this->this_authority)";
 					$this->getSpeciesAuthority( 2, 'near_2', $this->this_authority );
+					if ($this->search_mode == 'extended') {
+						$this->getSpeciesAuthority( 3, 'near_3', $this->this_authority );
+						$this->getSpeciesAuthority( 4, 'near_4', $this->this_authority );
+					}
 
 					// -- Here is the result shaping section (only show ED 3 if no ED 1,2 or phonetic matches, only
 					// --   show ED 4 if no ED 1,2,3 or phonetic matches). By default shaping is on, unless disabled
 					// --   via the input parameter "search_mode" set to 'no_shaping'.
 					// --   In this demo we supplement any actual shaping with a message to show that it has been invoked,
 					// --   to show the system operates correctly.
-					if ($this->search_mode != 'no_shaping') {
-						if(!isset($this->species_found) || $this->species_found != 'Y') {
-							$this->getSpeciesAuthority( 3, 'near_3', $this->this_authority );
-						}
-						if(!isset($this->species_found) || $this->species_found != 'Y') {
-							$this->getSpeciesAuthority( 4, 'near_4', $this->this_authority );
-						}
-					} // END temp_species_count > 0 and "no_shaping"
+					#if ($this->search_mode != 'no_shaping') {
+					#	if(!isset($this->species_found) || $this->species_found != 'Y') {
+					#		$this->getSpeciesAuthority( 3, 'near_3', $this->this_authority );
+					#	}
+					#	if(!isset($this->species_found) || $this->species_found != 'Y') {
+					#		$this->getSpeciesAuthority( 4, 'near_4', $this->this_authority );
+					#	}
+					#} // END temp_species_count > 0 and "no_shaping"
 				} // END If this_search_species
 				if ($this->this_search_infra1) {
 					$this->getInfra1Authority(0,'exact',$this->this_authority);
 					$this->getInfra1Authority('P','phonetic',$this->this_authority);
 					$this->getInfra1Authority(1,'near_1',$this->this_authority);
 					$this->getInfra1Authority(2,'near_2',$this->this_authority);
+					if ($this->search_mode == 'extended') {
+						$this->getInfra1Authority(3,'near_3',$this->this_authority);
+						$this->getInfra1Authority(4,'near_4',$this->this_authority);
+					}
 				} elseif($this->this_search_infra2) {
 					$this->getInfra2Authority(0,'exact',$this->this_authority);
 					$this->getInfra2Authority('P','phonetic',$this->this_authority);
 					$this->getInfra2Authority(1,'near_1',$this->this_authority);
 					$this->getInfra2Authority(2,'near_2',$this->this_authority);
+					if ($this->search_mode == 'extended') {
+						$this->getInfra2Authority(3,'near_3',$this->this_authority);
+						$this->getInfra2Authority(4,'near_4',$this->this_authority);
+					}
 				}
 				
 				if($this->output_type == 'rest') {
@@ -1280,25 +1203,25 @@
 	}
 
 	private function saveFamilyMatches($family_id,$family,$family_ed,$phonetic_flag) {
-		$this->familymatches[]=array($family_id,$family,$family_ed,$phonetic_flag);
+		$this->familymatches[$family_id]=array($family_id,$family,$family_ed,$phonetic_flag);
 	}
 
 	private function saveGenusMatches($genus_id,$genus,$genus_ed,$phonetic_flag) {
-		$this->genusmatches[]=array($genus_id,$genus,$genus_ed,$phonetic_flag);
+		$this->genusmatches[$genus_id]=array($genus_id,$genus,$genus_ed,$phonetic_flag);
 	}
 	private function saveSpeciesMatches($species_id,$genus_species,$genus_ed,$species_ed,$gen_sp_ed,$phonetic_flag) {
-		$this->speciesmatches[]=array($species_id,$genus_species,$genus_ed,$species_ed,$gen_sp_ed,$phonetic_flag);
+		$this->speciesmatches[$species_id]=array($species_id,$genus_species,$genus_ed,$species_ed,$gen_sp_ed,$phonetic_flag);
 	}
 	private function saveInfra1Matches($infra1_id,$genus_species_infra1,$genus_ed,$species_ed,$infra1_ed,$gen_sp_infra1_ed,$phonetic_flag) {
-		$this->infra1matches[]=array($infra1_id,$genus_species_infra1,$genus_ed,$species_ed,$infra1_ed,$gen_sp_infra1_ed,$phonetic_flag);
+		$this->infra1matches[$infra1_id]=array($infra1_id,$genus_species_infra1,$genus_ed,$species_ed,$infra1_ed,$gen_sp_infra1_ed,$phonetic_flag);
 	}
 	private function saveInfra2Matches($infra2_id,$genus_species_infra1_infra2,$genus_ed,$species_ed,$infra2_ed,$infra1_id,$gen_sp_infra1_infra2_ed,$phonetic_flag) {
-		$this->infra2matches[]=array($infra2_id,$genus_species_infra1_infra2,$genus_ed,$species_ed,$infra2_ed,$infra1_id,$gen_sp_infra1_infra2_ed,$phonetic_flag);
+		$this->infra2matches[$infra2_id]=array($infra2_id,$genus_species_infra1_infra2,$genus_ed,$species_ed,$infra2_ed,$infra1_id,$gen_sp_infra1_infra2_ed,$phonetic_flag);
 	}
 	private function family_result_cur($this_ed = null) {
 		$family_cur_keys=array('family_id', 'family', 'family_ed', 'phonetic_flag');
 		$value=array();
-		foreach ($this->familymatches as $family_cur) {
+		foreach (array_values($this->familymatches) as $family_cur) {
 			if ($this_ed === 0 && $family_cur[2] == $this_ed) {
 				$value[]=array_combine($family_cur_keys, $family_cur);
 			} elseif ($this_ed === 'P' && $family_cur[2] > 0 && $family_cur[3] == 'Y') {
@@ -1312,7 +1235,7 @@
 	private function genus_result_cur($this_ed = null) {
 		$genus_cur_keys=array('genus_id', 'genus', 'genus_ed', 'phonetic_flag');
 		$value=array();
-		foreach ($this->genusmatches as $genus_cur) {
+		foreach (array_values($this->genusmatches) as $genus_cur) {
 			if ($this_ed === 0 && $genus_cur[2] == $this_ed) {
 				$value[]=array_combine($genus_cur_keys, $genus_cur);
 			} elseif ($this_ed === 'P' && $genus_cur[2] > 0 && $genus_cur[3] == 'Y') {
@@ -1326,7 +1249,7 @@
 	private function species_result_cur($this_ed = null) {
 		$species_cur_keys=array('species_id', 'genus_species', 'genus_ed', 'species_ed', 'gen_sp_ed', 'phonetic_flag');
 		$value=array();
-		foreach ($this->speciesmatches as $species_cur) {
+		foreach (array_values($this->speciesmatches) as $species_cur) {
 			if ($this_ed === 0 && $species_cur[3] == $this_ed) {
 				$value[]=array_combine($species_cur_keys, $species_cur);
 			} elseif ($this_ed === 'P' && $species_cur[3] > 0 && $species_cur[5] == 'Y') {
@@ -1340,7 +1263,7 @@
 	private function infra1_result_cur($this_ed = null) {
 		$infra1_cur_keys=array('infra1_id', 'genus_species_infra1', 'genus_ed', 'species_ed', 'infra1_ed', 'gen_sp_infra1_ed', 'phonetic_flag');
 		$value=array();
-		foreach ($this->infra1matches as $infra1_cur) {
+		foreach (array_values($this->infra1matches) as $infra1_cur) {
 			if ($this_ed === 0 && $infra1_cur[4] == $this_ed) {
 				$value[]=array_combine($infra1_cur_keys, $infra1_cur);
 			} elseif ($this_ed === 'P' && $infra1_cur[4] > 0 && $infra1_cur[6] == 'Y') {
@@ -1354,7 +1277,7 @@
 	private function infra2_result_cur($this_ed = null) {
 		$infra2_cur_keys=array('infra2_id', 'genus_species_infra1_infra2', 'genus_ed', 'species_ed', 'infra2_ed', 'infra1_ed', 'gen_sp_infra1_infra2_ed', 'phonetic_flag');
 		$value=array();
-		foreach ($this->infra2matches as $infra2_cur) {
+		foreach (array_values($this->infra2matches) as $infra2_cur) {
 			if ($this_ed === 0 && $infra2_cur[4] == $this_ed) {
 				$value[]=array_combine($infra2_cur_keys, $infra2_cur);
 			} elseif ($this_ed === 'P' && $infra2_cur[4] > 0 && $infra2_cur[7] == 'Y') {

@@ -7,17 +7,18 @@
  * @return mixed $db database object
  */
 
-function select_source( $source ) {
+function select_source( $source, $classification ) {
 	$db = null;
 	global $authorities;
-	$s = $authorities[$source];
+	// $s = $authorities[$source];
+	$s = $authorities[DB_NAME];
 	switch( $s['db_type'] ) {
 		case 'mysql':
 			require_once('class.queries.mysql.php');
 			$connection_string = sprintf("server=%s; database=%s; username=%s; password=%s;", $s['host'], $s['db_name'], $s['username'], $s['pass'] );	
 			$conn = new MysqliDatabase($connection_string);
 			$conn->set_charset("utf8");
-			$db = new Queries( $conn, $source );
+			$db = new Queries( $conn, $source, $classification );
 			break;
 	}
 	
@@ -51,5 +52,24 @@ function microtime_diff( $start, $end=NULL ) {
 	$diff_usec= floatval($end_usec) - floatval($start_usec);
 	return floatval( $diff_sec ) + $diff_usec;
 } 
+
+function str_ireplace_first ($search, $replace, $subject) {
+	$search_array=array();
+	if (is_array($search)) {
+		$search_array=$search;
+	} else {
+		$search_array[]=$search;
+	}	
+	foreach ($search_array as $target) {
+		if ($target) {
+			$pos = stripos($subject, $target);
+			if ($pos !== false) {
+				$subject=substr_replace($subject, $replace, $pos, strlen($target));
+				break;
+			}
+		}
+	}
+	return $subject;
+}
 
 ?>
