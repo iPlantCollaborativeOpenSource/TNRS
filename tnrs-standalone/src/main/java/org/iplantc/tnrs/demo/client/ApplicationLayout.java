@@ -123,11 +123,14 @@ public class ApplicationLayout extends Viewport
 		protected void afterRender()
 		{
 			super.afterRender();
-			el().createChild("<div class=\"header\">" + 
-								"<div class=\"subheader\">Taxonomic Name Resolution Service" + 
-									"<sup><small><em>(Beta)</em></small></sup>" +
-								"</div>" +
-							"</div>");		
+			el().createChild("<div class=\"header\"> \n" + 
+					"        <span id=\"logo\">\n" + 
+					"        <img src=\"images/iplant_logo.png\" alt= \"iPlant Collaborative\" /> \n" + 
+					"      </span>\n" + 
+					"    <div class=\"subheader\">\n" + 
+					"<span>Taxonomic Name Resolution Service</span> <span style=\"font-size: 24px;\">v3.0</span>\n" + 
+					"    </div>\n" + 
+					"  </div>");		
 		}	
 	}
 }

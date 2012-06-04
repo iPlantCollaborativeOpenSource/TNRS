@@ -55,7 +55,11 @@ public class TNRSEditorPanel extends LayoutContainer {
 		setLayout(new FitLayout());
 		Element el = XDOM.getElementById("toggle");
 		el.setAttribute("flag", "true");
-
+		download_panel = new ContentPanel();
+		download_panel = new ContentPanel();
+		download_panel.setFrame(false);
+		download_panel.setSize(1, 1);
+		download_panel.setVisible(false);
 	}
 
 	// build column without custom renderer

@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<!--                                                               -->
+<!-- Consider inlining CSS to reduce the number of requested files -->
+<!--                                                               -->
+<link type="text/css" rel="stylesheet" href="gxt/css/gxt-all.css">
+<link type="text/css" rel="stylesheet" href="gxt/css/gxt-gray.css">
+<link type="text/css" rel="stylesheet" href="TNRSDemo.css">
+<link type="text/css" rel="stylesheet" href="style.css">
+<noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
+<script type="text/javascript" language="javascript"
+	src="tnrsdemo/tnrsdemo.nocache.js"></script>
+
+<script type="text/javascript">
+		var shouldsubmit = false; // Represent the button should ask for confirmation or not.
+		window.onbeforeunload = confirmUnloading;
+
+
+
+			function confirmUnloading()
+            {
+               //alert('document');
+                 var el = document.getElementById('toggle');
+                 if(el.getAttribute('flag')=="true"){
+                       return "If you have any unsaved data in the current page, it will be lost.";
+                  }
+
+            }
+
+			
+		
+	</script>
+
+</head>
+
+<!--                                           -->
+<body onunload="">
+	<!-- include for history support -->
+	<iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
+		style="position: absolute; width: 0; height: 0; border: 0"> </iframe>
+
+</body>
+</html>

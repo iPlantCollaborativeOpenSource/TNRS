@@ -1,0 +1,129 @@
+/**
+ * 
+ */
+package org.iplantc.tnrs.demo.client.panels;
+
+import org.iplantc.tnrs.demo.client.EditSettingsDialog;
+
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.ComponentEvent;
+import com.extjs.gxt.ui.client.event.EventType;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Html;
+import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.layout.FillLayout;
+import com.extjs.gxt.ui.client.widget.layout.FitLayout;
+import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
+import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+
+/**
+ * @author raygoza
+ *
+ */
+public class SettingsSummaryPanel extends ContentPanel {
+
+	private EditSettingsDialog dialog;
+	private Label modeLabel;
+	private Label accuracyLabel;
+	private Label taxonomicLabel;
+	
+	public SettingsSummaryPanel(EditSettingsDialog dlg){
+		dialog=dlg;
+		init();
+		compose();
+		update();
+	}
+	
+	
+	public void init(){
+		setHeading("Current Settings");
+		setFrame(true);
+		setWidth(580);
+		setHeight(240);
+		setLayout(new FitLayout());
+	}
+	
+	
+	public void compose(){
+		VerticalPanel pnlInner= new VerticalPanel();
+		pnlInner.add(new Label("Processing mode:"));
+		modeLabel = new Label("");
+		pnlInner.add(modeLabel);
+		pnlInner.add(new Html("<div>&nbsp;</div>"));
+		pnlInner.add(new Label("Match Accuracy:"));
+		accuracyLabel = new Label("");
+		pnlInner.add(accuracyLabel);
+		pnlInner.add(new Html("<div>&nbsp;</div>"));
+		pnlInner.add(new Label("Sort matches based on taxonomy"));
+		taxonomicLabel = new Label("");
+		pnlInner.add(taxonomicLabel);
+		pnlInner.setBorders(true);
+		add(pnlInner);
+		setBottomComponent(buildButtonBar());
+		
+		dialog.addListener(Events.Hide, new Listener<ComponentEvent>() {
+			
+			public void handleEvent(ComponentEvent be) {
+				update();
+			};
+			
+		});
+	}
+	
+	
+	private ToolBar buildButtonBar()
+	{
+		ToolBar ret = new ToolBar();
+
+		ret.add(new FillToolItem());
+		ret.add(buildSettingsButton());
+		
+		return ret;
+	}
+	
+	private Button buildSettingsButton() {
+		
+		Button classify = new Button("Change settings");
+		
+		classify.addSelectionListener(new SelectionListener<ButtonEvent>() {
+			
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				
+				dialog.setModal(true);
+				dialog.show();
+				update();
+				layout();
+			}
+		});
+		return classify;
+	}
+	
+	public void update(){
+		JSONObject json = (JSONObject)JSONParser.parseStrict(dialog.getSettings());
+		
+		accuracyLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+json.get("sensitivity").toString().replace("\"", ""));
+		if(json.get("mode").toString().replace("\"", "").equals("matching")){
+			modeLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform Name Resolution");
+		}else{
+			modeLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform Name Parsing");
+		}
+		
+		boolean taxonomic = Boolean.parseBoolean(json.get("taxonomic").toString().replace("\"",	 ""));
+		
+		if(taxonomic){
+			taxonomicLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On");
+		}else{
+			taxonomicLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Off");
+		}
+		
+	}
+	
+}

@@ -6,12 +6,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 	<title>Taxonomic Name Resolution Service - API</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
+	<noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
 </head> 
 
 <body>
 	<div class="header"> 
-		<div class="subheader">Taxonomic Name Resolution Service 
-		<sup><small><em>(Beta)</em></small></sup>
+		<div class="subheader">Taxonomic Name Resolution Service <span style="font-size: 24px;">v2.0</span>
 		</div>
 	</div> 
 	 
@@ -24,7 +24,7 @@
 		<a href="sources.html">Sources</a> &nbsp; &nbsp; 
 		<a href="contributors.html">Contributors</a> &nbsp; &nbsp;
 		<a href="future.html">Future</a> &nbsp; &nbsp;
-		<a href="TNRSDemo.html">TNRS Application</a>
+		<a href="TNRSapp.html">TNRS Application</a>
 	</div>
 	
 	<div id="wrapper">
@@ -33,7 +33,7 @@
 				<h1>TNRS API</h1>
 				<p>The TNRS API is in the early stages of development. Currently it consists of a single service to which a list of names is submitted.</p>
 				
-				<p>Use <font face="monospace">GET</font> to call to the matchNames service, found at: <font face="monospace">http://ohmsford.iplantc.org/tnrsm-svc/matchNames</font></p>
+				<p>Use <font face="monospace">GET</font> to call to the matchNames service, found at: <font face="monospace">http://tnrs.iplantc.org/tnrsm-svc/matchNames</font></p>
 				
 				<p>Easy ways to submit names to the service include entering a query in your web browser or using the Linux <font face="monospace">curl</font> tool.</p>
 				
@@ -45,12 +45,12 @@
 				</p>
 				
 				<p>Here is a short example in which the best matches are requested for four names:<br />
-				<font face="monospace">http://ohmsford.iplantc.org/tnrsm-svc/matchNames?retrieve=best&amp;names=zea%20mays,acacia,solanum,saltea</font></p>
+				<font face="monospace">http://tnrs.iplantc.org/tnrsm-svc/matchNames?retrieve=best&amp;names=zea%20mays,acacia,solanum,saltea</font></p>
 				
 				<p>Output is currently returned in JSON format. The service will be expanded soon to support output in XML and CSV as well. In addition, parameters will be added soon to specify output format, encoding, and compression of the results.</p>
 				
 				<h1>Source Code</h1>
-				<p>All source code is available in our GitHub repository (link to repo to be added).</p>
+				<p>All source code is available in our <a href="https://github.com/iPlantCollaborativeOpenSource/TNRS/" target="blank">GitHub repository</a></p>
 				<p>Except where noted below, code is licensed using <a href="http://www.iplantcollaborative.org/sites/default/files/iPLANT-LICENSE.txt">this standard BSD license</a>, which is an <a href="http://www.opensource.org/licenses/index.html">Open Source Initiative</a>-approved <a href="http://www.opensource.org/licenses/bsd-license">license</a>.</p>
 				<p>We built on two existing open source projects, each of which retain their original licensing.
 				<ul>

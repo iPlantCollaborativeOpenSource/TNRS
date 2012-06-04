@@ -3,6 +3,7 @@
  */
 package org.iplantc.tnrs.demo.server;
 
+import java.io.FileInputStream;
 import java.util.Properties;
 
 /**
@@ -14,7 +15,7 @@ public class ConfigurationProperties {
 	Properties props = new Properties();
 	
 	public ConfigurationProperties() throws Exception{
-		props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("tnrs.properties"));
+		props.load(new FileInputStream(System.getProperty("user.home")+"/.tnrs/tnrs.properties"));
 		
 	}
 	
@@ -22,4 +23,8 @@ public class ConfigurationProperties {
 		return props.getProperty(property);
 	}
 	
+	
+	public String getProperty(String property) {
+		return props.getProperty(property);
+	}
 }

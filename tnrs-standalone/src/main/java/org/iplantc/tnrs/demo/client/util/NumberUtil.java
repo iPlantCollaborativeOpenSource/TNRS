@@ -3,12 +3,16 @@
  */
 package org.iplantc.tnrs.demo.client.util;
 
+import com.google.gwt.i18n.client.NumberFormat;
+
 /**
  * @author raygoza
  *
  */
 public class NumberUtil {
 
+	private static NumberFormat fmt = NumberFormat.getFormat("#.00");
+	
 	public static boolean isDouble(final String test)
 	{
 		boolean ret = false; // assume failure
@@ -40,13 +44,13 @@ public class NumberUtil {
 		if(isDouble(score))
 		{
 			double d = Double.parseDouble(score);
-
-			int percentage = (int)(d * 100.0);
-			ret = percentage + "%";
-		}else {
-			ret="";
+		
+			if(d==0.0) return "0";
+			ret = fmt.format(d);
+		}else{
+			return "0";
 		}
-
+		
 		return ret;
 	}
 	

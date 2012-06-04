@@ -92,7 +92,7 @@ public class LocalTNRSEditorPanel extends TNRSEditorPanel
 			@Override
 			public void componentSelected(ButtonEvent ce)
 			{
-				TNRSDownloadDialog select_download = new TNRSDownloadDialog(new SelectionDownloadEvent());
+				TNRSDownloadDialog select_download = new TNRSDownloadDialog(new SelectionDownloadEvent(),"none",false,false,false);
 
 				select_download.show();
 
@@ -106,7 +106,7 @@ public class LocalTNRSEditorPanel extends TNRSEditorPanel
 		ret.add(but);
 
 
-		ret.add(new Html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue;'>Entered names results</span>"));
+		ret.add(new Html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue;font-weight: bold;'>Entered names results</span>"));
 		ret.add(new FillToolItem());
 		ret.setHeight(30);
 		ret.setBorders(true);
@@ -130,12 +130,6 @@ public class LocalTNRSEditorPanel extends TNRSEditorPanel
 		vpanel.add(buildDownloadToolbar());
 		vpanel.add(grid);
 		toolBar = new PagingToolBar(100);
-		download_panel = new ContentPanel();
-		download_panel.setFrame(false);
-		download_panel.setSize(1, 1);
-		download_panel.setVisible(false);
-
-
 		toolBar.bind(loader);  
 		loader.load(0, 100);
 		vpanel.add(toolBar);
@@ -241,7 +235,7 @@ public class LocalTNRSEditorPanel extends TNRSEditorPanel
 	{
 		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 
-
+		config.add(buildConfig("flag","<span style=\"font-size: 24px\">&#9872;<span>",30,HorizontalAlignment.LEFT));
 		config
 		.add(buildConfig("submitted", "Name<br/> Submitted", 200,
 				HorizontalAlignment.LEFT, new SubmittedNameRenderer()));
@@ -373,7 +367,7 @@ public class LocalTNRSEditorPanel extends TNRSEditorPanel
 
 			if(store != null)
 			{
-				DetailDialog dlg = new DetailDialog(entry);
+				DetailDialog dlg = new DetailDialog(entry,false);
 
 				dlg.show();
 
@@ -749,7 +743,7 @@ public class LocalTNRSEditorPanel extends TNRSEditorPanel
 		public NameMatchedRenderer(String url,String name,String countString,TNRSEntry model) {
 			setLayout(new ColumnLayout());
 			String prefix = (url == null) ? "" : "<a href='" + url + "' target='_blank'>";
-			String suffix = (url == null) ? " " : "</a>&nbsp;&nbsp; ";
+			String suffix = (url == null) ? " " : "</a>&nbsp;&nbsp;&nbsp;&nbsp; ";
 			entry =model;
 			// setup our base link
 			String ahref = prefix + name  + suffix;
@@ -777,9 +771,9 @@ public class LocalTNRSEditorPanel extends TNRSEditorPanel
 
 						if(store != null)
 						{
-							TNRSDetailsDialog dlg = new TNRSDetailsDialog(store, hasFamilies,new SelectionUpdatedEvent(group),false);
+							//TNRSDetailsDialog dlg = new TNRSDetailsDialog(store, hasFamilies,new SelectionUpdatedEvent(group),false);
 
-							dlg.show();						
+						//	dlg.show();						
 						}
 					}
 				});

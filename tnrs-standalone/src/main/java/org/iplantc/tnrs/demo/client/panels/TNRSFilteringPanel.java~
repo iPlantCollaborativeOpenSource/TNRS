@@ -1,0 +1,132 @@
+/**
+ * 
+ */
+package org.iplantc.tnrs.demo.client.panels;
+
+//import org.iplantc.tnrs.demo.client.panels.TNRSClassificationDialog;
+
+import com.extjs.gxt.ui.client.Style.Orientation;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SliderEvent;
+import com.extjs.gxt.ui.client.widget.Html;
+import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.Slider;
+import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.form.CheckBox;
+import com.extjs.gxt.ui.client.widget.form.Radio;
+import com.extjs.gxt.ui.client.widget.form.RadioGroup;
+import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+
+
+/**
+ * @author raygoza
+ *
+ */
+public class TNRSFilteringPanel extends VerticalPanel {
+
+	
+	private Slider sensitivity;
+	private RadioGroup group;
+	private CheckBox HTSort;
+	
+	public TNRSFilteringPanel() {
+		init();
+		compose();
+	}
+	
+	public void init() {
+		setAutoHeight(true);
+		setAutoWidth(true);
+	}
+	
+	public void compose() {
+		add(buildOptionsPanel());
+	}
+	
+	
+	public VerticalPanel buildOptionsPanel(){
+
+		VerticalPanel  panel = new VerticalPanel();
+		panel.setLayout(new CenterLayout());
+		panel.setStyleAttribute("padding", "5px");
+		
+		panel.add(new Label("Select processing mode:"));
+		panel.add(new Html("<div>&nbsp; </div>"));
+		
+		group = new RadioGroup();
+		Radio resolution= new Radio();
+		resolution.setBoxLabel("Perform name resolution");
+		resolution.setName("matching");
+		resolution.setValue(true);
+		group.add(resolution);
+		group.setOrientation(Orientation.VERTICAL);
+		Radio parsing = new Radio();
+		parsing.setName("parsing");
+		parsing.setBoxLabel("Parse names only");
+		group.add(parsing);
+		panel.add(group);
+		panel.add(new Html("<div>&nbsp; </div>"));
+		Label msg = new Label("Set Match Accuracy");
+		Label msg2 = new Label("Adjust the match sensitivity you would like to use for your list resolution.");
+		final Label threshold = new Label();
+		
+		sensitivity = new Slider();
+		sensitivity.setMinValue(5);
+		sensitivity.setMaxValue(100);
+		sensitivity.setIncrement(1);
+		sensitivity.setWidth(300);
+		sensitivity.addListener(Events.Change, new Listener<SliderEvent>() {
+			/* (non-Javadoc)
+			 * @see com.extjs.gxt.ui.client.event.Listener#handleEvent(com.extjs.gxt.ui.client.event.BaseEvent)
+			 */
+			@Override
+			public void handleEvent(SliderEvent be) {
+				Slider sl = (Slider)be.getSource();
+				sl.setMessage(((double)sl.getValue()/100.0)+"");
+				threshold.setText("Selected accuracy: " + sl.getMessage());
+			}
+		});
+		sensitivity.setValue(40);
+		
+		 
+		panel.add(new Html("<div>&nbsp; </div>"));
+		panel.add(msg);
+		panel.add(new Html("<div>&nbsp; </div>"));
+		panel.add(msg2);
+		panel.add(sensitivity);
+	    panel.add(threshold);
+	    panel.add(new Html("<div>&nbsp; </div>"));
+		panel.setSize(420, 200);
+
+		HTSort = new CheckBox();
+		HTSort.setBoxLabel("Sort matches based on taxonomy");
+		HTSort.setHideLabel(true);
+		HTSort.setValue(true);
+		panel.add(HTSort); 
+		return panel;
+
+	}
+	
+	
+	public String getSettings(){
+		
+		JSONObject json = new JSONObject();
+		
+		String type = group.getValue().getBoxLabel();
+		
+		json.put("sensitivity", new JSONString(((double)sensitivity.getValue()/100.0)+""));
+		if(type.equals("Perform name resolution")){
+			json.put("mode", new JSONString("matching"));
+		}else{
+			json.put("mode", new JSONString("parsing"));
+		}
+		
+		json.put("taxonomic", new JSONString(HTSort.getRawValue()));
+		System.out.println(json.get("taxonomic").toString());
+		return json.toString();
+	}
+	
+}

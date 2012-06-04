@@ -6,70 +6,497 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 	<title>Taxonomic Name Resolution Service - Instructions</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
+	    <noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
+  <div class="header"> 
 </head>
 
-<body>
-	<div class="header"> 
-		<div class="subheader">Taxonomic Name Resolution Service 
-		<sup><small><em>(Beta)</em></small></sup>
-		</div>
-	</div> 
-	 
-	<div class="logolinks">
-		<img src="images/logos.jpg"><br />
-		<a href="index.html">Home</a> &nbsp; &nbsp; 
-		<a href="about.html">About</a> &nbsp; &nbsp; 
-		<u>Instructions</u> &nbsp; &nbsp; 
-		<a href="api.html">API/Source Code</a> &nbsp; &nbsp; 
-		<a href="sources.html">Sources</a> &nbsp; &nbsp; 
-		<a href="contributors.html">Contributors</a> &nbsp; &nbsp;
-		<a href="future.html">Future</a> &nbsp; &nbsp;
-		<a href="TNRSDemo.html">TNRS Application</a>
-	</div>
+<body class="instructions">
+
+        <span id="logo">
+        <img src="images/iplant_logo.png" alt="iPlant Collaborative" /> 
+      </span>
+    <div class="subheader">
+<span>Taxonomic Name Resolution Service</span> <span style="font-size: 24px;">v3.0</span>
+    </div>
+  </div>
+
+  <div class="logolinks">
+      <a class="home" href="index.html">Home</a> |
+      <a class="apps" href="TNRSapp.html">TNRS Application</a> |
+      <a class="instructions" href="instructions.html">Instructions</a> |
+      <a class="sources" href="sources.html">Sources</a> |
+      <a class="about" href="about.html">About</a> | 
+      <a class="collaborators" href="collaborators.html">Collaborators</a> |
+      <a class="features" href="features.html">Known Issues</a> |
+      <a class="optimize" href="optimize.html">Optimize Your Search</a> |
+      <a class="cite" href="how_cite.html">How to Cite</a> 
+  </div>
+ 
+  <div>
+
+  
 	
 	<div id="wrapper">
 		<div id="contentwrapper">
 			<div class="content"> <!-- Main Body Text -->
-			<h1>How to use the TNRS</h1>
+			<div>
+  <h1>Instructions</h1>
+  <p>To view a quick summary of instructions, click here: <a href="quick_start.html">Quick Guide</a>.
+  </div>
+			  	<h2>Table of Contents</h2>
+  		<ul>
+			<li><a href="#settings">Settings</a></br></li>
+			<ul>
+				<li><a href="#processing">Processing mode</a></br></li>
+				<li><a href="#match">Match accuracy</a></br></li>
+				<li><a href="#source_selection">Source selection</a></br></li>
+				<li><a href="#classification">Classification</a></br></li>
 			
-			<h2>Enter or upload names for resolution</h2>
-			<p>There are two ways to use this application: enter names directly or upload a list.</p>
+			</ul>
+			<li><a href="#enter_names">Enter or Upload Names</a></br></li>
+			<ul>
+				<li><a href="#enter_names">Enter names directly</a></br></li>
+				<li><a href="#upload_list">Upload a list</a></br></li>
+			</ul>
+			<li><a href="#inspect_results">Inspect Results</a></li>
+			<ul>
+				<li><a href= "#results_screen">Results screen</a></li>
+				<li><a href="#Warning_Flag">Warning flags</a></li>
+				<li><a href="#viewing_results">Viewing your results</a></br></li>
+			</ul>
+			<li><a href="#download_results">Download Results</a></li>
+			<ul>
+				<li><a href="#simple_download">Simple download</a></li>
+				<li><a href="#detailed_download">Detailed download</a></li>		
+		</ul>
 			
-			<img src="images/enterNamesDirectly.png" alt="screenshot" align="right" />
-			<h3>Enter names directly</h3>
+			<h2><a name="settings"></a>Current Settings</h2>
+			<p>Prior to submitting a list, there are settings that can be adjusted. To change your settings, locate the Current Settings box to the right of the application. Click Edit next to your desired mode.</p>
+			<img src="images/settings.png" alt="Settings Window" title="Current Settings Window" align="left" width="380" height="170" title="Current Settings Window" border="1"/>
+			<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+			<h3><a name="processing">Processing Mode</a></h3>
+			<img src="images/processingMode.png" alt="Processing Mode Setting" title="Processing Mode Setting" align="left" width="340" height="140" border="1"/>
+			<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+			<ul>
+			<li><strong>Perform name resolution</strong>: this option processes names completely with the TNRS, making use of the GNA parser and Taxamatch to determine the best match for your submitted name.<br /><br />
+			A number of additional settings will influence the names returned to you when this is selected. <a href= "#match">Match Accuracy</a>, <a href= "#source_selection">Source Selection and Ranking</a>, and <a href= "#classification">Classification</a> settings may be applied to further enhance your returned results.</li>
+			<br />
+			<li><strong>Parse names only</strong>: this makes use of the GNA parser to return the atomic parts of your submitted name. No other settings need to be applied.</li>
+			<p>The GNA parser will attempt to determine the elements of your name string and return back the name tokens identified.</p>
+			</ul>
+			
+			<h3><a name="match">Match Accuracy</a></h3>
+			<p>The Match Accuracy settings allow you to determine the sensitivity of the lookup and fuzzy matching to the names in our TNRS data repository.</p>
+			<p>For example, if you submit a genus+species with the genus name spelled correctly but the species name spelled incorrectly, the application may match a name that is a closer edit distance for the overall name. In this case, it is possible that genus+species will be returned with a higher score that is not the intended species. If you know that the genus or a higher taxon submitted is correct, you can use this option to filter the best match to be constrained by that higher taxon.</p>
+			<img src="images/matchAccuracy.png" alt="Match Accuracy Setting" title="Match Accuracy Option" align="left" width="380" height="250" border="1" />
+			<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+			<ul>
+			<li><strong>Allow partial matching</strong>: when selected the TNRS will match to a higher taxon if a match to the full name submitted cannot be found.<br /><br />
+			 For example, submitting Vitis vitifolia will return Vitis L. from the Tropicos source if this setting is enabled. When disabled, you will get a return of "no matches found".</li><br />
+			<li><strong>Set Match Accuracy</strong>: allows a user to determine how exact the matches are.<br />
+			<br />
+			Setting the threshold to the lowest setting will return all names found within an edit distance of 4 (4 missed letters, 4 transposed letters).
+			<br /> Using the highest setting will allow you to validate your names by only providing exact match details for the names you submit. Central to this slider is our "happy medium" where names that score 0.5 according to our scoring algorithm will be returned.</li>
+			</ul>
+			<h3><a name= "source_selection" id="source_selection">Sources</a></h3>
+			<i>Disclaimer: The TNRS database is a repository for numerous sources. The TNRS team makes no attempt at determing the authority of the names, rather we provide the information that is available from these sources in a centralized location for matching of submitted names. Should you encounter issues with names that are lacking, please contact the source curators directly.</i>
+			<p>
+			<img src="images/sourceSelection.png" alt="Source Selection Setting" title="Source Selection Setting" align="left" width="380" height="250"  border="1" /><br />
+			</p>
+			<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+			<ul>
+			<li><strong>Source selection</strong>: The 3.0 version of the TNRS includes four sources for selection to use in matching of your submitted names. By default, all four sources are selected, so the TNRS will match against all names in our database when name resolution is performed. If the name submitted is matched to names from more than one source, the sources will display by that name in the <a href="#results_grid">results grid</a>.</li>
+			<ul>
+			<li>You may narrow your focus of sources by deselecting the sources from the Sources tab in the settings.<br /><br />
+			For example, should you only wish to match to Tropicos and USDA names, you can deselect NCBI and GCC as sources. The TNRS will then only return names found in those data sources when matching is performed. Should no match be found in those sources, you will be returned a status of "no suitable matches found".</li><br />
+			</ul>
+			<li><strong>Source ranking</strong>: You may rank sources in order of preference by dragging and dropping sources in the order by which you wish your results to be returned for display.<br /><br />			
+			The TNRS will return all names found within your selected match threshold for all sources selected. The best match is determined to be the name with the highest lexical score (best spelling match). Should this name not be within the same taxonomic group as the name you submitted, you will receive a <a href="#Warning_Flag">flag</a> letting you know that a better taxonomic match has been found. <br />
+			<br />Should your name match to a name with the same score, the best match will be displayed according to the highest taxonomic acceptance. Should more than one name with the same score and acceptance be found, names will be ranked alphabetically. <br />
+			<br />You may refine your results by selecting either "Constrain by source" or "Constrain by higher taxonomy" from the "Best Match Settings" button on the results grid.</li>
+			</ul>
+	
+			<h3><a name="classification" id="classification">Classification</a></h3>
+			<p>By default, the TNRS will return the classification for family according to the APGIII classification if you have selected more than one source. If you select only one source, the family will be displayed for that source. In this case, if you have selected a source of USDA only, you will get the family classification for USDA only (which is very similar to the APGIII classification schema).</p>
+			<p>This setting has the option to apply a different family classification, which may vary between sources. You may override this family classification by selecting the NCBI classification schema for family.</li></p>
+			<ul>
+			<li>Example of override: the genus <i>Acer albopurpurascens</i> is found in both the NCBI and Tropicos databases. However, NCBI attributes this genus to the family <i>Aceraceae</i>, whereas Tropicos attributes this genus to <i>Sapindaceae Juss</i>.</li>
+			<ul><li>If you choose to override the APGIII family classification with NCBI, the family attributed would be displayed as <i>Aceraceae</i> for this name. Other family names for all other names returned would be listed with the NCBI classification. If there is no classification for family that is attributed to that name in NCBI, then the family field for your returned name will be blank.</li> 
+			</ul>
+			</ul>
+				<h2><a name="enter_names">Enter or Upload Names for Resolution</a></h2>
+			<p>There are two ways to use this application: enter a list or upload a list.</p>
+			
+			<img src="images/enter_list.png" alt="Enter List Tab" title="Enter List Tab" align="right"  />
+			<h3><a name="names_directly">Enter List</a></h3>
 			<ol>
-			<li>Enter up to 5000 names in the Enter List tab, one name per line, with or without authority. You may type the names in the box or cut and paste from a text editor.</li>
-			<li>As an option, you may include the family name in front of the scientific name, separated by a space. Family name is NOT required; this option is provided to support ecological data where some taxa are identified only to family, followed by a morphospecies identifier (for example, Lauraceae sp.3).</li>
-			<li>Click the Go button to begin or Clear to start over.</li>
+			<li>Enter up to 5000 names in the Enter List tab, one name per line regardless of the file extension. You may type the names in the box or cut and paste from a text editor.</li>
+			<li>As an option, you may include the family name in front of the scientific name, separated by a space. Family name is NOT required. This option is provided to support ecological data where some taxa are identified only to family, followed by a morphospecies identifier (for example, Lauraceae sp.3). However, if you include family you may improve your matches by preventing fuzzy matching to similar names in different families.</li>
+			<li>Click the Submit List button to begin or Clear to start over.</li>
 			<li>Wait while the list is processed. Results appear when complete in a table immediately below the tabbed input box.</li>
-			<li>Proceed to Inspect results to continue.</li>
 			</ol>
 			
-			<h3>Upload a list</h3>
+			<h3><a name="upload_list">Upload and Submit List</a></h3>
 			<ol>
-			<li>Upload a list of names separated by commas in the Upload and Submit List tab, with or without authority. The list must use either windows encoding (WINDOWS-1254 or ISO-8859-1) or UTF-8, and contain either LF or CRLF line separators; most files created using standard text editors will fit these requirements, but if you are unsure or have problems, please contact us at <a href="mailto:support@iplantcollaborative.org">support@iplantcollaborative.org</a>.</li>
-			<li>Because processing long lists takes time, you must enter an email address to receive a notification when the list is successfully submitted and another when it is completely processed. The second email will include a Submission Key to be used to retrieve your results in the Retrieve Results tab. The Name and Institution fields are optional.</li>
-			<li>Click the Submit button to begin.</li>
-			<li>When the list is processed, enter your email address and Submission key in Retrieve Results. Click the Retrieve button.</li>
-			<li>Results appear in a table immediately below the tabbed input box.</li>
-			<li>Proceed to Inspect results to continue.</li>
+			<li>Upload a list of names separated by commas in the Upload and Submit List tab, with or without authority.</li> <br />
+			<liS>The list must use either windows encoding (WINDOWS-1254 or ISO-8859-1), UTF-8, or UTF-16 format and contain either LF or CRLF line separators; most files created using standard text editors will fit these requirements, but if you are unsure or have problems, please contact us at <a href="mailto:support@iplantcollaborative.org">support@iplantcollaborative.org</a>.</li>
+			<p><i>Note: If you upload your list in UTF-16 format, you may include special characters. However, if you manually enter your list, you may not include special characters as they can not be translated. If you manually enter your list with special characters, you may receive an inaccurate match score.</i></p>
+			<li>Processing long lists takes time. Enter an email address to receive a notification when the list is successfully submitted and another when it is completely processed. The second email will include a Submission Key to be used to retrieve your results in the Retrieve Results tab.</li>
+			<li>You have the ability to upload a list with a unique identifier for each name. The identifier must be in the 1st column of the list.</li>
+			<li>Click the Submit List button to begin.</li>
+			<li>When the list is processed, enter your email address and Submission Key in the Retrieve Results tab. Click the Retrieve button.</li>
+			<li>Results appear in a table immediately below.</li>
 			</ol>
 			
-			<h2>Inspect and download results</h2>
-			<p>The TNRS matching and name selection algorithms are still under development and may not always return the desired match. We strongly recommend users carefully examine any result with Overall Score less than 100%, or with more than one Name Matched (as indicated by the “+X more” link after the Name Matched; see step 2 below). The TNRS provides links to the original source of each name to help you with this research.</p>
+			
+			<h2><a name="inspect_results">Inspect Results</a></h2>
+			<p>We strongly recommend users carefully examine any result with Overall Score less than 100%, or with more than one Name Matched (as indicated by the “(+X more)” link after the Name Matched; <i>see step 2 below</i>). The TNRS provides a link to the original source of each name.</p>
+			
+			<h3><a name="results_screen">Results Screen</a></h3>
+			Your results will appear in the following window: <br /> <br />
+			<img src="images/entered_list_results.png" alt="Entered List Results" title="Entered List Results" height="300" width="1000" border="1" /> <br /> <br />
+			
 			<ol>
+			<p>
 			<li>If the TNRS application finds only one match for a submitted name, that match is displayed in the results.</li>
-			<li>If the TNRS application finds more than one near match for a submitted name, it will choose a single best match and display it in the list. You may select an alternate match if you prefer. Click the (+X more) link to view and select from multiple options when they exist.<br />
-			<img src="images/oneMore.png" alt="screenshot" /><br />
-			Select the preferred term from the popup list and click the Apply selected button or click Cancel to retain the current selection.</li>
-			<li>Click a matched name to open the Tropicos database page for the item.<br />
-			<img src="images/nameMatched.png" alt="screenshot" /></li>
-			<li>Click an accepted name to open the Tropicos database page for the item. Accepted names only appear for synonyms.<br />
-			<img src="images/acceptedName.png" alt="screenshot" /></li>
-			<li>Status tells you whether the matched name is also the accepted name (Accepted), or whether the matched name is a synonym of a different accepted name (Synonym). In some cases, there is either insufficient information to determine the status of the name, or the Computed Acceptance algorithm is unable to choose a single best name from among alternative conflicting accepted names (No opinion).</li>
+			<li>If the TNRS application finds more than one near match for a submitted name, it will choose a single best match and display it in the list.<br /><br />
+			You may select an alternate match if you prefer. Click the (+X more) link to view and select from multiple options when they exist.<br />
+			</p>
+			<img src="images/oneMore.png" alt="Multiple Submitted Names" title="Multiple Submitted Names" border="1" /><br />
+			<p>
+			<li>Select the preferred term from the popup list and click the Apply selected button or click Cancel to retain the current selection.</li>
+			<li>If the TNRS finds multiple equally-good matches and cannot select a single best name, or if there are other issues with the results requiring inspection by the user, it will display a red warning flag:  <br/><br/>
+			</p>
+			<img src="images/multiple_matches_flag.png" alt="Muliple Matches Flag" title="Multiple Matches Flag" border="1"/><br />
+		<p>
+			<li>Mouse-over the flag to see the reason. Click on the flag for a more detailed explanation.</li><br />
+			When more than one of the above scenarios are encountered, numerous messages will appear when selecting the flag. These warnings will also be part of the downloaded list.
+			<br/> <br />
+			
+			<li>Click the arrow icons in the Accepted Name field to go to the accepted name for a given source. Hovering over the icons will give you the source with a link.<br /></li>
+		</p>	
+			<img src="images/nameMatched.png" alt="Accepted Name" title="Accepted Name" border="1" /></li>
+		<p>	
+			<li>Click the Name Source to open the source's database page (not available for USDA at this time).<br />
+		</p>	
+			<img src="images/acceptedName.png" alt="Accepted Name" title="Accepted Name" border="1" /></li>
+		<p>	
+			<li> Taxonomic Status<a name="Status"></a> tells you whether the matched name is also the accepted name (Accepted) or whether the matched name is a synonym of a different accepted name (Synonym).In some cases, there may be insufficient information to determine the status of the name, or the Computed Acceptance algorithm is unable to choose a single best name from among alternative conflicting accepted names (No opinion).</li>
 			<li>Click Details to view a popup with more information about a matched name.</li>
-			<li>Click Download results to download a CSV file.</li>
+			<li>Click Download results located at the top left corner of the results window to download a CSV file.</li>
+		</p>	
 			</ol>
+			
+			<h3><a name="Warning_Flag">Warning Flags</a></h3>
+			If TNRS is unable to uncategorically resolve your submitted name to one best matched name in our database, a red warning flag will appear next to the submitted name.<br /><br />
+			Flags will be displayed for the following scenarios:
+			<ul>
+			<li><strong>Ambiguous Match</strong>: more than one matched name was found with the same score and acceptance.</li>
+			<li><strong>Partial Match</strong>: name matched is a higher taxon than the name submitted.</li>
+			<li><strong>Better spelling match in different higher taxon</strong>: anotheir name that was found to match the submitted name has a better overall score, but is not within the same taxonomic group.</li>
+			<li><strong>Better higher taxonomic match found</strong>: another name with a lower overall score has a better matching higher taxon.</li>
+			</ul>
+			
+			<h3><a name="viewing_results">Viewing Your Results</a></h3>
+			<ul>
+			<li><strong>Parse only mode</strong>: names are returned in a sortable grid with the taxonomic elements displayed according to how they are interpreted by the GNI parser.</li><br />
+			<li><strong>Name resolution mode</strong>:</li></ul> <br />
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp
+			<strong><u><a name="results_grid"></a>Initial grid display</u></strong> <br />
+			<ul>Names found as matches to submitted names are returned in a sortable grid (you can click the headings to sort) that displays the following information:<br />
+			<ul><br />
+			<li><strong>Name Submitted</strong>: the exact name submitted for processing.</li><br />
+			<li><strong>Name Matched</strong>: the best match found in the TNRS database for the submitted name.</li>
+			<ul>
+			<li>The best match is determined by the <a href= "#settings">settings</a> applied by the user. By default, names will display according to source taxonomic constraint (best match is most similar to the name submitted according to the most closely related taxonomic match).</li>
+			<li>If there is more than one name found that matches to the submitted name, then a (+X more) link will be displayed next to the name. An alternate match may be selected by clicking the (+X more) link to view and select from multiple options when they exist.</li>
+			<li>Select the preferred term from the popup list and click Apply. To retain the current selection, click Cancel. If the TNRS finds multiple equivalent matches and cannot select a single best name, or if there are other issues with the results requiring inspection by the user, it will display a red <a href= "#Warning_Flag">warning flag</a>.</li>
+			</ul>
+			</ul>
+			<ul><br />
+			<li><strong>Name Source</strong>: the source of the name matched to the submitted name.<br /><br /> If more than one source exists for the name matched, the TNRS will display all sources for that name. Selection of the hyperlinked source (where available) will direct the user to the web page for the matched name as it is described in that source for further investigation.</li> 
+			<br /><li><strong>Overall Score</strong>: score that was calculated according to our scoring algorithm for the name found that matches the name submitted.</li>
+			<i>Note: With taxonomic constraint on, it is possible that a better lexical match has been found to the name, thus having a higher score for a name that is not in the same taxonomic group. If this occurs, a <a href="#Warning_Flag">warning flag</a> will be displayed.</i><br /><br />
+			
+			<li><strong>Taxonomic Status</strong>: the status of the matched name.<br /><br />
+			<li><strong>Accepted Name</strong>: where applicable, the accepted name for the matched name will display in this field.</li>
+			<p>If an accepted is found in more than one source, an icon will appear for each source next to the accepted name. Click the icon to go to the source's web page.</p>
+			<li><strong>Details</strong>: displays all details determined as a by-product of processing the submitted name.</li></br>
+			The panel displays the following:
+			<table border="1">
+			<tr>
+			<td>Name matched</td>
+			<td>Name matched for the submitted name.</td>
+			</tr>
+			<tr>
+			<td>Name source(s)</td>
+			<td>Source(s) that contain the matched name identified.</td>
+			</tr>
+			<tr>
+			<td>Name matched rank</td>
+			<td>Taxonomic rank of the matched name.</td>
+			</tr>
+			<tr>
+			<td>Name score</td>
+			<td>Score for the name found.</td>
+			</tr>
+			<tr>
+			<td>Author matched</td>
+			<td>The author found to match the submitted name <i>(only displays when author is submitted with the name string)</i>.</td>
+			</tr>
+			<tr>
+			<td>Author score</td>
+			<td>Score for the author string submitted.</td>
+			</tr>
+			<tr>
+			<td>Overall score</td>
+			<td>The score calculated for the name found that matches the submitted name <i>(includes author where applicable)</i></td>
+			</tr>
+			<tr>
+			<td>Family matched</td>
+			<td>The family that is found to match the submitted name <i>(Only displays when family is submitted with the name string)</i></td>
+			</tr>
+			<tr>
+			<td>Name matched accepted family</td>
+			<td>The accepted family for the submitted name. This depends on the <a href= "#classification"> classification schema</a> selected in the settings.</td>
+			</tr>
+			<tr>
+			<td>Genus, specific epithet, infraspecific epithet (1 and 2) matched</td>
+			<td>Depending on the name submitted, the token detected by the name parser will be matched to the data in the database.<br /> The matched token for each taxonomic rank will be displayed in these fields.</td>
+			</tr>
+			<tr>
+			<td>Genus, specific epithet, infraspecific epithet (1 and 2) score:</td>
+			<td>Score applied to each name found to match the submitted name, broken down by taxonomic element.</td>
+			</tr>
+			<tr>
+			<td>Infraspecific rank (1 and 2)</td>
+			<td>The rank indicator detected as a parsing product.</td>
+			</tr>
+			<tr>
+			<td>Annotations</td>
+			<td>Annotations are contained in the submitted name as detected by the parser.</td>
+			</tr>
+			<tr>
+			<td>Unmatched terms</td>
+			<td>Terms not able to be matched given the scoring threshold applied by the user.</td>
+			</tr>
+			<tr>
+			<td>Taxonomic status</td>
+			<td>Nomenclatural status for the matched name.</td>
+			</tr>
+			<tr>
+			<td>Accepted name</td>
+			<td>Accepted canonical name found for the name matched <i>(where applicable)</i>.</td>
+			</tr>
+			<tr>
+			<td>Accepted name source(s)</td> 
+			<td>Source(s) for the accepted name <i>(where applicable)</i>.</td>
+			</tr>
+			<tr>
+			<td>Accepted author</td>
+			<td>Author attributed to the accepted name <i>(where applicable)</i>.</td>
+			</tr>
+			<tr>
+			<td>Accepted species</td>
+			<td>Accepted species for the name matched <i>(where applicable)</i>.</td>
+			</tr>
+			<tr>
+			<td>Accepted Family</td>
+			<td>Accepted family for the accepted name listed.</td>
+			</tr>
+			<tr>
+			<td>Warnings</td>
+			<td>Any flags that are associated with the name submitted <i>(see <a href="#Warning_Flag">warning flags</a>)</i>.</td>
+			</tr>
+			</table>
+			</ul>
+			</ul>
+			<br/>
+			
+			
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp
+			<strong><u>Batch match settings<a name="display"></a></u></strong>
+			<ul>
+			<p>In the case of a name that has multiple matches, these options control which of the returned names is considered the best match.</p>
+		
+			<p>As a general rule, multiple names are ranked according to the highest match score. Two options are available to modify this behavior:</p>
+		
+			</ul>
+			<ul>
+			<ul>
+			<li><strong>Sorting by source</strong> (default): The name from the first source selected will always display as the best match unless there is no match found in that source.<br /><br />
+			If no match is found in the first source, the best match in the second ranked source will display until all selected sources are exhausted.</li><br />
+			<li><strong>Taxonomic constraint</strong>: It is possible that the best match is not within the same taxonomic group as the name submitted and that a better taxonomic match exists. Turning on this option will ensure that the best match is within the matched higher taxonomic level.<br /><br /> If this option is turned off, a <a href="#Warning_Flag">warning flag</a> will be placed next to the submitted name.</li><br/>
+			<ul>
+			<li><strong>Turning off both options</strong>: By turning off both the taxonomic constraint and sort by source options, all names will be returned according to the highest score found, regardless of source or taxonomic group.</li><br />
+			<li><strong>Turning on both options</strong>: If both options are turned on, the source takes priority over the taxonomic constraint.</li>
+			</ul>
+			</ul>
+			</ul>
+		
+			
+			
+			<h2><a name="download_results">Download Results</a></h2>
+			After clicking Download results, you will have the option to download in a Simple or Detailed format. 
+			<i><p>Note: 
+			<ul>
+			<li>Files are downloaded with Unix-like new line characters. This is usually not an issue with newer text editors and spreadsheets, but rarely results will appear to all be in a single line when using other applications.</li>
+			<li>If your browser is set to prompt you for download information, be sure to select 'all files' as the download type to ensure proper retrieval of your data.</li>
+			</i>
+			</ul>
+			</p>
+			
+			The following tables list the fields and their definitions displayed within each download format. <br />
+			
+			<span title="Includes only basic information on names matched"><a name="simple_download">
+			<h3>Simple Download</a></span></h3>
+			The Simple download contains the general information displayed on the results screen.
+			</br></br>
+			<table border="1">
+			<tr>
+			<td>Name_submitted</td>
+			<td>Name entered by the user.</td>
+			</tr>
+			<tr>
+			<td>Name_matched</td>
+			<td>Scientific name with the highest match score. May be an exact match or a fuzzy match. This score does not include the author score.</td>
+			</tr>
+			<tr>
+			<td>Name_matched_author</td>
+			<td>Standard authority for the matched name.</td>
+			</tr>
+			<tr>
+			<td>Author_matched</td>
+			<td>Standard authority of the name with the highest match score name.</td>
+			</tr>
+			<tr>
+			<td>Overall_score</td>
+			<td>Score assigned by the TNRS to indicate overall similarity between the submitted name and the name returned by the TNRS. This score incorporates the author score as well.</td>
+			</tr>
+			<tr>
+			<td>Taxonomic_status</td>
+			<td>see <a href="#Status">Taxonomic Status</a></td>
+			</tr>
+			<tr>
+			<td><a name="acceptedName"></a>Accepted_name</td>
+			<td>Accepted name for the Name_matched, according to the taxonomic source used. If the Name_matched is accepted, this name will be the same as the Name_matched. If the Name_matched is a synonym, this name will be different.</td>
+			</tr>
+			<tr>
+			<td>Accepted_author</td>
+			<td>Standard authority of the Accepted_name.</td>
+			</tr>
+			<tr>
+			<td>Accepted_family</td>
+			<td>The accepted familial classification of the accepted name for the name matched by the TNRS.</td>
+			</tr>
+			<tr>
+			<td>Warnings</td>
+			<td>see <a href="#Warning_Flag">Warning Flags</a></td>
+			</tr>
+			</table>
+			
+			
+			<span title="Includes the full information on each name matched, including parsed name components, links to sources, and warnings"><a name="detailed_download">
+			<h3>Detailed Download</a></span></h3>
+			The Detailed download contains detailed information of results and specifications of how the names are parsed and matched.
+			It includes the fields found in <a href="#Simple_Download">Simple download</a> as well as the following fields: <br /><br />
+			<table border="1">
+			<tr>
+			<td>Name_matched_rank</td>
+			<td>The lowest taxonomic rank for the name matched.</td>
+			</tr>
+			<tr>
+			<td>Name_score</td>
+			<td>Overall score for the name matched based on the TNRS ranking algorithm.</td>
+			</tr>
+			<tr>
+			<td>Name_matched_url</td>
+			<td>Web link for the matched name <i>(where applicable)</i>.
+			</tr>
+			<tr>
+			<td>Author_score</td>
+			<td>Score assigned by the TNRS to indicate the level of similarity to the author submitted <i>(where applicable)</i>. This field will be blank if the user did not submit an author with the name.</td>
+			</tr>
+			<tr>
+			<td>Family_matched</td>
+			<td>The closest matching family in the TNRS database to the family submitted. This field will be blank if you did not submit a family, or the family could not be matched.</td>
+			</tr>
+			<tr>
+			<td>Family_score</td>
+			<td>Score assigned by the TNRS to indicate the level of similarity to the family submitted <i>(where applicable)</i>.</td>
+			</tr>
+			<tr>
+			<td>Genus_matched</td>
+			<td>The closest matching genus in the TNRS database to the genus submitted. This field will be blank if the genus submitted could not be matched.</td>
+			</tr>
+			<tr>
+			<td>Genus_score</td>
+			<td>Score assigned by the TNRS to indicate the level of similarity to the genus submitted.</td>
+			</tr>
+			<tr>
+			<td>Source</td>
+			<td>Source(s) for the matched name selected.</td>
+			</tr>
+			<tr>
+			<td>Specific_epithet_matched</td>
+			<td>The specific epithet of closest matching species in the TNRS database to the species submitted. This field will be blank if the species submitted could not be matched.</td>
+			</tr>
+			<tr>
+			<td>Specific_epithet_score</td>
+			<td>Score assigned by the TNRS to indicate the level of similarity to the species submitted.</td>
+			</tr>
+			<tr>
+			<td><a name="infraspecific1Rank"></a>Infraspecific_rank</td>
+			<td>If an infraspecific taxon was submitted (subspecies, variety, etc.), this field provides the standardized rank abbreviation for that taxon (subspecies, variety, etc.).</td>
+			</tr>
+			<tr>
+			<td><a name="infraspecific1Matched"></a>Infraspecific_epithet_matched</td>
+			<td>The infraspecific epithet of closet matching subspecies or variety in the TNRS database to the subspecies or variety submitted. This field will be blank if no infraspecific taxon was submitted, or if the subspecies or variety could not be matched.</td>
+			</tr>
+			<tr>
+			<td>Infraspecific_epithet_score</td>
+			<td>Score assigned by the TNRS to indicate the level of similarity to the infraspecific taxon submitted.</td>
+			</tr>
+			<tr>
+			<td>Infraspecific_rank_2</td>
+			<td>If a quadrinomal taxon name was submitted, this field provides the standardized rank abbreviation for that taxon. For example, "Poa annua var. purpurea forma minima" would return "fo.".</td>
+			</tr>
+			<tr>
+			<td>Infraspecific_epithet2_matched</td>
+			<td>The final epithet of closest matching quadrinomial infraspecific taxon in the TNRS database to the quadrinomial infraspecific taxon, for example "Poa annua var. purpurea forma minima". This field will be blank if a quadrinomial was not submitted or if the final epithet could not be matched.</td>
+			</tr>
+			<tr>
+			<td>Infraspecific_epithet_2_score</td>
+			<td>Score assigned by the TNRS to indicate the level of similarity to the lower infraspecific taxon (quadrinomial) submitted. This field will be blank if a quadrinomial was not submitted, or if the final epithet of the quadrinomial could not be matched.</td>
+			</tr>
+			<tr>
+			<td>Annotations</td>
+			<td>Any standardized botanical annotations of uncertainty embedded within the name, such as "cf." or "aff.", are removed and stored here.</td>
+			</tr>
+			<tr>
+			<td>Unmatched_terms</td>
+			<td>The complete trailing portion of the name not matched by the TNRS, minus any annotations.</td>
+			</tr>
+			<tr>
+			<td>Accepted_name</td>
+			<td>The accepted (correct) scientific name of the name matched by the TNRS, according to the taxonomic source used. If the name matched is an accepted name, or if the TNRS indicated "No opinion" for the name matched, then acceptedName will be the same as Name_matched. If Name_matched is a synonymy, then Accepted_name will be different.
+			</tr>
+			<tr>
+			<td>Accepted_name_url</td>
+			<td>Web link for the accepted name <i>(where applicable)</i>.</td>
+			</tr>
+			<tr>
+			<td>Accepted_species</td>
+			<td>The genus+species portion only of the Accepted_name. If the rank of the Accepted_name is species, then Accepted_species will be the same as Accepted_name. If the rank of the Accepted_name is higher than species, for example, if the Accepted_name is a genus, then this field will be blank.</td>
+			</tr>
+			<tr>
+			<td>Selected</td>
+			<td>Denotes the best match according to either taxonomic or maximum score</td> 
+			</tr>
+			
+			</table>
+			
 			</div><!-- End Main Body Text -->
 		</div>
 	</div>

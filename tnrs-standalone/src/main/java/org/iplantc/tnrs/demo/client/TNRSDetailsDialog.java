@@ -5,6 +5,8 @@ package org.iplantc.tnrs.demo.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.iplantc.tnrs.demo.client.util.NumberUtil;
+
 
 
 
@@ -17,10 +19,14 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FieldEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreSorter;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Html;
+import com.extjs.gxt.ui.client.widget.Label;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
@@ -30,9 +36,15 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
+import com.extjs.gxt.ui.client.widget.grid.GridGroupRenderer;
+import com.extjs.gxt.ui.client.widget.grid.GroupColumnData;
+import com.extjs.gxt.ui.client.widget.grid.GroupingView;
+import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.NodeList;
 
 
 /**
@@ -98,13 +110,17 @@ public class TNRSDetailsDialog extends Window
 			@Override
 			public void componentSelected(ButtonEvent ce)
 			{
-
-
+				
+				
+				
 				if(cmdOk != null)
 				{
-					cmdOk.execute("");
+					ListStore<TNRSEntry> store = grid.getStore();
+					
+					TNRSEntry entry = store.getAt(getSelectedIdx(grid.getStore()));
+					cmdOk.execute(entry.getNameMatchedId());
 				}
-				hide();
+			//	hide();
 			}
 		}));
 
@@ -135,7 +151,7 @@ public class TNRSDetailsDialog extends Window
 		int width = (displayFamilyNames) ? 1022: 912;
 		setSize(width, 318);
 		setResizable(false);
-		setModal(false);
+		setModal(true);
 
 		
 	}
@@ -169,44 +185,20 @@ public class TNRSDetailsDialog extends Window
 		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 
 
-		config.add(buildConfig("scientific", "Name Matched", 140,
+		config.add(buildConfig("scientific", "Name matched", 140,
 				HorizontalAlignment.LEFT, new ScientificNameCellRenderer(),true));
 
-		if(showAllfields) {
-			config.add(buildConfig("author", "Author Submitted", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("authorScore", "Author Score", 100, HorizontalAlignment.LEFT,true));
-
-		}
-
+		
+		config.add(buildConfig("source", "Name Source", 100, HorizontalAlignment.LEFT,new NameMatchedUrlRenderer(),true));
 		config.add(buildConfig("score", "Score", 55,
 				HorizontalAlignment.LEFT, new OverallCellRenderer(),false));
 
-
-
-
-		if(showAllfields) {
-			config.add(buildConfig("family", "Accepted Family", 110,
-					HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("matchedFamily", "Family Matched", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("matchedFamilyScore", "Family Matched Score", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("genus", "Genus", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("genusScore", "Genus Score", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("epithet", "Species Matched", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("epithetScore", "Species Matched", 100, HorizontalAlignment.LEFT,true));
-
-			config.add(buildConfig("infraspecific1Rank", "Infra-Specific Rank 1", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("infraspecific1Epithet", "Infra-Specific Epithet 1 ", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("infraspecific1EpithetScore", "Infra-Specific Epithet Score 1", 100, HorizontalAlignment.LEFT,true));
-
-			config.add(buildConfig("infraspecific2Rank", "Infra-Specific Rank 2", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("infraspecific2Epithet", "Infra-Specific Epithet 2 ", 100, HorizontalAlignment.LEFT,true));
-			config.add(buildConfig("infraspecific2EpithetScore", "Infra-Specific Epithet Score 2", 100, HorizontalAlignment.LEFT,true));
-		}
-		config.add(buildConfig("annotation", "Annotations", 50, HorizontalAlignment.CENTER,false));
+		config.add(buildConfig("author", "Author Matched", 100, HorizontalAlignment.LEFT,true));
+		config.add(buildConfig("authorScore", "Author Score", 100, HorizontalAlignment.LEFT,true));
+		config.add(buildConfig("acceptedSpecies", "Accepted Species", 100, HorizontalAlignment.LEFT, true));
 		config.add(buildConfig("unmatched", "Unmatched Terms", 100, HorizontalAlignment.LEFT,true));
-		config.add(buildConfig("acceptance", "Status", 60,  HorizontalAlignment.LEFT,false));
-		config.add(buildConfig("selected", "Select", 60, HorizontalAlignment.CENTER,
-				new SelectCellRenderer(),false));
+		config.add(buildConfig("acceptance", "Taxonomic status", 60,  HorizontalAlignment.LEFT,false));		
+		config.add(buildConfig("selected", "Select", 60, HorizontalAlignment.CENTER,new SelectCellRenderer(),false));
 
 		return new ColumnModel(config);
 	}
@@ -239,7 +231,16 @@ public class TNRSDetailsDialog extends Window
 	{
 		final ColumnModel cm = buildColumnModel();
 
-
+		//GroupingView sourceView = new GroupingView();
+		
+		/*sourceView.setGroupRenderer(new GridGroupRenderer() {
+			
+			@Override
+			public String render(GroupColumnData data) {
+				
+				return ""+data.group;
+			}
+		})*/;
 		grid = new Grid<TNRSEntry>(store, cm);
 		store.setStoreSorter(new DetailsSorter());
 		store.sort("submitted", SortDir.ASC);
@@ -247,13 +248,16 @@ public class TNRSDetailsDialog extends Window
 		int width = 900;
 		grid.setWidth(width);
 		grid.setBorders(true);
-
-		//grid.setAutoExpandColumn("scientific");
+		grid.disableTextSelection(false);
+		
 		if(!showAllfields) {
 			grid.getView().setAutoFill(true);
 		}
+		//grid.setView(sourceView);
 		grid.getView().setSortingEnabled(true);
-
+		
+		
+		
 		// disallow multi-select
 		grid.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		grid.getView().setForceFit(true);
@@ -287,43 +291,6 @@ public class TNRSDetailsDialog extends Window
 		pnlInner.layout();
 	}
 
-	private String formatPercentage(String score)
-	{
-		String ret = ""; // assume failure... if we have no percentage we just return an
-		// empty string
-
-		if(isDouble(score))
-		{
-			double d = Double.parseDouble(score);
-
-			int percentage = (int)(d * 100.0);
-			ret = percentage + "%";
-		}
-
-		return ret;
-	}
-
-	public static boolean isDouble(String test)
-	{
-		boolean ret = false; // assume failure
-
-		try
-		{
-			if(test != null)
-			{
-				Double.parseDouble(test);
-
-				// if we get here, we know parseDouble succeeded
-				ret = true;
-			}
-		}
-		catch(NumberFormatException nfe)
-		{
-			// we are assuming false - setting the return value here would be redundant
-		}
-
-		return ret;
-	}
 
 
 
@@ -360,15 +327,43 @@ public class TNRSDetailsDialog extends Window
 		public Object render(TNRSEntry model, String property, ColumnData config, int rowIndex,
 				int colIndex, ListStore<TNRSEntry> store, Grid<TNRSEntry> grid)
 		{
-			String url = model.getURL();
-			String prefix = (url == null) ? "" : "<a href='" + url + "' target='_blank'>";
-			String suffix = (url == null) ? " " : "</a> ";
-
-			return prefix + model.getScientificName() +" "+ model.getAttributedAuthor() + suffix;
+			
+			return new Label(model.getScientificName() +" "+ model.getAttributedAuthor() );
 
 		}		
 	}
 
+	
+	private class NameMatchedUrlRenderer implements GridCellRenderer<TNRSEntry>
+	{
+		/* (non-Javadoc)
+		 * @see com.extjs.gxt.ui.client.widget.grid.GridCellRenderer#render(com.extjs.gxt.ui.client.data.ModelData, java.lang.String, com.extjs.gxt.ui.client.widget.grid.ColumnData, int, int, com.extjs.gxt.ui.client.store.ListStore, com.extjs.gxt.ui.client.widget.grid.Grid)
+		 */
+		@Override
+		public Object render(TNRSEntry model, String property,
+				ColumnData config, int rowIndex, int colIndex,
+				ListStore<TNRSEntry> store, Grid<TNRSEntry> grid) {
+		
+				LayoutContainer container = new LayoutContainer();
+				container.setLayout(new ColumnLayout());
+				
+				String[] urls = model.getURL().split(";",-1);
+				String[] sources = model.getSources().toUpperCase().split(";",-1);
+			
+				
+				for(int i=0; i < sources.length; i++){
+					
+					if(!urls[i].trim().equals("")){
+						Html link = new  Html("<a href=\""+urls[i]+"\" target='_blank'>"+sources[i]+"</a>&nbsp;&nbsp;");
+						container.add(link);
+					}else{
+						container.add(new Label(sources[i]+"&nbsp;&nbsp;"));
+					}
+					
+				}
+			return container;
+		}
+	}
 
 	private class OverallCellRenderer implements GridCellRenderer<TNRSEntry>
 	{
@@ -376,7 +371,7 @@ public class TNRSDetailsDialog extends Window
 		public Object render(TNRSEntry model, String property, ColumnData config, int rowIndex,
 				int colIndex, ListStore<TNRSEntry> store, Grid<TNRSEntry> grid)
 		{
-			return formatPercentage(model.getOverall());
+			return NumberUtil.formatPercentage(model.getOverall());
 		}
 	}
 

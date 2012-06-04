@@ -2,54 +2,111 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-	<title>Taxonomic Name Resolution Service - Sources</title>
+<div>
+	<head>
+		<title>Sources</title>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<title>Taxonomic Name Resolution Service - Sources</title> 
 	<link href="style.css" rel="stylesheet" type="text/css">
-</head>
-
-<body>
+	<noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
+	</head>
+	 	<body class="sources">
 	<div class="header"> 
-		<div class="subheader">Taxonomic Name Resolution Service 
-		<sup><small><em>(Beta)</em></small></sup>
+	 <span id="logo">
+        <img src="images/iplant_logo.png" alt="iPlant Collaborative" /> 
+      </span>
+		<div class="subheader">Taxonomic Name Resolution Service  <span style="font-size: 24px;">v3.0</span>
 		</div>
 	</div> 
- 
-	<div class="logolinks">
-		<img src="images/logos.jpg"><br />
-		<a href="index.html">Home</a> &nbsp; &nbsp; 
-		<a href="about.html">About</a> &nbsp; &nbsp; 
-		<a href="instructions.html">Instructions</a> &nbsp; &nbsp; 
-		<a href="api.html">API/Source Code</a> &nbsp; &nbsp; 
-		<u>Sources</u> &nbsp; &nbsp; 
-		<a href="contributors.html">Contributors</a> &nbsp; &nbsp;
-		<a href="future.html">Future</a> &nbsp; &nbsp;
-		<a href="TNRSDemo.html">TNRS Application</a>
-	</div>
 
+
+	<div class="logolinks">
+      <a class="home" href="index.html">Home</a> |
+      <a class="apps" href="TNRSapp.html">TNRS Application</a> |
+      <a class="instructions" href="instructions.html">Instructions</a> |
+      <a class="sources" href="sources.html">Sources</a> |
+      <a class="about" href="about.html">About</a> | 
+      <a class="collaborators" href="collaborators.html">Collaborators</a> |
+      <a class="features" href="features.html">Known Issues</a> |
+      <a class="optimize" href="optimize.html">Optimize Your Search</a> |
+      <a class="cite" href="how_cite.html">How to Cite</a> 
+  </div>
+	
 <div id="wrapper">
 	<div id="contentwrapper">
 		<div class="content"> <!-- Main Body Text -->
-			<h1>Sources of Taxonomic Data and Software</h1>
-			<h2>Taxonomic names and synonymy</h2>
-			The iPlant TNRS currently accesses the following sources for information on plant names and synonymy:
-			<ul type="circle">
-				<li> <a href="http://www.tropicos.org/">Tropicos</a> — Missouri Botanical Garden's online database, providing information on plant names, literature and specimens, with emphasis on the Americas.<br />
-				Data currently used by the TNRS are a partial snapshot accessed via a custom development download on 18 August 2010. In future, names will be accessed and updated frequently via the <a href="http://services.tropicos.org/">Tropicos API</a>.</li>
-			</ul>
-			<p>Additional sources of names, synonymy and classification will be added in the near future. See <a href="future.html">Future Developments</a>.</p>
-			
-			<h2>Software</h2>
-			Code from the following open source applications was used during the development of the TNRS:
-			<ul type="circle">
-				<li> <a href="http://www.cmar.csiro.au/datacentre/taxamatch.htm">Original Taxamatch Algorithm</a> — Developed by Tony Rees (CSIRO).</li>
-				<li> <a href="http://www.silverbiology.com/products/taxamatch">Taxamatch Web Service (a PHP Port)</a> — Special thanks for assistance from <a href="http://www.silverbiology.com/">Michael Giddens</a>.</li>
-				<li> <a href="http://gni.globalnames.org/parsers/new">Global Names Index (Parser)</a> — Special thanks for assistance from <a href="http://community.gbif.org/pg/profile/dimus">Dmitry Mozzherin</a>.</li>
-				<li>Algorithm for accepted name — Developed by the <a href="http://www.mobot.org/">Missouri Botanical Garden</a> for their <a href="http://www.tropicos.org/">Tropicos</a> database.</li>
-			</ul>
-		</div> <!-- End Main Body Text -->
-	</div>
-</div>
 
-</body>
+		<h1>
+			Sources
+		</h1>
+	
+		<p>
+			The goal of TNRS is to provide the end user the ability to resolve their list of names against a number of sources. The team of developers at TNRS makes no attempt to determine the authority of the names, rather we provide the information that is available from these sources in a centralized location for matching of submitted names. Should you encounter issues with names that are lacking, please contact the source curators directly.
+		</p>
+		
+		<p>
+			The following sources have been included in the 3.0 database for the TNRS:
+		</p>
+
+	
+		<div class="source">
+			<a href="http://www.tropicos.org"><img src= "images/tropicos.png" alt="Tropicos" /></a>
+			<BLOCKQUOTE>
+				<a href="http://www.mobot.org">Missouri Botanical Garden</a>'s <a href="http://www.tropicos.org">Tropicos</a> database is an electronic repository of nomenclatural, bibliographic, and specimen data. Tropicos contains over 1.2 million names and thousands of taxonomic opinions based on the taxonomic literature and expert curatorial opinion. 
+					<span class="accessDate">
+						<br />Date of access for this source is 4 October 2011.
+					<p>Tropicos: "Tropicos.org. Missouri Botanical Garden. 4 October 2011 < http://www.tropicos.org >."</p>
+					</span>
+			</BLOCKQUOTE>
+		</div>
+		
+		<div class="source">
+			<a href="http://www.ncbi.nlm.nih.gov"><img src= "images/ncbi.png" alt="NCBI" ></a>
+			
+			<BLOCKQUOTE>
+			<a href="http://www.ncbi.nlm.nih.gov">The National Center for Biotechnology Information</a>'s <a href="http://www.ncbi.nlm.nih.gov/taxonomy">Taxonomy</a> database contains the names and phylogenetic lineages of more than 160,000 organisms that have molecular data in the NCBI databases. 
+				<span class="accessDate">
+					<br />Date of access for this source is 15 October 2011.<br />	</span>
+				<p>NCBI: "Federhen S. The Taxonomy Project.2002 Oct 9 [Updated 2003 Aug 13]. In: McEntyre J., Ostell J., editors. The NCBI Handbook [Internet]. Bethesda (MD): National Center for Biotechnology Information (US);2002."</p>
+			
+			</BLOCKQUOTE>
+		</div>
+		
+		<div class="source">
+			<a href="http://plants.usda.gov/java"><img src= "images/plants_database.png" alt="Plants Database"  /></a>
+			<BLOCKQUOTE>
+				<a href="http://usda.gov/wps/portal/usda/usdahome">USDA</a>'s <a href="http://plants.usda.gov/java">Plants Database</a> provides standardized information about the vascular plants, mosses, liverworts, hornworts, and lichens of the U.S. and its territories.
+					
+					<span class="accessDate"><br />Date of access for this source is 15 March 2012.</span> 
+					<p>USDA PLANTS:"USDA, NRCS. 2012. The PLANTS Database (http://plants.usda.gov, 15 March 2012). National Plant Data Team, Greensboro, NC 27401-4901 USA."
+					</p>
+			</BLOCKQUOTE>
+		</div>
+		
+		<div class="source">
+			<a href="http://compositae.landcareresearch.co.nz"><img src= "images/global.png" alt="Global Compositae Checklist" /> </a>
+
+			<BLOCKQUOTE>
+				<a href="http://compositae.landcareresearch.co.nz/Default.aspx?Page=About&Tab=Cite">The Global Compositae</a> <a href="http://compositae.landcareresearch.co.nz">Checklist</a> is an integrated database of nomenclatural and taxonomic information for one of the largest plant famillies in the world (also known as the Asteraceae). 
+				<span class="accessDate">
+				<br />Date of access for this source is 11 February 2012.<br /></span>
+				
+				<p>GCC:"Flann, C (ed) 2009+ Global Compositae Checklist Accessed: 11 February 2012"</p>
+	
+			</BLOCKQUOTE>
+		</div>
+		<p>
+			The TNRS periodically updates the information from these sources. In addition, we encourage users to suggest additional sources of high quality digitized taxonomic information, in particular monographic taxonomy at the family level. Ongoing support for this effort will continue beyond our 3.0 release.
+		</p>
+	</div>
+	
+
+	
+	</body>
+	
 </html>
+		
+
+
+

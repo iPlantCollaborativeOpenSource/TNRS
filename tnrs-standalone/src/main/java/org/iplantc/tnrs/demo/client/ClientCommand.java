@@ -12,4 +12,5 @@ public interface ClientCommand
 	 * Execute command.
 	 */
 	void execute(String params);
+	
 }

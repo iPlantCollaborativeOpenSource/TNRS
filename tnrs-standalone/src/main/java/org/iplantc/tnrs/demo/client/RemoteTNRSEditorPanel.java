@@ -2,14 +2,20 @@ package org.iplantc.tnrs.demo.client;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.iplantc.tnrs.demo.client.gxt.ConfirmationDialog;
+import org.iplantc.tnrs.demo.client.gxt.LinkIcon;
 import org.iplantc.tnrs.demo.client.images.Resources;
 import org.iplantc.tnrs.demo.client.util.NumberUtil;
 import org.iplantc.tnrs.demo.client.views.Hyperlink;
+import org.iplantc.tnrs.demo.shared.BeanTNRSEntry;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.Style.SelectionMode;
 import com.extjs.gxt.ui.client.Style.SortDir;
 import com.extjs.gxt.ui.client.core.XDOM;
+import com.extjs.gxt.ui.client.data.BasePagingLoadResult;
 import com.extjs.gxt.ui.client.data.BasePagingLoader;
 import com.extjs.gxt.ui.client.data.BeanModel;
 import com.extjs.gxt.ui.client.data.BeanModelReader;
@@ -18,20 +24,25 @@ import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoader;
 import com.extjs.gxt.ui.client.data.RpcProxy;
+import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.store.GroupingStore;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Store;
 import com.extjs.gxt.ui.client.store.StoreSorter;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Html;
+import com.extjs.gxt.ui.client.widget.Label;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.button.SplitButton;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
@@ -39,8 +50,14 @@ import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
+import com.extjs.gxt.ui.client.widget.menu.CheckMenuItem;
+import com.extjs.gxt.ui.client.widget.menu.Menu;
+import com.extjs.gxt.ui.client.widget.menu.MenuItem;
+import com.extjs.gxt.ui.client.widget.menu.SeparatorMenuItem;
+import com.extjs.gxt.ui.client.widget.tips.ToolTipConfig;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
+import com.extjs.gxt.ui.client.widget.toolbar.SeparatorToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -55,6 +72,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.HTML;
 
 
 
@@ -65,31 +83,46 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 	private boolean hasFamilies;
 	private PagingLoader<PagingLoadResult<ModelData>>  loader;
 	private final SearchServiceAsync searchService;
-	
-	private RpcProxy<PagingLoadResult<BeanTNRSEntry>> proxy;
+
+	private SplitButton sort;
+	private RpcProxy<BasePagingLoadResult<BeanTNRSEntry>> proxy;
 	private String key;
 	private String email;
-
 	private ContentPanel download_panel;
-
+	private boolean taxonomic;
+	private ListStore<BeanModel> store;
+	private JSONObject conf;
+	private CheckMenuItem sources_n;
+	private CheckMenuItem  tax_on;
+	private RemoteTNRSEditorPanel panel;
+	private boolean dirty=false;
+	private Button job_info;
 
 	/**
 	 * Default constructor
 	 */
-	public RemoteTNRSEditorPanel(final SearchServiceAsync searchService, final String params)
+	public RemoteTNRSEditorPanel(final SearchServiceAsync searchService, final String params,String message)
 	{
 		super();
+		panel=this;
 		this.searchService = searchService;
-		
 		String[] paramsA = params.split("#");
+		init();
 		key=paramsA[1];
 		email=paramsA[0];
-		compose();
+		this.taxonomic = false;
+		compose(message);
+		loader.load();
 	}
 
-	
+	private void init(){
+		sources_n = new CheckMenuItem("Constrain by Source");
+		sources_n.setChecked(false);
+		tax_on = new CheckMenuItem("Constrain by Higher Taxonomy");
+		tax_on.setChecked(false);
+	}
 
-	private ToolBar buildDownloadToolbar()
+	private ToolBar buildDownloadToolbar(String message)
 	{
 		ToolBar ret = new ToolBar();
 
@@ -100,7 +133,7 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 			@Override
 			public void componentSelected(ButtonEvent ce)
 			{
-				TNRSDownloadDialog select_download = new TNRSDownloadDialog(new SelectionDownloadEvent(email,key));
+				TNRSDownloadDialog select_download = new TNRSDownloadDialog(new SelectionDownloadEvent(email,key,searchService),"matching",dirty,sources_n.isChecked(),tax_on.isChecked());
 
 				select_download.show();
 
@@ -110,9 +143,14 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 
 		but.setIcon( AbstractImagePrototype.create(Resources.INSTANCE.download()));
 		but.setBorders(true);
+
+		ret.add(buildTaxonomicSortingButtonbutton());
+		ret.add(downloadJobInfoButton());
+		ret.add(new SeparatorToolItem());
 		ret.add(but);
-		ret.add(new Html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue;'>Submitted file results</span>"));
+
 		ret.add(new FillToolItem());
+
 		ret.setHeight(30);
 		ret.setBorders(true);
 		return ret;
@@ -125,21 +163,126 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 
 	}
 
+	private SplitButton buildTaxonomicSortingButtonbutton(){
+
+		sort = new SplitButton("Best match settings");
+		sort.setIcon(AbstractImagePrototype.create(Resources.INSTANCE.settings()));
+		sort.setBorders(true);
+		Menu menu = new Menu();
+
+		
+
+		tax_on.addListener(Events.OnClick, new Listener<ComponentEvent>() {
+
+			/* (non-Javadoc)
+			 * @see com.extjs.gxt.ui.client.event.Listener#handleEvent(com.extjs.gxt.ui.client.event.BaseEvent)
+			 */
+			@Override
+			public void handleEvent(ComponentEvent be) {
+			
+				ConfirmationDialog dlg= new ConfirmationDialog("All your previous changes will be overridden, are you sure you want to continue?",panel,tax_on);
+				dlg.setModal(true);
+				dlg.show();
+				
+				
+				
+				
+			}
+		});
+
+		sources_n.addListener(Events.OnClick, new Listener<ComponentEvent>() {
+
+			/* (non-Javadoc)
+			 * @see com.extjs.gxt.ui.client.event.Listener#handleEvent(com.extjs.gxt.ui.client.event.BaseEvent)
+			 */
+			@Override
+			public void handleEvent(ComponentEvent be) {
+				ConfirmationDialog dlg= new ConfirmationDialog("All your previous changes will be overridden, are you sure you want to continue?",panel,sources_n);
+				dlg.setModal(true);
+				dlg.show();
+
+			}
+		});
+
+		
+
+		tax_on.setChecked(false);
+		sources_n.setChecked(false);
+		menu.add(tax_on);
+		menu.add(new SeparatorMenuItem());
+		menu.add(sources_n);
 
 
-	private void compose()
+		sort.setMenu(menu);
+
+		return sort;
+	}
+	
+	private Button downloadJobInfoButton(){
+		
+		job_info = new Button("Download settings");
+		job_info.setIcon(AbstractImagePrototype.create(Resources.INSTANCE.info()));
+		
+		
+		job_info.addListener(Events.OnClick, new Listener<ComponentEvent>() {
+			/* (non-Javadoc)
+			 * @see com.extjs.gxt.ui.client.event.Listener#handleEvent(com.extjs.gxt.ui.client.event.BaseEvent)
+			 */
+			@Override
+			public void handleEvent(ComponentEvent be) {
+			
+				JSONObject json = new JSONObject();
+				
+				json.put("email", new JSONString(email));
+				json.put("key", new JSONString(key));
+				json.put("taxonomic", new JSONString(Boolean.toString(tax_on.isChecked())));
+				json.put("sortbysource", new JSONString(Boolean.toString(sources_n.isChecked())));
+				
+				
+				searchService.getJobInfoUrl(json.toString(), new AsyncCallback<String>() {
+					
+					@Override
+					public void onSuccess(String arg0) {
+						download_panel.setUrl(arg0+"&name=settings.txt&encoding=utf-8");
+						
+					}
+					
+					@Override
+					public void onFailure(Throwable arg0) {
+						MessageBox.alert("", arg0.getMessage(), null);
+						
+					}
+				});
+				
+			}
+		});
+		return job_info;
+	}
+	
+	
+	public void update(){
+		conf = new JSONObject();
+		conf.put("email",new JSONString(email));
+		conf.put("key", new JSONString(key));
+		conf.put("taxonomic_constraint", new JSONString(Boolean.toString(tax_on.isChecked())));
+		conf.put("source_sorting", new JSONString(Boolean.toString(sources_n.isChecked()))); 
+		conf.put("first", new JSONString("false"));
+		loader.load();
+	}
+
+	private void compose(String message)
 	{
 
-
-		ListStore<BeanModel> store = buildStore();
-
+		setHeight(500);
+		store = buildStore();
+		System.out.println(store.getCount());
 		final ColumnModel cm = buildColumnModel();
 
 		buildGrid(store, cm);
 		VerticalPanel vpanel = new VerticalPanel();
-		vpanel.setSize(1600, 330);
+		vpanel.setSize(1600, 930);
 		vpanel.setLayout(new FitLayout());
-		vpanel.add(buildDownloadToolbar());
+		vpanel.add(buildDownloadToolbar(message));
 		vpanel.add(grid);
 		toolBar = new PagingToolBar(100);
 		download_panel = new ContentPanel();
@@ -147,35 +290,49 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 		download_panel.setSize(1, 1);
 		download_panel.setVisible(false);
 		toolBar.bind(loader);
-
 		vpanel.add(toolBar);
 		vpanel.add(download_panel);
+		//grid.getStore().getLoader().load();
+		grid.getView().refresh(false);
 
+
+		toolBar.unmask();
+		vpanel.unmask();
 		add(vpanel);
 		unmask();
-
+		conf = new JSONObject();
+		conf.put("email",new JSONString(email));
+		conf.put("key", new JSONString(key));
+		conf.put("taxonomic_constraint", new JSONString(Boolean.toString(tax_on.isChecked())));
+		conf.put("source_sorting", new JSONString(Boolean.toString(sources_n.isChecked()))); 
+		conf.put("first", new JSONString("false"));
 	}
 
 
-
+	public void setDirty(boolean isdirty){
+		dirty = isdirty;
+	}
 
 
 	private ListStore<BeanModel> buildStore() 
 	{
 		mask("wait");
 
-		final JSONObject json = new JSONObject();
-		json.put("email",new JSONString(email));
-		json.put("key", new JSONString(key));
-
-		proxy = new RpcProxy<PagingLoadResult<BeanTNRSEntry>>() {
+		conf = new JSONObject();
+		conf.put("email",new JSONString(email));
+		conf.put("key", new JSONString(key));
+		conf.put("taxonomic_constraint", new JSONString(Boolean.toString(tax_on.isChecked())));
+		conf.put("source_sorting", new JSONString(Boolean.toString(sources_n.isChecked())));
+		conf.put("first", new JSONString("true"));
+		proxy = new RpcProxy<BasePagingLoadResult<BeanTNRSEntry>>() {
 
 			@Override
 			protected void load(Object loadConfig,
-					AsyncCallback<PagingLoadResult<BeanTNRSEntry>> callback) {
-			
-					searchService.getRemoteData((PagingLoadConfig)loadConfig, json.toString(), callback);
-				
+					AsyncCallback<BasePagingLoadResult<BeanTNRSEntry>> callback) {
+
+				searchService.getRemoteData((PagingLoadConfig)loadConfig, conf.toString(), callback);
+
+
 
 			}
 		};
@@ -183,36 +340,41 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 		BeanModelReader reader = new BeanModelReader();
 
 
-		loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, reader);  
+		loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy, reader){
+
+			/* (non-Javadoc)
+			 * @see com.extjs.gxt.ui.client.data.BasePagingLoader#onLoadSuccess(java.lang.Object, com.extjs.gxt.ui.client.data.PagingLoadResult)
+			 */
+			@Override
+			protected void onLoadSuccess(Object loadConfig,
+					PagingLoadResult<ModelData> result) {
+				// TODO Auto-generated method stub
+				super.onLoadSuccess(loadConfig, result);
+			}
+
+		};  
 		ListStore<BeanModel> store = new ListStore<BeanModel>(loader);  
 
 		return store;
 	}
 
 
-
-
-
-	
-
-	
-
 	private ColumnModel buildColumnModel()
 	{
 		List<ColumnConfig> config = new ArrayList<ColumnConfig>();
 
-
+		config.add(buildConfig("flag", "<img src=\"images/flag.png\" />", 30, HorizontalAlignment.CENTER,new FlagRenderer()));
 		config
 		.add(buildConfig("submitted", "Name<br/> Submitted", 200,
 				HorizontalAlignment.LEFT));
 
 		config.add(buildConfig("scientific", "Name Matched", 380,
 				HorizontalAlignment.LEFT, new ScientificNameCellRenderer()));
-
+		config.add(buildConfig("source", "Name Source", 150, HorizontalAlignment.LEFT, new SourceRenderer()));
 		config.add(buildConfig("overall", "Overall <br/>Score", 60, HorizontalAlignment.CENTER,
 				new OverallCellRenderer()));
 
-		config.add(buildConfig("acceptance","Status", 100, HorizontalAlignment.LEFT));
+		config.add(buildConfig("acceptance","Taxonomic Status", 150, HorizontalAlignment.LEFT));
 
 		config.add(buildConfig("acceptedName", "Accepted Name", 200, HorizontalAlignment.LEFT,new AcceptedNameRenderer()));
 
@@ -242,10 +404,12 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 		grid.getView().setShowDirtyCells(true);
 		// disallow multi-select
 		grid.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		grid.disableTextSelection(false);
 		grid.getView().refresh(true);
 		grid.setSize(1157,300);
 		grid.mask("Loading...");
-		loader.load();
+
+		//loader.load();
 	}
 
 
@@ -292,25 +456,9 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 
 
 
-	
 
-	private String formatPercentage(final String score)
-	{
-		String ret = ""; // assume failure... if we have no percentage we just return an
-		// empty string
 
-		if(NumberUtil.isDouble(score))
-		{
-			double d = Double.parseDouble(score);
 
-			int percentage = (int)(d * 100.0);
-			ret = percentage + "%";
-		}else {
-			ret="";
-		}
-
-		return ret;
-	}
 
 
 
@@ -318,9 +466,7 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 	{
 		private void launchDetailsWindow(final BeanModel entry)
 		{
-			DetailDialog dlg = new DetailDialog(entry);
-
-			dlg.show();
+			//
 
 
 		}
@@ -345,7 +491,10 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 
 				@Override
 				public void handleEvent(ComponentEvent be) {
-					launchDetailsWindow(model);
+
+					DetailDialog dlg = new DetailDialog(model,taxonomic);
+
+					dlg.show();
 
 				}
 			});
@@ -367,21 +516,63 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 			String acceptedAuthor = model.get("acceptedAuthor");
 			String acceptedNameUrl = model.get("acceptedNameUrl");
 			if(acceptedName!=null && !acceptedName.equals("")) {
-				setLayout(new ColumnLayout());
-				String prefix =  "<a href='"+acceptedNameUrl+ "' target='_blank'>";
-				String suffix =  "</a>&nbsp;&nbsp; ";
+				LayoutContainer container = new LayoutContainer();
+				container.setLayout(new ColumnLayout());
 
-				// setup our base link
-				String ahref = prefix + acceptedName + " "+acceptedAuthor + suffix;
+				container.add(new Label(acceptedName+" "+acceptedAuthor+"&nbsp&nbsp"));
 
+				String[] urls = acceptedNameUrl.split(";",-1);
+				String[] sources = model.get("source").toString().toUpperCase().split(";",-1);
+				for(int i=0; i < urls.length;i++){
+					LinkIcon icon = new LinkIcon(urls[i],true,sources[i]);
+					container.add(icon);
+				}
 
-				Html link = new Html(ahref);
-				return link;
+				return container;
 
 			}else {
 				return "";
 			}
 
+		}
+
+	}
+
+
+	private class SourceRenderer implements GridCellRenderer<BeanModel>
+	{
+
+		/* (non-Javadoc)
+		 * @see com.extjs.gxt.ui.client.widget.grid.GridCellRenderer#render(com.extjs.gxt.ui.client.data.ModelData, java.lang.String, com.extjs.gxt.ui.client.widget.grid.ColumnData, int, int, com.extjs.gxt.ui.client.store.ListStore, com.extjs.gxt.ui.client.widget.grid.Grid)
+		 */
+		@Override
+		public Object render(BeanModel model, String property,
+				ColumnData config, int rowIndex, int colIndex,
+				ListStore<BeanModel> store, Grid<BeanModel> grid) {
+
+			String url = model.get("url").toString();
+			String source = model.get("source").toString().toUpperCase();
+			LayoutContainer container= new LayoutContainer();
+			container.setLayout(new ColumnLayout());
+
+			String[] urls = url.split(";",-1);
+			String[] sources = source.split(";",-1);
+
+
+			for(int i=0; i < sources.length; i++){
+				
+				if(!urls[i].trim().equals("") || sources[i].equals("")){
+
+					Html link = new Html("<a href=\""+urls[i]+"\" target='_blank'>"+sources[i]+"</a>&nbsp;&nbsp;&nbsp;");
+
+					container.add(link);
+				}else{
+
+					container.add(new Label(sources[i]+"&nbsp;&nbsp;&nbsp;"));
+				}
+			}
+
+			return container;
 		}
 
 	}
@@ -392,7 +583,7 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 		public Object render(BeanModel model, String property, ColumnData config, int rowIndex,
 				int colIndex, ListStore<BeanModel> store, Grid<BeanModel> grid)
 		{
-			return formatPercentage(model.get("overall").toString());
+			return NumberUtil.formatPercentage(model.get("overall").toString());
 		}
 	}
 
@@ -405,35 +596,6 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 		super.onHide();
 	}
 
-
-
-
-	private void doDownload(final String options)
-	{
-		if(options != null)
-		{
-			searchService.downloadRemoteResults(options, new AsyncCallback<String>()
-					{
-				@Override
-				public void onFailure(Throwable arg0)
-				{
-					MessageBox.alert("Error", "File download failed.<br/> "+arg0.getMessage(), null);
-				}
-
-				@Override
-				public void onSuccess(String result)
-				{		
-					download_panel.setUrl(result);						
-				}
-					});
-		}
-	}
-
-
-
-
-
-
 	@Override
 	protected void afterRender() {
 		grid.getStore().sort("submitted", SortDir.ASC);
@@ -444,16 +606,39 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 	class SelectionUpdatedEvent implements ClientCommand
 	{
 
-
-		public SelectionUpdatedEvent(Integer group)
+		long group;
+		public SelectionUpdatedEvent(long group)
 		{
 
 		}
 
 		@Override
-		public void execute(String h)
+		public void execute(String selected)
 		{
 
+			JSONObject json = new JSONObject();
+			json.put("group", new JSONString(Long.toString(group)));
+			json.put("email",new JSONString(email));
+			json.put("key", new JSONString(key));
+			json.put("name_id", new JSONString(selected));
+			
+			
+			searchService.updateGroup(json.toString(), new AsyncCallback<String>() {
+
+				@Override
+				public void onSuccess(String arg0) {
+					
+					
+				}
+
+				@Override
+				public void onFailure(Throwable arg0) {
+					MessageBox.alert("Error", "There was an error updating your selection. <br>"+arg0.getMessage(), null);
+
+				}
+			});
+			
+			grid.getView().refresh(false);
 		}
 	}
 
@@ -462,18 +647,51 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 
 		String key;
 		String email;
+		String name;
+		SearchServiceAsync searchService;
 
-		public SelectionDownloadEvent( String email,String key) {
+		public SelectionDownloadEvent( String email,String key,SearchServiceAsync service) {
 			this.key= key;
 			this.email =email;
+			searchService = service;
+		}
+
+		public void setName(String name) {
+			this.name =name;
+
 		}
 
 		@Override
 		public void execute(String options)
 		{
 
-			options+="#"+email+"#"+key;
-			doDownload(options);
+			if(options != null)
+			{
+
+				JSONObject json = (JSONObject) JSONParser.parseStrict(options);
+
+
+				final String name = json.get("name").toString().replace("\"", "");
+				final String encoding = json.get("encoding").toString().replace("\"", "");
+
+				json.put("email", new JSONString(email));
+				json.put("key", new JSONString(key));
+				searchService.downloadRemoteResults(json.toString(), new AsyncCallback<String>()
+						{
+					@Override
+					public void onFailure(Throwable arg0)
+					{
+						MessageBox.alert("Error", "File download failed.<br/> "+arg0.getMessage(), null);
+					}
+
+					@Override
+					public void onSuccess(String result)
+					{		
+						download_panel.setUrl(result+"&name="+name+"&encoding="+encoding);						
+					}
+						});
+			}
+
 
 		}
 	}
@@ -488,11 +706,15 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 			String suffix = (url == null) ? " " : "</a>&nbsp;&nbsp; ";
 			entry =page_store.getAt(rowIndex);
 			// setup our base link
+			if(name.trim().equals("No suitable matches found.")){
+				add(new Label(name));
+				return;
+			}
 			String ahref = prefix + name  + suffix;
 
 
-			Html link = new Html(ahref);
-			add(link);
+
+			add(new Label(name+"&nbsp;&nbsp;"));
 
 			if(!countString.equals("")) {
 
@@ -510,8 +732,9 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 						json.put("group", new JSONString(entry.get("group").toString()));
 						json.put("email",new JSONString(email));
 						json.put("key", new JSONString(key));
-
-
+						json.put("source_sorting", new JSONString(Boolean.toString(sources_n.isChecked())) );
+						json.put("taxonomic_constraint", new JSONString(Boolean.toString(tax_on.isChecked())));
+						final long group = Long.parseLong(entry.get("group").toString());
 						searchService.requestGroupMembers(json.toString(), new AsyncCallback<String>() {
 
 							@Override
@@ -519,7 +742,8 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 								System.out.println(json);
 								ListStore<TNRSEntry> store = new ListStore<TNRSEntry>();
 
-								JSONObject objJson = (JSONObject)JSONParser.parse(json);
+
+								JSONObject objJson = (JSONObject)JSONParser.parseStrict(json);
 
 								JSONValue val = objJson.get("items");
 								JSONArray items = val.isArray();
@@ -527,16 +751,17 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 								JsArray<JsTNRSEntry> jsEntries = JsonUtil.asArrayOf(items.toString());
 
 
-								for(int i=0; i < jsEntries.length(); i++) {
+								for(int i=0; i < items.size(); i++) {
 									TNRSEntry entry = new TNRSEntry(jsEntries.get(i));
 									store.add(entry);
 								}
 
-								System.out.println(store.getCount());
+
 
 								if(store != null)
 								{
-									RemoteTNRSDetailsDialog dlg = new RemoteTNRSDetailsDialog(store, hasFamilies,new SelectionUpdatedEvent(200),false,page_store,rowIndex,email,key);
+
+									RemoteTNRSDetailsDialog dlg = new RemoteTNRSDetailsDialog(store, hasFamilies,new SelectionUpdatedEvent(group),false,page_store,rowIndex,email,key);
 
 									dlg.show();						
 								}
@@ -588,6 +813,100 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 				ListStore<BeanModel> store, Grid<BeanModel> grid) {
 			// TODO Auto-generated method stub
 			return model.get("acceptance");
+		}
+
+	}
+
+
+	class FlagRenderer implements GridCellRenderer<BeanModel>{
+
+		/* (non-Javadoc)
+		 * @see com.extjs.gxt.ui.client.widget.grid.GridCellRenderer#render(com.extjs.gxt.ui.client.data.ModelData, java.lang.String, com.extjs.gxt.ui.client.widget.grid.ColumnData, int, int, com.extjs.gxt.ui.client.store.ListStore, com.extjs.gxt.ui.client.widget.grid.Grid)
+		 */
+		@Override
+		public Object render(BeanModel model, String property,
+				ColumnData config, int rowIndex, int colIndex,
+				ListStore<BeanModel> store, Grid<BeanModel> grid) {
+
+			final int flag = Integer.parseInt(model.get("flag").toString());
+			final boolean taxonomic = tax_on.isChecked();
+			
+			
+			
+			if(flag==0) {
+				return " ";
+			}
+
+			String flagText = "";
+
+			if((flag&1)==1 ) {
+				flagText += "- Partial match <br/>";
+			}
+			
+			if((flag&2)==2) {
+				flagText += "- Ambiguous match <br/> ";
+			}
+			
+			if((flag&4)==4 ){
+				flagText += " -Better higher taxonomic match available ";
+			}
+			if((flag&8)==8 ) {
+				
+				flagText += "- Better spelling match in different higher taxon <br/>";
+			}
+			
+			if(flagText.trim().equals("")){
+				return "";
+			}
+
+			flagText+="<br/> Click on the flag for more information";
+
+			LayoutContainer container = new LayoutContainer();
+
+			container.setToolTip(new ToolTipConfig("Information",flagText));
+
+			container.add( new HTML("<span ><img src=\"images/flag.png\" /></span>"));
+			container.addListener(Events.OnClick, new Listener<ComponentEvent>() {
+
+				/* (non-Javadoc)
+				 * @see com.extjs.gxt.ui.client.event.Listener#handleEvent(com.extjs.gxt.ui.client.event.BaseEvent)
+				 */
+				@Override
+				public void handleEvent(ComponentEvent be) {
+					Dialog dialog = new Dialog();
+					dialog.setSize(200, 200);
+					Html text = new Html();
+					text.setHtml("");
+					
+					if((flag&1)==1 ) {
+						text.setHtml("<div style=\"font-weight: bold;\">Partial match</div><br/> Name matched is a higher taxon than the name submitted.<br/>");
+					}
+					if((flag&2)==2 ) {
+						text.setHtml(text.getHtml()+"<div style=\"font-weight: bold;\">Ambiguous match</div><br/> More than one name with the same score and acceptance.<br/>");
+					}
+					if((flag&4)==4) {
+						text.setHtml(text.getHtml()+"<div style=\"font-weight: bold;\">Better higher taxonomic match available</div><br/> Another name with lower overall score has a better matching higher taxon .<br/>");
+					}
+
+					if((flag&8)==8 ){
+						text.setHtml(text.getHtml()+"<div style=\"font-weight: bold;\"> Better spelling match in different higher taxon</div><br/> Another name in different higher taxon has a better overall score <br/>");
+						
+					}
+
+					dialog.setLayout(new FitLayout());
+					LayoutContainer container = new LayoutContainer();
+					container.add(text);
+					container.setScrollMode(Scroll.AUTO);
+					dialog.add(container);
+					dialog.layout();
+					dialog.setHideOnButtonClick(true);
+					dialog.setModal(true);
+					dialog.show();
+
+				}
+			});
+			return container;
+
 		}
 
 	}

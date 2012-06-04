@@ -1,8 +1,12 @@
 package org.iplantc.tnrs.demo.client;
 
 
+
+
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.widget.MessageBox;
+import com.google.gwt.json.client.JSONObject;
 
 /**
  * Model for a TNRS entry.
@@ -17,6 +21,15 @@ public class TNRSEntry extends BaseModel
 	 */
 	private static final long serialVersionUID = -7401738381508092645L;
 
+	
+	public TNRSEntry(JSONObject json) {
+		
+		
+		set("selected",json.get("selected").toString());
+		
+		
+	}
+	
 	public TNRSEntry(BeanModel entry) {
 		
 		if(entry != null)
@@ -38,7 +51,8 @@ public class TNRSEntry extends BaseModel
 			set("annotation", entry.get("annotation").toString());
 			set("unmatched", entry.get("unmatched").toString());
 			set("overall", entry.get("overall").toString());
-			set("selected", entry.get("selected"));
+			set("selected", new Boolean(entry.get("selected").toString().trim()));
+			System.out.println(entry.get("selected").toString().trim());
 			set("matchedFamily",entry.get("matchedFamily").toString());
 			set("matchedFamilyScore",entry.get("matchedFamilyScore").toString());
 			set("speciesMatched",entry.get("speciesMatched").toString());
@@ -55,6 +69,12 @@ public class TNRSEntry extends BaseModel
 			set("acceptedNameUrl",entry.get("acceptedNameUrl").toString());
 			set("acceptedAuthor", entry.get("acceptedAuthor").toString());
 			set("groupSize",Integer.parseInt(entry.get("groupSize").toString()));
+			set("flag",Integer.parseInt(entry.get("flag").toString()));
+			set("acceptedSpecies",entry.get("acceptedSpecies").toString());
+			set("nameMatchedRank",entry.get("nameMatchedRank").toString());
+			set("Accepted_name_family",entry.get("acceptedNameFamily").toString());
+			set("Source",entry.get("source").toString()); 
+			set("source","");
 		}
 		
 		
@@ -70,8 +90,8 @@ public class TNRSEntry extends BaseModel
 		{
 			set("entryId", entry.getEntryId());
 			set("group", Long.parseLong(entry.getGroup()));
-			set("url", entry.getURL());			
-			set("submitted", entry.getSubmittedName());
+			set("url", entry.getURL());// entry.getURL());			
+			set("submitted", entry.getSubmittedName().replace("\\\\\"", "\""));
 			set("scientific", entry.getScientificName());
 			set("scientificScore", entry.getScientificScore());
 			set("authorAttributed", entry.getAttributedAuthor());
@@ -80,12 +100,13 @@ public class TNRSEntry extends BaseModel
 			set("genusScore", entry.getGenusScore());
 			set("epithet", entry.getEpithet());
 			set("epithetScore", entry.getEpithetScore());
-			set("author", entry.getAuthor());
+			set("author", entry.getAuthorMatched());
 			set("authorScore", entry.getAuthorScore());
 			set("annotation", entry.getAnnotation());
-			set("unmatched", entry.getUnmatched());
+			set("unmatched", entry.getUnmatched().replace("\\\\\"", "\""));
 			set("overall", entry.getOverall());
 			set("selected", entry.isSelected());
+			System.out.println(get("selected"));
 			set("matchedFamily",entry.getFamilyMatched());
 			set("matchedFamilyScore",entry.getFamilyMatchedScore());
 			set("speciesMatched",entry.getSpeciesMatched());
@@ -99,8 +120,14 @@ public class TNRSEntry extends BaseModel
 			set("acceptance",entry.getAcceptance());
 			set("submittedFamily", entry.getSubmittedFamily());
 			set("acceptedName",entry.getAcceptedName());
-			set("acceptedNameUrl",entry.getAcceptedNameUrl());
+			set("acceptedNameUrl",entry.getAcceptedNameUrls());
 			set("acceptedAuthor", entry.getAcceptedAuthor());
+			set("flag",entry.getFlag());
+			set("acceptedSpecies",entry.getAcceptedSpecies());
+			set("nameMatchedRank",entry.getNameMatchedRank());
+			set("Accepted_name_family",entry.getAcceptedFamily());
+			set("Source",entry.getSource());
+			set("name_matched_id",entry.getNameMatchedId());
 		}
 	}
 
@@ -476,5 +503,25 @@ public class TNRSEntry extends BaseModel
 		set("submitted",submitted);
 	}
 	
+	
+	public String getNameMatchedRank() {
+		return get("nameMatchedRank");
+	}
+	
+	public String getAcceptedSpecies() {
+		return get("acceptedSpecies");
+	}
+	
+	public String getAcceptedFamily() {
+		return get("Accepted_name_family");
+	}
+	
+	public String getSources(){
+		return get("Source");
+	}
+	
+	public String getNameMatchedId(){
+		return get("name_matched_id");
+	}
 	
 }

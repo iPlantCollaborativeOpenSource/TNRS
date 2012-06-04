@@ -1,9 +1,16 @@
 package org.iplantc.tnrs.demo.client;
 
 
+import org.iplantc.tnrs.demo.client.util.NumberUtil;
+
+import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.data.BeanModel;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Html;
+import com.extjs.gxt.ui.client.widget.HtmlContainer;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
@@ -11,168 +18,152 @@ import com.google.gwt.user.client.ui.Label;
 public class DetailDialog extends Dialog {
 
 	TNRSEntry entry;
-	
-	public DetailDialog(BeanModel entry) {
-		this(new TNRSEntry(entry));
+	private boolean taxonomic;
+	public DetailDialog(BeanModel entry,boolean taxonomic) {
+		this(new TNRSEntry(entry),taxonomic);
+
 	}
-	
-	public DetailDialog(TNRSEntry entry) {
+
+	public DetailDialog(TNRSEntry entry,boolean taxonomic) {
 		super();
-		
+		this.taxonomic = taxonomic;
 		this.entry =entry;
-		
+
 		init();
 		compose();
-		
+
 	}
-	
+
 	public void init() {
-		setSize(550,650);
+		setSize(550,500);
 		setHeading("Details");
 		setResizable(true);
 		setLayout(new FitLayout());
 		setStyleAttribute("fontSize","12px");
 		setHideOnButtonClick(true);
+		setModal(true);
 	}
-	
+
 	public void compose() {
-		
+
 		ContentPanel panel = new ContentPanel();
-		panel.setHeading("Name Submitted: "+entry.getSubmittedName());
+
+		panel.setHeading("Name submitted: "+entry.getSubmittedName());
 		panel.setLayout(new FitLayout());
-		FlexTable flexTable = new FlexTable();
-		flexTable.setStyleName("flexfontsize");
-		panel.setStyleAttribute("fontSize", "12px");
+
+
+		String html="<div><table border=\"0\">";
+
+		html+= "<tr class=\"flexFontSize\"><td>"+"Name matched:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getScientificName()+"</td></tr>";
+
+		String[] tokens = entry.getSources().split(";");
 		
-		Label nMatched = new Label("Name matched:");
-		nMatched.setStyleName("flexfontsize");
-		Label scientific = new Label(entry.getScientificName() + " "+entry.getAttributedAuthor());
-		scientific.setStyleName("flexfontsize");
-		
-		flexTable.setWidget(0, 0, nMatched);
-		flexTable.setWidget(0, 1, scientific);
-		
-		
-		Label nMatchedScore = new Label("Name matched score:");
-		nMatchedScore.setStyleName("flexfontsize");
-		Label scientificScore = new Label(formatPercentage(entry.getScientificScore()));
-		scientificScore.setStyleName("flexfontsize");
-		
-		
-		
-		flexTable.setWidget(1, 0, nMatchedScore);
-		flexTable.setWidget(1, 1, scientificScore);
-		
-		flexTable.setWidget(2, 0, new Label("Author matched:"));
-		flexTable.setWidget(2, 1, new Label(entry.getAuthor()));
-		
-		flexTable.setWidget(3, 0, new Label("Author matched score:"));
-		flexTable.setWidget(3, 1, new Label(formatPercentage(entry.getAuthorScore())));
-		
-		flexTable.setWidget(4, 0, new Label("Overall score:"));
-		flexTable.setWidget(4, 1, new Label(formatPercentage(entry.getOverall())));
-		
-		flexTable.setWidget(5, 0, new Label("Accepted family:"));
-		flexTable.setWidget(5, 1, new Label(entry.getFamily()));
-		
-		flexTable.setWidget(6, 0, new Label("Accepted name:"));
-		flexTable.setWidget(6, 1, new Label(entry.getAcceptedName()+" "+entry.getAcceptedAuthor()));
-		
-		flexTable.setWidget(7, 0, new Label("Family matched:"));
-		flexTable.setWidget(7, 1, new Label(entry.getFamilyMatched()));
-		
-		flexTable.setWidget(8, 0, new Label("Family matched score:"));
-		flexTable.setWidget(8, 1, new Label(formatPercentage(entry.getFamilyMatchedScore())));
-		
-		flexTable.setWidget(9, 0, new Label("Genus matched:"));
-		flexTable.setWidget(9, 1, new Label(entry.getGenus()));
-		
-		flexTable.setWidget(10, 0, new Label("Genus matched score:"));
-		flexTable.setWidget(10, 1, new Label(formatPercentage(entry.getGenusScore())));
-		
-		flexTable.setWidget(11, 0, new Label("Species matched:"));
-		flexTable.setWidget(11, 1, new Label(entry.getEpithet()));
-		
-		flexTable.setWidget(12, 0, new Label("Species matched score:"));
-		flexTable.setWidget(12, 1, new Label(formatPercentage(entry.getEpithetScore())));
-		
-		flexTable.setWidget(13, 0, new Label("Infraspecific rank 1:"));
-		flexTable.setWidget(13, 1, new Label(entry.getInfraSpecificRank1()));
-		
-		flexTable.setWidget(14, 0, new Label("Infraspecific epithet 1:"));
-		flexTable.setWidget(14, 1, new Label(entry.getInfraSpecificEpithet1()));
-		
-		flexTable.setWidget(15, 0, new Label("Infraspecific epither 1 score:"));
-		flexTable.setWidget(15, 1, new Label(formatPercentage(entry.getInfraSpecificEpithet1Score())));
-		
-		flexTable.setWidget(16, 0, new Label("Infraspecific rank 2:"));
-		flexTable.setWidget(16, 1, new Label(entry.getInfraSpecificRank2()));
-		
-		flexTable.setWidget(17, 0, new Label("Infraspecific epithet 2:"));
-		flexTable.setWidget(17, 1, new Label(entry.getInfraSpecificEpithet2()));
-		
-		flexTable.setWidget(18, 0, new Label("Infraspecific epither 2 score:"));
-		flexTable.setWidget(18, 1, new Label(formatPercentage(entry.getInfraSpecificEpithet2Score())));
-		
-		flexTable.setWidget(19, 0, new Label("Annotations:"));
-		flexTable.setWidget(19, 1, new Label(entry.getAnnotation()));
-		
-		flexTable.setWidget(20, 0, new Label("Unmatched terms:"));
-		flexTable.setWidget(20, 1, new Label(entry.getUnmatched()));
-		
-		flexTable.setWidget(21, 0, new Label("Status:"));
-		flexTable.setWidget(21, 1, new Label(entry.getAcceptance()));
-		
-		
-		for(int i=0; i < 22; i++) {
-			flexTable.getWidget(i, 0).setStyleName("flexfontsize");
-			flexTable.getWidget(i,1).setStyleName("flexfontsize");
+		String sources = "";
+
+		if(tokens.length>0){
+			sources = tokens[0];
+			for(int i=1; i < tokens.length;i++){
+				sources+= "  "+tokens[i].toUpperCase();
+			}
 		}
-		
-		panel.add(flexTable);
+
+		html+= "<tr class=\"flexFontSize\"><td>"+"Name matched source(s):"+"</td><td>&nbsp;&nbsp;&nbsp;"+sources.toUpperCase()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Name matched rank:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getNameMatchedRank()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Name score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getScientificScore())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Author matched:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getAuthor()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Author score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getAuthorScore())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Overall score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getOverall())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Family matched:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getFamilyMatched()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Family score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getFamilyMatchedScore())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Name matched accepted family:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getFamily()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Genus matched:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getGenus()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Genus score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getGenusScore())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Specific epithet matched:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getEpithet()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Specific epithet score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getEpithetScore())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Infraspecific rank :"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getInfraSpecificRank1()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Infraspecific epithet matched:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getInfraSpecificEpithet1()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Infraspecific epithet score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getInfraSpecificEpithet1Score())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Infraspecific rank 2:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getInfraSpecificRank2()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Infraspecific epithet 2 matched:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getInfraSpecificEpithet2()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Infraspecific epithet 2 score:"+"</td><td>&nbsp;&nbsp;&nbsp;"+formatPercentage(entry.getInfraSpecificEpithet2Score())+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Annotations:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getAnnotation()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Unmatched terms:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getUnmatched()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Taxoxnomic status:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getAcceptance()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Accepted name:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getAcceptedName()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Name matched source(s):"+"</td><td>&nbsp;&nbsp;&nbsp;"+sources.toUpperCase()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Accepted Name author:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getAcceptedAuthor()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Accepted Name Species:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getAcceptedSpecies()+"</td></tr>";
+		html+= "<tr class=\"flexFontSize\"><td>"+"Accepted Name Family:"+"</td><td>&nbsp;&nbsp;&nbsp;"+entry.getAcceptedFamily()+"</td></tr>";
+
+		String ambiguousText = "";
+		int flag = Integer.parseInt(entry.get("flag").toString());
+
+
+		if((flag)==1 ) {
+			ambiguousText += " Partial match ";
+		}
+		if((flag)==2 ) {
+			ambiguousText += " Ambiguous match  ";
+		}
+		if((flag)==3) {
+			ambiguousText += " Partial match, Ambiguous match";
+		}
+		if((flag)==4) {
+			if(taxonomic){
+				ambiguousText += " Best match is based upon taxonomic results.";
+			}else{
+				ambiguousText += " Better higher taxonomic match found";
+			}
+		}
+
+
+		if(flag==5 ){
+			if(taxonomic){
+				ambiguousText += " Partial match, Higher scoring names were found";
+			}else{
+				ambiguousText += " Partial match, Better higher taxonomic match found";
+			}
+
+		}
+
+		if(flag==6){
+			if(taxonomic){
+				ambiguousText += " Ambiguous match, Higher scoring names were found";
+			}else{
+				ambiguousText += " Ambiguous match, Better higher taxonomic match found";
+			}
+		}
+
+		if(flag==7){
+			if(taxonomic){
+				ambiguousText += " Partial match, Ambiguous match, Higher scoring names were found <br/>";
+			}else{
+				ambiguousText += " Partial match, Ambiguous match, Better higher taxonomic match found<br/>";
+			}
+		}
+
+		html+= "<tr><td>"+"Warnings:"+"</td><td>"+ambiguousText+"</td></tr>";
+
+		html+="</table></div>";
+
+
+		LayoutContainer container = new LayoutContainer();
+		container.setScrollMode(Scroll.AUTO);
+		container.add(new HtmlContainer(html));
+		panel.add(container);
 		add(panel);
 		layout();
 	}
-	
-	
+
+
 	private String formatPercentage(String score)
 	{
-		String ret = ""; // assume failure... if we have no percentage we just return an
-		// empty string
-
-		if(isDouble(score))
-		{
-			double d = Double.parseDouble(score);
-
-			int percentage = (int)(d * 100.0);
-			ret = percentage + "%";
-		}
-
-		return ret;
+		if(score.trim().equals("") || score.trim().equals("0")) return "";
+		return NumberUtil.formatPercentage(score);
 	}
 
-	
-	public static boolean isDouble(String test)
-	{
-		boolean ret = false; // assume failure
 
-		try
-		{
-			if(test != null)
-			{
-				Double.parseDouble(test);
 
-				// if we get here, we know parseDouble succeeded
-				ret = true;
-			}
-		}
-		catch(NumberFormatException nfe)
-		{
-			// we are assuming false - setting the return value here would be redundant
-		}
 
-		return ret;
-	}
-	
-	
+
 }

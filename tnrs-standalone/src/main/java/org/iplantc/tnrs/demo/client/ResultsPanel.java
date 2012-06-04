@@ -10,6 +10,7 @@ import org.iplantc.tnrs.demo.client.validation.KeyValidator;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -18,9 +19,12 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
 
 /**
  * @author raygoza
@@ -88,7 +92,7 @@ public class ResultsPanel extends ContentPanel {
 	private ToolBar buildButtonBar()
 	{
 		ToolBar ret = new ToolBar();
-		ret.add(new FillToolItem());
+		
 		Button retrieve = new Button("Retrieve");
 
 		retrieve.addSelectionListener(new SelectionListener<ButtonEvent>() {
@@ -109,12 +113,13 @@ public class ResultsPanel extends ContentPanel {
 							String type = json.get("type").toString().replace("\"", "");
 							
 							if(type.equals("complete")) {
-								cmdView.execute( email.getValue().trim()+"#"+code.getValue().trim());
+								cmdView.execute( email.getValue().trim()+"#"+code.getValue().trim()+"#"+json.get("job_type").toString());
 							} else if(type.equals("non-existent")) {
 								MessageBox.alert("Error", "No job matches the entered data", null);
-							}else if(type.equals("incomplete")) {
-								
+							}else if(type.equals("incomplete")) {	
 								cmdProgress.execute(json.get("progress").toString());
+							}else if(type.equals("failed")){
+								cmdProgress.execute("error");
 							}
 								
 							
@@ -132,7 +137,26 @@ public class ResultsPanel extends ContentPanel {
 				}
 			}
 		});
+		Anchor support = new Anchor("Click here for support");
+		support.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent arg0) {
+				TNRSSupportWindow support = new TNRSSupportWindow();
+				
+				support.setModal(true);
+				support.show();
+			}
+		});
+		LayoutContainer container = new LayoutContainer();
+		container.add(support);
+		ret.add(container);
+		ret.add(new FillToolItem());
 		ret.add(retrieve);
+		
+		
+		
+		
 
 		return ret;
 	}

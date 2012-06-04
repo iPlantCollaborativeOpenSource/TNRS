@@ -43,7 +43,14 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return url.
 	 */
 	public final native String getURL() /*-{
-		return this.url;
+		var urls = this.Name_matched_url;
+		var res = urls[0];
+		
+		for(i=1; i< urls.length; i++){
+			res+=";"+urls[i];
+		}
+		
+		return res;
 	}-*/;
 
 	/**
@@ -52,7 +59,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return submitted name.
 	 */
 	public final native String getSubmittedName() /*-{
-		return this.nameSubmitted;
+		return this.Name_submitted;
 	}-*/;
 
 	/**
@@ -61,7 +68,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return scientific name.
 	 */
 	public final native String getScientificName() /*-{
-		return this.nameScientific;
+		return this.Name_matched;
 	}-*/;
 
 	/**
@@ -70,7 +77,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return scientific score.
 	 */
 	public final native String getScientificScore() /*-{
-		return this.scientificScore;
+		return this.Name_score;
 	}-*/;
 
 	/**
@@ -79,7 +86,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return attributed author.
 	 */
 	public final native String getAttributedAuthor() /*-{
-		return this.authorAttributed;
+		return this.Canonical_author;
 	}-*/;
 	
 	/**
@@ -88,7 +95,17 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return family.
 	 */
 	public final native String getFamily() /*-{
-		return this.family;
+		return this.Name_matched_accepted_family;
+	}-*/;
+	
+	
+	/**
+	 * Retrieve family.
+	 * 
+	 * @return family.
+	 */
+	public final native String getFlag() /*-{
+		return this.Warnings;
 	}-*/;
 	
 	/**
@@ -97,7 +114,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return genus.
 	 */
 	public final native String getGenus() /*-{
-		return this.genus;
+		return this.Genus_matched;
 	}-*/;
 
 	/**
@@ -106,7 +123,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return genus score.
 	 */
 	public final native String getGenusScore() /*-{
-		return this.genusScore;
+		return this.Genus_score;
 	}-*/;
 	
 	/**
@@ -115,7 +132,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return epithet.
 	 */
 	public final native String getEpithet() /*-{
-		return this.epithet;
+		return this.Specific_epithet_matched;
 	}-*/;
 	
 	/**
@@ -124,7 +141,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return epithet score.
 	 */
 	public final native String getEpithetScore() /*-{
-		return this.epithetScore;
+		return this.Specific_epithet_score;
 	}-*/;
 	
 	/**
@@ -133,7 +150,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return author.
 	 */
 	public final native String getAuthor() /*-{
-		return this.author;
+		return this.Author_matched;
 	}-*/;
 	
 	/**
@@ -142,7 +159,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return author score.
 	 */
 	public final native String getAuthorScore() /*-{
-		return this.authorScore;
+		return this.Author_score;
 	}-*/;
 	
 	/**
@@ -151,7 +168,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return annotation.
 	 */
 	public final native String getAnnotation() /*-{
-		return this.annotation;
+		return this.Annotations;
 	}-*/;
 
 	/**
@@ -160,7 +177,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return unmatched field.
 	 */
 	public final native String getUnmatched() /*-{
-		return this.unmatched;
+		return this.Unmatched_terms;
 	}-*/;
 
 	/**
@@ -169,7 +186,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 * @return overall score.
 	 */
 	public final native String getOverall() /*-{
-		return this.overall;
+		return this.Overall_score;
 	}-*/;
 
 	/**
@@ -179,7 +196,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String getFamilyMatched() /*-{
-		return this.matchedFamily;
+		return this.Family_matched;
 	}-*/;
 	
 	/**
@@ -189,7 +206,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String getFamilyMatchedScore() /*-{
-		return this.matchedFamilyScore;
+		return this.Family_score;
 	}-*/;
 	
 	
@@ -201,7 +218,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String getSpeciesMatched() /*-{
-		return this.speciesMatched;
+		return this.Specific_epithet_matched;
 	}-*/;
 	
 	
@@ -213,7 +230,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String getSpeciesMatchedScore() /*-{
-		return this.speciesMatchedScore;
+		return this.Specific_epithet_score;
 	}-*/;
 	
 	/**
@@ -224,7 +241,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String getInfraSpecificRank1() /*-{
-		return this.infraspecific1Rank;
+		return this.Infraspecific_rank;
 	}-*/;
 	
 	/**
@@ -237,7 +254,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	
 	
 	public final native String getInfraSpecific1Epithet() /*-{
-		return this.infraspecific1Epithet;
+		return this.Infraspecific_epithet_matched;
 	}-*/;
 	
 	
@@ -250,7 +267,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String  getInfraSpecific1EpithetScore() /*-{
-		return this.infraspecific1EpithetScore;
+		return this.Infraspecific_epithet_score;
 	}-*/;
 	
 	
@@ -262,7 +279,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String getInfraSpecificRank2() /*-{
-		return this.infraspecific2Rank;
+		return this.Infraspecific_rank_2;
 	}-*/;
 	
 	/**
@@ -275,7 +292,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	
 	
 	public final native String getInfraSpecific2Epithet() /*-{
-		return this.infraspecific2Epithet;
+		return this.Infraspecific_epithet_2_matched;
 	}-*/;
 	
 	
@@ -288,7 +305,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String  getInfraSpecific2EpithetScore() /*-{
-		return this.infraspecific2EpithetScore;
+		return this.Infraspecific_epithet_2_score;
 	}-*/;
 	
 	
@@ -309,7 +326,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	 
 	public final native String getAcceptance() /*-{
-		return this.acceptance;
+		return this.Taxonomic_status;
 	}-*/;
 	
 	/**
@@ -322,7 +339,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	
 	
 	public final native String getSubmittedFamily() /*-{
-		return this.familySubmitted;
+		return this.Family_submitted;
 	}-*/;
 	
 	/**
@@ -333,7 +350,7 @@ public class JsTNRSEntry extends JavaScriptObject
 	 
 	
 	public final native String getAcceptedName() /*-{
-		return this.acceptedName;
+		return this.Accepted_name;
 	}-*/;
 	
 	/**
@@ -343,8 +360,16 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	 
 	
-	public final native String getAcceptedNameUrl() /*-{
-		return this.acceptedNameUrl;
+	public final native String getAcceptedNameUrls() /*-{
+		
+		var urls = this.Accepted_name_url;
+		var res = urls[0];
+		
+		for(i=1; i< urls.length; i++){
+			res+=";"+urls[i];
+		}
+		
+		return res;
 	}-*/;
 	
 	/** return the accepted author for this match
@@ -352,8 +377,45 @@ public class JsTNRSEntry extends JavaScriptObject
 	 */
 	
 	public final native String getAcceptedAuthor() /*-{
-		return this.acceptedAuthor;
+		return this.Accepted_name_author;
 	}-*/;
 	
+	public final native String getAcceptedSpecies()/*-{
+		return this.Accepted_species;
+	}-*/;
+	
+	public final native String getNameMatchedRank()/*-{
+		return this.Name_matched_rank;
+	}-*/;
+	
+	public final native String getAcceptedFamily()/*-{
+		return this.Accepted_name_family;
+	}-*/;
+	
+	/**
+	 * Return the source for the name
+	 * 
+	 */
+	 
+	
+	public final native String getSource()/*-{
+		var sources = this.Source;
+		var res = sources[0];
+		
+		for(i=1; i< sources.length; i++){
+			res+=";"+sources[i];
+			
+		}
+		
+		return res;
+	}-*/;
+	
+	public final native String getAuthorMatched()/*-{
+		return this.Author_matched;
+		}-*/;
+	
+	public final native String getNameMatchedId()/*-{
+		return this.Name_matched_id;
+	}-*/;
 	
 }

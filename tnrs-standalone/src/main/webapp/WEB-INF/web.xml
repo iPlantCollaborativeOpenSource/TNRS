@@ -16,6 +16,16 @@
     <servlet-class>org.iplantc.tnrs.demo.server.FileUploadServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>supportServlet</servlet-name>
+    <servlet-class>org.iplantc.tnrs.demo.server.SupportServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>supportServlet</servlet-name>
+    <url-pattern>/support</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>searchServlet</servlet-name>
     <url-pattern>/tnrsdemo/search</url-pattern>

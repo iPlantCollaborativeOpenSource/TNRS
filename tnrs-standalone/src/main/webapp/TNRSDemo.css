@@ -24,6 +24,12 @@
     color: #0F705C;
 }
 
+.advanced{
+    color: #0F705C;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
 .iplantc-logolinks a {
 	text-decoration: none;
 	color: #007559;

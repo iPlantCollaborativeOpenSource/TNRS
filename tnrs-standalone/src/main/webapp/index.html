@@ -1,83 +1,98 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
-	<title>Taxonomic Name Resolution Service - Home</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+        <title>Taxonomic Name Resolution Service - Home</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
 
-	<script type="text/javascript" src="js/fadeslideshow.js" ></script>
-	
-	<script type="text/javascript"> 
-		var mygallery=new fadeSlideShow({
-			wrapperid: "fadeshow1", //ID of blank DIV on page to house Slideshow
-			dimensions: [450, 380], //width/height of gallery in pixels. Should reflect dimensions of largest image
-			imagearray: [
-				["images/0001_blonder_IMG_7724.jpg"],
-				["images/0002_blonder_IMG_0653.jpg"],
-				["images/0003_blazing_star.jpg"],
-				["images/0004_Lycium fruit.jpg"],
-				["images/0005_DSCN1474_Ipomoea_pubescens.jpg"],
-				["images/0006_DSCN5505.jpg"],
-				["images/0008_DSCN5759_Echinocereus_triglochidiatus.jpg"],
-				["images/0009_DSCN2811.jpg"],
-				["images/0010_Echinocereus engelmannii.jpg"],
-				["images/0011_guaiacum_coulteri.jpg"],
-				["images/0012_Encelia fruticosa flower.jpg"],
-				["images/0014_DSCN9817_malacothrix.jpg"],
-				["images/0015_DSCN6718.jpg"],
-				["images/013-Nama_hispidum.JPG"]
-			],
-			displaymode: {type:'auto', pause:3500, cycles:0, wraparound:false},
-			persist: false, //remember last viewed slide and recall within same session?
-			fadeduration: 900, //transition duration (milliseconds)
-			descreveal: "ondemand",
-			togglerid: ""
-		})
-	
-	</script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+        <script type="text/javascript" src="js/jquery.colorbox-min.js" ></script>
+        <script type="text/javascript" src="js/fadeslideshow.js" ></script>
+
+        <script type="text/javascript"> 
+        
+            var mygallery=new fadeSlideShow({
+wrapperid: "fadeshow1", //ID of blank DIV on page to house Slideshow
+dimensions: [450, 380], //width/height of gallery in pixels. Should reflect dimensions of largest image
+imagearray: [
+["images/0003_blazing_star.jpg"],
+["images/0006_DSCN5505.jpg"],
+["images/0011_guaiacum_coulteri.jpg"],
+],
+displaymode: {type:'auto', pause:3500, cycles:0, wraparound:false},
+persist: false, //remember last viewed slide and recall within same session?
+fadeduration: 900, //transition duration (milliseconds)
+descreveal: "ondemand",
+togglerid: ""
+});
+jQuery(function(){
+jQuery('a#mailinglist').colorbox(
+    {iframe: true,
+    width: "80%",
+    height: "80%"}
+    );
+});
+</script>
 </head> 
 
-<body>
-	<div class="header"> 
-		<div class="subheader">Taxonomic Name Resolution Service 
-		<sup><small><em>(Beta)</em></small></sup>
-		</div>
-	</div>
-	
-	<div class="logolinks">
-		<img src="images/logos.jpg"><br />
-		<u>Home</u> &nbsp; &nbsp; 
-		<a href="about.html">About</a> &nbsp; &nbsp; 
-		<a href="instructions.html">Instructions</a> &nbsp; &nbsp; 
-		<a href="api.html">API/Source Code</a> &nbsp; &nbsp; 
-		<a href="sources.html">Sources</a> &nbsp; &nbsp; 
-		<a href="contributors.html">Contributors</a>&nbsp; &nbsp;
-		<a href="future.html">Future</a> &nbsp; &nbsp;
-		<a href="TNRSDemo.html">TNRS Application</a>
-	</div>
-	
-	<div id="wrapper">
-		<div id="contentwrapper">
-			<div class="content"> <!-- Main Body Text -->
-			<table align="center" width="80%">
-				<tbody>
-				<tr>
-					<td width="50%" align="center" style="padding:25px;">
-						<div id="fadeshow1" style="-moz-box-shadow: 5px 5px 5px #ccc; -webkit-box-shadow: 5px 5px 5px #ccc;   box-shadow: 5px 5px 5px #ccc;"/>
-					</td>
-				
-					<td width="50%" align="left" style="padding:25px;" >
-					<p><big>Welcome to the Taxonomic Name Resolution Service, a free utility for correcting and standardizing plant names.</big></p>
-					<a href="TNRSDemo.html"><img src="images/tryitnowbutton.jpg" alt="Try it now!" /></a>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-			</div> <!-- End Main Body Text -->
-		</div>
-	</div> 
+<body class="home">
+
+    <noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
+  <div class="header"> 
+        <span id="logo">
+        <img src="images/iplant_logo.png" alt= "iPlant Collaborative" /> 
+      </span>
+    <div class="subheader">
+<span>Taxonomic Name Resolution Service</span> <span style="font-size: 24px;">v3.0</span>
+    </div>
+  </div>
+
+  <div class="logolinks">
+      <a class="home" href="index.html">Home</a> |
+      <a class="apps" href="TNRSapp.html">TNRS Application</a> |
+      <a class="instructions" href="instructions.html">Instructions</a> |
+      <a class="sources" href="sources.html">Sources</a> |
+      <a class="about" href="about.html">About</a> | 
+      <a class="collaborators" href="collaborators.html">Collaborators</a> |
+      <a class="features" href="features.html">Known Issues</a> |
+      <a class="optimize" href="optimize.html">Optimize Your Search</a> |
+      <a class="cite" href="how_cite.html">How to Cite</a> 
+  </div>
+
+  <div id="wrapper" class="clearfix">
+      <div id="contentwrapper">
+          <div class="content">
+                <div id="fadeshow1"></div>
+
+                <div class="welcomeContent">
+                    <h3 class="welcome">Welcome to the Taxonomic Name Resolution Service, a free utility for correcting and standardizing plant names.</h3><br />
+                    <p><a href="quick_start.html">Quick guide to using the TNRS</a></p>
+                    <p><a href="optimize.html">Optimize your search</a></p>
+                    <p><a href="features.html#Known_Issues">Known issues</a></p>
+					<p><a href="http://www.nature.com/news/2011/110613/full/474263a.html">Read about TNRS in Nature</a></p>
+					<p><a href="https://forums.iplantcollaborative.org/viewforum.php?f=9&sid=37dfe221875533b19131e3fbd8d33ae7">Help and Discussion Forum</a></p>
+                    <a href="TNRSapp.html"> <img src="images/tryitnowbutton.jpg" alt="Try it now!" /></a>
+                    
+                    <div>
+                    <div class="stuff clearfix">
+
+                        <div class="thing">
+                            <a href="http://mail.iplantcollaborative.org/mailman/listinfo/tnrs-users" id="mailinglist" style="text-align: center;display: block;" >
+                            <img src="images/envelope.png" width="60" height="50" alt="Join the TNRS Mailing List" title="Join the TNRS Mailing List"/> <div>Join our mailing list</div></a>
+                        </div>
+                        <div class="thing">
+                            <a href="http://twitter.com/#!/iPlantTNRS" ><img src="images/twitter.jpg" height="110" width="200" alt="TNRS on Twitter!" title="TNRS on Twitter!"/></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </body>
 </html>

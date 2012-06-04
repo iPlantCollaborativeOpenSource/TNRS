@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<title>Taxonomic Name Resolution Service - API</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head> 
+
+<body class="features">
+    <noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
+  <div class="header"> 
+        <span id="logo">
+        <img src="images/iplant_logo.png" alt="iPlant Collaborative" /> 
+      </span>
+    <div class="subheader">
+<span>Taxonomic Name Resolution Service</span> <span style="font-size: 24px;">v3.0</span>
+    </div>
+  </div>
+
+ <div class="logolinks">
+      <a class="home" href="index.html">Home</a> |
+      <a class="apps" href="TNRSapp.html">TNRS Application</a> |
+      <a class="instructions" href="instructions.html">Instructions</a> |
+      <a class="sources" href="sources.html">Sources</a> |
+      <a class="about" href="about.html">About</a> | 
+      <a class="collaborators" href="collaborators.html">Collaborators</a> |
+      <a class="features" href="features.html">Known Issues</a> |
+      <a class="optimize" href="optimize.html">Optimize Your Search</a> |
+      <a class="cite" href="how_cite.html">How to Cite</a> 
+  </div>
+	
+	<div id="wrapper">
+		<div id="contentwrapper">
+	
+			<div class="content"> <!-- Main Body Text -->
+			<a name="Known_Issues" id="Known_Issues"><h1>Known Issues</h1></a>	
+				<h3>Case sensitive</h3>
+				The GNI Parser is case sensitive with regards to certain infraspecific rank indicators. For example, submission of "VAR." may result in being treated as part of an author name or will not be recognized at all. If you are using the parse only functionality, you will notice this in the details for a submitted name. To prevent this, we suggest you convert your infraspecific epithets to lower case characters. In this case, "VAR." should be "var.".
+				<h3>Family name suffixes</h3>
+				<p>Family names submitted without -aceae will not be handled by the TNRS. Please ensure submitted family names have the appropriate suffixes.</p>
+				<h3>Underscores</h3>
+				<p>Underscores in submitted names are stripped to allow parsing of the names which have been prepared for use in applications that prohibit spaces, such as Phylocom. If you have an underscore that is intended to be part of the submitted name, your results may be returned incorrectly (for example, an accession number such as "Smith_5644" or a morphospecies name such as "Lauraceae gen_indet._1").</p>
+				<h3>Submitted name not matching name in results</h3>
+				<p>Some of the submitted names displayed in your TNRS results, returned in the download file, or via the TNRS API may not match back to your original file or database of names. This is because the TNRS removes leading and trailing whit spaces, changes underscores to whitespace, and converts characters such as quotation marks which may cause problems with our application. Submitted names which fail to match can be difficult to spot and may prevent you from programmatically joining your TNRS results back to your original database. We are working on a fix which will return the verbatim name submitted. In the meantime, if you find that some of the results are not matching to your original names, we suggest you use an integer to uniquely identify each name in your original database. You should include this identifier with each name that you submit to the TNRS. The identifier must appear in front of each name, followed by a tab, as follows:</p>
+				1 < tab > name</br>
+				2 < tab > anothername</br>
+				3 < tab > yetanothername</br></br>
+				Name lists that include an identifier <i>must</i> be submitted as a text file using the TNRS file upload utility. Be sure to check the box "my file contains an identifier as first column".
+				<h3>Abbreviation "f." may prevent matching</h3>
+				<p>In some cases, embedded parent taxon authors followed by "f." (either in the sense of "filius" or as the abbreviation for rank indicator "forma") prevent matching to infraspecific taxon. For example, the names "Achillea millefolium L. f. rosea Rand. & Redf." and "Amelanchier arborea Michx. f. var. laevis (Wiegand) Ahles" match incorrectly. This problem is due in part to the parser confusing "f." for "filius" ("son of", after an author's name) and "f." for "forma", a rank indicator.</p>
+				<h3>Capitalized epithets prevent fuzzy matching</h3>
+				<p>"Acer Rubrum Linnaeus" resolves only to genus "Acer", whereas "Acer rubrum Linnaeus" resolves fully to "Acer rubrum L.". This is because misspelled names are parsed prior to fuzzy matching, and the parser uses capitalization to detect and classify the parts of a name. "Rubrum" in "Acer Rubrum Linnaeus" is detected as an author name rather than an epithet. Until we find a solution for this problem, please ensure that all epithets (specific, subspecific, varietal, etc.) begin with lowercase letters.</p>
+				<h3>Hybrids can not be fuzzy matched</h3>
+				<p>Currently, hybrid names not matching exactly to names in our database will not be resolved. For example, both "Aesculus x neglecta" and "Aesculus x neglecta Lindl." resolve to "Aesculus x neglecta Lindl." in the TNRS database. However, none of the following incorrect or variant spellings are resolved: "Aesculus x neglecta Lindley", "Esculus x neglecta", "Aesculus neglecta".</p>
+				<h3>10% of names marked 'species' in NCBI are not taxonomic</h3>
+				<p>More than 10% of the names marked as 'species' in NCBI are not taxonomic names but in fact informal accession numbers or pointers to specimens.<br />
+				<br />Examples of such names include:</p>
+				Eichhornia sp. Barret and Shore 1399<br />
+				Chusqea sp. 'LC et al. 1309'<br />
+				Teloschistes cf. chrysophthalmus Feige and Mies ESS 6640<br />
+				Quercus petraea/Quercus robur mixed clone library<br />
+				unidentified symbiotic dinoflagellate from Spongostaurus sp.<br />
+				<p>These names are provided for completeness in representing the content of the NCBI names database. However, they do not conform to the ICBN (International Code of Botanical Nomenclature) and should not be regarded as taxonomically valid or legitimate plant names.</p>
+				
+				
+		</div>
+	</div>
+</body>
+</html>

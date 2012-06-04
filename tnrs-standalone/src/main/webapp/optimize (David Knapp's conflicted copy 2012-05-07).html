@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<title>Taxonomic Name Resolution Service - Optimize Your Search</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
+</head>
+
+<body class="optimize">
+    <noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
+  <div class="header"> 
+        <span id="logo">
+        <img src="images/oneMore.png" /> 
+      </span>
+    <div class="subheader">
+<span>Taxonomic Name Resolution Service</span> <span style="font-size: 24px;">v3.0</span>
+    </div>
+  </div>
+
+  <div class="logolinks">
+      <a class="home" href="index.html">Home</a> |
+      <a class="apps" href="TNRSapp.html">TNRS Application</a> |
+      <a class="instructions" href="instructions.html">Instructions</a> |
+      <a class="about" href="about.html">About</a> | 
+      <a class="features" href="features.html">Features/Known Issues</a> |
+      <a class="optimize" href="optimize.html">Optimize Your Search</a> |
+      <a class="cite" href="how_cite.html">How to Cite</a> 
+  </div>
+
+<div id="wrapper">
+	<div id="contentwrapper">
+		<div class="content"> <!-- Main Body Text -->
+		
+<h1><a name="optimize" id="optimize"></a>How To Optimize Your Search</h1>
+While we have designed the TNRS to handle most botanical data formats found in a majority of datasets, there are a few issues that should be considered in order to increase the probability that the TNRS correctly matches your name.
+
+<ol>
+<h3><li>Make sure that the first letter of each genus name is capitalized.</li></h3>
+<h3><li>Make sure that each specific epithet (and subspecific epithet, if applicable) is all lowercase.</li></h3>
+<p>In the second example below, the incorrectly capitalized epithet "Rubra" prevents the name from matching to species.</p>
+
+<img src="images/Optimize_rubra_example.png" alt="screenshot" /></li> 
+<h3><li>Try submitting names without author strings at the end of the name.</li></h3>
+<p>In the example below, the difference in spelling between the author of the name submitted and the name matched lowers the overall match score, relative to submitting the name alone, without the author string.</p>
+
+<img src="images/optimized_authorstrings_example.png" alt="screenshot" /></li>
+
+<p>Be careful, however. Including the author name can sometimes <i>increase</i> match accuracy, especially if homonyms exist (the same name used by different authors to refer to different species). In the example below, the name retured by default for the Campylopus, without the author, is the accepted genus Campylopus Brid., a moss.</p>
+
+<p>This is acceptable if the moss is the intended meaning. However, Campylopus was also later (and incorrectly) used by the author Spach to refer to a genus of trees in the family Clusiaceae. Even though the second name is an illegitamate posterior homonym, it clearly refers to the tree and not the moss; by including the author the intended meaning is preserved.</p>
+<img src="images/optimize_increase_matchaccuracy.png" alt="screenshot" /></li> 
+
+<p><i>Note: Including the family name with the name will also distinguish between homonyms in different families (see recommendation #8 below)</i></p>
+<p>You should consider this tradeoff when determining whether to omit or include the author string.</p>
+
+<h3><li>The TNRS currently does not fuzzy match hybrid names. If a submitted name is mispelled, the TNRS will not find it.</li></h3>
+<p>In the example below, the first name is spelled correctly; the second name is not.</p>
+<img src="images/optimize_misspelled.png" alt="screenshot" /></li> </br>
+
+<h3><li>Try to strip unwanted characters before submitting your names.</li></h3>
+<p>While the TNRS automatically strips out odd characters that are not used in botanical nomenclature (such as punctuation, underscores, +, %, #, etc.), names that include many such characters produce in lower match scores, potentially preventing the TNRS from discovering the correct name.</p>
+<p>Note the image below showing the effect of submitting misspelled names with and without odd characters:</p>
+<img src="images/optimize_odd_characters.png" alt="screenshot" /></li> </br>
+
+<h3><li>Change the match score threshold.</li></h3>
+<p>By default, names will be returned to you in a way that maximizes the number of returned matches (lowest setting). By increasing the match threshold, you can increase the exactness of the names being returned for your submitted name. However, this may lead to names being missed, especially in the case of badly misspelled names.</p>
+
+<h3><li>Inspect your results!</li></h3>
+<p>It is especially important you inspect results flagged with warnings or names with more than one possible match. Names with more than one match that have the hyperlinked words "(+x more)" after the name matched ("x" is the number of additional possible matches).</p>
+<p>Click on the hyperlink to see a list of all possible matches. Sometimes your intended name will be a lower-ranked match. This is especially important if you have set higher taxonomic constraint to ON.</p>
+</ol>
+</body>
+</html>
