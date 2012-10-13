@@ -127,7 +127,7 @@ public class TNRSPanel extends ContentPanel
 		StopWatch.start("search");
 		mask("Working...");
 		System.out.println(json);
-		searchService.doSearch(json, new AsyncCallback<String>()
+		searchService.doSearch(json, json, new AsyncCallback<String>()
 				{
 			@Override
 			public void onFailure(Throwable caught)
@@ -307,7 +307,7 @@ public class TNRSPanel extends ContentPanel
 		if(progress!=null) {
 			pnlInner.remove(progress);
 		}
-		remotePnlEditor = new RemoteTNRSEditorPanel(searchService, params);
+		remotePnlEditor = new RemoteTNRSEditorPanel(searchService, params, params);
 		System.out.println(params);
 		pnlInner.add(remotePnlEditor, tableData);
 		unmask();
