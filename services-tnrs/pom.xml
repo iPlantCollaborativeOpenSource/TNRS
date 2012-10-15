@@ -369,7 +369,7 @@
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>jcl-over-slf4j</artifactId>
-		<version>1.7.1</version>
+		<version>1.5.5</version>
 	</dependency>
 	<dependency>
 		<groupId>org.mule</groupId>
