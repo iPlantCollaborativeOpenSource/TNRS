@@ -1,6 +1,8 @@
 */.project
 */bin
+*/bin/*
 */target
+*/target/*
 */.classpath
 */.gwt
 */war
