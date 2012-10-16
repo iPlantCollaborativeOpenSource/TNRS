@@ -1,0 +1,7 @@
+*/.project
+*/bin
+*/target
+*/.classpath
+*/.gwt
+*/war
+*/gwt*
