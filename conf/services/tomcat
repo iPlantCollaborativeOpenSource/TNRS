@@ -1,0 +1,83 @@
+#!/bin/sh
+# chkconfig: 345 95 65
+# description: Tomcat serlvet container
+
+# guilty-party: lenards, Andrew Lenards <lenards@iplantcollaborative.org>
+# date: 2009 July 17
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# environment variables used by $CATALINA_HOME/bin/catalina.sh are set in 
+# $CATALINA_HOME/bin/setenv.sh - modifications should be made there.
+# (catalina.sh is the target of startup.sh & shutdown.sh in $CATALINA_HOME/bin)
+export CATALINA_HOME=/opt/tomcat
+# script-specific values
+export TOMCAT_USER=tomcat
+LOCK_HOME=/var/lock/subsys
+LOCK_FILE=$LOCK_HOME/tomcat/running
+
+start() {
+    if [ ! -e $LOCK_FILE ]; then    
+	echo "Starting tomcat: "
+	su - $TOMCAT_USER -c $CATALINA_HOME/bin/startup.sh 
+	echo
+	touch $LOCK_FILE
+	echo `ps -ef | grep ^tomcat | sed 's/tomcat[ ]*\([0-9]*\).*/\1/'` > $LOCK_FILE
+	echo "start done."
+    else
+	echo '...tomcat appears to already be running'
+    fi
+}
+
+stop() {
+    if [ -e $LOCK_FILE ]; then
+	echo "Shutting down tomcat: "
+	su - $TOMCAT_USER -c $CATALINA_HOME/bin/shutdown.sh
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ]; then
+	    rm -f $LOCK_FILE
+	    echo "stop done."
+	else 
+	    echo '...shutdown of tomcat has failed...'
+	fi
+    else
+	echo '...tomcat does not appear to be running'
+    fi
+}
+
+restart() {
+    stop
+    sleep 5
+    start
+}
+
+status() {
+    if [ -e $LOCK_FILE ]; then    
+	pid=`cat $LOCK_FILE`
+	echo "Tomcat is currently running.  Process ID: " $pid
+    else
+	echo "Tomcat does not appear to be running. "
+    fi 
+}
+
+# See how we are called
+case "$1" in
+start)
+	start
+	;;
+stop)
+	stop
+	;;
+restart)
+	restart
+        ;;
+status)
+	status
+	;;
+*)
+	echo $"Usage: $0 {start|stop|status|restart}"
+	exit 1
+	;;
+esac
+exit $?
