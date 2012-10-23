@@ -76,7 +76,7 @@ public class TnrsJob implements Serializable{
 		}
 		sources = new Vector<String>();
 		userFolder = request.getEmail().replace("@","-").replace(".", "-");
-		inputFilePath = userFolder+"/"+request.getId()+new Date().toString().replaceAll("[ |:]", "")+".csv";
+		inputFilePath = "/tnrs-jobs/"+userFolder+"/"+request.getId()+new Date().toString().replaceAll("[ |:]", "")+".csv";
 		submittedAt = submitted_date;
 		enabled=true;
 		sortBySource =true;

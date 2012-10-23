@@ -1,0 +1,12 @@
+*/.project
+bennet_tnrs.install.txt
+toad
+toad/tnrs-batch-server-1.0-SNAPSHOT.jar
+*/bin
+*/target
+*/.classpath
+*/.gwt
+*/war
+tnrs-standalone/gwt-unitCache/
+tnrs-standalone/src/main/webapp/tnrsdemo/
+
