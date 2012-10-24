@@ -270,6 +270,7 @@ public class BatchProcessingServer extends Thread {
 		@Override
 		public void run() {
 			try {
+				System.out.println("Running");
 				StopWatch stp2 = new StopWatch();
 				stp2.start();
 				JSONObject json=new JSONObject();
@@ -303,11 +304,13 @@ public class BatchProcessingServer extends Thread {
 				String names = NameUtil.CleanNames(lines, job);
 
 				if(names.equals("")) return;
-
+				
+				System.out.println("Processing names: "+names);
+				
 				if(job.getType()==TnrsJob.NAME_MATCH_JOB) {
 
 					TaxamatchInterface taxa_match = new TaxamatchInterface(tnrsBaseUrl);
-
+					System.out.println("Calling taxamatch with names: "+names+ " for job "+job.getTypeString());
 					String result =taxa_match.queryTaxamatch(names,job);
 					json = (JSONObject) JSONSerializer.toJSON(result);
 
@@ -449,10 +452,13 @@ public class BatchProcessingServer extends Thread {
 
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
+
 			try {
 
 
 				String request = IOUtils.toString(arg0.getRequestBody());
+				System.out.println(request);
+
 				JSONObject datas = (JSONObject) JSONSerializer.toJSON(request);
 
 

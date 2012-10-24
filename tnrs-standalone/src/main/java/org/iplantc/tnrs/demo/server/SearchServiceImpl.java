@@ -1,5 +1,7 @@
 package org.iplantc.tnrs.demo.server;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileWriter;
@@ -14,6 +16,8 @@ import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.http.HttpServlet;
@@ -99,6 +103,9 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@Override
 	public String doSearch(String input,String sensitivity) throws IllegalArgumentException
 	{
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"To send: "+input);
+
 		try
 		{	
 
@@ -144,7 +151,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			HttpClient client = new HttpClient();
 
 			PostMethod post = new PostMethod("http://"+servicesHost+"/tnrs-svc/upload");
-
+			rootLogger.log(Level.SEVERE,"To send: "+info.toString());
 			post.setRequestEntity(new StringRequestEntity(info.toString(),"application/json","UTF-8"));
 			client.executeMethod(post);
 
