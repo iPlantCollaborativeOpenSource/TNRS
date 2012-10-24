@@ -68,6 +68,7 @@ public class TaxamatchInterface {
 		String url = taxamatch_url ;
 
 		String[] values = query.split(";");
+		System.out.println("Starting taxamatchInterface on: "+url+" with query: "+query);
 
 		TaxamatchThread thread;
 		
