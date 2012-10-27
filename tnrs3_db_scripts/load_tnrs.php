@@ -25,7 +25,7 @@
 // subdirectory
 //
 // For an example build of the TNRS, use sources
-// tropicosExample, tropicosExample2, and usdaExample
+// tropicos_example, tropicos_example2, and usda_example
 ////////////////////////////////////////////////////////////
 include "global_params.inc";
 

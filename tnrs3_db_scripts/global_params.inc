@@ -39,9 +39,9 @@
 // The example sources listed can be used to run a 
 // complete example build of the TNRS database
 $src_array=array(
-	"tropicosExample",
-	"tropicosExample2",
-	"usdaExample"
+	"tropicos_example",
+	"tropicos_example2",
+	"usda_example"
 );
 
 //////////////////////////////////////////////////
