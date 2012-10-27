@@ -85,7 +85,7 @@ require_once $local_utilities_path."class.normalize.php";
 //////////////////////////////////////////////////
 
 // MySQL server name
-$HOST = "";
+$HOST = "localhost";
 
 // Just a bit of formatting
 // Provides explicit host name for display at runtime
@@ -93,10 +93,10 @@ $HOST = "";
 $HOST=="localhost"?$HOSTNAME=exec('hostname -f'):$HOSTNAME=$HOST;
 
 // MySQL user name
-$USER = "";
+$USER = "tnrs_root";
 
 // MySQL password for this user
-$PWD = "";
+$PWD = "rooter";
 
 // Name of the TNRS database you will be building
 $DB = "tnrsExampleDb";
