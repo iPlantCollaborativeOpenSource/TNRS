@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Basic CSV Form</title>
+</head>
+
+<body>
+<form action="../../api/taxamatch_csv.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
+	<p>Select the sample.csv file in this folder and it will build a csv file with results.</p>
+	<p>
+		<label>
+			<input type="file" name="input_file" id="input_file" />
+		</label>
+	</p>
+	<p>
+		<input name="source" type="hidden" id="source" value="col2009" />
+		<input name="cmd" type="hidden" id="cmd" value="download" />
+		<input type="submit" name="button" id="button" value="Submit" />
+	</p>
+	<p>Link to <a href="sample.csv">sample.csv</a></p>
+	<p>Link to <a href="sample_output.csv">sample output</a></p>
+</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+###
+#
+# Tests for author comparison by
+#
+##
+
+# identical strings should match 100%
+Puma concolor Linnaeus|Puma concolor Linnaeus|true|100
+
+# identical strings should match 100%
+Puma concolor Linnaeus 2009|Puma concolor Linnaeus 2009|true|100
+
+# authors should match regardless of name strings
+Puma concolor Linnaeus|Aus bus Linnaeus|true|100
+
+# one-letter misspeling in author should match
+Puma concolor Linnaeus|Puma concolor Linnaeuss|true|100
+
+# one-letter misspeling in author should match
+Puma concolor Linnaeus, Smith|Puma concolor Smith, Linnaeus|true|91
+
+
+# one-letter misspeling in author should match
+Puma concolor L, Smith|Puma concolor Smi, Linnaeus|true|51
+
+# one-letter misspeling in author should match
+Puma concolor Linnaeus 1766|Puma concolor L. 1765|true|51
+
+# one-letter misspeling in author should match
+Puma concolor Smith 1766|Puma concolor L. 1766|false|0
+
+# complex shortening should work in this case
+Aa hieronymii (Cogn.) Schltr.|Aa hieronymi (Cogn.) Schlechter|true|100
+
