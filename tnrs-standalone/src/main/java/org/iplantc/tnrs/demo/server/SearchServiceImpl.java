@@ -319,8 +319,8 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			entry.setScientific( item.getString("Name_matched"));
 			entry.setScientificScore(item.getString("Name_score"));
 			entry.setAuthorAttributed(item.getString("Canonical_author"));
-//			entry.setFamily(item.getString("Name_matched_accepted_family"));
-			entry.setFamily("");
+			entry.setFamily(item.getString("Name_matched_accepted_family"));
+//			entry.setFamily("");
 			entry.setGenus(item.getString("Genus_matched"));
 			entry.setGenusScore(item.getString("Genus_score"));
 			entry.setEpithet(item.getString("Specific_epithet_matched"));
