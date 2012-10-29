@@ -320,7 +320,6 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			entry.setScientificScore(item.getString("Name_score"));
 			entry.setAuthorAttributed(item.getString("Canonical_author"));
 			entry.setFamily(item.getString("Name_matched_accepted_family"));
-//			entry.setFamily("");
 			entry.setGenus(item.getString("Genus_matched"));
 			entry.setGenusScore(item.getString("Genus_score"));
 			entry.setEpithet(item.getString("Specific_epithet_matched"));
@@ -358,7 +357,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			entry.setFlag(item.getInt("Warnings"));
 			entry.setAcceptedSpecies(item.getString("Accepted_species"));
 			entry.setNameMatchedRank(item.getString("Name_matched_rank"));
-			entry.setAcceptedNameFamily(item.getString("Accepted_name_family"));
+			entry.setAcceptedNameFamily(item.getString("Accepted_family"));
 
 			JSONArray sources = item.getJSONArray("Source");
 
