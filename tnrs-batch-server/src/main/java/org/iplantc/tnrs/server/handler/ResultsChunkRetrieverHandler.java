@@ -75,7 +75,6 @@ public class ResultsChunkRetrieverHandler implements HttpHandler {
 			}
 
 			String result = json_res.toString();
-			System.out.println("ResultsChunk reuslts: "+result);
 
 			arg0.sendResponseHeaders(200, result.getBytes().length);
 			arg0.setAttribute("Content-type", "application/json");

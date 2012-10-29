@@ -2,8 +2,6 @@ package org.iplantc.tnrs.demo.client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.iplantc.tnrs.demo.client.gxt.ConfirmationDialog;
 import org.iplantc.tnrs.demo.client.gxt.LinkIcon;

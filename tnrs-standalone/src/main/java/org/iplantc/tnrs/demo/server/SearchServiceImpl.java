@@ -171,7 +171,8 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	public String getJobInfoUrl(String json) throws IllegalArgumentException{
 		try{
 			HttpClient client = new HttpClient();
-
+			Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+			rootLogger.log(Level.SEVERE,"Getting JobInfo: "+json);
 			PostMethod post = new PostMethod("http://"+servicesHost+"/tnrs-svc/jobinfo");
 
 			post.setRequestEntity(new StringRequestEntity(json,"application/json","UTF-8"));
@@ -261,8 +262,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@SuppressWarnings("unchecked")
 	@Override
 	public BasePagingLoadResult<BeanTNRSEntry> getRemoteData(final PagingLoadConfig config,String jsons)  {
-		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
-		rootLogger.log(Level.SEVERE,"getRemoteData: "+jsons);
+
 
 		JSONObject info = new JSONObject();
 		JSONObject json = (JSONObject)JSONSerializer.toJSON(jsons);

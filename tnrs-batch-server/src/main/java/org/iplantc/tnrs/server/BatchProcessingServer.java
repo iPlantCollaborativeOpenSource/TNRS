@@ -407,14 +407,14 @@ public class BatchProcessingServer extends Thread {
 
 	}
 
-
+//DEPRECATED IN FAVOR OF CSV DOWNLOAD
 	class JobInfohandler implements HttpHandler {
 
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
+
 			try{
 				JSONObject request = (JSONObject) JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
-
 				String email = request.getString("email");
 				String key = request.getString("key");
 
