@@ -2,6 +2,8 @@ package org.iplantc.tnrs.demo.client;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.iplantc.tnrs.demo.client.gxt.HelpIcon;
 import org.iplantc.tnrs.demo.client.validation.FileNameInputValidator;
@@ -34,7 +36,6 @@ import com.google.gwt.user.client.ui.Label;
 
 public class TNRSDownloadDialog extends Dialog{
 
-
 	private RadioGroup ret1;
 	private RadioGroup ret2;
 	private final ClientCommand cmdOk;
@@ -47,6 +48,9 @@ public class TNRSDownloadDialog extends Dialog{
 	private boolean dirty;
 	
 	public TNRSDownloadDialog(ClientCommand cmdOk,String mode,boolean isdirty,boolean sources_n,boolean taxonomic_constraint) {
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"Download Toolbar: "+mode+isdirty+sources_n+taxonomic_constraint);
+
 		this.mode = mode;
 		init();
 		compose();

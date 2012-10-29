@@ -573,6 +573,7 @@ public class MatchingResultsFile {
 
 		BufferedReader rd = new BufferedReader(new InputStreamReader(new FileInputStream(workingCopy), "UTF-8"));
 		rd.readLine();
+
 		BufferedWriter wr = new BufferedWriter(new FileWriter(output_folder+"csv"+job.getRequest().getId()+".csv"));
 
 		wr.write("Name_submitted"+"\t"+"Name_matched"+"\t"+"Author_matched"+"\t"+"Overall_score"+"\t"+"Taxonomic_status"+"\t"+"Accepted_name"+"\t"+"Accepted_author"+"\t"+"Accepted_family"+"\t"+"Source"+"\t"+"Warnings"+"\t"+"Accepted_name_lsid");
@@ -588,6 +589,7 @@ public class MatchingResultsFile {
 
 		while(true){
 			line =rd.readLine();
+			System.out.println("Reading input "+line);
 			if(line==null) break;
 
 			String[] values = line.split("\t",-1);
@@ -605,7 +607,7 @@ public class MatchingResultsFile {
 				}
 
 			}
-			wr.write(values[column_definition.indexOf("name_submitted")]+"\t"+values[column_definition.indexOf("name_matched")]+"\t"+values[column_definition.indexOf("author_matched")]+"\t"+values[column_definition.indexOf("overall_score")]+"\t"+values[column_definition.indexOf("taxonomic_status")]+"\t"+values[column_definition.indexOf("accepted_name")]+"\t"+values[column_definition.indexOf("accepted_name_author")]+"\t"+values[column_definition.indexOf("accepted_name_family")]+"\t"+values[column_definition.indexOf("source")]+"\t"+getFlagText(values[column_definition.indexOf("warnings")])+"\t"+values[column_definition.indexOf("accepted_name_lsid")]);
+			wr.write(values[column_definition.indexOf("name_submitted")]+"\t"+values[column_definition.indexOf("name_matched")]+"\t"+values[column_definition.indexOf("author_matched")]+"\t"+values[column_definition.indexOf("overall_score")]+"\t"+values[column_definition.indexOf("taxonomic_status")]+"\t"+values[column_definition.indexOf("accepted_name")]+"\t"+values[column_definition.indexOf("accepted_name_author")]+"\t"+values[column_definition.indexOf("accepted_family")]+"\t"+values[column_definition.indexOf("source")]+"\t"+getFlagText(values[column_definition.indexOf("warnings")])+"\t"+values[column_definition.indexOf("accepted_name_lsid")]);
 
 			if(job.containsId()){
 				wr.write("\t"+values[column_definition.indexOf("user_id")]);

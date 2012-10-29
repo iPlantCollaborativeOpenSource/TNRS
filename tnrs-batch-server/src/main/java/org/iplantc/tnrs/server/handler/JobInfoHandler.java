@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.iplantc.tnrs.server.JobHelper;
 import org.iplantc.tnrs.server.TnrsJob;
@@ -33,7 +35,8 @@ public class JobInfoHandler implements HttpHandler {
 	public void handle(HttpExchange arg0) throws IOException {
 		try {
 		JSONObject json = (JSONObject)JSONSerializer.toJSON(arg0);
-		
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"Properties: "+json.toString());
 		String email = json.getString("email");
 		String key = json.getString("key");
 		

@@ -689,6 +689,7 @@ public class BatchProcessingServer extends Thread {
 			try {
 
 				JSONObject json = (JSONObject)JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
+				System.out.println("RemoteDownloadHoandler "+json.toString());
 
 
 				String email = json.getString("email");
@@ -700,7 +701,6 @@ public class BatchProcessingServer extends Thread {
 				if(job.getType()==TnrsJob.PARSING_JOB) {
 
 					ParsingResultsFile results = new ParsingResultsFile(job, baseFolder);
-
 					results.createFileForDownload(properties.getProperty("org.iplantc.folder.tmp"));
 					
 				}else {
@@ -708,6 +708,7 @@ public class BatchProcessingServer extends Thread {
 					MatchingResultsFile results = new MatchingResultsFile(job, baseFolder,session_id,false);
 
 					results.createFileForDownload(properties.getProperty("org.iplantc.tnrs.folder.tmp"),json);
+					System.out.println("properties "+properties.toString());
 
 					results.close();
 				}

@@ -497,7 +497,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 
 	public String downloadRemoteResults(String options) throws IllegalArgumentException{
 		String ret = "";
-
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
 		JSONObject json = (JSONObject) JSONSerializer.toJSON(options);
 		HttpSession session = this.getThreadLocalRequest().getSession();
 		System.out.println(session.getId());
@@ -508,6 +508,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 
 		try
 		{
+			rootLogger.log(Level.SEVERE,"downloadremote: "+json.toString());
 			URLConnection connection = update("http://"+servicesHost+"/tnrs-svc/download", json.toString()); //batch server
 			ret = retrieveResult(connection);
 		}
@@ -584,6 +585,8 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@Override
 	public String downloadResults(String input) throws IllegalArgumentException
 	{
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"To send: "+input);
 		String ret = "";
 
 		try

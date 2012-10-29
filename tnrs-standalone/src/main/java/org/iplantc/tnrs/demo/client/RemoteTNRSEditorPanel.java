@@ -2,6 +2,8 @@ package org.iplantc.tnrs.demo.client;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.iplantc.tnrs.demo.client.gxt.ConfirmationDialog;
 import org.iplantc.tnrs.demo.client.gxt.LinkIcon;
@@ -676,6 +678,9 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 
 				json.put("email", new JSONString(email));
 				json.put("key", new JSONString(key));
+				Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+				rootLogger.log(Level.SEVERE,"DownloadCommand: "+json.toString());
+
 				searchService.downloadRemoteResults(json.toString(), new AsyncCallback<String>()
 						{
 					@Override
