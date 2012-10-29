@@ -240,7 +240,6 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 				json.put("taxonomic", new JSONString(Boolean.toString(tax_on.isChecked())));
 				json.put("sortbysource", new JSONString(Boolean.toString(sources_n.isChecked())));
 				
-				
 				searchService.getJobInfoUrl(json.toString(), new AsyncCallback<String>() {
 					
 					@Override
@@ -678,8 +677,7 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 
 				json.put("email", new JSONString(email));
 				json.put("key", new JSONString(key));
-				Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
-				rootLogger.log(Level.SEVERE,"DownloadCommand: "+json.toString());
+
 
 				searchService.downloadRemoteResults(json.toString(), new AsyncCallback<String>()
 						{

@@ -177,7 +177,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			post.setRequestEntity(new StringRequestEntity(json,"application/json","UTF-8"));
 			client.executeMethod(post);
 
-
+			
 			return post.getResponseBodyAsString();
 
 		}catch( Exception ex){

@@ -35,12 +35,11 @@ public class JobInfoHandler implements HttpHandler {
 	public void handle(HttpExchange arg0) throws IOException {
 		try {
 		JSONObject json = (JSONObject)JSONSerializer.toJSON(arg0);
-		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
-		rootLogger.log(Level.SEVERE,"Properties: "+json.toString());
+		
 		String email = json.getString("email");
 		String key = json.getString("key");
 		
-		TnrsJob job = JobHelper.readJobInfo(properties.getProperty("servicesUrl"), email, key);
+		TnrsJob job = JobHelper.readJobInfo(properties.getProperty("org.iplantc.tnrs.baseResultsFolder"), email, key);
 		
 		String uid =UUID.randomUUID().toString().replace("-", "");
 		
