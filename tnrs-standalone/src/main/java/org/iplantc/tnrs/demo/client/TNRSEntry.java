@@ -3,6 +3,9 @@ package org.iplantc.tnrs.demo.client;
 
 
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.data.BeanModel;
 import com.extjs.gxt.ui.client.widget.MessageBox;
@@ -31,7 +34,7 @@ public class TNRSEntry extends BaseModel
 	}
 	
 	public TNRSEntry(BeanModel entry) {
-		
+
 		if(entry != null)
 		{
 			//set("entryId", entry.getEntryId());

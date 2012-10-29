@@ -67,7 +67,7 @@ public class ResultsChunkRetrieverHandler implements HttpHandler {
 				MatchingResultsFile data = new MatchingResultsFile(job, "/tnrs-jobs/",session_id,first_request);
 
 				JSONArray results = data.getResultsInterval(start, how_many, job,taxonomic_constraint,order_by_source);
-
+				
 				json_res.put("items", results);
 				json_res.put("total",data.getResultsSize());
 				data.close();
@@ -75,6 +75,8 @@ public class ResultsChunkRetrieverHandler implements HttpHandler {
 			}
 
 			String result = json_res.toString();
+			System.out.println("ResultsChunk reuslts: "+result);
+
 			arg0.sendResponseHeaders(200, result.getBytes().length);
 			arg0.setAttribute("Content-type", "application/json");
 

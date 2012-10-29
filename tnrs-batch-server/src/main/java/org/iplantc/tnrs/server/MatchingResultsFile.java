@@ -73,7 +73,7 @@ public class MatchingResultsFile {
 		column_definition.add("author_matched");
 		column_definition.add("author_score");
 		column_definition.add("canonical_author");
-		column_definition.add("accepted_family");
+		column_definition.add("name_matched_accepted_family");
 		column_definition.add("genus_submitted");
 		column_definition.add("genus_matched");
 		column_definition.add("genus_score");
@@ -100,7 +100,7 @@ public class MatchingResultsFile {
 		column_definition.add("accepted_name_id");
 		column_definition.add("accepted_name_rank");
 		column_definition.add("accepted_name_url");
-		column_definition.add("accepted_name_family");
+		column_definition.add("accepted_family");
 		column_definition.add("overall_score_order");
 		column_definition.add("highertaxa_score_order");
 		column_definition.add("warnings");
@@ -480,7 +480,6 @@ public class MatchingResultsFile {
 		item.put("Family_matched", values[17]);
 		item.put("Family_score",values[18]);
 		item.put("Canonical_author", values[8]);
-		item.put("Family_submitted", values[16]);
 		item.put("Genus_matched",values[11]);
 		item.put("Genus_score",values[12]);
 		item.put("Specific_epithet_submitted", values[13]);
@@ -511,7 +510,7 @@ public class MatchingResultsFile {
 		item.put("Phonetic", values[column_definition.indexOf("phonetic")]);
 		item.put("Accepted_name_id", values[column_definition.indexOf("accepted_name_id")]);
 		item.put("Accepted_name_rank", values[column_definition.indexOf("accepted_name_rank")]);
-		item.put("Accepted_name_family", values[column_definition.indexOf("accepted_name_family")]);
+		item.put("Name_matched_accepted_family", values[column_definition.indexOf("name_matched_accepted_family")]);
 		item.put("Overall_score_order", Integer.parseInt(values[column_definition.indexOf("overall_score_order")]));
 		item.put("Highertaxa_score_order", Integer.parseInt(values[column_definition.indexOf("highertaxa_score_order")]));
 		item.put("Source_constrain_on_order", Integer.parseInt(values[column_definition.indexOf("source_constrain_on_order")]));
@@ -519,6 +518,9 @@ public class MatchingResultsFile {
 		item.put("Source", stringToJSONArray(values[column_definition.indexOf("source")]));
 		item.put("nsources", Integer.parseInt(values[column_definition.indexOf("nsources")]));
 		item.put("Sort_override", values[column_definition.indexOf("sort_override")]);
+		item.put("Accepted_name_lsid", values[column_definition.indexOf("accepted_name_lsid")]);
+		item.put("Sort_override", values[column_definition.indexOf("sort_override")]);
+
 		if(job.containsId()){
 			item.put("user_id", values[column_definition.indexOf("user_id")]);
 		}

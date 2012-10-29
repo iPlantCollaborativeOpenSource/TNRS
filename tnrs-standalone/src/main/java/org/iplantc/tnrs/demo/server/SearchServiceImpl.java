@@ -192,9 +192,10 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@Override
 	public BasePagingLoadResult<BeanTnrsParsingEntry> getRemoteParsingData(final PagingLoadConfig config,String jsons)  {
 		try{
+			
 			JSONObject info = new JSONObject();
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(jsons);
-
+			
 
 
 			HttpSession session = this.getThreadLocalRequest().getSession();
@@ -260,7 +261,8 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@SuppressWarnings("unchecked")
 	@Override
 	public BasePagingLoadResult<BeanTNRSEntry> getRemoteData(final PagingLoadConfig config,String jsons)  {
-
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"getRemoteData: "+jsons);
 
 		JSONObject info = new JSONObject();
 		JSONObject json = (JSONObject)JSONSerializer.toJSON(jsons);
@@ -301,7 +303,6 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			BeanTNRSEntry entry = new BeanTNRSEntry();
 			JSONObject item = array.getJSONObject(i);
 
-
 			//entry.setEntryId(i);
 			entry.setGroup(item.getLong("group"));
 			entry.setSubmitted(item.getString("Name_submitted").replace("\\\"", "\""));
@@ -318,7 +319,8 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			entry.setScientific( item.getString("Name_matched"));
 			entry.setScientificScore(item.getString("Name_score"));
 			entry.setAuthorAttributed(item.getString("Canonical_author"));
-//DEPRECATED			entry.setFamily(item.getString("Name_matched_accepted_family"));
+//			entry.setFamily(item.getString("Name_matched_accepted_family"));
+			entry.setFamily("");
 			entry.setGenus(item.getString("Genus_matched"));
 			entry.setGenusScore(item.getString("Genus_score"));
 			entry.setEpithet(item.getString("Specific_epithet_matched"));

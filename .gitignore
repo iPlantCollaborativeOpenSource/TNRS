@@ -6,4 +6,7 @@ toad
 */target/*
 */.gwt/*
 .classpath
-
+tnrs-standalone/gwt-unitCache
+tnrs-batch-server/tnrs.html
+~*
+*~
