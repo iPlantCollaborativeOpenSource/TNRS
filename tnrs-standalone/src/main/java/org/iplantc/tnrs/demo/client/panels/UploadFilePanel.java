@@ -5,7 +5,6 @@ import org.iplantc.tnrs.demo.client.TNRSSupportWindow;
 import org.iplantc.tnrs.demo.client.validation.EmailValidator;
 import org.iplantc.tnrs.demo.client.validation.FIleInputValidator;
 
-import com.extjs.gxt.ui.client.data.BaseModelData;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FormEvent;

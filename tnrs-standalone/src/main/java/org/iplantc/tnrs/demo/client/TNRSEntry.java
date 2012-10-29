@@ -3,12 +3,8 @@ package org.iplantc.tnrs.demo.client;
 
 
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.google.gwt.json.client.JSONObject;
 
 /**

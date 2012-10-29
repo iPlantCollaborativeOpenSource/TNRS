@@ -3,7 +3,6 @@
  */
 package org.iplantc.tnrs.demo.client;
 
-import org.iplantc.tnrs.demo.client.validation.BlankValidator;
 import org.iplantc.tnrs.demo.client.validation.EmailValidator;
 import org.iplantc.tnrs.demo.client.validation.KeyValidator;
 

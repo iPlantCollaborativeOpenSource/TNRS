@@ -12,7 +12,6 @@ import net.sf.json.JSONSerializer;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
-import org.iplantc.tnrs.server.BatchProcessingServer;
 import org.iplantc.tnrs.server.JobHelper;
 import org.iplantc.tnrs.server.MatchingResultsFile;
 import org.iplantc.tnrs.server.ParsingResultsFile;

@@ -1,9 +1,5 @@
 package org.iplantc.tnrs.transform;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStreamWriter;
-import java.util.zip.GZIPOutputStream;
-
 import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
 import org.mule.transformer.AbstractMessageAwareTransformer;
@@ -14,6 +10,7 @@ public class PlainStringToCompressedBASE64Transformer extends AbstractMessageAwa
 
 
 
+	@Override
 	public Object transform(MuleMessage message, String outputEncoding)
 	throws TransformerException {
 		try {

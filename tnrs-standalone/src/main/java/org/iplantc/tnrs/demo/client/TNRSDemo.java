@@ -2,10 +2,7 @@ package org.iplantc.tnrs.demo.client;
 
 import org.iplantc.tnrs.demo.client.panels.TNRSPanel;
 
-import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 

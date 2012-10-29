@@ -2,17 +2,15 @@ package org.iplantc.tnrs.server.processing;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.Vector;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
-import org.iplantc.tnrs.server.BatchProcessingServer;
-import org.iplantc.tnrs.server.TnrsJob;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.log4j.Logger;
+import org.iplantc.tnrs.server.TnrsJob;
 
 public class TNRSResultsTransformer {
 

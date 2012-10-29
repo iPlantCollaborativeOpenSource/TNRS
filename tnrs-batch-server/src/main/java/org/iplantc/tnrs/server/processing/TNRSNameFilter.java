@@ -1,6 +1,5 @@
 package org.iplantc.tnrs.server.processing;
 
-import java.util.Date;
 import java.util.Vector;
 
 public class TNRSNameFilter {

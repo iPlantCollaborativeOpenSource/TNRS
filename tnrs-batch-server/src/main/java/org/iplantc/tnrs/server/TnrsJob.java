@@ -17,7 +17,6 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Vector;
 
 import net.sf.json.JSONObject;

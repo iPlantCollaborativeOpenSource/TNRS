@@ -5,19 +5,19 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.OutputStreamWriter;
-import java.io.PrintStream;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.Vector;
-import javax.xml.parsers.DocumentBuilder;
+
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
@@ -178,10 +178,10 @@ throw ex;
     while (it.hasNext()) {
       String key = (String)it.next();
 
-      System.out.println(key + " " + (String)params.get(key));
+      System.out.println(key + " " + params.get(key));
     }
 
-    String names = (String)params.get("names");
+    String names = params.get("names");
 
     String values = names.replace(",", ";");
     System.out.println("[" + values + "]");
@@ -194,7 +194,7 @@ throw ex;
     request.put("config", config);
     boolean onlyBest = false;
     if (params.containsKey("retrieve")) {
-      String retrieve = (String)params.get("retrieve");
+      String retrieve = params.get("retrieve");
       if (retrieve.equalsIgnoreCase("all"))
         onlyBest = false;
       else {
@@ -342,8 +342,8 @@ throw ex;
   {
     try
     {
-      String id = ((String)params.get("id")).toString();
-	   String encoding =((String)params.get("encoding")).toString();
+      String id = params.get("id").toString();
+	   String encoding =params.get("encoding").toString();
       byte[] contents = IOUtils.toByteArray(new FileInputStream("/tmp/csv" + id + ".csv"));
 		
       ByteArrayOutputStream t = new ByteArrayOutputStream();

@@ -3,7 +3,6 @@ package org.iplantc.tnrs.server.test;
 import java.io.File;
 import java.io.FileReader;
 
-import au.com.bytecode.opencsv.CSVParser;
 import au.com.bytecode.opencsv.CSVReader;
 
 public class TestCSVReader {

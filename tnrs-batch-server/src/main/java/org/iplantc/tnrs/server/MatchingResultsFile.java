@@ -18,15 +18,14 @@ import java.sql.Connection;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.iplantc.tnrs.server.processing.TNRSNameFilter;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 
 public class MatchingResultsFile {
@@ -589,7 +588,6 @@ public class MatchingResultsFile {
 
 		while(true){
 			line =rd.readLine();
-			System.out.println("Reading input "+line);
 			if(line==null) break;
 
 			String[] values = line.split("\t",-1);

@@ -2,21 +2,18 @@ package org.iplantc.tnrs.server.handler;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
 
 import org.apache.commons.io.IOUtils;
 import org.iplantc.tnrs.server.JobHelper;
 import org.iplantc.tnrs.server.TnrsJob;
-
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;

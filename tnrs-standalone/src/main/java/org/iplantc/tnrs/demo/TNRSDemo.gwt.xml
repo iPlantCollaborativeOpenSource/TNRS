@@ -15,7 +15,7 @@
 
   <inherits name="com.google.gwt.logging.Logging"/>
    <set-property name="gwt.logging.logLevel" value="SEVERE"/>          
-  <set-property name="gwt.logging.enabled" value="TRUE"/>      
+  <set-property name="gwt.logging.enabled" value="FALSE"/>      
 
   <inherits name="com.extjs.gxt.ui.GXT"/>
   <inherits name="com.google.gwt.i18n.I18N"/>

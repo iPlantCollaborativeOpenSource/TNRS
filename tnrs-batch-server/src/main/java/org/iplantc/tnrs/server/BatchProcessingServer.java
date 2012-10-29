@@ -10,15 +10,12 @@ package org.iplantc.tnrs.server;
  */
 
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
@@ -29,7 +26,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import java.util.TreeSet;
 import java.util.UUID;
 import java.util.Vector;
 import java.util.zip.GZIPInputStream;
@@ -44,7 +40,6 @@ import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang.time.StopWatch;
@@ -270,7 +265,6 @@ public class BatchProcessingServer extends Thread {
 		@Override
 		public void run() {
 			try {
-				System.out.println("Running");
 				StopWatch stp2 = new StopWatch();
 				stp2.start();
 				JSONObject json=new JSONObject();
@@ -304,13 +298,10 @@ public class BatchProcessingServer extends Thread {
 				String names = NameUtil.CleanNames(lines, job);
 
 				if(names.equals("")) return;
-				
-				System.out.println("Processing names: "+names);
-				
+								
 				if(job.getType()==TnrsJob.NAME_MATCH_JOB) {
 
 					TaxamatchInterface taxa_match = new TaxamatchInterface(tnrsBaseUrl);
-					System.out.println("Calling taxamatch with names: "+names+ " for job "+job.getTypeString());
 					String result =taxa_match.queryTaxamatch(names,job);
 					json = (JSONObject) JSONSerializer.toJSON(result);
 
@@ -457,7 +448,6 @@ public class BatchProcessingServer extends Thread {
 
 
 				String request = IOUtils.toString(arg0.getRequestBody());
-				System.out.println(request);
 
 				JSONObject datas = (JSONObject) JSONSerializer.toJSON(request);
 
@@ -689,7 +679,6 @@ public class BatchProcessingServer extends Thread {
 			try {
 
 				JSONObject json = (JSONObject)JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
-				System.out.println("RemoteDownloadHoandler "+json.toString());
 
 
 				String email = json.getString("email");
@@ -708,7 +697,6 @@ public class BatchProcessingServer extends Thread {
 					MatchingResultsFile results = new MatchingResultsFile(job, baseFolder,session_id,false);
 
 					results.createFileForDownload(properties.getProperty("org.iplantc.tnrs.folder.tmp"),json);
-					System.out.println("properties "+properties.toString());
 
 					results.close();
 				}

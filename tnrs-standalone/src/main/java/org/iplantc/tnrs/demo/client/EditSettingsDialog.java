@@ -10,7 +10,6 @@ import org.iplantc.tnrs.demo.client.panels.TNRSFilteringPanel;
 import org.iplantc.tnrs.demo.client.panels.TNRSProcessingModePanel;
 import org.iplantc.tnrs.demo.client.panels.TNRSSourcesPanel;
 
-
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.TabItem;

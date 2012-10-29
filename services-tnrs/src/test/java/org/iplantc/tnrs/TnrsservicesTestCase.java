@@ -7,16 +7,12 @@
  */
 package org.iplantc.tnrs;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.mule.api.MuleMessage;
-import org.mule.module.client.MuleClient;
 import org.mule.tck.FunctionalTestCase;
-import org.mule.transport.NullPayload;
 
 public class TnrsservicesTestCase extends FunctionalTestCase
 {
-    protected String getConfigResources()
+    @Override
+	protected String getConfigResources()
     {
         //TODO You'll need to edit this file to make the test applicable to your module
         return "mule-config.xml";
