@@ -744,7 +744,7 @@ public class MatchingResultsFile {
 					values[column_definition.indexOf("accepted_name_rank")]+"\t"+
 					values[column_definition.indexOf("accepted_name_url")]+"\t"+
 					values[column_definition.indexOf("accepted_species")]+"\t"+
-					values[column_definition.indexOf("accepted_name_family")]+"\t"+
+					values[column_definition.indexOf("accepted_family")]+"\t"+
 					values[column_definition.indexOf("selected")]+"\t"+
 					values[column_definition.indexOf("source")]+"\t"+
 					getFlagText(values[column_definition.indexOf("warnings")])+"\t"+
