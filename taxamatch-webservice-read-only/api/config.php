@@ -9,7 +9,7 @@
 			  'db_type' => 'mysql'
 			, 'username'=> 'tnrs'
 			, 'pass' => 'tnrs'
-			, 'db_name'=> 'tnrsExampleDb'
+			, 'db_name'=> 'tnrs_test'
 			, 'name' => 'default database'
 			, 'id' => 1
 			, 'host' => 'localhost'

@@ -11,62 +11,59 @@ If ($records===false) {
 	die("failed query on table `source`");
 }
 
-If ($records==0) {
-	// Get source parameters, set in global_params.inc
-	$isHigherClassification=($is_higher_classification===true?1:0);
+// Get source parameters, set in params.inc for this source
+$isHigherClassification=($is_higher_classification===true?1:0);
+$isDefault=($is_default===true?1:0);
+	
+if ($records>1) {
+	// > 1 entry for this source; issue warning and quit
+	die("Warning: >1 entry for `sourceName`='$sourceName' in table `source`");
+} else {	
 
-	$isDefault=($is_default===true?1:0);
-
-	if ($is_default===true) {
-		$isDefault=1;
-		
-		// Reset isDefault to zero
-		// Can only have one default source
+	if ($isDefault==1) {		
+		// Can only have one default source. Since source being added 
+		// will be default, reset isDefault=zero for all sources
 		$sql_reset="UPDATE source SET isDefault=0;";
 		$msg_error="Failed to reset isDefault in table `source`!\r\n";
 		if (sql_execute($sql_reset,TRUE,$echo_on,"",$msg_error));
-	} else {
-		$isDefault=0;
 	}
-	
-	// Add entry
-	$sql_source="INSERT INTO `source`(
-		sourceName,
-		sourceNameFull,
-		sourceUrl,
-		dateAccessed,
-		isDefault,
-		isHigherClassification,
-		warning
-		)
-		SELECT
-		'$sourceName',
-		'$sourceNameFull',
-		'$sourceUrl',
-		'$dateAccessed',
-		$isDefault,
-		$isHigherClassification,
-		$source_warning
-		;";
-	$msg_error="Failed to insert new record for sourceName='$sourceName' in table `source`!\r\n";
-	if (sql_execute($sql_source,TRUE,$echo_on,"",$msg_error));
-} elseif ($records>1) {
-	// > 1 entry for this source; issue warning and quit
-	die("Warning: >1 entry for `sourceName`='$sourceName' in table `source`");
-} else {
-	// update existing record for this source
-	$sql="
-		UPDATE source
-		SET
-		sourceNameFull='$sourceNameFull',
-		sourceUrl='$sourceUrl',
-		dateAccessed='$dateAccessed',
-		isDefault=$isDefault,
-		isHigherClassification=$isHigherClassification,
-		warning=$source_warning
-		WHERE `sourceName`='$sourceName';
-	";
-
+		
+	if ($records==0) {		
+		// Add new record for this source
+		$sql_source="INSERT INTO `source`(
+			sourceName,
+			sourceNameFull,
+			sourceUrl,
+			dateAccessed,
+			isDefault,
+			isHigherClassification,
+			warning
+			)
+			SELECT
+			'$sourceName',
+			'$sourceNameFull',
+			'$sourceUrl',
+			'$dateAccessed',
+			$isDefault,
+			$isHigherClassification,
+			$source_warning
+			;";
+		$msg_error="Failed to insert new record for sourceName='$sourceName' in table `source`!\r\n";
+		if (sql_execute($sql_source,TRUE,$echo_on,"",$msg_error));
+	} else {
+		// update existing record for this source
+		$sql="
+			UPDATE source
+			SET
+			sourceNameFull='$sourceNameFull',
+			sourceUrl='$sourceUrl',
+			dateAccessed='$dateAccessed',
+			isDefault=$isDefault,
+			isHigherClassification=$isHigherClassification,
+			warning=$source_warning
+			WHERE `sourceName`='$sourceName';
+		";
+	}
 }
 echo $msg_success;
 

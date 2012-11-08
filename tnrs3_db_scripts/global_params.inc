@@ -36,23 +36,29 @@
 // for that source. 
 //////////////////////////////////////////////////
 
-// The example sources listed can be used to run a 
-// complete example build of the TNRS database
+// The follow configuration is for a test build using three example taxonomic
+// sources provided:
 $src_array=array(
+	"usda_example",
+	"dwc_example",
 	"tropicos_example",
-	"tropicos_example2",
-	"usda_example"
+	"gcc_example"
 );
 
 //////////////////////////////////////////////////
-// Replace options
-//////////////////////////////////////////////////
-
 // Replace database? (true/false)
-// set to true to replace database entirely
+//
+// Set to true to replace database entirely
 // all tables will be dropped and replaced with new,
 // empty tables. Application will automatically prompt
-// for confirmation if this option is set to true
+// for confirmation if this option is set to true.
+//
+// Set to false keep existing database and
+// add (if new) or replace (if already present) only
+// the source(s) listed in $src_array.
+//
+//////////////////////////////////////////////////
+
 $replace_db = true;
 
 //////////////////////////////////////////////////
@@ -65,8 +71,6 @@ $replace_db = true;
 // memory overflow error
 ini_set("memory_limit","3000M");
 
-// these two options allow you to set different locations
-// for local and global utilities
 $local_utilities_path="functions/";
 $global_utilities_path="functions/";
 
@@ -84,22 +88,16 @@ require_once $local_utilities_path."class.normalize.php";
 // Db connection info
 //////////////////////////////////////////////////
 
-// MySQL server name
+// enter host here
+// I recommend running as localhost
 $HOST = "localhost";
-
-// Just a bit of formatting
-// Provides explicit host name for display at runtime
-// even if using MySQL on localhost
+// Explicit host name for display at runtime
 $HOST=="localhost"?$HOSTNAME=exec('hostname -f'):$HOSTNAME=$HOST;
-
-// MySQL user name
 $USER = "tnrs_root";
-
-// MySQL password for this user
 $PWD = "rooter";
-
-// Name of the TNRS database you will be building
-$DB = "tnrsExampleDb";
+// Enter whatever your database will be called below.
+// Database will be created if it doesn't exist (assuming you have full permissions)
+$DB = "tnrs_test"; 
 
 //////////////////////////////////////////////////
 // Backup options
@@ -117,7 +115,7 @@ $use_db_backup=true;
 // exist, it will be created; if it does exist, it will
 // be replaced. Therefore, be VERY careful how you name
 // this database!
-$DB_BACKUP = "tnrsExampleDbBackups";
+$DB_BACKUP = "tnrs_test_backup";	// for testing
 
 // Save a backup copy of staging table? This 
 // prevents staging table for current source
@@ -133,7 +131,7 @@ $backup_staging=true;
 // mysqldump file, plus '.sql' suffix
 $backup_by_source = true;
 
-// directory, relative to this script, used to save database backups
+// directory, relative to this script, for saving database backups
 $BACKUP_DIR = "backups/";
 
 //////////////////////////////////////////////////
@@ -167,10 +165,6 @@ $higher_taxon_array=array(
 // Name resolution parameters
 //////////////////////////////////////////////////
 
-// CURRENTLY NOT USED
-// KEEP FOR NOW TO AVOID BREAKING ANYTHING, MAKE SURE $fuzzy_match
-// IS SET TO FALSE
-//
 // Set fuzzy_match=true to resolve source names using tnrs.
 // Requires file of results of matching source names against
 // the TNRS database itself.
@@ -211,6 +205,60 @@ $tnrs_overall_score_min=0.9;
 // Minimum score for author part of name (only applies to submitted names with authors)
 $tnrs_author_score_min=0.6; 
 	
+// Import parameters for tnrs_results file
+// To remove an option entirely, set it=" ",
+// do not just delete the variable entirely
+$tr_local = " LOCAL ";	// LOCAL keyword
+$tr_fields_terminated_by = " FIELDS TERMINATED BY ',' ";
+//$tr_optionally_enclosed_by = " ";
+$tr_optionally_enclosed_by = " OPTIONALLY ENCLOSED BY '\"' ";  // use if text surrounded by quotes
+//tr_lines_terminated_by = " LINES TERMINATED BY '\n' ";
+$tr_ignore_lines = " IGNORE 1 LINES ";	// set 1 to ignore header line
+
+//////////////////////////////////////////////////
+// Name resolution parameters
+//////////////////////////////////////////////////
+
+// Set fuzzy_match=true to resolve source names using tnrs.
+// Requires file of results of matching source names against
+// the TNRS database itself.
+// Currently, this option only results in population of 
+// the field `fuzzyMatchNameID` in table `name`. 
+// Names matching *exactly* to names already
+// in database are indexed rather than added. All other names are 
+// added. In future, may find a way of indexing rather than adding
+// fuzzy-matched names; however, this is dangerous as it disrupts
+// child-parent adjacency among source names.
+// Currently, to use this option you need to select all distinct
+// names in source and submit to TNRS; csv results file should be
+// made available to this script. In future, will automate
+// entire process using web service. 
+// If you set resolve_names=true, you MUST set the name and 
+// path of the results file, below. 
+// Setting fuzzy_match=false will skip import and normalization
+// of the tnrs_results file, and leave column `fuzzyMatchNameID` NULL.
+// The remaining name resolution parameters will be ignored.
+// If you set fuzzy_match=true, you must set the remaining name
+// resolution parameters
+$fuzzy_match=false;
+
+// name of csv file containing results of 
+// processing source names using tnrs
+$tnrs_results_file="tnrs_results.csv";	// made up example; your file name here
+
+// path relative to load_core_db/, where 
+// scripts accessing this file run:
+$tnrs_results_path="tnrs_results_raw/";
+
+// name of mysql table:
+$tnrs_results="tnrs_results";
+
+// Minimum overall match score required for name to be considered a match
+$tnrs_overall_score_min=0.9;	
+
+// Minimum score for author part of name (only applies to submitted names with authors)
+$tnrs_author_score_min=0.6; 	
+
 // Import parameters for tnrs_results file
 // To remove an option entirely, set it=" ",
 // do not just delete the variable entirely

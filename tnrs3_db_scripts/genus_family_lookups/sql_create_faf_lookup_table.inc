@@ -7,7 +7,7 @@ CREATE TABLE `$faf` (
 	acceptedFamily VARCHAR(255) NOT NULL,
 	INDEX(family),
 	INDEX(acceptedFamily)
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ";
 
 ?>

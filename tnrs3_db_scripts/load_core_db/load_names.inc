@@ -76,6 +76,48 @@ $sql="
 $msg_error="Failed to index name+author+rank already in core db!\r\n";
 if (sql_execute($sql,TRUE,$echo_on,$msg_success,$msg_error));
 
+/* 
+// Don't need this stuff anymore; replacing nulls with empty strings
+// allows us to do everything in one query
+
+// Names, authors
+$sql="
+	UPDATE `$tbl_staging` AS t INNER JOIN `name` AS n
+	ON t.$name_fld=n.scientificName 
+	AND t.$author_fld=n.scientificNameAuthorship
+	SET
+	t.$fk_fld=n.nameID,
+	n.$fk_staging_nameID=t.$id_fld
+	WHERE t.$fk_fld IS NULL;
+";
+$msg_error="Failed to index name+author already in core db!\r\n";
+if (sql_execute($sql,TRUE,$echo_on,"",$msg_error));
+
+// Names+ranks without authors
+$sql="
+	UPDATE `$tbl_staging` AS t INNER JOIN `name` AS n
+	ON t.$name_fld=n.scientificName 
+	AND t.$rank_fld=n.nameRank
+	SET
+	t.$fk_fld=n.nameID,
+	n.$fk_staging_nameID=t.$id_fld
+	WHERE t.$fk_fld IS NULL;
+";
+$msg_error="Failed to index names already in core db!\r\n";
+if (sql_execute($sql,TRUE,$echo_on,"",$msg_error));
+
+// Names without authors
+$sql="
+	UPDATE `$tbl_staging` AS t INNER JOIN `name` AS n
+	ON t.$name_fld=n.scientificName
+	SET
+	t.$fk_fld=n.nameID,
+	n.$fk_staging_nameID=t.$id_fld
+	WHERE t.$author_fld IS NULL;
+";
+$msg_error="Failed to index names already in core db!\r\n";
+if (sql_execute($sql,TRUE,$echo_on,$msg_success,$msg_error));
+*/
 ////////////////////////////////////////////////////////
 // Add new names
 ////////////////////////////////////////////////////////

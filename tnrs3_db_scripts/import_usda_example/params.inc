@@ -64,7 +64,7 @@ $fix_chars=true;
 $filepath="import_usda_example/data/";
 
 // Names of files you will be importing
-$namesfile = "usdaSample.csv";
+$namesfile = "usda_example.csv";
 
 $namesfileandpath = $filepath.$namesfile;
 

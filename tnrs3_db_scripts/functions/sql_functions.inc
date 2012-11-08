@@ -104,9 +104,11 @@ function send_table($tbl, $local_user, $local_pwd, $local_db, $remote_host, $rem
 function db_connect($host,$user,$pwd,$db,$echo_on) {
 	// Opens connection to $db on $host
 	// If fails returns FALSE, else returns db host
+	// The 4th and 5th parameters enable use of LOCAL option
+	// in LOAD DATA INFILE command (workaround of MySQL bug)
 
 	// connect to database server; $HOST as specified in config.inc
-	if (!($dbh = mysql_connect($host,$user,$pwd))) {
+	if (!($dbh = mysql_connect($host,$user,$pwd,FALSE,128))) {
 		if ($echo_on) {
 			echo "\r\nCould not connect to MySQL on $host.\r\n";
 			return FALSE;
@@ -317,11 +319,11 @@ function exists_table_in_db($tbl,$db) {
 function sql_exists_column($tbl,$column) {
 	// Returns TRUE if column exists, FALSE if it does not
 	if (!exists_table($tbl)) {
-		return FALSE;
+		return false;
 	} else {
 		$cols=sql_field_list($tbl);
 		foreach ($cols as $col) {
-			if ($column==$col) return TRUE;	
+			if ($column==$col) return true;	
 		}
 		return false;
 	}

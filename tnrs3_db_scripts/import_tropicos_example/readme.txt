@@ -1,12 +1,16 @@
-Imports raw dump of names and synonyms and adds to staging table. 
-
-These scripts & parameters are specific to a particular data source. This version imports an extract of names and synonymy, accessed using the Tropicos API. These scripts will import any file conforming to this schema (assuming no anomalies in the nameID-parentNameID links. 
+Imports example file of taxonomic data, as extracted from Tropicos web service (see:
+http://services.tropicos.org/). See file tropicos_api_extract_example.csv for an example 
+of the extract schema. These scripts will import any file conforming to this schema 
+(assuming no anomalies in the  nameID-parentNameID links). Note that nameID, parentNameID, 
+and acceptedNameID MUST be integers to use this template. For details of other columns, 
+see detailed descriptions in readme file under import_dwcExample/. If you importing DwC 
+format data, please use template in directory import_dwcExample, rather than this one.
 
 Once import has been completed and the staging table populated, subsequent steps (indexing
 of staging table, error-checking and normalization to core db tables) 
 are universal and do not require any source-specific customizations.
 
-Files to be imported MUST be in this directory.
+Files to be imported must be in directory data/.
 
 Specific steps:
 
@@ -17,12 +21,4 @@ Specific steps:
 
 Master scripts: import.php. Calls all others.
 Parameters: in params.inc; also see global_params.inc
-
-_____________________________________________________
-
-This is an example import only of names from Tropicos
-
-Imports a small extract from Tropicos (pines) that has been hand-edited to ensure 
-complete and unbroken parent-child adjacency. You can use this example to do a test
-build of the TNRS database. 
 
