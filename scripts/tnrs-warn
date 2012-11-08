@@ -1,0 +1,5 @@
+#!/bin/env bash
+if [ -f /var/log/tnrs_status.log ]; then 
+	cat /var/log/tnrs_status.log
+	cat /var/log/tnrs_status.log >> /var/log/tnrs_status_full.log &>/dev/null
+fi
