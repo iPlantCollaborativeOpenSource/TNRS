@@ -116,7 +116,7 @@ public class TaxamatchInterface {
 		result.put("success", true);
 		result.put("data", data);
 
-
+		
 		return result.toString();
 
 	}
@@ -199,7 +199,6 @@ class TaxamatchThread extends Thread {
 			String res = post.getResponseBodyAsString();
 			log.info(res);
 			results = (JSONObject) JSONSerializer.toJSON(res);
-
 
 		}catch(Exception ex){
 			log.error(ExceptionUtils.getStackTrace(ex));

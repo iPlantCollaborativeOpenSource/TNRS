@@ -1,12 +1,11 @@
 package org.iplantc.tnrs.server.processing;
 
 import java.util.HashMap;
-import java.util.Vector;
-
-import org.iplantc.tnrs.server.TnrsJob;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
+import org.iplantc.tnrs.server.TnrsJob;
 
 /**
  * This class is responsible of processing a group of names and

@@ -12,7 +12,6 @@ import net.sf.json.JSONSerializer;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
-import org.iplantc.tnrs.server.BatchProcessingServer;
 import org.iplantc.tnrs.server.JobHelper;
 import org.iplantc.tnrs.server.MatchingResultsFile;
 import org.iplantc.tnrs.server.ParsingResultsFile;
@@ -67,7 +66,7 @@ public class ResultsChunkRetrieverHandler implements HttpHandler {
 				MatchingResultsFile data = new MatchingResultsFile(job, "/tnrs-jobs/",session_id,first_request);
 
 				JSONArray results = data.getResultsInterval(start, how_many, job,taxonomic_constraint,order_by_source);
-
+				
 				json_res.put("items", results);
 				json_res.put("total",data.getResultsSize());
 				data.close();
@@ -75,6 +74,7 @@ public class ResultsChunkRetrieverHandler implements HttpHandler {
 			}
 
 			String result = json_res.toString();
+
 			arg0.sendResponseHeaders(200, result.getBytes().length);
 			arg0.setAttribute("Content-type", "application/json");
 

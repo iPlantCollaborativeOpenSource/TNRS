@@ -2,6 +2,7 @@ package org.iplantc.tnrs.demo.client;
 
 import org.iplantc.tnrs.demo.client.validation.EmailValidator;
 import org.iplantc.tnrs.demo.client.validation.FIleInputValidator;
+
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FormEvent;
@@ -19,7 +20,6 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.GWT;
 
 public class UploadFilePanel extends LayoutContainer {
 

@@ -6,8 +6,6 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.Widget;
 
 public class TNRSDescriptionPanel extends ContentPanel
 {

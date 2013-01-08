@@ -6,13 +6,8 @@ package org.iplantc.tnrs.demo.client;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-import org.iplantc.tnrs.demo.client.RemoteTNRSEditorPanel.SelectionDownloadEvent;
 import org.iplantc.tnrs.demo.client.images.Resources;
 import org.iplantc.tnrs.demo.client.views.Hyperlink;
-import org.iplantc.tnrs.demo.client.*;
-import org.iplantc.tnrs.demo.shared.BeanTNRSEntry;
 import org.iplantc.tnrs.demo.shared.BeanTnrsParsingEntry;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
@@ -27,7 +22,6 @@ import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.data.PagingLoadConfig;
 import com.extjs.gxt.ui.client.data.PagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoader;
-import com.extjs.gxt.ui.client.data.PagingModelMemoryProxy;
 import com.extjs.gxt.ui.client.data.RpcProxy;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
@@ -49,13 +43,10 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
-import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 

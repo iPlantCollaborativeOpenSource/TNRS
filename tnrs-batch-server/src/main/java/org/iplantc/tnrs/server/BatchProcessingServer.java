@@ -10,15 +10,12 @@ package org.iplantc.tnrs.server;
  */
 
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
@@ -29,7 +26,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import java.util.TreeSet;
 import java.util.UUID;
 import java.util.Vector;
 import java.util.zip.GZIPInputStream;
@@ -44,7 +40,6 @@ import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang.time.StopWatch;
@@ -303,11 +298,10 @@ public class BatchProcessingServer extends Thread {
 				String names = NameUtil.CleanNames(lines, job);
 
 				if(names.equals("")) return;
-
+								
 				if(job.getType()==TnrsJob.NAME_MATCH_JOB) {
 
 					TaxamatchInterface taxa_match = new TaxamatchInterface(tnrsBaseUrl);
-
 					String result =taxa_match.queryTaxamatch(names,job);
 					json = (JSONObject) JSONSerializer.toJSON(result);
 
@@ -404,14 +398,14 @@ public class BatchProcessingServer extends Thread {
 
 	}
 
-
+//DEPRECATED IN FAVOR OF CSV DOWNLOAD
 	class JobInfohandler implements HttpHandler {
 
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
+
 			try{
 				JSONObject request = (JSONObject) JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
-
 				String email = request.getString("email");
 				String key = request.getString("key");
 
@@ -449,10 +443,12 @@ public class BatchProcessingServer extends Thread {
 
 		@Override
 		public void handle(HttpExchange arg0) throws IOException {
+
 			try {
 
 
 				String request = IOUtils.toString(arg0.getRequestBody());
+
 				JSONObject datas = (JSONObject) JSONSerializer.toJSON(request);
 
 
@@ -694,7 +690,6 @@ public class BatchProcessingServer extends Thread {
 				if(job.getType()==TnrsJob.PARSING_JOB) {
 
 					ParsingResultsFile results = new ParsingResultsFile(job, baseFolder);
-
 					results.createFileForDownload(properties.getProperty("org.iplantc.folder.tmp"));
 					
 				}else {

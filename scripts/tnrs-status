@@ -1,0 +1,45 @@
+#!/bin/env bash
+
+PIDLOC=/var/run/tnrs/
+
+GNI=$(service tnrs-parserver status |grep -c Running)
+BATCH=$(service tnrs-batch status |grep -c Running)
+SERV=$(service tnrs-services status |grep -c Running)
+#echo "GNI: $GNI; BATCH: $BATCH; SERV=$SERV"
+if [ $GNI == 0 ]; then
+	echo -n "$(date) - The GNI parser service is not running. Restarting...   " 1>&2
+	rm -f "${PIDLOC}tnrs-parserver.pid" &> /dev/null
+	RT=$(service tnrs-parserver start)
+	R=$(echo $RT |grep -c Ok)
+	if [ $R == 0 ]; then
+		echo "ERROR: $RT " 1>&2
+	else
+		echo "SUCCESS" 1>&2
+	fi
+fi
+
+if [ $BATCH == 0 ]; then
+        echo -n "$(date) - The batch service is not running. Restarting...   " 1>&2
+        rm -f "${PIDLOC}tnrs-batch.pid" &> /dev/null
+        RT=$(service tnrs-batch start) 
+        R=$(echo $RT |grep -c Ok)
+        if [ $R == 0 ]; then
+                echo "ERROR: $RT " 1>&2
+
+        else
+                echo "SUCCESS" 1>&2
+        fi
+fi
+
+if [ $SERV == 0 ]; then
+        echo -n "$(date) - The backend services are not running. Restarting...   "  1>&2
+        rm -f "${PIDLOC}tnrs-services.pid" &> /dev/null
+        RT=$(service tnrs-services start) 
+        R=$(echo $RT |grep -c Ok)
+        if [ $R == 0 ]; then
+                echo "ERROR: $RT " 1>&2
+
+        else
+		echo "SUCCESS" 1>&2
+        fi
+fi

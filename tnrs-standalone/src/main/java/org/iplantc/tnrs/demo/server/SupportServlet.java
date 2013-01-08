@@ -4,7 +4,6 @@
 package org.iplantc.tnrs.demo.server;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,13 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.mail.Email;
-import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
-
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
 
 /**
  * @author raygoza

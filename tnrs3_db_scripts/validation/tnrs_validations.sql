@@ -29,12 +29,16 @@ GROUP BY sourceID;
 ###############################################################################
 
 # check family field in table classification
+# should only be null for taxa of rank > family
 SELECT IF(family IS NULL,'NULL','Not NULL') AS famIsNull, COUNT(*)
 FROM classification
 GROUP BY famIsNull;
 
 # show ranks of name with null family
 # should all be higher than family
+# exceptions would be taxa at rank below family which scripts were unable
+# to link to a family. If you have any of these, you should inspect the 
+# source data for broken  or missing nameID-parentNameID links
 SELECT sourceName, nameRank, COUNT(DISTINCT n.nameID) as namesNoFamily
 FROM classification c JOIN name n JOIN name_source ns JOIN source s
 ON c.nameID=n.nameID AND n.nameID=ns.nameID AND ns.sourceID=s.sourceID
@@ -60,7 +64,7 @@ GROUP BY acceptance;
 # show source and count of names for which no opinion provided
 # in synonym table
 # WARNING will be slow due to left join
-SELECT sourceName, COUNT(DISTINCT nameID) AS names
+SELECT sourceName, COUNT(DISTINCT sy.nameID) AS names
 FROM source s JOIN name_source ns JOIN name n 
 ON s.sourceID=ns.sourceID AND ns.nameID=n.nameID
 LEFT JOIN synonym sy

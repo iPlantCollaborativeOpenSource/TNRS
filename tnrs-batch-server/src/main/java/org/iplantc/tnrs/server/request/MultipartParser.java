@@ -2,14 +2,6 @@ package org.iplantc.tnrs.server.request;
 
 
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
-import java.util.Vector;
-
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
 
 public class MultipartParser
 {

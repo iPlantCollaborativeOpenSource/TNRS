@@ -13,7 +13,7 @@ CREATE TABLE $names_parsed (
 	Author_submitted VARCHAR(255) DEFAULT NULL,
 	Annotation  VARCHAR(25) DEFAULT NULL,
 	INDEX `".$names_parsed."_ScientificName_submitted`(`ScientificName_submitted`)
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 "
 
 ?>

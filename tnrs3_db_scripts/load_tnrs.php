@@ -1,7 +1,6 @@
 <?php
 
 //////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
 // Build TNRS database from multiple sources 
 //
 // Can rebuild complete database, or update individual sources
@@ -11,25 +10,14 @@
 //
 // Author: Brad Boyle
 // Email: bboyle@email.arizona.edu OR ojalaquellueva@gmail.com
-// TNRS DB version: 3.5
-// TNRS version: 3.0
-// Latest revision date: 25 May 2012
-//////////////////////////////////////////////////////////////////
+// TNRS release: 3
+// DB version: 3.5.4
+// Latest revision date: 17 September 2012
 //////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-// Parameters
-//
-// You MUST set critical parameters in this file, also in
-// local params.inc file located in each import_[sourceName]/
-// subdirectory
-//
-// For an example build of the TNRS, use sources
-// tropicosExample, tropicosExample2, and usdaExample
-////////////////////////////////////////////////////////////
 include "global_params.inc";
 
-// Make list of sources, as specified in parameters file
+// Make list of sources
 $sources = "";
 foreach ($src_array as $src) {
 	$sources = $sources . $src . ", ";
@@ -57,14 +45,26 @@ if ($proceed===false) die("\r\nOperation cancelled\r\n");
 // Confirm replacement of entire database if requested
 if ($replace_db) {
 	$msg_conf_replace_db="\r\nPrevious database `$DB` will be deleted! Are you sure you want to proceed? (Y/N): ";
-	$confirm_replace_db=responseYesNoDie($msg_conf_replace_db);
-	if ($confirm_replace_db===false) die ("\r\nOperation cancelled\r\n");
+	$replace_db=responseYesNoDie($msg_conf_replace_db);
+	if ($replace_db===false) die ("\r\nOperation cancelled\r\n");
 }
 
+// Confirm deletion of backup database if requested & backup db already exists
+/* have no idea why this check doesn't work...keep it for now
+$sql="
+SELECT SCHEMA_NAME
+FROM INFORMATION_SCHEMA.SCHEMATA 
+WHERE SCHEMA_NAME = '".$DB_BACKUP."';
+";
+$existsDbBackup=sql_returns_records($sql);
+if ($use_db_backup && $existsDbBackup) {
+*/
+
+$delete_db_backup = true;
 if ($use_db_backup) {
 	$msg_confirm_delete_db_backup="\r\nAlso replace previous backup database '".$DB_BACKUP."'? (Y/N): ";
-	$confirm_delete_db_backup=responseYesNoDie($msg_confirm_delete_db_backup);
-	if ($confirm_delete_db_backup===false) die ("\r\nOperation cancelled\r\n");		
+	$delete_db_backup=responseYesNoDie($msg_confirm_delete_db_backup);
+	//if ($delete_db_backup===false) die ("\r\nOperation cancelled\r\n");		
 }
 
 // Check basic dependencies are present: directories, files
@@ -75,14 +75,14 @@ include_once "check_dependencies.inc";
 // Start timer and connect to mysql
 echo "\r\nBegin operation\r\n";
 include $timer_on;
-$dbh = mysql_connect($HOST,$USER,$PWD);
+$dbh = mysql_connect($HOST,$USER,$PWD,FALSE,128);
 if (!$dbh) die("\r\nCould not connect to database!\r\n");
 
 ////////////////////////////////////////////////////////////
 // Generate new empty database
 ////////////////////////////////////////////////////////////
 
-if ($confirm_replace_db) {
+if ($replace_db) {
 	echo "\r\n#############################################\r\n";
 	echo "Creating new database:\r\n\r\n";	
 	
@@ -117,7 +117,7 @@ include_once "check_functions.inc";
 // Create/replace backup database if requested
 ////////////////////////////////////////////////////////////
 
-if ($use_db_backup && $confirm_delete_db_backup) {
+if ($use_db_backup && $delete_db_backup) {
 	echo "Creating backup database `$DB_BACKUP`...";
 	// Drop and replace entire backup database
 	$sql_create_db="

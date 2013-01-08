@@ -11,15 +11,55 @@
         <script type="text/javascript" src="js/jquery.colorbox-min.js" ></script>
         <script type="text/javascript" src="js/fadeslideshow.js" ></script>
 
+
+
         <script type="text/javascript"> 
-        
+ 
+         function removeImg(){
+
+
+	 	       if(navigator.appVersion.indexOf("MSIE 8.0")==-1){
+	 
+	       var simg =  document.getElementById('staticimg');
+
+	       var divc = document.getElementById("fadeshow");
+	       divc.parentNode.removeChild(divc);
+
+	}else{
+	   var divc =document.getElementById("something");	
+	   divc.parentNode.removeChild(divc);
+
+	}	
+
+	       if(navigator.appVersion.indexOf("MSIE")!=-1){
+	              var divc = document.getElementById("something");
+//		      divc.style.paddingLeft="100px";
+		      divc.style.float="left";
+//		      alert(navigator.appVersion);
+		      divc.style.backgroundColor="white";
+		      
+
+
+
+               }
+
+
+
+	 
+	 }
+
+	 	 
+	 
+	
+	 	  if(navigator.appVersion.indexOf("MSIE 8.0")==-1){
+
             var mygallery=new fadeSlideShow({
-wrapperid: "fadeshow1", //ID of blank DIV on page to house Slideshow
+wrapperid: "something", //ID of blank DIV on page to house Slideshow
 dimensions: [450, 380], //width/height of gallery in pixels. Should reflect dimensions of largest image
 imagearray: [
 ["images/0003_blazing_star.jpg"],
 ["images/0006_DSCN5505.jpg"],
-["images/0011_guaiacum_coulteri.jpg"],
+["images/0011_guaiacum_coulteri.jpg"]
 ],
 displaymode: {type:'auto', pause:3500, cycles:0, wraparound:false},
 persist: false, //remember last viewed slide and recall within same session?
@@ -34,10 +74,11 @@ jQuery('a#mailinglist').colorbox(
     height: "80%"}
     );
 });
+}
 </script>
 </head> 
 
-<body class="home">
+<body class="home" onload="removeImg()">
 
     <noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
   <div class="header"> 
@@ -64,9 +105,12 @@ jQuery('a#mailinglist').colorbox(
   <div id="wrapper" class="clearfix">
       <div id="contentwrapper">
           <div class="content">
-                <div id="fadeshow1"></div>
 
-                <div class="welcomeContent">
+	                  <div  id='fadeshow' style="float: left;padding-left:86px;padding-right:50px;" ><img src="images/0003_blazing_star.jpg" id='staticimg' width="400" height="380" /></div>
+	        <div id="something" style="float: left;background-color: white;"></div>
+
+
+                <div   style="padding-left:500px;">
                     <h3 class="welcome">Welcome to the Taxonomic Name Resolution Service, a free utility for correcting and standardizing plant names.</h3><br />
                     <p><a href="quick_start.html">Quick guide to using the TNRS</a></p>
                     <p><a href="optimize.html">Optimize your search</a></p>

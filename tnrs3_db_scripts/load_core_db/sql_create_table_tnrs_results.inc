@@ -33,7 +33,7 @@ CREATE TABLE $tnrs_results (
 	acceptedName varchar(255) default null,
 	acceptedNameAuthor varchar(255) default null,   
 	acceptedNameUrl varchar(500) default null
-) TYPE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 ";
 
 
