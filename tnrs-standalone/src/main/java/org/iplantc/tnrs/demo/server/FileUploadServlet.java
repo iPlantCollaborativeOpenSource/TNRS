@@ -3,10 +3,11 @@
  */
 package org.iplantc.tnrs.demo.server;
 
+import gwtupload.server.UploadAction;
+import gwtupload.server.exceptions.UploadActionException;
+
 import java.io.ByteArrayOutputStream;
-import java.io.FileWriter;
 import java.util.List;
-import java.util.Properties;
 import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +19,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
-
-import gwtupload.server.UploadAction;
-import gwtupload.server.exceptions.UploadActionException;
 
 /**
  * @author raygoza

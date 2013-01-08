@@ -5,7 +5,6 @@ package org.iplantc.tnrs.demo.client;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.google.gwt.json.client.JSONObject;
 
 /**
@@ -31,7 +30,7 @@ public class TNRSEntry extends BaseModel
 	}
 	
 	public TNRSEntry(BeanModel entry) {
-		
+
 		if(entry != null)
 		{
 			//set("entryId", entry.getEntryId());

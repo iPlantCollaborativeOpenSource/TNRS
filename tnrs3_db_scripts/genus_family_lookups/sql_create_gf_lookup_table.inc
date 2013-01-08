@@ -11,7 +11,7 @@ CREATE TABLE `$fg` (
 	INDEX(family),
 	INDEX(altFamily),
 	INDEX(isPrimary)
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ";
 
 ?>

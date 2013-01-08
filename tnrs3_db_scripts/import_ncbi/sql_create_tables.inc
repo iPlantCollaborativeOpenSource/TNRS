@@ -17,7 +17,7 @@ CREATE TABLE $tbl_nodes (
 	comments VARCHAR(250) DEFAULT NULL,
 	INDEX idx_rank(rank),
 	INDEX idx_parent_tax_id(parent_tax_id)
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE $tbl_names (
 	tax_id INTEGER UNSIGNED NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE $tbl_names (
 	INDEX idx_tax_id(tax_id),
 	INDEX idx_name_txt(name_txt),
 	INDEX idx_name_class(name_class)
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
  
 CREATE TABLE $tbl_division (
 	division_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
@@ -35,7 +35,7 @@ CREATE TABLE $tbl_division (
 	division_name VARCHAR(50) DEFAULT NULL,
 	comments VARCHAR(250) DEFAULT NULL,
 	INDEX idx_division_name(division_name)
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE $tbl_gencode (
 	genetic_code_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
@@ -43,16 +43,16 @@ CREATE TABLE $tbl_gencode (
 	`name` VARCHAR(150) DEFAULT NULL,
 	cde VARCHAR(50) DEFAULT NULL,
 	starts VARCHAR(50) DEFAULT NULL
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE $tbl_delnodes (
 	tax_id INTEGER UNSIGNED NOT NULL
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE $tbl_merged (
 	old_tax_id INTEGER UNSIGNED NOT NULL,
 	new_tax_id INTEGER UNSIGNED DEFAULT NULL
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE $tbl_citations (
 	cit_id INTEGER UNSIGNED NOT NULL PRIMARY KEY,
@@ -62,7 +62,7 @@ CREATE TABLE $tbl_citations (
 	url VARCHAR(250) DEFAULT NULL,
 	text VARCHAR(500) DEFAULT NULL,
 	taxid_list VARCHAR(500) DEFAULT NULL
-) TYPE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+) ENGINE=MYISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ";
 
 ?>

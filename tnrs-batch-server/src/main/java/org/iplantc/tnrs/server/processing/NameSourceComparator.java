@@ -3,10 +3,10 @@ package org.iplantc.tnrs.server.processing;
 import java.util.Comparator;
 import java.util.Vector;
 
-import org.iplantc.tnrs.server.TnrsJob;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
+import org.iplantc.tnrs.server.TnrsJob;
 
 public class NameSourceComparator implements Comparator<JSONObject>{
 

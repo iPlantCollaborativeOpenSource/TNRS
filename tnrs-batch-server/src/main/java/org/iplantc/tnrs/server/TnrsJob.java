@@ -17,7 +17,6 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Vector;
 
 import net.sf.json.JSONObject;
@@ -76,7 +75,7 @@ public class TnrsJob implements Serializable{
 		}
 		sources = new Vector<String>();
 		userFolder = request.getEmail().replace("@","-").replace(".", "-");
-		inputFilePath = userFolder+"/"+request.getId()+new Date().toString().replaceAll("[ |:]", "")+".csv";
+	//	inputFilePath = "/tnrs-jobs/"+userFolder+"/"+request.getId()+new Date().toString().replaceAll("[ |:]", "")+".csv";
 		submittedAt = submitted_date;
 		enabled=true;
 		sortBySource =true;
@@ -89,7 +88,6 @@ public class TnrsJob implements Serializable{
 				if(line.trim().equals("")) continue;
 				num_records++;
 			}
-
 
 			steps =(int)Math.ceil(num_records/100.0);
 			rd.close();

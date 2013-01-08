@@ -1,0 +1,97 @@
+TNRS Simplified Darwin Core format
+TNRS version 3.1, database version 3.5.4
+13 November 2012
+
+This document describes the recommended export format for taxonomic data that will be added as a taxonomic 
+source to the TNRS database (Taxonomic Name Resolution Service, http://tnrs.iplantcollaborative.org/).
+
+Most data elements and their names are identical to Darwin Core (DwC) Taxon terms, as described at 
+http://rs.tdwg.org/dwc/terms/index.htm. A few elements not included in the current version of DwC have been 
+added; these are indicated by an asterisk (*). 
+
+If you will be providing your taxonomic data as a stand-alone file (as opposed to a database table via  
+server connection), please save the file as plain-text utf8 to preserve all accented characters. Avoid 
+opening or editing the file in Excel; this usually results in corruption of utf8 or extended ascii 
+characters. The text file can be either tab-delimited or comma-delimited (.csv).
+
+Your file must have following columns in the order shown. The first line of the file should be a header
+line (the column names). Even if you do not use one of the optional columns, include it in the header line
+and leave its column blank.  See also the example tab-delimited file "tnrs_dwc_example.txt"
+
+taxonID				Required. Unique identifier for each taxon (name). Can be character 
+					or numeric. MUST be unique for each record. 
+parentNameUsageID	        Link to identifier (taxonID) of most proximate parent taxon. Required
+					for any taxon that has a parent. Taxa without a parent will be linked
+					to the root. Orphan parentNameUsageIDs (linking to nonexistent taxonIDs)
+					will be linked to the root. WARNING: circular parentNameUsageID-taxonID
+					links will cause database loading to fail.
+taxonRank			Required. Differs slight from DwC specification in that this is the 
+					fully spelled (not abbreviated) English name of the rank of the taxon. 
+					You MUST use the following controlled vocabulary (similar to 
+					http://code.google.com/p/darwincore/wiki/Taxon#taxonRank, under 
+					column "English", except "forma" instead of "form", more
+					extensive vocabulary): kingdom, subkingdom, 
+					superdivision, division, subdivision, superclass, class, subclass, 
+					order, suborder, family, subfamily, tribe, subtribe, section, 
+					subsection, series, subseries, genus, subgenus, species, subspecies,
+					variety, subvariety, forma, subforma, cultivar, unranked
+family				Optional as long as family is included under scientificName 
+					(with taxonRank='family'), and all immediate children in that family
+					are linked to it via parentNameUsageID.
+scientificName		        Required. The fully formed scientific name, without the authority.
+scientificNameAuthorship	Optional but strongly recommended. This is the terminal 
+					authority of the taxon; please do not include internal authorities 
+					(for example, if the name is a subspecies, this should be the 
+					authority for the subspecies, not the species. Required if your list 
+					contains homonyms (duplicate names disambiguated only by authority).
+genusHybridMarker	       *Optional but recommended. Leave blank if not a hybrid name. The TNRS 
+					loading scripts should detect most hybrids, but it is safer to mark
+					them yourself.
+genus			       Required if taxon of rank genus or lower.
+speciesHybridMarker	      *Optional but recommended. Leave blank if not a hybrid name. The TNRS 
+					loading scripts will detect most hybrids.
+specificEpithet		       Required if taxon at rank of species or lower. Just the epithet; do not
+					include the genus portion of a species name. Leave blank for hybrid
+					formula names (e.g., Adiantum latifolium x petiolatum).
+infraspecificRank	       *Required if name is an infraspecific trinomial (e.g., 
+					"Poa annua var. supina"). This is the abbreviated rank indicator 
+					included in names of subspecies, varieties, etc. Not directly 
+					equivalent to any Darwin Core term. Controlled vocabulary as per 
+					abbreviations as used in the ICBN Vienna code 
+					(http://ibot.sav.sk/icbn/main.htm; see esp. Section 5): 
+					"subsp.", "var.", "subvar.", "fo.", "subfo.", "cv.".
+					The TNRS will attempt to parse this value from the scientificName if 
+					column infraspecificRank is left blank. The TNRS has an extensive 
+					library of infraspecific rank indicators and their variants and will 
+					attempt to standardize any variant abbreviations. Leave blank if taxon
+					is at rank of species or higher. 
+infraspecificEpithet	     Required if taxon is subspecies, variety, forma, etc.  Subgeneric 
+					taxa such as section and series (e.g., Psychotria sect. Notopleura) 
+					can be entered by leaving specificEpithet NULL, entering the rank 
+					indicator in infraspecificRank and epithet infraspecificEpithet.
+infraspecificRank2	     *Required if name is an infraspecific quadrinomial (e.g., 
+					"Silene laciniata ssp. major var. angustifolia"). Used for taxa of
+					ranks variety, forma, subforma, etc. Not directly 
+					equivalent to any Darwin Core term. Controlled vocabulary as per 
+					abbreviations as used in the ICBN Vienna Code 
+					(http://ibot.sav.sk/icbn/main.htm; see esp. Section 5): 
+					"var.", "subvar.", "fo.", "subfo.".
+infraspecificEpithet2	    *Required if taxon is an infraspecific quadrinomial (see 
+					infraspecificRank2, above). Not directly equivalent to any Darwin Core
+					term. If used, infraspecificRank2 as well as all higher taxonomic name 
+					component fields must be populated.
+taxonomicStatus		   Indications of simple taxonomic status. If name is a synonym, more detailed
+					reason for (nomenclaturally) invalid or illegitimate names can be used. 
+					If left NULL, TNRS will treat name as "No opinion". Current controlled 
+					vocabulary supported: 
+					"Accepted", "Synonym", "Invalid", "Illegitimate", NULL.
+acceptedNameUsageID	    Optional but recommended if taxonomicStatus="Synonym", "Invalid", or 
+					"Illegitimate". Link to taxonID of accepted name. 
+taxonUri			Optional. Hyperlink to name in original database.
+lsid				Optional. LSID, if known. If you don't know what this is, don't worry
+					about it.
+
+If your taxonomic source list contains only concatenated names, use the TNRS in parse-only 
+mode to break the names into their atomic components (http://tnrs.iplantcollaborative.org/TNRSapp.html).
+
+Questions? Contact Brad Boyle, bboyle@email.arizona.edu

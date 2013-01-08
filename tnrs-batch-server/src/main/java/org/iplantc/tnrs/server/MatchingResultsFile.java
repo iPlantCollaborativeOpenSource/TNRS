@@ -18,15 +18,14 @@ import java.sql.Connection;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.iplantc.tnrs.server.processing.TNRSNameFilter;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 
 public class MatchingResultsFile {
@@ -73,7 +72,7 @@ public class MatchingResultsFile {
 		column_definition.add("author_matched");
 		column_definition.add("author_score");
 		column_definition.add("canonical_author");
-		column_definition.add("accepted_family");
+		column_definition.add("name_matched_accepted_family");
 		column_definition.add("genus_submitted");
 		column_definition.add("genus_matched");
 		column_definition.add("genus_score");
@@ -100,7 +99,7 @@ public class MatchingResultsFile {
 		column_definition.add("accepted_name_id");
 		column_definition.add("accepted_name_rank");
 		column_definition.add("accepted_name_url");
-		column_definition.add("accepted_name_family");
+		column_definition.add("accepted_family");
 		column_definition.add("overall_score_order");
 		column_definition.add("highertaxa_score_order");
 		column_definition.add("warnings");
@@ -480,7 +479,6 @@ public class MatchingResultsFile {
 		item.put("Family_matched", values[17]);
 		item.put("Family_score",values[18]);
 		item.put("Canonical_author", values[8]);
-		item.put("Family_submitted", values[16]);
 		item.put("Genus_matched",values[11]);
 		item.put("Genus_score",values[12]);
 		item.put("Specific_epithet_submitted", values[13]);
@@ -511,7 +509,7 @@ public class MatchingResultsFile {
 		item.put("Phonetic", values[column_definition.indexOf("phonetic")]);
 		item.put("Accepted_name_id", values[column_definition.indexOf("accepted_name_id")]);
 		item.put("Accepted_name_rank", values[column_definition.indexOf("accepted_name_rank")]);
-		item.put("Accepted_name_family", values[column_definition.indexOf("accepted_name_family")]);
+		item.put("Name_matched_accepted_family", values[column_definition.indexOf("name_matched_accepted_family")]);
 		item.put("Overall_score_order", Integer.parseInt(values[column_definition.indexOf("overall_score_order")]));
 		item.put("Highertaxa_score_order", Integer.parseInt(values[column_definition.indexOf("highertaxa_score_order")]));
 		item.put("Source_constrain_on_order", Integer.parseInt(values[column_definition.indexOf("source_constrain_on_order")]));
@@ -519,6 +517,9 @@ public class MatchingResultsFile {
 		item.put("Source", stringToJSONArray(values[column_definition.indexOf("source")]));
 		item.put("nsources", Integer.parseInt(values[column_definition.indexOf("nsources")]));
 		item.put("Sort_override", values[column_definition.indexOf("sort_override")]);
+		item.put("Accepted_name_lsid", values[column_definition.indexOf("accepted_name_lsid")]);
+		item.put("Sort_override", values[column_definition.indexOf("sort_override")]);
+
 		if(job.containsId()){
 			item.put("user_id", values[column_definition.indexOf("user_id")]);
 		}
@@ -571,6 +572,7 @@ public class MatchingResultsFile {
 
 		BufferedReader rd = new BufferedReader(new InputStreamReader(new FileInputStream(workingCopy), "UTF-8"));
 		rd.readLine();
+
 		BufferedWriter wr = new BufferedWriter(new FileWriter(output_folder+"csv"+job.getRequest().getId()+".csv"));
 
 		wr.write("Name_submitted"+"\t"+"Name_matched"+"\t"+"Author_matched"+"\t"+"Overall_score"+"\t"+"Taxonomic_status"+"\t"+"Accepted_name"+"\t"+"Accepted_author"+"\t"+"Accepted_family"+"\t"+"Source"+"\t"+"Warnings"+"\t"+"Accepted_name_lsid");
@@ -603,7 +605,7 @@ public class MatchingResultsFile {
 				}
 
 			}
-			wr.write(values[column_definition.indexOf("name_submitted")]+"\t"+values[column_definition.indexOf("name_matched")]+"\t"+values[column_definition.indexOf("author_matched")]+"\t"+values[column_definition.indexOf("overall_score")]+"\t"+values[column_definition.indexOf("taxonomic_status")]+"\t"+values[column_definition.indexOf("accepted_name")]+"\t"+values[column_definition.indexOf("accepted_name_author")]+"\t"+values[column_definition.indexOf("accepted_name_family")]+"\t"+values[column_definition.indexOf("source")]+"\t"+getFlagText(values[column_definition.indexOf("warnings")])+"\t"+values[column_definition.indexOf("accepted_name_lsid")]);
+			wr.write(values[column_definition.indexOf("name_submitted")]+"\t"+values[column_definition.indexOf("name_matched")]+"\t"+values[column_definition.indexOf("author_matched")]+"\t"+values[column_definition.indexOf("overall_score")]+"\t"+values[column_definition.indexOf("taxonomic_status")]+"\t"+values[column_definition.indexOf("accepted_name")]+"\t"+values[column_definition.indexOf("accepted_name_author")]+"\t"+values[column_definition.indexOf("accepted_family")]+"\t"+values[column_definition.indexOf("source")]+"\t"+getFlagText(values[column_definition.indexOf("warnings")])+"\t"+values[column_definition.indexOf("accepted_name_lsid")]);
 
 			if(job.containsId()){
 				wr.write("\t"+values[column_definition.indexOf("user_id")]);
@@ -740,7 +742,7 @@ public class MatchingResultsFile {
 					values[column_definition.indexOf("accepted_name_rank")]+"\t"+
 					values[column_definition.indexOf("accepted_name_url")]+"\t"+
 					values[column_definition.indexOf("accepted_species")]+"\t"+
-					values[column_definition.indexOf("accepted_name_family")]+"\t"+
+					values[column_definition.indexOf("accepted_family")]+"\t"+
 					values[column_definition.indexOf("selected")]+"\t"+
 					values[column_definition.indexOf("source")]+"\t"+
 					getFlagText(values[column_definition.indexOf("warnings")])+"\t"+

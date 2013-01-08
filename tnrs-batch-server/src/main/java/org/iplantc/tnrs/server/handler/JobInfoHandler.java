@@ -8,11 +8,12 @@ import java.util.Properties;
 import java.util.UUID;
 import java.util.Vector;
 
-import org.iplantc.tnrs.server.JobHelper;
-import org.iplantc.tnrs.server.TnrsJob;
-
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
+
+import org.apache.commons.io.IOUtils;
+import org.iplantc.tnrs.server.JobHelper;
+import org.iplantc.tnrs.server.TnrsJob;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -27,17 +28,17 @@ public class JobInfoHandler implements HttpHandler {
 		
 	}
 	
-	
-	
 	@Override
 	public void handle(HttpExchange arg0) throws IOException {
+
 		try {
-		JSONObject json = (JSONObject)JSONSerializer.toJSON(arg0);
-		
+	
+		JSONObject json = (JSONObject) JSONSerializer.toJSON(IOUtils.toString(arg0.getRequestBody()));
+
 		String email = json.getString("email");
 		String key = json.getString("key");
 		
-		TnrsJob job = JobHelper.readJobInfo(properties.getProperty("servicesUrl"), email, key);
+		TnrsJob job = JobHelper.readJobInfo(properties.getProperty("org.iplantc.tnrs.baseResultsFolder"), email, key);
 		
 		String uid =UUID.randomUUID().toString().replace("-", "");
 		

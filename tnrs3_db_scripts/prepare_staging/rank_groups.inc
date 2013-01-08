@@ -64,8 +64,5 @@ $sql="
 ";
 $msg_error="failed!\r\n";
 if (sql_execute($sql,$die_on_fail,$echo_on,$msg_success,$msg_error));
-i
-
-
 
 ?>

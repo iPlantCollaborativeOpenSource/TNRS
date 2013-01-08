@@ -1,4 +1,4 @@
-Imports and loads ncbi names and classification to the staging table, in preparation for additional indexing and import to TNRS core database. Processing steps specific to this source are performed by scripts in this directory. Subsequent, source-independent manipulations of the staging table are performed by scripts in directory prepare_staging/.
+Imports and loads ncbi names and classification to the staging table (nameStaging), in preparation for additional indexing and import to TNRS core database. Processing steps specific to this source are performed by scripts in this directory. Subsequent, source-independent manipulations of the staging table are performed by scripts in directory prepare_staging/.
 
 This process is much more complicated for NCBI taxonomy than for other sources. Peculiarities of the NCBI taxonomic model result in poor mapping to the TNRS nomenclatural model (basically, NCBI does not have a nomenclatural model). Difficulties include (1) separate records for name and name+author, (2) concatenated name and author, (3) names lack unique IDs (only nodes have IDs; note lack of PK in table `names`), (4) inconsistent implementation of model (the name+authority version of a name is usually classified as name_class='authority', but occasionally appears as name_class='synonym', even name_class='scientific name'. You can't predict with certainty.
 
@@ -9,5 +9,3 @@ This script requires two set of files to run:
 Place all ncbi taxonomy files, plus the parsed names file, in the same directory. Set their names and path in the parameters file (params.inc). After that, these scripts will do the rest.
 
 The result of this processing is the partially prepared table `nameStaging`.
-
-Source-independent preparation of `nameStaging`--including parsing missing name components and populating left and right indices--is completed by scripts in directory prepare_staging/. Please see that directory for details.

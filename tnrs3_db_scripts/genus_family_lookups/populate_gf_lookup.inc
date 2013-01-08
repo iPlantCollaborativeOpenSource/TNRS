@@ -60,7 +60,7 @@ if ($num_rows>0) {
 				$isPrimary
 				);
 			";
-			$msg_error="Failed to insert genus+family combination (gno=$gno, genus='$genus')\r\n";
+			$msg_error="Failed to insert genus+family combination (genus='$genus', family1=$fam1, family2=$fam2)\r\n";
 			if (sql_execute($sql,TRUE,$echo_on,'',$msg_error));
 			}
 		}

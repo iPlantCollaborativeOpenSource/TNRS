@@ -12,9 +12,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -26,9 +24,7 @@ import org.apache.log4j.Logger;
 import org.iplantc.tnrs.server.JobHelper;
 import org.iplantc.tnrs.server.MatchingResultsFile;
 import org.iplantc.tnrs.server.TnrsJob;
-import org.iplantc.tnrs.server.processing.NameSourceComparator;
 import org.iplantc.tnrs.server.processing.TNRSFinalComparator;
-
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;

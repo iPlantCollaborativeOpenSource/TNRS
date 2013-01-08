@@ -2,7 +2,6 @@ package org.iplantc.tnrs.demo.server;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,7 +12,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.http.HttpServlet;
@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
-
 
 import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.httpclient.HttpClient;
@@ -36,9 +35,6 @@ import org.iplantc.tnrs.demo.shared.BeanTnrsParsingEntry;
 
 import com.extjs.gxt.ui.client.data.BasePagingLoadResult;
 import com.extjs.gxt.ui.client.data.PagingLoadConfig;
-import com.extjs.gxt.ui.client.data.PagingLoadResult;
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.user.client.rpc.IsSerializable;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.user.server.rpc.SerializationPolicy;
 import com.google.gwt.user.server.rpc.SerializationPolicyLoader;
@@ -99,6 +95,9 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@Override
 	public String doSearch(String input,String sensitivity) throws IllegalArgumentException
 	{
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"To send: "+input);
+
 		try
 		{	
 
@@ -144,7 +143,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			HttpClient client = new HttpClient();
 
 			PostMethod post = new PostMethod("http://"+servicesHost+"/tnrs-svc/upload");
-
+			rootLogger.log(Level.SEVERE,"To send: "+info.toString());
 			post.setRequestEntity(new StringRequestEntity(info.toString(),"application/json","UTF-8"));
 			client.executeMethod(post);
 
@@ -164,13 +163,14 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	public String getJobInfoUrl(String json) throws IllegalArgumentException{
 		try{
 			HttpClient client = new HttpClient();
-
+			Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+			rootLogger.log(Level.SEVERE,"Getting JobInfo: "+json);
 			PostMethod post = new PostMethod("http://"+servicesHost+"/tnrs-svc/jobinfo");
 
 			post.setRequestEntity(new StringRequestEntity(json,"application/json","UTF-8"));
 			client.executeMethod(post);
 
-
+			
 			return post.getResponseBodyAsString();
 
 		}catch( Exception ex){
@@ -185,9 +185,10 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@Override
 	public BasePagingLoadResult<BeanTnrsParsingEntry> getRemoteParsingData(final PagingLoadConfig config,String jsons)  {
 		try{
+			
 			JSONObject info = new JSONObject();
 			JSONObject json = (JSONObject)JSONSerializer.toJSON(jsons);
-
+			
 
 
 			HttpSession session = this.getThreadLocalRequest().getSession();
@@ -294,7 +295,6 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			BeanTNRSEntry entry = new BeanTNRSEntry();
 			JSONObject item = array.getJSONObject(i);
 
-
 			//entry.setEntryId(i);
 			entry.setGroup(item.getLong("group"));
 			entry.setSubmitted(item.getString("Name_submitted").replace("\\\"", "\""));
@@ -349,7 +349,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 			entry.setFlag(item.getInt("Warnings"));
 			entry.setAcceptedSpecies(item.getString("Accepted_species"));
 			entry.setNameMatchedRank(item.getString("Name_matched_rank"));
-			entry.setAcceptedNameFamily(item.getString("Accepted_name_family"));
+			entry.setAcceptedNameFamily(item.getString("Accepted_family"));
 
 			JSONArray sources = item.getJSONArray("Source");
 
@@ -489,7 +489,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 
 	public String downloadRemoteResults(String options) throws IllegalArgumentException{
 		String ret = "";
-
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
 		JSONObject json = (JSONObject) JSONSerializer.toJSON(options);
 		HttpSession session = this.getThreadLocalRequest().getSession();
 		System.out.println(session.getId());
@@ -500,6 +500,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 
 		try
 		{
+			rootLogger.log(Level.SEVERE,"downloadremote: "+json.toString());
 			URLConnection connection = update("http://"+servicesHost+"/tnrs-svc/download", json.toString()); //batch server
 			ret = retrieveResult(connection);
 		}
@@ -576,6 +577,8 @@ public class SearchServiceImpl extends RemoteServiceServlet implements SearchSer
 	@Override
 	public String downloadResults(String input) throws IllegalArgumentException
 	{
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"To send: "+input);
 		String ret = "";
 
 		try

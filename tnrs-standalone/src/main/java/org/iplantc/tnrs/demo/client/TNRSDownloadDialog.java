@@ -2,9 +2,10 @@ package org.iplantc.tnrs.demo.client;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.iplantc.tnrs.demo.client.gxt.HelpIcon;
-import org.iplantc.tnrs.demo.client.validation.FileNameInputValidator;
 
 import com.extjs.gxt.ui.client.Style.Orientation;
 import com.extjs.gxt.ui.client.data.BaseModelData;
@@ -12,28 +13,23 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.Dialog;
-import com.extjs.gxt.ui.client.widget.Html;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
+import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.extjs.gxt.ui.client.widget.form.FieldSet;
 import com.extjs.gxt.ui.client.widget.form.Radio;
 import com.extjs.gxt.ui.client.widget.form.RadioGroup;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboBox;
-import com.extjs.gxt.ui.client.widget.form.SimpleComboValue;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
-import com.extjs.gxt.ui.client.widget.form.TextField;
-import com.extjs.gxt.ui.client.widget.form.ComboBox.TriggerAction;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.user.client.ui.Label;
 
 
 public class TNRSDownloadDialog extends Dialog{
-
 
 	private RadioGroup ret1;
 	private RadioGroup ret2;
@@ -47,6 +43,9 @@ public class TNRSDownloadDialog extends Dialog{
 	private boolean dirty;
 	
 	public TNRSDownloadDialog(ClientCommand cmdOk,String mode,boolean isdirty,boolean sources_n,boolean taxonomic_constraint) {
+		Logger rootLogger = Logger.getLogger("ConsoleLogHandler");
+		rootLogger.log(Level.SEVERE,"Download Toolbar: "+mode+isdirty+sources_n+taxonomic_constraint);
+
 		this.mode = mode;
 		init();
 		compose();
