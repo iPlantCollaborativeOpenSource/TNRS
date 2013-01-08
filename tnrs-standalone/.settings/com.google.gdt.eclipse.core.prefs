@@ -3,4 +3,4 @@ jarsExcludedFromWebInfLib=
 lastWarOutDir=/Users/nmatasci/git/TNRS/tnrs-standalone/war
 launchConfigExternalUrlPrefix=
 warSrcDir=war
-warSrcDirIsOutput=false
+warSrcDirIsOutput=true

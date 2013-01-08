@@ -11,7 +11,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css">
 	<noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
 	</head>
-	 	<body class="sources">
+<body class="sources">
 	<div class="header"> 
 	 <span id="logo">
         <img src="images/iplant_logo.png" alt="iPlant Collaborative" /> 
@@ -42,21 +42,30 @@
 		</h1>
 	
 		<p>
-			The goal of TNRS is to provide the end user the ability to resolve their list of names against a number of sources. The team of developers at TNRS makes no attempt to determine the authority of the names, rather we provide the information that is available from these sources in a centralized location for matching of submitted names. Should you encounter issues with names that are lacking, please contact the source curators directly.
+          The goal of TNRS is to provide the end user the ability to resolve their list of names against a number of sources. The team of developers at TNRS makes no attempt to determine the authority of the names, rather we provide the information that is available from these sources in a centralized location for matching of submitted names. Should you encounter issues with names that are lacking, please contact the source curators directly.
 		</p>
 		
 		<p>
-			The following sources have been included in the 3.0 database for the TNRS:
+		<div class="content"> <!-- Main Body Text -->
+			<h2>Table of Contents</h2>
+			<a href="#Current_source">Current taxonomic sources</a></br>
+			<a href="#Provider">Becoming a data provider</a></br>
+			<a href="#Who_should">Who should become a data provider for the TNRS?</a></br>
+			<a href="#How_share">How do I share my taxonomy?</a></br>
+			<a href="#DWC">TNRS Simple Darwin Core export format</a></br>
+		<p>
+		<h3><a name="Current_source">The following sources have been included in the 3.0 database for the TNRS:</a></h3>	
 		</p>
 
 	
 		<div class="source">
 			<a href="http://www.tropicos.org"><img src= "images/tropicos.png" alt="Tropicos" /></a>
 			<BLOCKQUOTE>
-				<a href="http://www.mobot.org">Missouri Botanical Garden</a>'s <a href="http://www.tropicos.org">Tropicos</a> database is an electronic repository of nomenclatural, bibliographic, and specimen data. Tropicos contains over 1.2 million names and thousands of taxonomic opinions based on the taxonomic literature and expert curatorial opinion. 
-					<span class="accessDate">
-						<br />Date of access for this source is 4 October 2011.
-					<p>Tropicos: "Tropicos.org. Missouri Botanical Garden. 4 October 2011 < http://www.tropicos.org >."</p>
+				<a href="http://www.mobot.org">Missouri Botanical Garden</a>'s <a href="http://www.tropicos.org">Tropicos</a> database is an electronic repository of nomenclatural, bibliographic, and specimen data. Tropicos contains over 1.2 million names and thousands of taxonomic opinions based on the taxonomic literature and expert curatorial opinion.
+			<span class="accessDate">
+			<p>Short name in TNRS database: tropicos
+						<br />Date of access: 4 October 2011.
+					<p>Citation: "Tropicos.org. Missouri Botanical Garden. 4 October 2011 < http://www.tropicos.org >."</p>
 					</span>
 			</BLOCKQUOTE>
 		</div>
@@ -65,10 +74,11 @@
 			<a href="http://www.ncbi.nlm.nih.gov"><img src= "images/ncbi.png" alt="NCBI" ></a>
 			
 			<BLOCKQUOTE>
-			<a href="http://www.ncbi.nlm.nih.gov">The National Center for Biotechnology Information</a>'s <a href="http://www.ncbi.nlm.nih.gov/taxonomy">Taxonomy</a> database contains the names and phylogenetic lineages of more than 160,000 organisms that have molecular data in the NCBI databases. 
+			<a href="http://www.ncbi.nlm.nih.gov">The National Center for Biotechnology Information</a>'s <a href="http://www.ncbi.nlm.nih.gov/taxonomy">Taxonomy</a> database contains the names and phylogenetic lineages of more than 160,000 organisms that have molecular data in the NCBI databases. Access to NCBI taxonomy is provided for users wishing to match their names to taxa represented by sequences in GenBank. However, due to the large number of missing names and non-standard (informal) names representing accession codes, we discourage users form standardizing their names according to NCBI.
 				<span class="accessDate">
-					<br />Date of access for this source is 15 October 2011.<br />	</span>
-				<p>NCBI: "Federhen S. The Taxonomy Project.2002 Oct 9 [Updated 2003 Aug 13]. In: McEntyre J., Ostell J., editors. The NCBI Handbook [Internet]. Bethesda (MD): National Center for Biotechnology Information (US);2002."</p>
+				<p>Short name in TNRS database: NCBI
+					<br />Date of access: 15 October 2011.<br />	</span>
+				<p>Citation: "Federhen S. The Taxonomy Project.2002 Oct 9 [Updated 2003 Aug 13]. In: McEntyre J., Ostell J., editors. The NCBI Handbook [Internet]. Bethesda (MD): National Center for Biotechnology Information (US);2002."</p>
 			
 			</BLOCKQUOTE>
 		</div>
@@ -77,9 +87,10 @@
 			<a href="http://plants.usda.gov/java"><img src= "images/plants_database.png" alt="Plants Database"  /></a>
 			<BLOCKQUOTE>
 				<a href="http://usda.gov/wps/portal/usda/usdahome">USDA</a>'s <a href="http://plants.usda.gov/java">Plants Database</a> provides standardized information about the vascular plants, mosses, liverworts, hornworts, and lichens of the U.S. and its territories.
-					
-					<span class="accessDate"><br />Date of access for this source is 15 March 2012.</span> 
-					<p>USDA PLANTS:"USDA, NRCS. 2012. The PLANTS Database (http://plants.usda.gov, 15 March 2012). National Plant Data Team, Greensboro, NC 27401-4901 USA."
+					<span class="accessDate">
+					<p>Short name in TNRS database: USDA
+					<br />Date of access: 15 March 2012.</span> 
+					<p>Citation:"USDA, NRCS. 2012. The PLANTS Database (http://plants.usda.gov, 15 March 2012). National Plant Data Team, Greensboro, NC 27401-4901 USA."
 					</p>
 			</BLOCKQUOTE>
 		</div>
@@ -88,23 +99,50 @@
 			<a href="http://compositae.landcareresearch.co.nz"><img src= "images/global.png" alt="Global Compositae Checklist" /> </a>
 
 			<BLOCKQUOTE>
-				<a href="http://compositae.landcareresearch.co.nz/Default.aspx?Page=About&Tab=Cite">The Global Compositae</a> <a href="http://compositae.landcareresearch.co.nz">Checklist</a> is an integrated database of nomenclatural and taxonomic information for one of the largest plant famillies in the world (also known as the Asteraceae). 
+				<a href="http://compositae.landcareresearch.co.nz/Default.aspx?Page=About&Tab=Cite">The Global Compositae</a> <a href="http://compositae.landcareresearch.co.nz">Checklist</a> is an integrated database of nomenclatural and taxonomic information for the Asteraceae (also known as the Compositae), one of the largest plant famillies in the world.
 				<span class="accessDate">
-				<br />Date of access for this source is 11 February 2012.<br /></span>
-				
-				<p>GCC:"Flann, C (ed) 2009+ Global Compositae Checklist Accessed: 11 February 2012"</p>
+				<p>Short name in TNRS database: GCC
+				<br />Date of access: 11 February 2012.<br /></span>
+				<p>Citation:"Flann, C (ed) 2009+ Global Compositae Checklist Accessed: 11 February 2012"</p>
 	
 			</BLOCKQUOTE>
 		</div>
-		<p>
-			The TNRS periodically updates the information from these sources. In addition, we encourage users to suggest additional sources of high quality digitized taxonomic information, in particular monographic taxonomy at the family level. Ongoing support for this effort will continue beyond our 3.0 release.
-		</p>
+		<p>The TNRS periodically updates the information from these sources. In addition, we encourage users to suggest additional sources of high quality digitized taxonomic information, in particular monographic taxonomy at the family level. Ongoing support for this effort will continue beyond our 3.0 release.</p>	
 	</div>
-	
+	<!-- End of 'table of contents and current sources' -->
+	</p>
+	<p>
+    <!-- Begin of 'Becoming a data provider' -->
+    <!-- Main Body Text -->
+<h2><a name="Provider">Becoming a data provider</a></h2>	
+<BLOCKQUOTE>
+		<h3><a name="Who_should">Who should become a data provider for the TNRS?</a></h3>	
+		</p>
+        <p>
+         Curators of databases of high quality plant taxonomy (taxonomy for any group of organisms goverened by the ICN, or International Code of Nomenclature for algae, fungi, and plants) are encouraged to make their names and synonymy available via the TNRS. Doing so will make it easier for researchers to standardize their names according to your taxonomy. We welcome both synonymized regional checklists (such as USDA Plants) and monographic treatments of species within families or other higher taxa (for example, the Global Compositae Checklist). Potential data providers should begin by contacting our support staff at <a href="mailto:support@iplantcollaborative.org">support@iplantcollaborative.com</a>.
+         </p>
+	  
+	</BLOCKQUOTE>
+<BLOCKQUOTE>
+	<h3><a name="How_share">How do I share my taxonomy?</a></h3>	
+	<p>
+		TNRS staff will work with you to develop the most effective method of sharing your taxonomic information. Exposing your data via the TNRS requires that we import your names and synonymy to a local database optimized for rapid access by our name resolution search engine. Although we can perform one-time imports, for actively curated database, regularly schedule ingests using a web service or live database link are the best way to ensure up-to-date representation of your data.
+		</p>
+	</BLOCKQUOTE>
+<BLOCKQUOTE>
+	<h3><a name="DWC">TNRS Simple Darwin Core export format</a></h3>	
+	<p>
+		The simplest way to share your taxonomic information with the TNRS is as an export structured according to the TNRS Simple Darwin Core format. Taxonomic data formatted in this way can be added immediately to the TNRS database using our existing Darwin Core import utility. Detailed instructions on how to prepare you data in this format are provided in the document <a href="tnrs_dwc_template_instructions.txt">TNRS Simplified Darwin Core format.
+		</p>
+		</BLOCKQUOTE>
 
-	
-	</body>
-	
+    <!-- End of 'Becoming a data provider' -->
+    </p>
+
+    </div>
+    </div>
+    </div>
+</body>	
 </html>
 		
 
