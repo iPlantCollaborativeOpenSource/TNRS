@@ -1,11 +1,14 @@
 */war/*
 toad
-#/.classpath
+*/.directory
+*/.settings
 */.project
 */bin/*
 */target/*
 */.gwt/*
 .classpath
+*/.DS_Store
+.DS_Store
 tnrs-standalone/gwt-unitCache
 tnrs-batch-server/tnrs.html
 ~*

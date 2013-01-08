@@ -1,177 +1,288 @@
-==BUILD INFORMATION
-Build info for Apache Maven is in pom.xml.
-http://maven.apache.org/
+===============================================================================
+                            INSTALLING TNRS
+===============================================================================
 
+Installing your own instance of TNRS will allow you to add your own name sources and run the service on a local network. This is helpful if the organisms for which the names need to be resolved are not covered by the online TNRS.
 
-==DEPENDENCIES
-This code requires:
+The following dependencies are required:
+*   Java 1.7.0 or higher
+*   Git 1.7.4 or higher
+*   MySQL 5.0.95 or higher
+*   PHP 5.3.3 or higher, including 
+**    mysql
+**    mbstring
+*   Maven 2.2.1 or higher
+*   Apache Tomcat 7.0.33 or higher
+*   Apache HTTP Server 2.2.3 or higher
+*   Apache JK Modules 1.2.31 or higher
+*   YAML 0.1.4
+*   Ruby 1.9.3 or higher
+*   Rubygems 1.8.23 or higher
 
- * Apache Tomcat 2.0
- * Apache Maven 2.0
- * Java6 JDK (new number for Java SDK 1.6)
- * Google Web Toolkit (GWT) 2.1.1
- * GXT 2.2.1
+Instructions for installing dependencies are available in DEPENDENCIES.
 
-==To install TNRS, do the following in this order:
+To install the TNRS application, follow the steps below.
 
-=======================
-1. Install dependencies
-=======================
+    1. Obtain the TNRS application
+    2. Set up the TNRS database
+    3. Install the GNI Parser
+    4. Install Taxamatch
+    5. Install the communication service layer
+    6. Install the TNRS batch service
+    7. Deploy the frontend
+    8. Configure Tomcat
+    9. Register the services
+    10. Start the TNRS application
+    11. Set up cron monitoring (optional)
 
-	****************************************************************
-	* Install Apache Maven 2.0 from:
-	  http://maven.apache.org/
-	  
-	  The pom.xml file is made to work with 2.0 and has not been 
-	  tested on any other version. It may work with later versions,
-	  but we offer no guarantees. Please let us know if you are
-	  successful using a later version.
-	
-	****************************************************************
-	* Install Java6 JDK (Java SDK 1.6) from:
-	  http://www.oracle.com/technetwork/java/javase/downloads/index.html
-	  
-	  or from your Linux distribution's software repository.
-	  
-	  Use the Oracle version as the OpenJDK VM has caused problems.
-	
-	****************************************************************
-	* Note:
-	  Google Web Toolkit (GWT) 2.1.1 and GXT 2.2.1 are dependencies 
-	  that will be downloaded and installed automatically by Maven 
-	  when the software is built later in the install process.
-	
-==================
-2. Create Database
-==================
+---
+1. OBTAIN THE TNRS APPLICATION
+Note: Different Linux distributions use different system paths. These instructions have been tested on a CentOS 5.8 VM, such as the iPlant Atmosphere base VM (image ID: emi-F1F122E4) and different paths might need to be used in other systems.
 
-    ****************************************************************
-	Files in the tnrs_db_scripts directory and subdirectories build 
-	the TNRS core database and table for the taxamatch application.
-	
-	Each directory contains one master script (extension php) which 
-	calls all the others.
-	
-	Global parameters are set in the single global_params.inc, in this 
-	directory. Also see local params.inc file in each subdirectory.
-	
-	For a complete build of the database, scripts should be run in the
-	following order:
-	
-	1.	create_tnrs_core.php (in create_tnrs_core/)
-	2.	import.php (in import/) - this version loads custom names dump
-	    from the Tropicos API
-	3.	load_staging.php (in load_staging/)
-	4.	load_core_db.php (in load_core_db/)
-	5.	taxamatch_tables.php (in taxamatch_tables/)
-	
-	Custom MySQL function strSplit() is required. Use contents of file
-	strSplit.txt to add this function to your MySQL installation.
-	
-	In the tnrs_db_scripts/import directory we have included a small 
-	example file called tropicos_api_pinaceae_example.txt. It can be 
-	used to do a complete example build of the database, as outlined 
-	here.
+    sudo su –
+    cd
+    git clone https://github.com/nmatasci/TNRS.git
+    cd TNRS
 
-=======================
-3. Install biodiversity
-=======================
+a.    Create the TNRS system user.
+    useradd tnrs -g tnrs -c 'TNRS services'
+    
+b.    Create the storage directory.
+    mkdir /tnrs-jobs
+    chown tnrs:tnrs /tnrs-jobs
 
-	****************************************************************
-	To install the name parser from GNI, called biodiversity,
-	see: /biodiversity/README.rdoc 
+Note: Do not modify the name and location of the storage directory.
 
-====================
-3. Install Taxamatch
-====================
+c.    Create the logs directory.
+    mkdir /var/run/tnrs
+    chown tnrs:tnrs /var/run/tnrs
 
-	****************************************************************
-	To install Taxamatch, see: /taxamatch/INSTALL
+d.    Create the configuration directory.
+    mkdir /home/tnrs/
+    cp ~/TNRS/config/tnrs.properties /home/tnrs/.tnrs/
+    chown -R tnrs:tnrs /home/tnrs/.tnrs
 
-============================
-4. Install TNRS web services
-============================
+Note: Do not modify the name and location of the configuration directory.
 
-    ****************************************************************
-	To install the TNRS web services:
-	
-	The services use port 14444 by default. Open this port in 
-	your firewall, or whatever alternate port you configure the 
-	services to use.
-	
-	Check that the configuration file at
-	/services-tnrs/src/main/resources/tnrs_standalone.properties 
-	has the correct URL for your installation of Taxamatch. This gets
-	packaged in the jar file, so it needs to be modified before 
-	compilation.
-	
-	Enter the /services-tnrs directory from the command line and enter the following commands in this order:
-	
-	$ mvn clean compile install
-	$ mvn dependency:copy-dependencies
-	$ cp target/dependencies/* target
-	   (The target directory is created during compiling in step one.)
-	$ mkdir tnrs-services
-	$ mv target/*jar tnrs-services
-	
-	Copy start.sh, located in the top level directory, to the 
-	tnrs-standalone directory.
-	
-	We recommend moving the tnrs-standalone directory to /opt for
-	consistency with Tomcat general practice and consistency with 
-	the TNRS batch processing server.
-	
-	The application does not currently have a SysV init script, but
-	one will be provided soon.
-	
-=======================================
-5. Install TNRS batch processing server
-=======================================
+e.    Configure TNRS.
+Manually edit /home/tnrs/.tnrs/tnrs.properties to enter the address of your server. This will need to be edited throughout the properties file.
 
-    ****************************************************************
-	To install the TNRS batch processing server:
-	
-	The application uses port 14445 by default. Open this port in 
-	your firewall, or whatever alternate port you configure the app
-	to use.
-	
-	Enter the /tnrs-batch-server directory from the command line and 
-	enter the following commands in this order:
-	
-	$ mvn clean compile install
-	$ mvn dependency:copy-dependencies
-	$ cp target/dependencies* /target
-	   (The target directory is created during compiling in step one.)
-	$ mkdir tnrs-batch
-	$ cp target/*.jar tnrs-batch
-	
-	We recommend moving the tnrs-batch directory to /opt for
-	consistency with Tomcat and the TNRS web services.
-	
-	Use batch_start.sh from the top level directory for batch 
-	processing.
+f.    Link the configuration directory into the home directory of the tomcat process owner, in this case root.
+    ln -s  /home/tnrs/.tnrs /root
+    chown -R root:root /root/.tnrs
+---
 
+---
+2. SET UP THE TNRS DATABASE
+Note: All data source names must be lowercase (e.g. tropicos_example).
 
-===============================
-6. Install TNRS web application
-===============================
+a.   Start the MySQL service.
+    service mysqld start
 
-    ****************************************************************
-	To install the TNRS web application:
-	
-	Check that the configuration file at
-	/services-tnrs/src/main/resources/tnrs_standalone.properties 
-	has the current URLs for the just-installed web services. If they
-	are installed on the same machine as this web application and use
-	the default ports, use:
-	http://localhost:14444/ for services and
-	http://localhost:14445/ for the batch server.
-	
-	Enter the /tnrs-standalone directory from the command line and 
-	enter the following commands in this order:
-	
-	$ mvn clean compile install
-	
-	This will create a tnrs-standalone.war file. Move this file to the
-	webapps directory of your Tomcat installation and restart the
-	container to be sure the application is loaded.
+b.  Log in to the mysql database.
+    mysql -D mysql
+
+Note: you are now in the MySQL console.
+
+c.   Create a temporary privileged user. 
+
+    CREATE USER 'tnrs_root'@'localhost' IDENTIFIED BY 'rooter';
+    GRANT ALL PRIVILEGES ON *.* TO 'tnrs_root'@'localhost';
+    EXIT;
+
+Note: The user credentials must match those set in the ~/TNRS/tnrs3_db_scripts/global_params.inc file. Changing them is not necessary or recommended.
+
+d.   Run the loading script (answer yes to all questions)
+Note: You are now back in the system console.
+    cd ~/TNRS/tnrs3_db_scripts
+    php load_tnrs.php
+
+e.   Log in to the mysql database.
+    mysql -D mysql
+
+Note: you are now in the MySQL console.
+
+f.   Remove the temporary privileged MySQL user.
+    DROP USER 'tnrs_root'@'localhost';
+
+g.   Create the persistent TNRS database user. 
+    CREATE USER 'tnrs'@'localhost' IDENTIFIED BY 'tnrs';
+    GRANT SELECT ON tnrs_test.* TO 'tnrs'@'localhost';
+    SET GLOBAL read_only=1;
+    EXIT;
+
+Note: To use different credentials from the default settings (optional but recommended for production environments), modify the configuration file for Taxamatch (~/TNRS/taxamatch-webservice-read-only/api/config.php) to match the credentials of the MySQL persistent user.
+---
+
+---
+3. INSTALL THE GNI PARSER
+
+a.   Obtain the GNI parser.
+    cd /opt
+    git://github.com/GlobalNamesArchitecture/biodiversity.git
+
+b.   Replace the file scientific_name_clean.treetop with the iPlant custom version.
+    cd biodiversity/lib/biodiversity/parser/
+    mv scientific_name_clean.treetop scientific_name_clean.treetop.original
+    wget http://svn.iplantcollaborative.org/iptol/data_integration/biodiversity_1.0.9/parser/scientific_name_clean.treetop
+
+c.   Install the GNI parser.
+    gem install biodiversity19
+
+d.   Copy the startup script into the GNI parser directory.
+    cp ~/TNRS/scripts/parserver_start.sh /opt/biodiversity
+    chown -R tnrs:tnrs /opt/biodiversity
+
+e.   Set the environmental variables.
+    echo "
+    export LC_CTYPE=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    unset LC_ALL
+    " > /etc/profile.d/parserver_lang.sh
+    chmod 755 /etc/profile.d/parserver_lang.sh
+    source /etc/profile.d/parserver_lang.sh
+---
+
+---
+4. INSTALL TAXAMATCH
+    cp -r ~/TNRS/taxamatch-webservice-read-only/ /var/www/html/
+    chown -R tnrs:tnrs /var/www/html/taxamatch-webservice-read-only/
+---
+
+---
+5. INSTALL THE COMMUNICATION SERVICE LAYER
+
+a.   Use Apache Maven to build the service.
+    cd ~/TNRS/tnrs-services
+    mvn clean compile package
+    mvn dependency:copy-dependencies
+    cd target
+    cp dependency/*.
+
+b.   Create the tnrs-services directory.
+    mkdir /opt/tnrs-services
+
+c.   Copy the files into the tnrs-services directory.
+    cp *.jar /opt/tnrs-services
+
+d.   Copy the configuration file into the tnrs-services directory.
+    cp classes/mule-config.xml /opt/tnrs-services
+
+e.   Copy the startup file into the tnrs-services directory.
+    cp ~/TNRS/scripts/services_start.sh /opt/tnrs-services
+
+f.   Change ownership of the tnrs-services directory to the tnrs user.
+    chown -R tnrs:tnrs /opt/tnrs-services
+---
+
+---
+6. INSTALL THE TNRS BATCH SERVICE
+
+a.   Use Apache Maven to build the service.
+    cd ~/TNRS/tnrs-batch-server/
+    mvn clean compile package
+    mvn dependency:copy-dependencies
+    cd target
+    cp dependency/*.
+
+b.   Create the tnrs-batch directory.
+    mkdir /opt/tnrs-batch
+
+c.   Copy the files into the tnrs-batch directory.
+    cp *.jar /opt/tnrs-batch
+
+d.   Copy the startup file into the tnrs-batch directory.
+    cp ~/TNRS/scripts/batch_start.sh /opt/tnrs-batch
+
+e.   Change ownership of the tnrs-batch directory to the tnrs user.
+    chown -R tnrs:tnrs /opt/tnrs-batch
+---
+
+---
+7. DEPLOY THE WEB FRONTEND
+
+a.   Use Apache Maven to build and package the frontend into a WAR file.
+    cd ~/TNRS/tnrs-standalone
+    mvn clean compile package
+
+b.  Copy the WAR file into the tomcat/webapps directory.
+    cp target/tnrs-standalone.war /opt/tomcat/webapps
+
+c.   Set the TNRS frontend as the root of the website.
+    cd /opt/tomcat/webapps
+    mv ROOT ROOT~
+    ln -s tnrs-standalone ROOT
+---
+
+---
+8. CONFIGURE TOMCAT
+
+a.   Configure Tomcat.
+    Manually add the following lines to /opt/tomcat/conf/catalina.policy.
+
+    grant codeBase "file:${catalina.base}/webapps/" {     
+        permission java.net.SocketPermission;
+    };
+
+b.   Configure the httpd server.
+    Manually edit the httpd configuration file /etc/httpd/conf/httpd.conf
+    -   Set KeepAlive to On  in httpd.conf.
+    -   Add the JK Modules after the Dynamic Shared Object (DSO) Support section:
+    #Load mod_jk module
+    LoadModule  jk_module  modules/mod_jk.so
+    
+    #Where to find workers.properties
+    JkWorkersFile /etc/httpd/conf/workers.properties
+
+    #Where to put jk shared memory
+    JkShmFile   /var/log/httpd/mod_jk.shm
+
+    #Where to put jk logs
+    JkLogFile   /var/log/httpd/mod_jk.log
+
+    #Set the jk log level [debug/error/info]
+    JkLogLevel  error
+    
+    #Select the timestamp log format
+    JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
+
+e.   Copy the configuration files for tomcat and for the virtual hosts.
+    cp ~/TNRS/config/workers.properties /etc/httpd/conf/
+    cp ~/TNRS/config/_vhosts.conf  /etc/httpd/conf.d/
+---
+
+---
+9. REGISTER THE SERVICES
+
+    cp ~/TNRS/scripts/services/tnrs* /etc/init.d/
+    chkconfig --add tnrs-services
+    chkconfig --add tnrs-batch
+    chkconfig --add tnrs-parserver
+---
+
+---
+10. START THE TNRS APPLICATION
+
+    /opt/tomcat/bin/startup.sh
+    service tnrs-batch start
+    service tnrs-services start
+    service tnrs-parserver start
+    service httpd start
+---
+
+---
+11. SET UP CRON MONITORING (OPTIONAL, REQUIRES VIXIE-CRON)
+
+    [yum install -y vixie-cron]
+    cp ~/TNRS/scripts/tnrs-warn /etc/cron.daily/
+    cp ~/TNRS/scripts/tnrs-status /etc/
+    cd /etc
+
+ Add the following line to crontab (and change the email address, if necessary):
+
+    15 * * * * root /etc/tnrs-status 1>/dev/null 2>> /var/log/tnrs_status.log
+
+Start the cron service
+    service crond start
+---
+===============================================================================
