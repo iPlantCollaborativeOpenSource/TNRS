@@ -5,6 +5,10 @@ Taxonomic Name Resolution Service (TNRS)
 This repo includes all of the code that powers iPlant's Taxonomic 
 Name Resolution Service.
 
+The TNRS is described in:
+
+Boyle, B. et.al. The taxonomic name resolution service: an online tool for automated standardization of plant names. BMC Bioinformatics. 2013, 14:16. (http://dx.doi.org/10.1186/1471-2105-14-16)
+
 Parts of this code come from other projects, as noted below in 
 LICENSE. The rest was written by iPlant.
 
