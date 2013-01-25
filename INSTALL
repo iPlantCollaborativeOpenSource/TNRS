@@ -119,7 +119,7 @@ Note: To use different credentials from the default settings (optional but recom
 
 a.   Obtain the GNI parser.
     cd /opt
-    git://github.com/GlobalNamesArchitecture/biodiversity.git
+    git clone git://github.com/GlobalNamesArchitecture/biodiversity.git
 
 b.   Replace the file scientific_name_clean.treetop with the iPlant custom version.
     cd biodiversity/lib/biodiversity/parser/
@@ -145,7 +145,7 @@ e.   Set the environmental variables.
 
 ---
 4. INSTALL TAXAMATCH
-    cp -r ~/TNRS/taxamatch-webservice-read-only/ /var/www/html/
+    cp -r ~/TNRS/taxamatch-webservice-read-only /var/www/html/
     chown -R tnrs:tnrs /var/www/html/taxamatch-webservice-read-only/
 ---
 
@@ -157,7 +157,7 @@ a.   Use Apache Maven to build the service.
     mvn clean compile package
     mvn dependency:copy-dependencies
     cd target
-    cp dependency/*.
+    cp dependency/* .
 
 b.   Create the tnrs-services directory.
     mkdir /opt/tnrs-services
@@ -183,7 +183,7 @@ a.   Use Apache Maven to build the service.
     mvn clean compile package
     mvn dependency:copy-dependencies
     cd target
-    cp dependency/*.
+    cp dependency/* .
 
 b.   Create the tnrs-batch directory.
     mkdir /opt/tnrs-batch
