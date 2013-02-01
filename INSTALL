@@ -39,7 +39,7 @@ To install the TNRS application, follow the steps below.
 1. OBTAIN THE TNRS APPLICATION
 Note: Different Linux distributions use different system paths. These instructions have been tested on a CentOS 5.8 VM, such as the iPlant Atmosphere base VM (image ID: emi-F1F122E4) and different paths might need to be used in other systems.
 
-    sudo su –
+    sudo su -
     cd
     git clone https://github.com/nmatasci/TNRS.git
     cd TNRS
@@ -58,7 +58,7 @@ c.    Create the logs directory.
     chown tnrs:tnrs /var/run/tnrs
 
 d.    Create the configuration directory.
-    mkdir /home/tnrs/
+    mkdir /home/tnrs/.tnrs
     cp ~/TNRS/config/tnrs.properties /home/tnrs/.tnrs/
     chown -R tnrs:tnrs /home/tnrs/.tnrs
 
