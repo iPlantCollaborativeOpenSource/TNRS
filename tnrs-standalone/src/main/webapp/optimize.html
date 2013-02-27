@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 	<title>Taxonomic Name Resolution Service - Optimize Your Search</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="style.css" rel="stylesheet" type="text/css"/>
 	<noscript><img src="http://iplantcollaborative.org/sites/all/themes/iplant/images/iplant_logo.png"><br/></img><h1>This site requires Javascript. Please enable it.</h1></noscript>
 </head>
 
@@ -47,12 +47,15 @@ While we have designed the TNRS to handle most botanical data formats found in a
 	The TNRS has seven settings that affect how your names are resolved. These settings reflect the fact that there is no one best way to resolve names. The best settings for you depend on the requirements of your study and the amount of error present in your names.
 </p>
 <ul>
-<li><h3>Processing mode</h3></li>
+<li><h3>Processing mode</h3>
 <table border="1">
 	<thead>
+	<tr>
 		<th>Setting</th>
 		<th><strong>Perform name resolution</strong></th>
 		<th><strong>Parse names only</strong></th>
+		</tr>
+		
 	</thead>
 	<tbody>
 		<tr>
@@ -73,18 +76,19 @@ While we have designed the TNRS to handle most botanical data formats found in a
 					<li>User has a list of species and subspecies and needs to separate the genus and specific epithets from the rank indicator and subspecific epithet.</li>
 				</ul>
 			</td>
+			</tr>
 		</tbody>
 </table>	
-	</tbody>
-		
-</table>
-<li><h3>Allow partial matching?</h3></li>
+</li>
+<li><h3>Allow partial matching?</h3>
 <table border="1">
 	<thead>
+	<tr>
 		<th>Setting</th>
 		<th><strong>Yes</strong></th>
 		<th><strong>No</strong></th>
-	<thead>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>
 			<td>Consequence</td>
@@ -98,13 +102,15 @@ While we have designed the TNRS to handle most botanical data formats found in a
 		</tr>
 	</tbody>
 </table>
-
-<li><h3>Constrain match by higher taxa?</h3></li>
+</li>
+<li><h3>Constrain match by higher taxa?</h3>
 <table border="1">
 	<thead>
+	<tr>
 		<th>Setting</th>
 		<th><strong>Yes</strong></th>
 		<th><strong>No</strong></th>
+</tr>
 	</thead>
 	<tbody>
 		<tr>
@@ -119,18 +125,20 @@ While we have designed the TNRS to handle most botanical data formats found in a
 		</tr>
 	</tbody>
 </table>
-
-<li><h3>Which classification sources?</h3></li>
+</li>
+<li><h3>Which classification sources?</h3>
 <table border="1">
 	<thead>
+	<tr>
 		<th>Setting</th>
 		<th><strong>Single</strong></th>
 		<th><strong>Many</strong></th>
+	</tr>
 	</thead>
 		<tr>
 			<td>Consequence</td>
 			<td>Reduces the number of matches found for each name submitted, as matches from different sources are often variants of the same name. For example, the name with or without the author. Also, it allows the user to only use a trusted taxonomic source.</td>
-			<td>Using >1 source, you will be more likely to find matches for all of your names. However, results may be confusing due to multiple matches and variant spellings of the same name by different sources.</td>
+			<td>Using &gt;1 source, you will be more likely to find matches for all of your names. However, results may be confusing due to multiple matches and variant spellings of the same name by different sources.</td>
 		</tr>
 		<tr>
 			<td>Examples</td>
@@ -143,16 +151,19 @@ While we have designed the TNRS to handle most botanical data formats found in a
 			<td>Ecological or phylogenetic studies from broad geographic regions where no one source is likely to have all names. For example, an ecological study including both Old and New World species should use multiple taxonomic sources.</td>
 		</tr>
 </table>
-
-<li><h3>Sort by source?</h3></li>
-<p>This setting only applies if you are using >1 taxonomic source to resolve your names.</p>
+</li>
+<li><h3>Sort by source?</h3>
+<p>This setting only applies if you are using &gt;1 taxonomic source to resolve your names.</p>
 
 <table border="1">
 	<thead>
+	<tr>
 		<th>Setting</th>
 		<th><strong>Yes</strong></th>
-		<th><strong>No</strong</th>
+		<th><strong>No</strong></th>
+		</tr>
 	</thead>
+	<tbody>
 		<tr>
 			<td>Consequence</td>
 			<td>If name is found in the highest ranked source, it will be shown as the best match even if a better scoring match is found in another source. A match from a lower-ranked source will only be shown if no match is found in the higher-ranked source.</td>
@@ -163,17 +174,19 @@ While we have designed the TNRS to handle most botanical data formats found in a
 			<td>User knows some sources to be generally preferable to other sources. For example, for an ecological study that contains species from many families, the Global Compositae Checklist (GCC) might be ranked first to ensure that any Asteraceae are always resolved first according to this source. Species in other families would not be found in GCC, but might be resolved by the remaining sources.</td>
 			<td>User does not believe any one source to be better than the other and simply wants the best possible spelling match in all cases.</td>
 		</tr>
-</table>
-	</tbody>
+		</tbody>
 </table>
 
-<li><h3>How sensitive a match accuracy should I use?</h3></li>
+</li>
+<li><h3>How sensitive a match accuracy should I use?</h3>
 
 <table border="1">
 	<thead>
+	<tr>
 		<th>Setting</th>
 		<th><strong>Low</strong></th>
 		<th><strong>High</strong></th>
+		</tr>
 	</thead>
 	<tbody>
 		<tr>
@@ -188,19 +201,21 @@ While we have designed the TNRS to handle most botanical data formats found in a
 		</tr>
 	</tbody>
 </table>
-
-<li><h3>Higher classification</h3></li>
+</li>
+<li><h3>Higher classification</h3>
 <p>This setting only affects the family classification of matched and accepted names.</p>
 <table border="1">
 	<thead>	
+	<tr>
 		<th>Setting</th>
 		<th><strong>APGIII</strong></th>
-		<th><strong>NCBI</strong</th>
+		<th><strong>NCBI</strong></th>
+	</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>Consequence</td>
-			<td>Family classification conforms exactly to Chase, M. & J. Reveal. 2009. A phylogenetic classification of the land plants to accompany APGIII. <i>Botanical Journal of the Linnean Society</i> 161:122-127. This is also the family classification used by <a href="http://www.tropicos.org">Tropicos</a>.</td>
+			<td>Family classification conforms exactly to Chase, M. &amp; J. Reveal. 2009. A phylogenetic classification of the land plants to accompany APGIII. <i>Botanical Journal of the Linnean Society</i> 161:122-127. This is also the family classification used by <a href="http://www.tropicos.org">Tropicos</a>.</td>
 			<td>Family classification as used by <a href= "http://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a>. Similar to APGIII, but with updates based on more recent phylogenetic studies.</td>
 		</tr>
 
@@ -211,6 +226,8 @@ While we have designed the TNRS to handle most botanical data formats found in a
 		</tr>
 	</tbody>
 </table>
+</li>
+</ul>
 </div>
 
 <br /><br />
@@ -218,42 +235,48 @@ While we have designed the TNRS to handle most botanical data formats found in a
 <h2>Additional Help</h2>
 		
 <ol>
-<h3><li>Make sure that the first letter of each genus name is capitalized.</li></h3>
-<h3><li>Make sure that each specific epithet (and subspecific epithet, if applicable) is all lowercase.</li></h3>
+<li><h3>Make sure that the first letter of each genus name is capitalized.</h3></li>
+<li>
+<h3>Make sure that each specific epithet (and subspecific epithet, if applicable) is all lowercase.</h3>
 <p>In the second example below, the incorrectly capitalized epithet "Rubra" prevents the name from matching to species.</p>
-
-<img src="images/Optimize_rubra_example.png" alt="Optimize Your Search Example" title="Optimize Your Search Example" border="1" /></li> 
-<h3><li>Try submitting names without author strings at the end of the name.</li></h3>
+<img src="images/Optimize_rubra_example.png" alt="Optimize Your Search Example" title="Optimize Your Search Example" border="1" />
+</li> 
+<li><h3>Try submitting names without author strings at the end of the name.</h3>
 <p>In the example below, the difference in spelling between the author of the name submitted and the name matched lowers the overall match score, relative to submitting the name alone, without the author string.</p>
 
-<img src="images/optimized_authorstrings_example.png" alt="Author String Example" title="Author String Example" border="1" /></li>
+<img src="images/optimized_authorstrings_example.png" alt="Author String Example" title="Author String Example" border="1" />
 
 <p>Be careful, however. Including the author name can sometimes <i>increase</i> match accuracy, especially if homonyms exist (the same name used by different authors to refer to different species). In the example below, the name retured by default for the Campylopus, without the author, is the accepted genus Campylopus Brid., a moss.</p>
 
 <p>This is acceptable if the moss is the intended meaning. However, Campylopus was also later (and incorrectly) used by the author Spach to refer to a genus of trees in the family Clusiaceae. Even though the second name is an illegitamate posterior homonym, it clearly refers to the tree and not the moss; by including the author the intended meaning is preserved.</p>
-<img src="images/optimize_increase_matchaccuracy.png" alt="Increase Match Accuracy" title="Increase Match Accuracy" border="1" /></li> 
+<img src="images/optimize_increase_matchaccuracy.png" alt="Increase Match Accuracy" title="Increase Match Accuracy" border="1" />
 
 <p><i>Note: Including the family name with the name will also distinguish between homonyms in different families (see recommendation #8 below)</i></p>
-<p>You should consider this tradeoff when determining whether to omit or include the author string.</p>
+<p>You should consider this tradeoff when determining whether to omit or include the author string.</p></li>
 
-<h3><li>The TNRS currently does not fuzzy match hybrid names. If a submitted name is mispelled, the TNRS will not find it.</li></h3>
+<li><h3>The TNRS currently does not fuzzy match hybrid names. If a submitted name is mispelled, the TNRS will not find it.</h3>
 <p>In the example below, the first name is spelled correctly; the second name is not.</p>
-<img src="images/optimize_misspelled.png" alt="Misspelled" title="Misspelled" border="1" /></li> </br>
+<img src="images/optimize_misspelled.png" alt="Misspelled" title="Misspelled" border="1" /></li> <br>
 
-<h3><li>Try to strip unwanted characters before submitting your names.</li></h3>
+<li><h3>Try to strip unwanted characters before submitting your names.</h3>
 <p>While the TNRS automatically strips out odd characters that are not used in botanical nomenclature (such as punctuation, underscores, +, %, #, etc.), names that include many such characters produce in lower match scores, potentially preventing the TNRS from discovering the correct name.</p>
 <p>Note the image below showing the effect of submitting misspelled names with and without odd characters:</p>
-<img src="images/optimize_odd_characters.png" alt="Odd Characters" title="Odd Characters" border="1" /></li> </br>
+<img src="images/optimize_odd_characters.png" alt="Odd Characters" title="Odd Characters" border="1" /></li> <br>
 
-<h3><li>Change the match score threshold.</li></h3>
+<li><h3>Change the match score threshold.</h3>
 <p>By default, names will be returned to you in a way that maximizes the number of returned matches (lowest setting). By increasing the match threshold, you can increase the exactness of the names being returned for your submitted name. However, this may lead to names being missed, especially in the case of badly misspelled names.</p>
-
-<h3><li>Inspect your results!</li></h3>
+</li>
+<li><h3>Inspect your results!</h3>
 <p>It is especially important you inspect results flagged with warnings or names with more than one possible match. Names with more than one match that have the hyperlinked words "(+x more)" after the name matched ("x" is the number of additional possible matches).</p>
 <p>Click on the hyperlink to see a list of all possible matches. Sometimes your intended name will be a lower-ranked match. This is especially important if you have set higher taxonomic constraint to ON.</p>
+</li>
 </ol>
 
-
+<h2>Large jobs</h2>
+<p>Whereas the TNRS application can handle millions of names, this web site has not been optimized for such large jobs. If your input list is over 500,000 names long, please contact <a href="mailto:support@iplantcollaborative.org?subject=Large%20TNRS%20job">support</a> for assistace.</p>
+</div>
+</div>
+</div>
 </body>
 
-<html>
+</html>
