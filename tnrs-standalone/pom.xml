@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -95,6 +96,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
 				<configuration>
 					<webappDirectory>${basedir}/war</webappDirectory>
 					<archive>
@@ -124,6 +126,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
@@ -132,6 +135,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
 				<configuration>
 					<filesets>
 						<fileset>
@@ -155,22 +159,15 @@
 		</repository>
 	</repositories>
 
-
 	<reporting>
 		<plugins>
-
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-idea-plugin</artifactId>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<jdkName>${jdk.version}</jdkName>
-				</configuration>
-			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-idea-plugin</artifactId> 
+				<configuration> <downloadSources>true</downloadSources> <jdkName>${jdk.version}</jdkName> 
+				</configuration> </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
 				<configuration>
 					<source>${jdk.version}</source>
 				</configuration>
@@ -178,6 +175,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.5</version>
 				<configuration>
 					<targetJdk>${jdk.version}</targetJdk>
 				</configuration>
@@ -185,10 +183,12 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.4</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>taglist-maven-plugin</artifactId>
+				<version>2.4</version>
 				<configuration>
 					<tags>
 						<tag>TODO</tag>
@@ -199,25 +199,20 @@
 					</tags>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<links>
-						<link>http://java.sun.com/j2ee/1.4/docs/api</link>
-						<link>http://java.sun.com/j2se/1.4.2/docs/api</link>
-						<link>http://java.sun.com/j2se/1.5.0/docs/api</link>
-						<link>http://java.sun.com/javase/6/docs/api/</link>
-					</links>
-				</configuration>
-			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId> 
+				<configuration> <links> <link>http://java.sun.com/j2ee/1.4/docs/api</link> 
+				<link>http://java.sun.com/j2se/1.4.2/docs/api</link> <link>http://java.sun.com/j2se/1.5.0/docs/api</link> 
+				<link>http://java.sun.com/javase/6/docs/api/</link> </links> </configuration> 
+				</plugin> -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>2.0-beta-2</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.5.2</version>
 			</plugin>
 
 		</plugins>
