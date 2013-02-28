@@ -1,1 +1,1 @@
-java -Xmx3000M -cp tnrsservices-1.0-SNAPSHOT.jar:. org.iplantc.tnrs.TNRSMain
+java -cp tnrsservices-1.0-SNAPSHOT.jar:. org.iplantc.tnrs.TNRSMain
