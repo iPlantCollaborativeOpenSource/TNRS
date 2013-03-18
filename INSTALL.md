@@ -34,7 +34,6 @@ To install the TNRS application, follow the steps below.
     9. Register the services
     10. Start the TNRS application
     11. Set up cron monitoring (optional)
----
 
 1. OBTAIN THE TNRS APPLICATION
 ------------------------------
@@ -46,19 +45,23 @@ To install the TNRS application, follow the steps below.
     cd TNRS
 
 1.1.    Create the TNRS system user.
+
     useradd tnrs -U -c 'TNRS services'
     
 1.2.    Create the storage directory.
+
     mkdir /tnrs-jobs
     chown tnrs:tnrs /tnrs-jobs
 
 Note: Do not modify the name and location of the storage directory.
 
 1.3.    Create the logs directory.
+
     mkdir /var/run/tnrs
     chown tnrs:tnrs /var/run/tnrs
 
 1.4.    Create the configuration directory.
+
     mkdir /home/tnrs/.tnrs
     cp ~/TNRS/config/tnrs.properties /home/tnrs/.tnrs/
     chown -R tnrs:tnrs /home/tnrs/.tnrs
@@ -66,12 +69,13 @@ Note: Do not modify the name and location of the storage directory.
 *Note: Do not modify the name and location of the configuration directory.*
 
 1.5.    Configure TNRS.
+
 Manually edit /home/tnrs/.tnrs/tnrs.properties to enter the address of your server. This will need to be edited throughout the properties file.
 
 1.6.    Link the configuration directory into the home directory of the tomcat process owner, in this case root.
     ln -s  /home/tnrs/.tnrs /root
     chown -R root:root /root/.tnrs
----
+
 
 
 2. SET UP THE TNRS DATABASE
