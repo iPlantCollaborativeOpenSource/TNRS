@@ -19,7 +19,7 @@ http://iplantcollaborative.org/opensource
 
 ##LICENSE
 All code, except where noted below, is released as described in the 
-LICENSE file included with this code.
+LICENSE.md file included with this code.
 
 Exceptions are biodiversity (BSD) and taxamatch (Apache 2.0), which
 are open source projects that we modified and are releasing here with
@@ -32,7 +32,7 @@ Source code is available at: https://github.com/iPlantCollaborativeOpenSource/TN
 
 
 ##INSTALLATION
-For instructions, see INSTALL.
+For instructions, see INSTALL.md.
 
 
 ##COMMON ISSUES/BUGS/QUESTIONS
