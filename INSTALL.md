@@ -259,6 +259,7 @@ Manually edit the httpd configuration file /etc/httpd/conf/httpd.conf
 * Set **KeepAlive** to **On**
 * Add the JK Modules after the Dynamic Shared Object (DSO) Support section:
 
+```
     #Load mod_jk module
     LoadModule  jk_module  modules/mod_jk.so
     
@@ -276,6 +277,7 @@ Manually edit the httpd configuration file /etc/httpd/conf/httpd.conf
     
     #Select the timestamp log format
     JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
+```
 
 8.3.   Copy the configuration files for tomcat and for the virtual hosts.
 

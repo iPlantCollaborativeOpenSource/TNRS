@@ -6,6 +6,7 @@ The following instructions can be used to install TNRS dependencies on a CentOS 
 **Some links may be unavailable. Please visit the specific developer's home page to locate the required files.**
 
 Instructions are given for the components listed below
+
 1.	Git 1.7.4 or higher
 2.	MySQL 5.0.95 or higher
 3.	PHP 5.3.3 or higher, including mysql and mbstring
@@ -17,7 +18,6 @@ Instructions are given for the components listed below
 9.	Rubygems 1.8.23 or higher
 
 Apache HTTP Server 2.2.3 or higher and Java 1.6 are already available on the VM image.
----
 
 SYSTEM SETUP
 ------------
