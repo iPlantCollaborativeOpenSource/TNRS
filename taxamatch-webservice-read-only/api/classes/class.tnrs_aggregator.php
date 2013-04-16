@@ -18,7 +18,7 @@ class TnrsAggregator {
 		'near_4' => 4
 	);
 	static $phonetic_array=array("Y" => 1, "" => 0);
-	static $acceptance_array=array("Accepted" => 2, "Synonym" => 1, "Illegitimate" => 1, "Invalid" => 1, "No opinion" => 0, "" => 0);
+	static $acceptance_array=array("Accepted" => 3, "Synonym" => 2, "Illegitimate" => 1, "Invalid" => 1, "Rejected name" => 1, "No opinion" => 0, "" => 0);
 	static $field=array(
 		'Name_submitted',	
 		'Overall_score',	
@@ -299,12 +299,13 @@ class TnrsAggregator {
 				if ($sn->acceptance == 'Accepted') {
 					$synonym[$nid][$sid]["accepted_name_id"]=$nid;
 					$synonym[$nid][$sid]["acceptance"]=$sn->acceptance;
-				} elseif ($sn->acceptance == 'Synonym' || $sn->acceptance == 'Invalid' || $sn->acceptance == 'Illegitimate') {
+				//} elseif ($sn->acceptance == 'Synonym' || $sn->acceptance == 'Invalid' || $sn->acceptance == 'Illegitimate') {
+				} elseif(! is_null($sn->acceptance)) {
 					if ($sn->accepted_name_id) {
 						$accepted_name_id[]=$sn->accepted_name_id;
 						$synonym[$nid][$sid]["accepted_name_id"]=$sn->accepted_name_id;
-						$synonym[$nid][$sid]["acceptance"]=$sn->acceptance;
 					}
+					$synonym[$nid][$sid]["acceptance"]=$sn->acceptance;
 				}
 			}
 			//print_r($synonym);

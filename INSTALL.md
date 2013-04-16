@@ -132,12 +132,14 @@ Note: All data source names must be lowercase (e.g. tropicos_example).
 
     cd /opt
     git clone git://github.com/GlobalNamesArchitecture/biodiversity.git
+    cd biodiversity
+    git checkout c8698fd8e64a7b018bc3f88c2b3b48ab3f45565d
 
 3.2.   Replace the file scientific_name_clean.treetop with the iPlant custom version.
 
-    cd biodiversity/lib/biodiversity/parser/
+    cd lib/biodiversity/parser/
     mv scientific_name_clean.treetop scientific_name_clean.treetop.original
-    wget http://svn.iplantcollaborative.org/iptol/data_integration/biodiversity_1.0.9/parser/scientific_name_clean.treetop
+    cp ~/TNRS/lib/scientific_name_clean.treetop .
 
 3.3.   Install the GNI parser.
 
