@@ -18,7 +18,7 @@ class TnrsAggregator {
 		'near_4' => 4
 	);
 	static $phonetic_array=array("Y" => 1, "" => 0);
-	static $acceptance_array=array("Accepted" => 3, "Synonym" => 2, "Illegitimate" => 1, "Invalid" => 1, "Rejected name" => 1, "No opinion" => 0, "" => 0);
+	static $acceptance_array=array("Accepted" => 3, "Synonym" => 2, "Illegitimate" => 1, "Invalid" => 1, "Orth. var."=>1,"Rejected name" => 1, "No opinion" => 0, "" => 0);
 	static $field=array(
 		'Name_submitted',	
 		'Overall_score',	
