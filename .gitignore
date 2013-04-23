@@ -15,3 +15,4 @@ tnrs-standalone/gwt-unitCache
 tnrs-batch-server/tnrs.html
 ~*
 *~
+bin/*
