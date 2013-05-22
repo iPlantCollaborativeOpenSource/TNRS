@@ -182,7 +182,7 @@ class TaxamatchThread extends Thread {
 	public void run(){
 		try{
 			HttpClient client = new HttpClient();
-
+//TOFIX: on a Prefork server, every client creates a new process. The client should be reused instead w keep alive connection.
 			PostMethod post = new PostMethod(url);
 
 			String query = names.elementAt(0);
@@ -190,7 +190,7 @@ class TaxamatchThread extends Thread {
 			for(int i=1; i < names.size(); i++){
 				query+= ";" + names.elementAt(i);
 			}
-
+//TOFIX: REMOVE PRINT
 			System.out.println(cmd+query);
 			
 			post.setRequestEntity(new StringRequestEntity(cmd+query, "application/x-www-form-urlencoded", "UTF-8"));
