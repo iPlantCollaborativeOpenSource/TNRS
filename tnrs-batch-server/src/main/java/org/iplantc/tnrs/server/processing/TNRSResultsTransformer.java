@@ -319,22 +319,20 @@ public class TNRSResultsTransformer {
 		item.put("selected", true);
 		item.put("groupSize",1);
 		item.put("Accepted_name_url","");
-		item.put("Accepted_name_species", "");
+		item.put("Accepted_species", "");
 		item.put("Name_matched_rank", "");
 		item.put("Name_matched_accepted_family","");
 		item.put("Genus_submitted", "");
 		item.put("Phonetic", "");
 		item.put("Accepted_name_id", "");
 		item.put("Accepted_name_rank", "");
-		item.put("Accepted_name_family", "");
+		item.put("Accepted_family", "");
 		item.put("Overall_score_order", 1);
 		item.put("Highertaxa_score_order", 1);
 		item.put("Source_constrain_off_order", 1);
 		item.put("Source_constrain_on_order",1);
 		item.accumulate("Source", "");
 		item.put("Nsources", "0");
-		item.put("Accepted_species","");
-		item.put("Accepted_family","");
 		return item;
 	}
 
