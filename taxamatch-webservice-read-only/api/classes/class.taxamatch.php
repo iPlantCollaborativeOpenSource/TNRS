@@ -562,7 +562,7 @@
 				$text_str=str_replace($start_matches[0],'',$text_str);
 				$this->this_start_string=$start_matches[0];
 			}
-			if (preg_match("/(?:(?:\s|^)(?:\-?cf\.?|vel\.? sp\.? aff\.?|\-?aff\.?)(?:\s|$))|(?:\?+)/i", $text_str, $anno_matches)) {
+			if (preg_match("/(?:(?:\s|^)(?:\-?cf\.?|vel\.? sp\.? aff\.?|\-?aff?\.?)(?:\s|$))|(?:\?+)/i", $text_str, $anno_matches)) {
 				$text_str=trim(str_replace($anno_matches[0],' ',$text_str));
 				$this->this_status_string=trim($anno_matches[0]);
 			}
