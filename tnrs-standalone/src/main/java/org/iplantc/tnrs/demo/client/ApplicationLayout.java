@@ -128,7 +128,7 @@ public class ApplicationLayout extends Viewport
 					"        <img src=\"images/iplant_logo.png\" alt= \"iPlant Collaborative\" /> \n" + 
 					"      </span>\n" + 
 					"    <div class=\"subheader\">\n" + 
-					"<span>Taxonomic Name Resolution Service</span> <span style=\"font-size: 24px;\">v3.1</span>\n" + 
+					"<span>Taxonomic Name Resolution Service</span> <span style=\"font-size: 24px;\">v3.2</span>\n" + 
 					"    </div>\n" + 
 					"  </div>");		
 		}	
