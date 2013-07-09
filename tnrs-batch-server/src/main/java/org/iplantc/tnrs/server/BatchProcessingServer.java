@@ -690,7 +690,7 @@ public class BatchProcessingServer extends Thread {
 				if(job.getType()==TnrsJob.PARSING_JOB) {
 
 					ParsingResultsFile results = new ParsingResultsFile(job, baseFolder);
-					results.createFileForDownload(properties.getProperty("org.iplantc.folder.tmp"));
+					results.createFileForDownload(properties.getProperty("org.iplantc.tnrs.folder.tmp"));
 					
 				}else {
 
