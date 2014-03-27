@@ -19,7 +19,7 @@ Changes committed by Brad Boyle (ojalaquellueva@gmail.com)
 
 1. In api/classes/class.tnrs_aggregator.php
 
-Line 21: Added "Misapplied name" to array of taxonomic status values. Integer value of 1 sorts "Misapplied name" after "Synonym", in same position as "Invalid", "Illegitimate", "Rejected name" and "Orth. var."
+Line 21: Added taxonomic statuses “Misapplied name" and “Synonym? (unresolved)” to array of taxonomic status values. Integer value of 1 sorts "Misapplied name" and “Synonym? (unresolved)” after "Synonym", in same position as "Invalid", "Illegitimate", "Rejected name" and "Orth. var."
 
 ------------------------------------------------------------------
 iPlant Collaborative made the changes listed below:
