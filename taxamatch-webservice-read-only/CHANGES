@@ -13,6 +13,13 @@ primary hosting institution), Cold Spring Harbor Laboratory, The
 University of Texas at Austin, and individual contributors. Find out 
 more at http://www.iplantcollaborative.org/. Changes are released under
 the same license as the original work.
+------------------------------------------------------------------
+2014-03-27
+Changes committed by Brad Boyle (ojalaquellueva@gmail.com)
+
+1. In api/classes/class.tnrs_aggregator.php
+
+Line 21: Added "Misapplied name" to array of taxonomic status values. Integer value of 1 sorts "Misapplied name" after "Synonym", in same position as "Invalid", "Illegitimate", "Rejected name" and "Orth. var."
 
 ------------------------------------------------------------------
 iPlant Collaborative made the changes listed below:
