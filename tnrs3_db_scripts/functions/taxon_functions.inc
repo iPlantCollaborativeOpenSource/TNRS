@@ -503,8 +503,6 @@ function is_hybrid($taxon) {
 	}
 }
 
-
-
 function stdRankIndicator($str) {
 	// Transforms rank indicator in taxon names
 	// to standarized abbreviated form
@@ -584,5 +582,89 @@ function stdRankIndicator($str) {
 	);
  return strtr($str,$arr);
 }
+
+function isRankIndicator($str) {
+	// Returns true if $str is a taxonomic rank indicator
+	$arr=array(
+		'agsp',
+		'agsp.',
+		'convar.',
+		'convar',
+		'cult.',
+		'cult',
+		'cultivar',
+		'cv',
+		'cv..',
+		'cv',
+		'fo.',
+		'fo',
+		'f.',
+		'forma',
+		'grex',
+		'lusus',
+		'monstr',
+		'nohtosubsp',
+		'nothogen',
+		'nothomorph',
+		'nothosect.',
+		'nothosect',
+		'nothoser.',
+		'nothoser',
+		'nothosubgen.',
+		'nothosubgen',
+		'nothosbgen',
+		'nothosbgen',
+		'nothosubsp.',
+		'nothosubsp.',
+		'nothosbsp.',
+		'nothosbsp.',
+		'nothossp.',
+		'nothossp',
+		'nothovar.',
+		'nothovar',
+		'proles',
+		'race',
+		'rasse',
+		'sect.',
+		'sect',
+		'ser',
+		'ser.',
+		'sport',
+		'stirps',
+		'subfo.',
+		'subfo',
+		'subf.',
+		'subf',
+		'subforma.',
+		'sbfo.',
+		'sbforma',
+		'subgen.',
+		'subgen',
+		'subsect',
+		'subsect.',
+		'subser.',
+		'subser',
+		'subsp',
+		'subsp.',
+		'sbsp.',
+		'sbsp',
+		'ssp.',
+		'ssp',
+		'subspecies',
+		'substirps',
+		'subvar.',
+		'subvar',
+		'supersect.',
+		'var',
+		'var.',
+		'variety'
+	);
+ if (in_array($str,$arr)) {
+ 	return true;
+ } else {
+ 	return false;
+ }
+}
+
 
 ?>

@@ -4,15 +4,14 @@
 //////////////////////////////////////////////////
 // Loading scripts for TNRS core database
 //
-// DB version: 3.5.2
-// Last DB revision date: 23 May 2012
+// DB version: 3.6.3
+// Last DB revision date: 27 March 2014
 // By: Brad Boyle
 // Contact: bboyle@email.arizona.edu
 // TNRS website: http://tnrs.iplantcollaborative.org/
 //
 // Key changes:
-// - support for multiple sources of names,
-//   synonymy and classifications
+// - Added tropicos_fixes/ (fixes problems with tropicos taxonomy)
 //  
 // Everything you need to set is here and in local
 // params.inc file in each import directory
@@ -36,13 +35,11 @@
 // for that source. 
 //////////////////////////////////////////////////
 
-// The follow configuration is for a test build using three example taxonomic
-// sources provided:
+// This will load all four sources
 $src_array=array(
-	"usda_example",
-	"dwc_example",
-	"tropicos_example",
-	"gcc_example"
+	'tropicosExample',
+	'tropicosExample2',
+	'usdaExample'
 );
 
 //////////////////////////////////////////////////
@@ -88,16 +85,12 @@ require_once $local_utilities_path."class.normalize.php";
 // Db connection info
 //////////////////////////////////////////////////
 
-// enter host here
-// I recommend running as localhost
 $HOST = "localhost";
 // Explicit host name for display at runtime
 $HOST=="localhost"?$HOSTNAME=exec('hostname -f'):$HOSTNAME=$HOST;
-$USER = "tnrs_root";
-$PWD = "rooter";
-// Enter whatever your database will be called below.
-// Database will be created if it doesn't exist (assuming you have full permissions)
-$DB = "tnrs_test"; 
+$USER = "";
+$PWD = "";
+$DB = "tnrs_test";
 
 //////////////////////////////////////////////////
 // Backup options
@@ -115,7 +108,7 @@ $use_db_backup=true;
 // exist, it will be created; if it does exist, it will
 // be replaced. Therefore, be VERY careful how you name
 // this database!
-$DB_BACKUP = "tnrs_test_backup";	// for testing
+$DB_BACKUP = "tnrs_test_backup";
 
 // Save a backup copy of staging table? This 
 // prevents staging table for current source

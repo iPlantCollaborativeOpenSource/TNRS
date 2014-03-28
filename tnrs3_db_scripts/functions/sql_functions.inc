@@ -1008,7 +1008,7 @@ function create_tables($create_sql,$drop_sql,$USER,$PWD,$DB){
 }
 
 /* Next version is better, but keep for now
-function sql_execute_multiple($sqlmultiple) {
+function sql_execute_multiple_bak($sqlmultiple) {
 	// executes one or more sql queries by exploding on ";"
 	$queries = explode(';', $sqlmultiple);
 	foreach($queries as $sql){
@@ -1021,6 +1021,8 @@ function sql_execute_multiple($sqlmultiple) {
 function sql_execute_multiple($sqlmultiple) {
 	// executes one or more sql queries by exploding on ";"
 	// if any query fails, dies and reports error
+	// Note that there no need to wrap this in an error handler; it 
+	// automatically dies and report error when any query fails
 	$queries = explode(';', $sqlmultiple);
 	foreach($queries as $sql){
 		$sql=trim($sql).";";

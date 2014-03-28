@@ -6,28 +6,24 @@
 // parameters used by other scripts as well
 /////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////
-// Taxonomy source parameters
-//////////////////////////////////////////////////
-
 // Name which uniquely identifies this source within database
 // Many operations, including table names, depend on this parameter
 // REQUIRED
 // MUST BE UNIQUE
 // NO SPACES
 // MAX 50 characters
-$sourceName="dwc_example";
+$sourceName="usdaExample";
 
 // Longer, more descriptive name for source
 // Can have spaces; not used in any scripts
 // after adding to table `source`
-$sourceNameFull="Darwin Core Example";
+$sourceNameFull="USDA Plants example";
 
 // Primary url for this source (optional)
-$sourceUrl="http://rs.tdwg.org/dwc/index.htm";	
+$sourceUrl="http://plants.usda.gov/adv_search.html";
 
 // date of access of raw data
-$dateAccessed="2012-02-11";	
+$dateAccessed="2012-03-15";
 
 // NOT LONGER USED
 // KEEP FOR NOW UNTIL I REMOVE THIS COLUMN AND ALL REFERENCES FROM DB
@@ -46,7 +42,7 @@ $source_warning=0;
 // to higher taxonomic categories (genus and above) for this source
 // Core database can hold multiple higher classifications;
 // therefore will not affect existing classification systems.
-$is_higher_classification=false;
+$is_higher_classification=true;
 
 // Replace previous records for this source?
 // VERY IMPORTANT
@@ -65,17 +61,22 @@ $fix_chars=true;
 /////////////////////////////////////////////////////////////////////////////
 
 // Path to data file
-$filepath="import_dwc_example/data/";
+$filepath="import_usdaExample/data/";
 
-// Name of data file you will be importing
-$namesfile = "dwc_example.csv";
+// Names of files you will be importing
+$namesfile = "usdaExample.csv";
 
-// path + file
 $namesfileandpath = $filepath.$namesfile;
 
 // names of destination mysql table
 $tbl_names_raw=$sourceName."_raw";
 
+// base name search url
+// Need to add the taxon symbol 
+$name_url_base="http://plants.usda.gov/java/profile?symbol=";
+
+// default url supplied if no symbol for a taxon
+$name_url_bad="http://plants.usda.gov/java/nameSearch";
 
 /////////////////////////////////////////////////////////////////////////////
 // MySQL LOAD DATA INFILE parameters
@@ -86,15 +87,15 @@ $tbl_names_raw=$sourceName."_raw";
 $local = " LOCAL ";
 
 // Field separator(s)
-//$fields_terminated_by = " FIELDS TERMINATED BY ',' ";
-$fields_terminated_by = " FIELDS TERMINATED BY '\t' ";
+$fields_terminated_by = " FIELDS TERMINATED BY ',' ";
+// $fields_terminated_by = " FIELDS TERMINATED BY '\t' ";
 
 // Is text optional surrounded by quotes, etc?
 $optionally_enclosed_by = " OPTIONALLY ENCLOSED BY '\"' ";  
 //$optionally_enclosed_by = "";
 
 // Line terminator
-$lines_terminated_by = " LINES TERMINATED BY '\n' ";
+$lines_terminated_by = " LINES TERMINATED BY '\r' ";
 
 // Set to ignore header line if present
 $ignore_lines = " IGNORE 1 LINES ";	// Ignore header line?

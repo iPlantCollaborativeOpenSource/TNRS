@@ -1,8 +1,8 @@
 Files in this directory and subdirectories build the TNRS 3 database
 
-Release date: 1 June 2012
-Database version: 3.5.4
-Database revision date: 22 October 2012
+Release date: 29 March 2013
+Database version: 3.6
+Database revision date: 29 March 2013
 Application url: http://tnrs.iplantcollaborative.org/
 
 I. Quick guide:
@@ -72,8 +72,7 @@ For a faster replace, set $replace=false in params.inc for the source being refr
 Only entirely new names from that source will be added. Existing names (and metadata
 such as source urls and date of access) will not be changed.
 
-III. Dependencies
-
+III. Dependencies:
 - Custom PHP functions are in subdirectory functions/
 - Custom MySQL function strSplit() must be present in your installation of MySQL. This 
 function will be automatically installed if not already present. Alternatively, you can
@@ -83,11 +82,9 @@ text  (step 5). See readme in genus_family_lookups for details.
 
 IV. Changes
 
-Version 3.5.4: 
-1. Added more detailed instructions to this readme
-2. Added Darwin Core import template (entire directory import_dwcExample and contents)
-3. Fixed bug in load_tnrs.php which caused loading to fail if run-time 
-option $replace_db set to "No".
+Version 3.6: 
+
+1. Changed Tropicos import routine to include three additional fields: NomenclatureStatusID, NomenclatureStatusName, Symbol. These fields are returned by Tropicos API, and provide additional information regarding nomenclatural status. Values in the three fields are equivalent representations of the same value. For names where the Tropicos ComputedAcceptance algorithm does not provide a taxonomic opinion (as indicated by NULL value of `acceptance`, the value of NomenclatureStatusName is transfered to `acceptance` WHERE NomenclatureStatusName IN ('Illegitimate','Invalid'). NomenclatureStatusName='nom. rej.' is translated as "Rejected name' and transfered to `acceptance`. The goal of transferring these values is to alert the user that the name in question is problematic, even if Tropicos does not provide a link to the accepted name.   
 
 Questions?
 Brad Boyle

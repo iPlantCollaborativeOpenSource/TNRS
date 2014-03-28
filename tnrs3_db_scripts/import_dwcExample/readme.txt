@@ -57,17 +57,18 @@ infraspecificRank	*Required if name is an infraspecific trinomial (e.g.,
 					library of infraspecific rank indicators and their variants and will 
 					attempt to standardize any variant abbreviations. Leave blank if taxon
 					is at rank of species or higher. 
-infraspecificEpithet	Required if taxon is subspecies, variety, forma, etc.  Subgeneric 
-					taxa such as section and series (e.g., Psychotria sect. Notopleura) 
-					can be entered by leaving specificEpithet NULL, entering the rank 
-					indicator in infraspecificRank and epithet infraspecificEpithet.
+infraspecificEpithet	Required if taxon is subspecies, variety, forma, etc.  Tribes and 
+					subgeneric taxa such as section and series 
+					(e.g., Psychotria sect. Notopleura) can be entered by leaving 
+					specificEpithet NULL, entering the rank indicator in infraspecificRank
+					and epithet infraspecificEpithet.
 infraspecificRank2	*Required if name is an infraspecific quadrinomial (e.g., 
-					"Silene laciniata ssp. major var. angustifolia"). Will be taxa of
+					"Silene laciniata ssp. major var. angustifolia"). These will be taxa of
 					ranks variety, forma, subforma, etc. Not directly 
 					equivalent to any Darwin Core term. Controlled vocabulary as per 
 					abbreviations as used in the ICBN Vienna code 
 					(http://ibot.sav.sk/icbn/main.htm; see esp. Section 5): 
-					"var.", "subvar.", "fo.", "subfo.".
+					"var.", "subvar.", "fo.", "subfo.", "cv.". 
 infraspecificEpithet2	*Required if taxon is an infraspecific quadrinomial (see 
 					infraspecificRank2, above). Not directly equivalent to any Darwin Core
 					term. If used, infraspecificRank2 as well as all higher taxonomic name 

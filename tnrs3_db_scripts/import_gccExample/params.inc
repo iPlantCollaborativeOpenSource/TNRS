@@ -16,7 +16,7 @@
 // MUST BE UNIQUE
 // NO SPACES
 // MAX 50 characters
-$sourceName="gcc_example";
+$sourceName="gccExample";
 
 // Longer, more descriptive name for source
 // Can have spaces; not used in any scripts
@@ -65,10 +65,10 @@ $fix_chars=true;
 /////////////////////////////////////////////////////////////////////////////
 
 // Path to data file
-$filepath="import_gcc_example/data/";
+$filepath="import_gccExample/data/";
 
 // Name of data file you will be importing
-$namesfile = "gcc_example.csv";
+$namesfile = "gccExample.csv";
 
 // path + file
 $namesfileandpath = $filepath.$namesfile;

@@ -34,7 +34,7 @@ CREATE TABLE `$tbl_staging` (
 `$parent_fk_fld` INTEGER UNSIGNED DEFAULT NULL,
 `$left_index_fld` INTEGER(11) UNSIGNED DEFAULT NULL,
 `$right_index_fld` INTEGER(11) UNSIGNED DEFAULT NULL,
-`$acceptance_fld` VARCHAR(25) DEFAULT NULL,
+`$acceptance_fld` VARCHAR(50) DEFAULT NULL,
 `$accepted_id_fld` INTEGER(11) UNSIGNED DEFAULT NULL,
 `nomenclaturalStatusRemarks` VARCHAR(100) DEFAULT NULL,
 `parent` VARCHAR(250) NOT NULL,
