@@ -1,8 +1,8 @@
 Files in this directory and subdirectories build the TNRS 3 database
 
-Release date: 29 March 2013
-Database version: 3.6
-Database revision date: 29 March 2013
+Release date: 27 March 2014
+Database version: 3.6.3
+Database revision date: 27 March 2014
 Application url: http://tnrs.iplantcollaborative.org/
 
 I. Quick guide:
@@ -81,6 +81,10 @@ use contents of file strSplit_function.sql to install this function manually
 text  (step 5). See readme in genus_family_lookups for details.
 
 IV. Changes
+
+Version 3.6.3.
+
+1. Added scripts in directory tropicos_fixes/. These are fixes specific to tropicos. Are not part of the pipeline, but should be run separately after completing build of the database. See readme in tropicos_fixes.
 
 Version 3.6: 
 
