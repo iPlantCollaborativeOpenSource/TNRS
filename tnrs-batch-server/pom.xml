@@ -23,7 +23,7 @@
 		<repository>
 			<id>iplantCollaborative</id>
 			<name>iPlant Collaborative local repository</name>
-			<url>http://projects.iplantcollaborative.org/archiva/repository/internal/</url>
+			<url>http://katic.iplantcollaborative.org/archiva/repository/internal/</url>
 		</repository>
 	</repositories>
 
@@ -39,8 +39,8 @@
 			<version>1.2.16</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mozilla.universalchardet</groupId>
-			<artifactId>juniversalcharset</artifactId>
+			<groupId>com.googlecode.juniversalchardet</groupId>
+			<artifactId>juniversalchardet</artifactId>
 			<version>1.0.3</version>
 		</dependency>
 		<dependency>
