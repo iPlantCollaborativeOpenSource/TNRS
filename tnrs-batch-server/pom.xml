@@ -89,7 +89,13 @@
 	</dependencies>
 
 
-
+    <distributionManagement>
+        <snapshotRepository>
+            <id>iplantCollaborative</id>
+            <name>iPlant Collaborative Local Repository</name>
+            <url>http://katic.iplantcollaborative.org/archiva/repository/internal/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 
 	<build>
