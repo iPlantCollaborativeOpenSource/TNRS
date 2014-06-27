@@ -41,6 +41,10 @@ Class Splitter
 			$this->genus = $cnts->scientificName->details[0]->genus->string;
 			if(isset($cnts->scientificName->details[0]->infraspecies)) {
 				foreach($cnts->scientificName->details[0]->infraspecies as $infra) {
+					if (is_null($infra)) {
+						$infra=$cnts->scientificName->details[0]->ignored->infraspecies;
+					}
+					if (is_null($infra)) { continue; }
 					$this->infraspecies[]=array($infra->rank, $infra->string);
 				}
 			}
