@@ -19,15 +19,18 @@ load_tnrs.php.
 2. Production build
 
 For a production build using one or more of your own taxonomic sources, you will need to
-create an import directory for each source (named "import_[sourceName]"), modeled after the contents of one of the four example import directories provided. Your raw data must
+create an import directory for each source (named "import_[sourceName]"), modeled after
+the contents of one of the four example import directories provided. Your raw data must
 be in the same format as the example data in the data/ directory; you may also need to 
 adjust source-specific parameters in the params.inc file for that source. 
 
-We recommend using the example provided in import_dwcExample as the template for all your sources. The readme file in import_dwcExample provides details on preparing your
+We recommend using the example provided in import_dwcExample as the template for all your
+sources. The readme file in import_dwcExample provides details on preparing your
 source files, setting source-specific parameters (params.inc in each import directory) and
 global parameters (global_params.inc). You will need to transform each of your taxonomic 
 sources into the modified DwC (Darwin Core) format, and place it in its own import folder,
-along with a copy of all the other files in the import_dwcExample directory. How you wrangle your data into DwC format is up to you (scripting, Excel, whatever), but the 
+along with a copy of all the other files in the import_dwcExample directory. How you
+wrangle your data into DwC format is up to you (scripting, Excel, whatever), but the 
 final product must satisfy the requirements of modified DwC, as described in the readme
 file.
 
@@ -36,7 +39,8 @@ file.
 To connect the TNRS to your database, copy the database to MySQL on your TNRS server. 
 You can call your TNRS database whatever you want. Next, make sure 'tnrs' is a MySQL user,
 and has permission to read the TNRS database. Only SELECT permission is needed. Finally, 
-you need to tell the TNRS which database to use. You do this by editing the api config file (taxamatch-webservice-read-only/api/config.php) as follows:
+you need to tell the TNRS which database to use. You do this by editing the api config
+file (taxamatch-webservice-read-only/api/config.php) as follows:
 
 'db_name'=> 'your_tnrs_database_name'
 
@@ -101,11 +105,23 @@ IV. Changes
 
 Version 3.6.3.
 
-1. Added scripts in directory tropicos_fixes/. These are fixes specific to tropicos. Are not part of the pipeline, but should be run separately after completing build of the database. See readme in tropicos_fixes.
+1. Added scripts in directory tropicos_fixes/. These are fixes specific to tropicos. 
+Are not part of the pipeline, but should be run separately after completing build of
+the database. See readme in tropicos_fixes.
 
 Version 3.6: 
 
-1. Changed Tropicos import routine to include three additional fields: NomenclatureStatusID, NomenclatureStatusName, Symbol. These fields are returned by Tropicos API, and provide additional information regarding nomenclatural status. Values in the three fields are equivalent representations of the same value. For names where the Tropicos ComputedAcceptance algorithm does not provide a taxonomic opinion (as indicated by NULL value of `acceptance`, the value of NomenclatureStatusName is transfered to `acceptance` WHERE NomenclatureStatusName IN ('Illegitimate','Invalid'). NomenclatureStatusName='nom. rej.' is translated as "Rejected name' and transfered to `acceptance`. The goal of transferring these values is to alert the user that the name in question is problematic, even if Tropicos does not provide a link to the accepted name.   
+1. Changed Tropicos import routine to include three additional fields: NomenclatureStatusID, 
+NomenclatureStatusName, Symbol. These fields are returned by Tropicos API, and provide 
+additional information regarding nomenclatural status. Values in the three fields are 
+equivalent representations of the same value. For names where the Tropicos ComputedAcceptance 
+algorithm does not provide a taxonomic opinion (as indicated by NULL value of `acceptance`, 
+the value of NomenclatureStatusName is transfered to `acceptance` WHERE NomenclatureStatusName 
+IN ('Illegitimate','Invalid'). NomenclatureStatusName='nom. rej.' is translated as 
+"Rejected name' and transfered to `acceptance`. 
+
+The goal of transferring these values is to alert the user that the name in question is 
+problematic, even if Tropicos does not provide a link to the accepted name.   
 
 Questions?
 Brad Boyle
