@@ -90,7 +90,7 @@ public class RemoteTNRSEditorPanel extends TNRSEditorPanel
 	private CheckMenuItem sources_n;
 	private CheckMenuItem  tax_on;
 	private RemoteTNRSEditorPanel panel;
-	private boolean dirty=false;
+	private boolean dirty=true;
 	private Button job_info;
 
 	/**
