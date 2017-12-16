@@ -1,7 +1,7 @@
 Taxonomic Name Resolution Service (TNRS)
 ========================================
 
-##INTRODUCTION
+## INTRODUCTION
 This repo includes all of the code that powers iPlant's Taxonomic 
 Name Resolution Service.
 
@@ -17,7 +17,7 @@ status is available at
 http://iplantcollaborative.org/opensource
 
 
-##LICENSE
+## LICENSE
 All code, except where noted below, is released as described in the 
 LICENSE.md file included with this code.
 
@@ -35,14 +35,14 @@ Source code is available at: https://github.com/iPlantCollaborativeOpenSource/TN
 For instructions, see INSTALL.md.
 
 
-##COMMON ISSUES/BUGS/QUESTIONS
+## COMMON ISSUES/BUGS/QUESTIONS
 * Java Heap Size
 The TNRS uses Java's default mechanism to define the maximum amount of memory accessible to its services. This might be too low for certain appications or dedicated servers, and can be changed in TNRS/scripts/batch_start.sh and TNRS/scripts/services_start.sh.
  
 * Use the issue tracker available from the GitHub repository at the link listed under SOURCE above. Click Issues to submit a question or report a problem.
 
 
-##CONTRIBUTING
+## CONTRIBUTING
 iPlant requires all outside collaborators (those not employed by iPlant) to sign and submit a Contributor License Agreement. Details as well as answers to Frequently Asked Questions about this agreement are available at http://www.iplantcollaborative.org/opensource/CLA.
 
 Other steps in the process are still being created. While this message remains, email opensource@iplantcollaborative.org
