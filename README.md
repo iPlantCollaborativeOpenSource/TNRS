@@ -27,11 +27,11 @@ our changes. The licenses for these are included in the LICENSE files
 in the respective directories.
 
 
-##SOURCE
+## SOURCE
 Source code is available at: https://github.com/iPlantCollaborativeOpenSource/TNRS
 
 
-##INSTALLATION
+## INSTALLATION
 For instructions, see INSTALL.md.
 
 
