@@ -21,8 +21,7 @@ public class DebugTransformer extends AbstractMessageAwareTransformer{
 			throws TransformerException {
 		
 		try {
-		String ctype = message.getOrginalPayload().toString();
-		message.setProperty("Content-type", "application/csv", PropertyScope.OUTBOUND);	
+		message.setProperty("Content-type", "application/csv", PropertyScope.OUTBOUND);
 		System.out.println(message.toString());
 		System.out.println(message.getProperty("http.request"));
 		System.out.println(message.getProperty("Content-type"));

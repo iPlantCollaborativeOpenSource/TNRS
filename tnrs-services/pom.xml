@@ -12,7 +12,7 @@
 
 	<properties>
 		<!-- Tools properties -->
-		<mule.version>2.2.1</mule.version>
+		<mule.version>3.8.1</mule.version>
 		<jdk.version>1.6</jdk.version>
 		<eclipse.plugin.version>2.5</eclipse.plugin.version>
 		<vm.type>org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType</vm.type>
@@ -387,7 +387,7 @@
         <repository>
             <id>iplantCollaborative</id>
             <name>iPlant Collaborative local repository</name>
-            <url>http://projects.iplantcollaborative.org/archiva/repository/internal/</url>
+            <url>http://marvin.iplantcollaborative.org:8080/archiva/repository/internal/</url>
         </repository>
 	
     </repositories>
