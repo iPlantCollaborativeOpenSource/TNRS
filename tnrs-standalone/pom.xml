@@ -15,7 +15,7 @@
         <!-- Current GWT Version -->
         <gwt.version>2.4.0</gwt.version>
         <!-- Current ExtGWT Version -->
-        <gxt.version>2.2.5</gxt.version>
+        <gxt.version>2.3.1-gwt22</gxt.version>
         <!-- Define OS/Platform Independent Character Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -53,9 +53,9 @@
             <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>gwtupload</groupId>
+            <groupId>com.googlecode.gwtupload</groupId>
             <artifactId>gwtupload</artifactId>
-            <version>0.5.5</version>
+            <version>0.6</version>
         </dependency>
         <dependency>
             <groupId>com.extjs</groupId>
@@ -146,27 +146,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>gwt-maven</id>
-            <url>http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/</url>
-        </repository>
-        <repository>
-            <id>iplantCollaborative</id>
-            <name>iPlant Collaborative local repository</name>
-            <url>http://projects.iplantcollaborative.org/archiva/repository/internal/
-            </url>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>iplantCollaborative</id>
-            <name>iPlant Collaborative Local Repository</name>
-            <url>http://katic.iplantcollaborative.org/archiva/repository/internal/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <reporting>
         <plugins>

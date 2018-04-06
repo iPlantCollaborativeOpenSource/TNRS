@@ -55,7 +55,7 @@ public class SettingsSummaryPanel extends ContentPanel {
 	
 	
 	public void init(){
-		setHeading("<img src=\"images/settings.jpg\"/>&nbsp;&nbsp;Name processing settings");
+		setHeadingHtml("<img src=\"images/settings.jpg\"/>&nbsp;&nbsp;Name processing settings");
 		setFrame(true);
 		setWidth(580);
 		setHeight(240);
@@ -233,7 +233,7 @@ public class SettingsSummaryPanel extends ContentPanel {
 	
 		
 		JSONObject json = (JSONObject)JSONParser.parseStrict(dialog.getSettings());
-		sourceName.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+json.get("sources").toString().replace("\"", ""));
+		sourceName.setHtml("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+json.get("sources").toString().replace("\"", ""));
 		String msg = "Allow partial matches, ";
 		
 		if(json.get("match_to_rank").toString().contains("false")){
@@ -243,15 +243,15 @@ public class SettingsSummaryPanel extends ContentPanel {
 		
 		
 		if(json.get("mode").toString().replace("\"", "").equals("matching")){
-			modeLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selected mode:&nbsp;&nbsp; Perform Name Resolution");
-			classificiationLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Selected classification source: "+json.get("classification").toString().replace("\"", "").toString().toUpperCase());
-			accuracyLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+msg+" Selected minimum threshold: "+json.get("sensitivity").toString().replace("\"", ""));
+			modeLabel.setHtml("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selected mode:&nbsp;&nbsp; Perform Name Resolution");
+			classificiationLabel.setHtml("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Selected classification source: "+json.get("classification").toString().replace("\"", "").toString().toUpperCase());
+			accuracyLabel.setHtml("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+msg+" Selected minimum threshold: "+json.get("sensitivity").toString().replace("\"", ""));
 			accuracyDisplay.setVisible(true);
 			classificationDisplay.setVisible(true);
 			sourcesDisplay.setVisible(true);
 		
 		}else{
-			modeLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform Name Parsing");
+			modeLabel.setHtml("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform Name Parsing");
 			accuracyDisplay.setVisible(false);
 			classificationDisplay.setVisible(false);
 			sourcesDisplay.setVisible(false);

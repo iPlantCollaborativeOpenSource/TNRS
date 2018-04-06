@@ -52,7 +52,7 @@ public class ResultsPanel extends ContentPanel {
 		setFrame(true);
 		setLayout(new FitLayout());
 		setHeight(215);
-		setHeading("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter email used for job submission and key received    ");
+		setHeadingHtml("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter email used for job submission and key received    ");
 		
 	}
 

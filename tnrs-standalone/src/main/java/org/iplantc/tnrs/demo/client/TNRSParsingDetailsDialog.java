@@ -32,7 +32,7 @@ public class TNRSParsingDetailsDialog extends Dialog {
 	
 	public void init() {
 		setSize(480,380);
-		setHeading("Details");
+		setHeadingText("Details");
 		setResizable(true);
 		setLayout(new FitLayout());
 		setStyleAttribute("fontSize","12px");
@@ -42,7 +42,7 @@ public class TNRSParsingDetailsDialog extends Dialog {
 	public void compose() {
 		
 		ContentPanel panel = new ContentPanel();
-		panel.setHeading("Name Submitted: "+entry.get("submittedName"));
+		panel.setHeadingText("Name Submitted: "+entry.get("submittedName"));
 		panel.setLayout(new FitLayout());
 		FlexTable flexTable = new FlexTable();
 		flexTable.setStyleName("flexfontsize");

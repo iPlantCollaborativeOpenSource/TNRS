@@ -31,7 +31,7 @@ public class TNRSProgressPanel extends ContentPanel {
 		setLayout(new RowLayout(Style.Orientation.VERTICAL));
 
 		setSize(1170,200);
-		setHeading("Progress");
+		setHeadingText("Progress");
 		setFrame(true);
 	}
 

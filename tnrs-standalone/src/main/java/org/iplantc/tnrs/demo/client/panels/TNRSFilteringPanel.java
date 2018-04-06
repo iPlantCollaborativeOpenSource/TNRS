@@ -66,7 +66,7 @@ public class TNRSFilteringPanel extends VerticalPanel {
 		match_to_rank.setBoxLabel("Allow partial matching");
 		panel.add(match_to_rank);
 		Label exp = new Label();
-		exp.setText("When selected, the TNRS will match to a higher taxon if a match to the full name submitted cannot be found." +
+		exp.setHtml("When selected, the TNRS will match to a higher taxon if a match to the full name submitted cannot be found." +
 				" If not selected and not match is found to the full taxon name, you will be returned a status of \"no suitable matches\" for the name submitted.");
 		exp.setStyleAttribute("fontSize", "11px");
 		match_to_rank.setValue(true);

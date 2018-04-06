@@ -85,7 +85,7 @@ public class TNRSDetailsDialog extends Window
 			}
 		}
 
-		setHeading("Submitted Name: " +name);
+		setHeadingText("Submitted Name: " +name);
 	}
 
 

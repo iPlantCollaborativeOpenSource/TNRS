@@ -39,7 +39,7 @@ public class TNRSSupportWindow extends Window {
 	
 	private void init() {
 		setSize(350,450);
-		setHeading("Contact TNRS Support");
+		setHeadingText("Contact TNRS Support");
 	}
 	
 	private void compose() {

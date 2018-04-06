@@ -62,7 +62,7 @@ public class TNRSDownloadDialog extends Dialog{
 			setSize(200,180);
 		}
 		setLayout(new FitLayout());
-		setHeading("Download Options");
+		setHeadingText("Download Options");
 		setStyleAttribute("background-color", "#EDEDED");
 		setModal(true);
 		setButtons(Dialog.OKCANCEL);
@@ -133,12 +133,12 @@ public class TNRSDownloadDialog extends Dialog{
 		if(mode.equals("matching")){
 			FieldSet set1 = new FieldSet();
 			set1.setLayout(new FitLayout());
-			set1.setHeading("Results to download");
+			set1.setHeadingHtml("Results to download");
 			set1.add(buildOptions1());
 
 			FieldSet set2 = new FieldSet();
 			set2.setLayout(new FitLayout());
-			set2.setHeading("Download format");
+			set2.setHeadingHtml("Download format");
 			set2.add(buildOptions2());
 			
 			pnlInner.add(set1);
@@ -253,6 +253,10 @@ class Encoding extends BaseModelData {
 
 	public Encoding(String name){
 		set("name",name);
+	}
+
+	Encoding() {
+		this("default name");
 	}
 
 	public String getName(){

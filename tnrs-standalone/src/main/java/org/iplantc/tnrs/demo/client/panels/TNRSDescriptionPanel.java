@@ -19,7 +19,7 @@ public class TNRSDescriptionPanel extends ContentPanel
 
 	private void init()
 	{
-		setHeading("Welcome");
+		setHeadingText("Welcome");
 		
 		setFrame(true);
 		setWidth(580);

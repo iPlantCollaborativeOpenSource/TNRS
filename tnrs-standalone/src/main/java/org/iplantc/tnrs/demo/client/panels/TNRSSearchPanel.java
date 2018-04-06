@@ -153,7 +153,7 @@ public class TNRSSearchPanel extends VerticalPanel
 	{
 		ContentPanel ret = new ContentPanel();
 
-		ret.setHeading("Enter scientific names to check");
+		ret.setHeadingText("Enter scientific names to check");
 
 		ret.setBottomComponent(buildButtonBar());
 		

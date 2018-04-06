@@ -32,7 +32,7 @@ public class DetailDialog extends Dialog {
 
 	public void init() {
 		setSize(550,500);
-		setHeading("Details");
+		setHeadingText("Details");
 		setResizable(true);
 		setLayout(new FitLayout());
 		setStyleAttribute("fontSize","12px");
@@ -44,7 +44,7 @@ public class DetailDialog extends Dialog {
 
 		ContentPanel panel = new ContentPanel();
 
-		panel.setHeading("Name submitted: "+entry.getSubmittedName());
+		panel.setHeadingText("Name submitted: "+entry.getSubmittedName());
 		panel.setLayout(new FitLayout());
 
 

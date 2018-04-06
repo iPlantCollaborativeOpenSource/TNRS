@@ -98,7 +98,7 @@ public class EditSettingsDialog extends Dialog {
 		classificationPanel = new TNRSClassificationPanel();
 		sourcesPanel.setClassificationPanel(classificationPanel);
 		processingModePanel = new TNRSProcessingModePanel(this);
-		setHeading("Edit Settings");
+		setHeadingText("Edit Settings");
 	}
 	
 	public void compose(){
