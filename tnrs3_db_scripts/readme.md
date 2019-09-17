@@ -1,11 +1,15 @@
-Files in this directory and subdirectories build the TNRS 3 database
+# Files in this directory and subdirectories build the TNRS 3 database
 
 Release date: 27 March 2014
 Database version: 3.6.3
 Database revision date: 27 March 2014
 Application url: http://tnrs.iplantcollaborative.org/
 
-I. Quick guide
+# WARNING: Deprecated!
+
+This version of TNRS db scripts is not compatible with PHP7+ and is now deprecated.
+
+## I. Quick guide
 
 1. Test build
 
@@ -48,7 +52,7 @@ replacing your_tnrs_database_name with whatever name you gave to the tnrs databa
 
 That's it!
 
-II. Details
+## II. Details
 
 Each major step in this process is performed by files in a single directory. Within each 
 directory, one script (with extension .php) calls all the others (extensions .inc). 
@@ -92,7 +96,7 @@ For a faster replace, set $replace=false in params.inc for the source being refr
 Only entirely new names from that source will be added. Existing names (and metadata
 such as source urls and date of access) will not be changed.
 
-III. Dependencies
+## III. Dependencies
 
 - Custom PHP functions are in subdirectory functions/
 - Custom MySQL function strSplit() must be present in your installation of MySQL. This 
@@ -101,15 +105,15 @@ use contents of file strSplit_function.sql to install this function manually
 - perl utility dbf_dump is needed to extract downloaded GRIN taxonomy files to plain
 text  (step 5). See readme in genus_family_lookups for details.
 
-IV. Changes
+## IV. Change log
 
-Version 3.6.3.
+#### Version 3.6.3.
 
 1. Added scripts in directory tropicos_fixes/. These are fixes specific to tropicos. 
 Are not part of the pipeline, but should be run separately after completing build of
 the database. See readme in tropicos_fixes.
 
-Version 3.6: 
+#### Version 3.6: 
 
 1. Changed Tropicos import routine to include three additional fields: NomenclatureStatusID, 
 NomenclatureStatusName, Symbol. These fields are returned by Tropicos API, and provide 
