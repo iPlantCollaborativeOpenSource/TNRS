@@ -5,9 +5,9 @@ Database version: 3.6.3
 Database revision date: 27 March 2014
 Application url: http://tnrs.iplantcollaborative.org/
 
-# WARNING: Deprecated!
+## WARNING: Deprecated!
 
-This version of TNRS db scripts is not compatible with PHP7+ and is now deprecated.
+This version of TNRS db scripts is not compatible with PHP7+ and is now deprecated. For updated version, see: `https://github.com/ojalaquellueva/tnrs_db`
 
 ## I. Quick guide
 
